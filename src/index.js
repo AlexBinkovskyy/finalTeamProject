@@ -9,10 +9,10 @@ import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider>
-      <BrowserRouter basename="/finalTeamProject">
+    {/* <Provider> */}
+      {/* <BrowserRouter basename="/finalTeamProject"> */}
         <App />
-      </BrowserRouter>
-    </Provider>
+      {/* </BrowserRouter>
+    </Provider> */}
   </React.StrictMode>
 );
