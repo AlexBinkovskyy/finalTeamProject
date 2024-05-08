@@ -1,1 +1,15 @@
-@import './reset.css'
+@import './reset.css';
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('./fonts/Poppins-Bold.ttf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('./fonts/Poppins-Regular.ttf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
