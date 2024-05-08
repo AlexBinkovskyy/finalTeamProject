@@ -1,3 +1,11 @@
+import React from 'react';
+import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
 export const App = () => {
-  return <div></div>;
+  return (
+    <>
+      <div>
+        <AddWaterBtn />
+      </div>
+    </>
+  );
 };
