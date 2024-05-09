@@ -9,9 +9,9 @@ import 'modern-normalize';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <Provider> */}
-      {/* <BrowserRouter basename="/finalTeamProject"> */}
-        <App />
-      {/* </BrowserRouter>
+    {/* <BrowserRouter basename="/finalTeamProject"> */}
+    <App />
+    {/* </BrowserRouter>
     </Provider> */}
   </React.StrictMode>
 );

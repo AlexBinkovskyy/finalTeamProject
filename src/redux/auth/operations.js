@@ -1,0 +1,75 @@
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
+export const signup = createAsyncThunk(
+  'auth/signup',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post('/users/signup', credentials);
+      setAuthHeader(res.data.token);
+      toast.success('Registration success');
+      return res.data;
+    } catch (error) {
+      toast.error(`${error.response.data.message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const signin = createAsyncThunk(
+  'auth/signin',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post('/users/signin', credentials);
+      setAuthHeader(res.data.token);
+      toast.success('Welcome to the App');
+      return res.data;
+    } catch (error) {
+      toast.error('Incorrect username or password');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/signout');
+    clearAuthHeader();
+    toast.success('Signout success');
+  } catch (error) {
+    toast.error('Signout error');
+
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(persistedToken);
+      const res = await axios.get('/users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
