@@ -1,4 +1,5 @@
 import { useEffect, lazy } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -9,10 +10,15 @@ import { RestrictedRoute } from '../Routs/RestrictedRoute';
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
 
-const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
-const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
-const SignUpPage = lazy(() => import('../Pages/SignUpPage/SignUpPage'));
-const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
+import HomePage from '../Pages/HomePage/HomePage';
+import SignInPage from '../Pages/SignInPage/SignInPage';
+import SignUpPage from '../Pages/SignUpPage/SignUpPage';
+import TrackerPage from '../Pages/TrackerPage/TrackerPage';
+
+// const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
+// const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
+// const SignUpPage = lazy(() => import('../Pages/SignUpPage/SignUpPage'));
+// const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
