@@ -6,8 +6,6 @@ export const App = () => {
   return (
     <>
       <div>
-        <SignUpForm />
-        <SignInForm />
         <AddWaterBtn />
       </div>
     </>
