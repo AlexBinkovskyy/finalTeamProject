@@ -20,13 +20,12 @@ export default function DeleteWaterModal() {
     closeModal();
   };
 
-  const handleEscapeKeyPress = (event) => {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  };
-
   useEffect(() => {
+    const handleEscapeKeyPress = (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
     if (isOpen) {
       document.addEventListener('keydown', handleEscapeKeyPress);
     } else {
