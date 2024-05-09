@@ -1,10 +1,10 @@
 import React from 'react';
-import AddWaterBtn from './AddWaterBtn/AddWaterBtn';
+import HomePage from 'Pages/HomePage/HomePage';
 export const App = () => {
   return (
     <>
       <div>
-        <AddWaterBtn />
+        <HomePage />
       </div>
     </>
   );
