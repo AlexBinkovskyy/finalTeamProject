@@ -1,4 +1,5 @@
 import css from './SignInForm.module.css';
+import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -9,6 +10,9 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignInForm() {
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
+
   const {
     register,
     handleSubmit,
@@ -24,14 +28,40 @@ export default function SignInForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('email')} />
-      {errors.email && <span>{errors.email.message}</span>}
+    <div>
+      <h1 className={css.title}>Sign In</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <label htmlFor={emailFieldId} className={css.label}>
+          Email
+        </label>
+        <input
+          {...register('email')}
+          className={css.input}
+          id={emailFieldId}
+          placeholder="Enter your email"
+        />
+        {errors.email && (
+          <span className={css.error}>{errors.email.message}</span>
+        )}
 
-      <input {...register('password')} autoComplete="off" />
-      {errors.password && <span>{errors.password.message}</span>}
+        <label htmlFor={passwordFieldId} className={css.label}>
+          Password
+        </label>
+        <input
+          {...register('password')}
+          autoComplete="off"
+          className={css.input}
+          id={passwordFieldId}
+          placeholder="Enter your password"
+        />
+        {errors.password && (
+          <span className={css.error}>{errors.password.message}</span>
+        )}
 
-      <button type="submit">Sign In</button>
-    </form>
+        <button type="submit" className={css.button}>
+          Sign In
+        </button>
+      </form>
+    </div>
   );
 }

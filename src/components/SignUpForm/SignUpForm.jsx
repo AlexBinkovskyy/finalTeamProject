@@ -1,4 +1,5 @@
 import css from './SignUpForm.module.css';
+import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -18,6 +19,10 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignUpForm() {
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
+  const repeatPassword = useId();
+
   const {
     register,
     handleSubmit,
@@ -33,17 +38,54 @@ export default function SignUpForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('email')} />
-      {errors.email && <span>{errors.email.message}</span>}
+    <div>
+      <h1 className={css.title}>Sign Up</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <label htmlFor={emailFieldId} className={css.label}>
+          Email
+        </label>
+        <input
+          {...register('email')}
+          className={css.input}
+          id={emailFieldId}
+          placeholder="Enter your email"
+        />
+        {errors.email && (
+          <span className={css.error}>{errors.email.message}</span>
+        )}
 
-      <input {...register('password')} autoComplete="off" />
-      {errors.password && <span>{errors.password.message}</span>}
+        <label htmlFor={passwordFieldId} className={css.label}>
+          Password
+        </label>
+        <input
+          {...register('password')}
+          autoComplete="off"
+          className={css.input}
+          id={passwordFieldId}
+          placeholder="Enter your password"
+        />
+        {errors.password && (
+          <span className={css.error}>{errors.password.message}</span>
+        )}
 
-      <input {...register('repeatPassword')} autoComplete="off" />
-      {errors.repeatPassword && <span>{errors.repeatPassword.message}</span>}
+        <label htmlFor={repeatPassword} className={css.label}>
+          Repeat Password
+        </label>
+        <input
+          {...register('repeatPassword')}
+          autoComplete="off"
+          className={css.input}
+          id={repeatPassword}
+          placeholder="Repeat password"
+        />
+        {errors.repeatPassword && (
+          <span className={css.error}>{errors.repeatPassword.message}</span>
+        )}
 
-      <button type="submit">Sign Up</button>
-    </form>
+        <button type="submit" className={css.button}>
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 }
