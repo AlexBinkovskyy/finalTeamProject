@@ -41,18 +41,22 @@ export const LogOutModal = () => {
         style={customStyles}
         contentLabel="LogOut Modal"
       >
-        <button className={css.closeButton} onClick={closeModal}>
-          ×
-        </button>
-        <h2 className={css.modalTitle}>Log out</h2>
-        <p className={css.modalQuestion}>Do you really want to leave?</p>
-        <div className={css.buttonContainer}>
-          <button className={css.deleteButton} onClick={logOut}>
-            Log out
-          </button>
-          <button className={css.cancelButton} onClick={closeModal}>
-            Cancel
-          </button>
+        <div className={css.modalOverlay}>
+          <div className={css.modalContent}>
+            <button className={css.closeButton} onClick={closeModal}>
+              ×
+            </button>
+            <h2 className={css.modalTitle}>Log out</h2>
+            <p className={css.modalQuestion}>Do you really want to leave?</p>
+            <div className={css.buttonContainer}>
+              <button className={css.deleteButton} onClick={logOut}>
+                Log out
+              </button>
+              <button className={css.cancelButton} onClick={closeModal}>
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
       </ReactModal>
     </>
