@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import ReactModal from 'react-modal';
+
 import css from './LogOutModal.module.css';
 
-export default function LogOutModal() {
-  const [isOpen, setIsOpen] = useState(false);
+export const LogOutModal = () => {
+  ReactModal.setAppElement('#root');
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -18,51 +32,29 @@ export default function LogOutModal() {
     closeModal();
   };
 
-  useEffect(() => {
-    const handleEscapeKeyPress = event => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscapeKeyPress);
-    } else {
-      document.removeEventListener('keydown', handleEscapeKeyPress);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKeyPress);
-    };
-  }, [isOpen]);
-
-  const handleBackdropClick = event => {
-    if (event.target === event.currentTarget) {
-      closeModal();
-    }
-  };
-
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
-      {isOpen && (
-        <div className={css.modalOverlay} onClick={handleBackdropClick}>
-          <div className={css.modalContent}>
-            <button className={css.closeButton} onClick={closeModal}>
-              ×
-            </button>
-            <h2 className={css.modalTitle}>Log out</h2>
-            <p className={css.modalQuestion}>Do you really want to leave?</p>
-            <div className={css.buttonContainer}>
-              <button className={css.deleteButton} onClick={logOut}>
-                Log out
-              </button>
-              <button className={css.cancelButton} onClick={closeModal}>
-                Cancel
-              </button>
-            </div>
-          </div>
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="LogOut Modal"
+      >
+        <button className={css.closeButton} onClick={closeModal}>
+          ×
+        </button>
+        <h2 className={css.modalTitle}>Log out</h2>
+        <p className={css.modalQuestion}>Do you really want to leave?</p>
+        <div className={css.buttonContainer}>
+          <button className={css.deleteButton} onClick={logOut}>
+            Log out
+          </button>
+          <button className={css.cancelButton} onClick={closeModal}>
+            Cancel
+          </button>
         </div>
-      )}
+      </ReactModal>
     </>
   );
-}
+};
