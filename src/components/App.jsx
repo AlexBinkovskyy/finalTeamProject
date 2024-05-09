@@ -1,5 +1,5 @@
-// import { useEffect, lazy } from 'react';
 import { useEffect } from 'react';
+// import { useEffect, lazy } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
