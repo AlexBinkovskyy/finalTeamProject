@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import { useEffect } from 'react';
 // import { useEffect, lazy } from 'react';
 
@@ -23,7 +20,6 @@ import TrackerPage from '../Pages/TrackerPage/TrackerPage';
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
 // const SignUpPage = lazy(() => import('../Pages/SignUpPage/SignUpPage'));
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
->>>>>>> main
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -37,9 +33,6 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <>
-<<<<<<< HEAD
-      <div></div>
-=======
       <Routes>
         <Route index element={<HomePage />} />
         <Route
@@ -64,7 +57,6 @@ export const App = () => {
         />
       </Routes>
       <Toaster />
->>>>>>> main
     </>
   );
 };
