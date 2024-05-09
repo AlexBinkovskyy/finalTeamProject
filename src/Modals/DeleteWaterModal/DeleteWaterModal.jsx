@@ -1,8 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import css from './DeleteWaterModal.module.css';
+import ReactModal from 'react-modal';
 
-export default function DeleteWaterModal() {
-  const [isOpen, setIsOpen] = useState(false);
+export const DeleteWaterModal = () => {
+  ReactModal.setAppElement('#root');
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -12,42 +25,22 @@ export default function DeleteWaterModal() {
     setIsOpen(false);
   };
 
-  // Функция для удаления записи
+  // Функция handleDelete
   const handleDelete = () => {
     // Здесь можно добавить логику для удаления записи
-    console.log("Deleting entry...");
-    // После удаления можно закрыть модальное окно
     closeModal();
-  };
-
-  useEffect(() => {
-    const handleEscapeKeyPress = (event) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscapeKeyPress);
-    } else {
-      document.removeEventListener('keydown', handleEscapeKeyPress);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKeyPress);
-    };
-  }, [isOpen]);
-
-  const handleBackdropClick = (event) => {
-    if (event.target === event.currentTarget) {
-      closeModal();
-    }
   };
 
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
-      {isOpen && (
-        <div className={css.modalOverlay} onClick={handleBackdropClick}>
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Delete Modal"
+      >
+        <div className={css.modalOverlay}>
           <div className={css.modalContent}>
             <button className={css.closeButton} onClick={closeModal}>×</button>
             <h2 className={css.modalTitle}>Delete entry</h2>
@@ -58,7 +51,7 @@ export default function DeleteWaterModal() {
             </div>
           </div>
         </div>
-      )}
+      </ReactModal>
     </>
   );
-}
+};
