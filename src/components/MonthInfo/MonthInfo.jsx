@@ -1,4 +1,4 @@
-import css from './MonthInfo.module.css'
+// import css from './MonthInfo.module.css'
 
 export default function MonthInfo(){
     return <></>

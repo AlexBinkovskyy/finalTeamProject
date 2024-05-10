@@ -1,7 +1,7 @@
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import ComponentWithModal from '../Modal/Modal';
 import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
-import css from './UserSettingsModal.module.css';
+// import css from './UserSettingsModal.module.css';
 
 export default function UserSettingsModal({ isOpen, isClose }) {
   return (
