@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 // import { useEffect, lazy } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
@@ -15,7 +15,6 @@ import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';
 import SignUpPage from '../Pages/SignUpPage/SignUpPage';
 import TrackerPage from '../Pages/TrackerPage/TrackerPage';
-import { selectUser } from '../redux/auth/selectors';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -29,9 +28,6 @@ export const App = () => {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
-  const user = useSelector(selectUser);
-  console.log(user);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>

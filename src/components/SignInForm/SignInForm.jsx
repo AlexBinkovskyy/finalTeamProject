@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signin } from '../../redux/auth/operations';
+import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -67,6 +68,12 @@ export default function SignInForm() {
           Sign In
         </button>
       </form>
+      <p className={css.text}>
+        Don't have any account?{' '}
+        <Link to="/signup" className={css.link}>
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 }
