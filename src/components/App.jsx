@@ -22,41 +22,47 @@ import TrackerPage from '../Pages/TrackerPage/TrackerPage';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
     <>
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute redirectTo="/tracker" component={<SignUpPage />} />
-          }
-        />
-
-        <Route
-          path="/signin"
-          element={
-            <RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />
-          }
-        />
-
-        <Route
-          path="/tracker"
-          element={
-            <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
-          }
-        />
-      </Routes>
-      <Toaster />
+      <TrackerPage />
     </>
   );
+
+  // const dispatch = useDispatch();
+  // const { isRefreshing } = useAuth();
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
+  // return isRefreshing ? (
+  //   <b>Refreshing user...</b>
+  // ) : (
+  //   <>
+  //     <Routes>
+  //       <Route index element={<HomePage />} />
+  //       <Route
+  //         path="/signup"
+  //         element={
+  //           <RestrictedRoute redirectTo="/tracker" component={<SignUpPage />} />
+  //         }
+  //       />
+
+  //       <Route
+  //         path="/signin"
+  //         element={
+  //           <RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />
+  //         }
+  //       />
+
+  //       <Route
+  //         path="/tracker"
+  //         element={
+  //           <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
+  //         }
+  //       />
+  //     </Routes>
+  //     <Toaster />
+  //   </>
+  // );
 };
