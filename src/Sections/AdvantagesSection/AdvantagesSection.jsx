@@ -8,11 +8,11 @@ export default function AdvantagesSection() {
         <source srcSet="../../image/rectangle_mob@2x.jpg" type="image/jpg2x" />
       </picture>
       <h3>Our happy customers</h3>
-      <ol>
+      <ul>
         <li>Habit drive</li>
         <li>View statistics</li>
         <li>Personal rate setting</li>
-      </ol>
+      </ul>
     </div>
   );
 }

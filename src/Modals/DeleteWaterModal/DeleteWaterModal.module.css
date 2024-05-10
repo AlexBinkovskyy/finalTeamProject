@@ -1,0 +1,41 @@
+.modalTitle {
+  color: var(--main-color);
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modalQuestion {
+  font-size: 18px;
+  color: var(--main-color);
+  margin-bottom: 28px;
+}
+
+.deleteButton{
+ background-color:var(--accent-color);
+ color: var(--main-color);
+ border-radius: 30px;
+ padding: 14px 129px;
+ font-size: 14px;
+ font-weight: bold;
+ text-align: center;
+}
+
+.cancelButton{
+    background-color:var(--background-color);
+    color: var(--main-color);
+    opacity: 0.7;
+    border-radius: 30px;
+    padding: 14px 129px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.deleteButton:hover, 
+.deleteButton:focus{
+    background-color:var(--hover-focus-color);
+}
+.cancelButton:hover, 
+.cancelButton:focus{
+    opacity: 1;
+}
