@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
+import ComponentWithModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
-import ReactModal from 'react-modal';
+// import IconX from 'src/image/sprite.svg'
+
 
 export const DeleteWaterModal = () => {
-  ReactModal.setAppElement('#root');
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -34,24 +24,29 @@ export const DeleteWaterModal = () => {
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
-      <ReactModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Delete Modal"
-      >
+      <ComponentWithModal isOpen={modalIsOpen} isClose={closeModal}>
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <button className={css.closeButton} onClick={closeModal}>×</button>
+            <button className={css.closeButton} onClick={closeModal}> a
+              {/* <svg className={css.iconClose}>
+                <use href={`${IconX}#icon`}></use>
+              </svg> */}
+            </button>
             <h2 className={css.modalTitle}>Delete entry</h2>
-            <p className={css.modalQuestion}>Are you sure you want to delete the entry?</p>
+            <p className={css.modalQuestion}>
+              Are you sure you want to delete the entry?
+            </p>
             <div className={css.buttonContainer}>
-              <button className={css.deleteButton} onClick={handleDelete}>Delete</button>
-              <button className={css.cancelButton} onClick={closeModal}>Cancel</button>
+              <button className={css.deleteButton} onClick={handleDelete}>
+                Delete
+              </button>
+              <button className={css.cancelButton} onClick={closeModal}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>
-      </ReactModal>
+      </ComponentWithModal>
     </>
   );
 };
