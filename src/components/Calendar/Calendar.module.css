@@ -1,0 +1,10 @@
+.calendar {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
