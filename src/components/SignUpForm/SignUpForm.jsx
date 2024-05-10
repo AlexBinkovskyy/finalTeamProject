@@ -3,6 +3,8 @@ import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../redux/auth/operations';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -19,6 +21,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function SignUpForm() {
+  const dispatch = useDispatch();
+
   const emailFieldId = useId();
   const passwordFieldId = useId();
   const repeatPassword = useId();
@@ -32,8 +36,9 @@ export default function SignUpForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = ({ email, password }) => {
+    dispatch(signup({ email, password }));
+    console.log({ email, password });
     reset();
   };
 
