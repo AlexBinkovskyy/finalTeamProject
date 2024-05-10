@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://finalteamproject-backend.onrender.com/api';
 
 export const fetchConsumption = createAsyncThunk(
   'consumption/fetchall',
