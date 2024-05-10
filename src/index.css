@@ -1,3 +1,13 @@
+:root {
+  --main-color: #323f47;
+  --main-text-color: #2f2f2f;
+  --accent-color: #9be1a0;
+  --background-color: #f0eff4;
+  --main-white: #ffffff;
+  --hover-focus-color: #87d28d;
+  --error-color: #ef5050;
+}
+
 @import './reset.css';
 
 @font-face {
