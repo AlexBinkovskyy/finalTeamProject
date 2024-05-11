@@ -1,3 +1,8 @@
+/* .form{
+  display: flex;
+  flex-direction: column;
+
+} */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -34,8 +39,9 @@
 }
 
 .avatarInput {
-
+  display: none;
 }
+
 .input {
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
@@ -102,6 +108,14 @@
   margin-bottom: 14px;
 }
 
+.waterValue{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.49333;
+  color: var(--accent-color);
+}
+
 .label {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -151,4 +165,10 @@ input[type='radio'] + label:after {
 
 input[type='radio']:checked + label:after {
   display: block;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke: #000; 
 }
