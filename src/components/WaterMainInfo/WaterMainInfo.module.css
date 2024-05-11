@@ -1,0 +1,63 @@
+.MainInfo {
+  padding: 16px;
+}
+
+.WaterMainInfo {
+  background-image: url(../../image/transparent_bottle_for_water_mob@1x.png);
+  background-color: var(--accent-color);
+  height: 415px;
+  border-radius: 30px;
+  background-size: 262px 335px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 24px 16px 32px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .WaterMainInfo {
+    background-image: url(../../image/transparent_bottle_for_water_mob@2x.png);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .WaterMainInfo {
+    height: 578px;
+    background-size: 374px 477px;
+    background-image: url(../../image/transparent_bottle_for_water_tab@1x.png);
+    padding: 32px 32px 64px;
+  }
+  @media only screen and (min-resolution: 192dpi),
+    only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .WaterMainInfo {
+      background-image: url(../../image/transparent_bottle_for_water_tab@2x.png);
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .WaterMainInfo {
+    background-image: url(../../image/transparent_bottle_for_water_desk@1x.png);
+    height: 736px;
+    width: 672px;
+    background-size: 472px 604px;
+  }
+  @media only screen and (min-resolution: 192dpi),
+    only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .WaterMainInfo {
+      background-image: url(../../image/transparent_bottle_for_water_desk@2x.png);
+    }
+  }
+}
+
+/* .backgroundImage {
+  left: 50%;
+  top: 50%;
+  margin: 0 auto;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  position: relative;
+} */
