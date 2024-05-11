@@ -1,4 +1,4 @@
-const WaterProgressBarStyle = ({ progress }) => {
+export default function WaterProgressBarStyle({ progress }) {
   switch (progress) {
     case 0.1:
     case 0.2:
@@ -15,6 +15,4 @@ const WaterProgressBarStyle = ({ progress }) => {
     default:
       return 1;
   }
-};
-
-export default WaterProgressBarStyle;
+}

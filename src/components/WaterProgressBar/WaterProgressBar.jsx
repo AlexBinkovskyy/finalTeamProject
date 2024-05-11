@@ -3,10 +3,11 @@ import ProgressBar from '@atlaskit/progress-bar';
 import WaterProgressBarStyle from './WaterProgressBarStyle';
 
 export default function WaterProgressBar() {
-  const progressBar = 4;
-  const progress = Math.round(progressBar) / 10;
+  let progressBar = 2;
+  let progress = Math.round(progressBar) / 10;
+  progress = Math.min(progress, 1);
   const progressProc = progress * 100;
-  const procStyle = WaterProgressBarStyle(progress);
+  const procStyle = WaterProgressBarStyle({ progress });
 
   const progressProcStyle = {
     left: `calc(${progressProc}% + ${procStyle}%)`,
