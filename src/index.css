@@ -26,6 +26,7 @@
 
 .WaterProgressBar_ProgressBar__aFD4V .css-g4w146-ProgressBar {
   height: 8px;
+  overflow: visible;
 }
 
 .css-g4w146-ProgressBar .css-1j452st-ProgressBar {
@@ -38,8 +39,8 @@
   position: absolute;
   top: 50%;
   right: -5px;
-  width: 9px;
-  height: 9px;
+  width: 12px;
+  height: 12px;
   background-color: white;
   border-radius: 50%;
   border: 1px solid var(--accent-color);
