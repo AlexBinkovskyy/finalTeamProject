@@ -1,13 +1,12 @@
 // CalendarItem.js
 import React from 'react';
 import css from './CalendarItem.module.css';
-import { format } from 'date-fns';
+import { isSameDay, format } from 'date-fns';
 
 const CalendarItem = ({ day, waterPercentage }) => {
   // console.log('Is current day:', isCurrentDay);
-  console.log('Day:', day);
-  const isCurrentDay = new Date() == day;
 
+  const isCurrentDay = isSameDay(new Date(), day);
   return (
     <div className={`${css.day} ${isCurrentDay ? css.currentDay : ''}`}>
       <div
