@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://finalteamproject-backend.onrender.com/api';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,9 +16,8 @@ export const signup = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
-      setAuthHeader(res.data.token);
-      toast.success('Registration success');
+      const res = await axios.post('/users/register', credentials);
+      toast.success(res.data.user.message);
       return res.data;
     } catch (error) {
       toast.error(`${error.response.data.message}`);
@@ -31,7 +30,7 @@ export const signin = createAsyncThunk(
   'auth/signin',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signin', credentials);
+      const res = await axios.post('/users/login', credentials);
       setAuthHeader(res.data.token);
       toast.success('Welcome to the App');
       return res.data;
@@ -44,7 +43,7 @@ export const signin = createAsyncThunk(
 
 export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/signout');
+    await axios.post('/users/logout');
     clearAuthHeader();
     toast.success('Signout success');
   } catch (error) {
@@ -53,6 +52,20 @@ export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const resendMail = createAsyncThunk(
+  'auth/resend',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/users/verify', credentials);
+      toast.success('Mail resend');
+    } catch (error) {
+      toast.error('Resend error');
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',

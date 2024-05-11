@@ -1,0 +1,51 @@
+.section {
+  background-color: #f0eff4;
+  border-radius: 30px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.06em;
+  color: #2f2f2f;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.try {
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 14px 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  background-color: #9be1a0;
+}
+.try:hover {
+  background-color: #87d28d;
+}
+
+.sign {
+}
+
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1440px) {
+}
+
+@media only screen and (min-width: 320px) {
+}

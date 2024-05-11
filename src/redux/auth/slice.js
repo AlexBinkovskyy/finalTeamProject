@@ -4,27 +4,33 @@ import { signup, signin, signout, refreshUser } from './operations';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {
-      email: null,
-    },
+    user: {},
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isEmailVerified: false,
   },
+  reducers: {
+    verifyEmailSuccess: (state, action) => {
+      state.isEmailVerified = true;
+      state.isLoggedIn = state.isEmailVerified;
+      state.token = action.payload;
+    },
+  },
+
   extraReducers: builder => {
     builder
       .addCase(signup.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
+        console.log(state.user);
       })
       .addCase(signin.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.loggedUser;
+        state.token = action.payload.loggedUser.token;
         state.isLoggedIn = true;
       })
       .addCase(signout.fulfilled, state => {
-        state.user = { name: null, email: null };
+        state.user = {};
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -42,4 +48,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { verifyEmailSuccess } = authSlice.actions;
 export const authReducer = authSlice.reducer;

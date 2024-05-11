@@ -1,0 +1,67 @@
+.modalOverlay {
+  background-color: #fff;
+  padding: 14px 40px;
+  border-radius: 5px;
+  /* height: 267px; */
+  max-width: 344px;
+  border-radius: 15px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  /* gap: 9px; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+.modalTitle {
+  color: var(--main-color);
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modalQuestion {
+  font-size: 18px;
+  color: var(--main-color);
+  margin-bottom: 28px;
+  text-align: center;
+}
+.iconClose {
+  width: 24px;
+  height: 24px;
+}
+
+.deleteButton {
+  background-color: var(--accent-color);
+  color: var(--main-color);
+  border-radius: 30px;
+  padding: 14px 129px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.cancelButton {
+  background-color: var(--background-color);
+  color: var(--main-color);
+  opacity: 0.7;
+  border-radius: 30px;
+  padding: 14px 129px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: var(--hover-focus-color);
+}
+.cancelButton:hover,
+.cancelButton:focus {
+  opacity: 1;
+}
