@@ -13,13 +13,17 @@ export default function CalendarPagination({ currentDate, setCurrentDate }) {
 
   return (
     <div className={css.pagination}>
-      <button onClick={handlePrevMonth}>&lt;</button>
-      <span>
+      <button className={css.button} onClick={handlePrevMonth}>
+        &lt;
+      </button>
+      <span className={css.date}>
         {currentDate &&
           isValid(currentDate) &&
           format(currentDate, 'MMMM, yyyy')}
       </span>
-      <button onClick={handleNextMonth}>&gt;</button>
+      <button className={css.button} onClick={handleNextMonth}>
+        &gt;
+      </button>
     </div>
   );
 }
