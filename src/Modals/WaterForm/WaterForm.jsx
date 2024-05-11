@@ -16,6 +16,7 @@ const WaterForm = () => {
   //   const minute = now.getMinutes().toString().padStart(2, '0');
   //   return `${hour}:${minute}`;
   // };
+  
   // const { register, handleSubmit, errors, setValue, watch } = useForm({
   //   defaultValues: { waterAmount: 50, time: getCurrentTime() },
   //   validationSchema: schema,
