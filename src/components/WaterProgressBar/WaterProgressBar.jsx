@@ -1,33 +1,12 @@
 import css from './WaterProgressBar.module.css';
 import ProgressBar from '@atlaskit/progress-bar';
+import WaterProgressBarStyle from './WaterProgressBarStyle';
 
 export default function WaterProgressBar() {
-  const progressBar = 3;
+  const progressBar = 4;
   const progress = Math.round(progressBar) / 10;
   const progressProc = progress * 100;
-  let procStyle;
-  if (progress === 0.1 || progress === 0.2) {
-    procStyle = 2;
-  } else if (progress === 0.4) {
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      procStyle = -1.5;
-    } else {
-      procStyle = -4;
-    }
-  } else if (progress === 0.6 || progress === 0.7) {
-    procStyle = -4;
-  } else if (progress === 0.8) {
-    procStyle = -7;
-  } else if (progress === 0.9) {
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      procStyle = -12;
-    } else {
-      procStyle = -15;
-    }
-  } else {
-    procStyle = 1;
-  }
-  const notProgressProc = progress === 0 || progress === 0.5 || progress === 1;
+  const procStyle = WaterProgressBarStyle(progress);
 
   const progressProcStyle = {
     left: `calc(${progressProc}% + ${procStyle}%)`,
@@ -54,7 +33,7 @@ export default function WaterProgressBar() {
               <p>100%</p>
             </div>
           </div>
-          {!notProgressProc && (
+          {progress !== 0 && progress !== 0.5 && progress !== 1 && (
             <p className={css.progressProc} style={progressProcStyle}>
               {progressProc}%
             </p>
