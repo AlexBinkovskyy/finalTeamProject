@@ -1,18 +1,8 @@
-import React, { useState } from 'react';
 import WaterForm  from '../WaterForm/WaterForm';
 import ComponentWithModal from '../Modal/Modal';
 import css from './WaterModal.module.css';
 
 export const WaterModal = ({ operationType, onSubmit, defaultValues, isOpen, isClose }) => {
-  // const [modalIsOpen, setIsOpen] = useState(false);
-
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  // };
 
   return (
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
