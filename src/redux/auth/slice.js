@@ -4,9 +4,7 @@ import { signup, signin, signout, refreshUser } from './operations';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {
-      email: null,
-    },
+    user: {},
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -14,17 +12,16 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(signup.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user.email = action.payload.user.email;
         state.isLoggedIn = true;
       })
       .addCase(signin.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.loggedUser;
+        state.token = action.payload.loggedUser.token;
         state.isLoggedIn = true;
       })
       .addCase(signout.fulfilled, state => {
-        state.user = { name: null, email: null };
+        state.user = {};
         state.token = null;
         state.isLoggedIn = false;
       })
