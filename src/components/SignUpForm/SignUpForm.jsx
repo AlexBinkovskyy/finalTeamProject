@@ -1,11 +1,11 @@
 import css from './SignUpForm.module.css';
-import { useId } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/auth/operations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -23,6 +23,8 @@ const validationSchema = Yup.object().shape({
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [submitted, setSubmitted] = useState(false);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
@@ -38,10 +40,19 @@ export default function SignUpForm() {
   });
 
   const onSubmit = ({ email, password }) => {
-    dispatch(signup({ email, password }));
-    console.log({ email, password });
-    reset();
+    dispatch(signup({ email, password }))
+      .unwrap()
+      .then(() => {
+        reset();
+        setSubmitted(true);
+      });
   };
+
+  useEffect(() => {
+    if (submitted) {
+      navigate('/confirm-page');
+    }
+  }, [submitted, navigate]);
 
   return (
     <div>

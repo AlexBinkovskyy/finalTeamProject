@@ -1,0 +1,32 @@
+.div {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main-color);
+}
+
+.btn {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main-color);
+  background-color: transparent;
+  border: none;
+}
