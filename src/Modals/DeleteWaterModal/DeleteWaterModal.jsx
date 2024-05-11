@@ -86,3 +86,51 @@ export const DeleteWaterModal = ({ isOpen, isClose }) => {
     </>
   );
 };
+
+// import { useState } from 'react';
+// import { DeleteWaterModal } from '../Modals/DeleteWaterModal/DeleteWaterModal';
+// import {WaterModal} from '../Modals/WaterModal/WaterModal'
+
+// export const App = () => {
+// const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+// const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
+
+//   const openDeleteModal = () => {
+//     setDeleteModalIsOpen(true);
+//     document.body.style.overflow = 'hidden';
+//   };
+
+//   const openWaterModal = () => {
+//     setwaterModalIsOpen(true);
+//     document.body.style.overflow = 'hidden';
+//   };
+
+//   const closeDeleteModal = () => {
+//     setDeleteModalIsOpen(false);
+//     document.body.style.overflow = '';
+//   };
+
+//   const closeWaterModal = () => {
+//     setwaterModalIsOpen(false);
+//     document.body.style.overflow = '';
+//   };
+
+//   return (
+//     <>
+//       <button onClick={openDeleteModal}>openDeleteModal</button>
+//       <button onClick={openWaterModal}>addWater</button>
+//       {deleteModalIsOpen && (
+//         <DeleteWaterModal
+//           isOpen={deleteModalIsOpen}
+//           isClose={closeDeleteModal}
+//         />
+//       )}
+//       {waterModalIsOpen && (
+//         <WaterModal
+//           isOpen={waterModalIsOpen}
+//           isClose={closeWaterModal}
+//         />
+//       )}
+//     </>
+//   );
+// };
