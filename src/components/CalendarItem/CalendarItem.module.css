@@ -1,0 +1,86 @@
+.calendar {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* CalendarItem.module.css */
+.day {
+  position: relative;
+  min-width: 28px;
+  margin: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .day {
+    min-width: 50px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+.currentDay {
+  color: var(--accent-color, #9be1a0);
+}
+
+.waterLevel {
+  position: absolute;
+}
+
+.dayNumber {
+  position: absolute;
+  font-family: Poppins-Bold;
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  background-color: rgb(158, 162, 163);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4px;
+}
+@media only screen and (min-width: 768px) {
+  .dayNumber {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.dayNumber.currentDay {
+  background-color: var(--main-color, #323f47);
+}
+
+.dayNumber.fullWater {
+  background-color: white;
+}
+
+.waterPercentage {
+  font-family: Poppins-Bold;
+  color: var(--main-color, #323f47);
+  font-size: 10px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* @media only screen and (min-width: 768px) {
+  .monthInfo {
+    width: 700px;
+  }
+}
+@media (min-width: 1440px) {
+  .monthInfo {
+    width: 608px;
+  }
+} */

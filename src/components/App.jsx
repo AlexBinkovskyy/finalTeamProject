@@ -15,6 +15,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';
 import SignUpPage from '../Pages/SignUpPage/SignUpPage';
 import TrackerPage from '../Pages/TrackerPage/TrackerPage';
+import ConfirmPage from 'Pages/ConfirmPage/ConfirmPage';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -22,16 +23,7 @@ import TrackerPage from '../Pages/TrackerPage/TrackerPage';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
     <>
       <Routes>
         <Route index element={<HomePage />} />
@@ -50,6 +42,16 @@ export const App = () => {
         />
 
         <Route
+          path="/confirm-page"
+          element={
+            <RestrictedRoute
+              redirectTo="/tracker"
+              component={<ConfirmPage />}
+            />
+          }
+        />
+
+        <Route
           path="/tracker"
           element={
             <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
@@ -57,6 +59,8 @@ export const App = () => {
         />
       </Routes>
       <Toaster />
+
     </>
   );
-};
+
+  

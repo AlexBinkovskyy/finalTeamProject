@@ -53,6 +53,20 @@ export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
   }
 });
 
+export const resendMail = createAsyncThunk(
+  'auth/resend',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/users/verify', credentials);
+      toast.success('Mail resend');
+    } catch (error) {
+      toast.error('Resend error');
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
