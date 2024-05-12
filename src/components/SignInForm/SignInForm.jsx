@@ -42,7 +42,7 @@ export default function SignInForm() {
         </label>
         <input
           {...register('email')}
-          className={css.input}
+          className={`${css.input} ${errors.email && css.errorInput}`}
           id={emailFieldId}
           placeholder="Enter your email"
         />
@@ -56,7 +56,7 @@ export default function SignInForm() {
         <input
           {...register('password')}
           autoComplete="off"
-          className={css.input}
+          className={`${css.input} ${errors.password && css.errorInput}`}
           id={passwordFieldId}
           placeholder="Enter your password"
         />

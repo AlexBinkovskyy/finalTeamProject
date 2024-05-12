@@ -63,7 +63,7 @@ export default function SignUpForm() {
         </label>
         <input
           {...register('email')}
-          className={css.input}
+          className={`${css.input} ${errors.email && css.errorInput}`}
           id={emailFieldId}
           placeholder="Enter your email"
         />
@@ -77,7 +77,7 @@ export default function SignUpForm() {
         <input
           {...register('password')}
           autoComplete="off"
-          className={css.input}
+          className={`${css.input} ${errors.password && css.errorInput}`}
           id={passwordFieldId}
           placeholder="Enter your password"
         />
@@ -91,7 +91,7 @@ export default function SignUpForm() {
         <input
           {...register('repeatPassword')}
           autoComplete="off"
-          className={css.input}
+          className={`${css.input} ${errors.repeatPassword && css.errorInput}`}
           id={repeatPassword}
           placeholder="Repeat password"
         />

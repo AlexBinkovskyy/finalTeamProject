@@ -53,6 +53,19 @@
   border: 1px solid rgba(47, 47, 47, 0.4);
 }
 
+.errorInput {
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+.errorInput::placeholder {
+  color: var(--error-color);
+}
+
+.errorInput:is(:hover, :focus) {
+  border-color: var(--error-color);
+}
+
 .label {
   font-weight: 700;
   font-size: 14px;
