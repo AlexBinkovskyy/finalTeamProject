@@ -25,6 +25,7 @@ export default function SignInForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = data => {

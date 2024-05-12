@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
     .min(7, 'Too Short!')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'The password must contain at least one capital letter, one uppercase letter and one number'
+      ' Must contain at least one capital letter, uppercase letter and number'
     )
     .required('Required'),
   repeatPassword: Yup.string()
@@ -37,6 +37,7 @@ export default function SignUpForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = ({ email, password }) => {
