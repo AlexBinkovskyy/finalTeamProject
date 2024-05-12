@@ -10,40 +10,17 @@ const schema = Yup.object().shape({
 
 
 const WaterForm = () => {
-  // const getCurrentTime = () => {
-  //   const now = new Date();
-  //   const hour = now.getHours().toString().padStart(2, '0');
-  //   const minute = now.getMinutes().toString().padStart(2, '0');
-  //   return `${hour}:${minute}`;
-  // };
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hour = now.getHours().toString().padStart(2, '0');
+    const minute = now.getMinutes().toString().padStart(2, '0');
+    return `${hour}:${minute}`;
+  };
   
-  // const { register, handleSubmit, errors, setValue, watch } = useForm({
-  //   defaultValues: { waterAmount: 50, time: getCurrentTime() },
-  //   validationSchema: schema,
-  // });
 
   
 
-  // const submitForm = async (data) => {
-  //   try {
-  //     await onSubmit(data);
-  //   } catch (error) {
-  //     // Handle backend error, display notification to user
-  //     console.error('Error:', error);
-  //   }
-  // };
 
-  // const handleIncrement = () => {
-  //   const currentValue = parseInt(watch('waterAmount'));
-  //   setValue('waterAmount', currentValue + 1);
-  // };
-
-  // const handleDecrement = () => {
-  //   const currentValue = parseInt(watch('waterAmount'));
-  //   if (currentValue > 0) {
-  //     setValue('waterAmount', currentValue - 1);
-  //   }
-  // };
 
   return (
     <form >
