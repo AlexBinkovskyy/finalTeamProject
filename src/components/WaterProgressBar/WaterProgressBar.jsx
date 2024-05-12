@@ -18,11 +18,13 @@ export default function WaterProgressBar() {
       <div className={css.WaterProgressBar}>
         <div className={css.ProgressBar}>
           <p className={css.text}>Today</p>
-          <ProgressBar
-            appearance="success"
-            ariaLabel={`"Done: ${progressBar} of 10 issues"`}
-            value={`${progress}`}
-          />
+          <div className={css.Progress}>
+            <ProgressBar
+              appearance="success"
+              ariaLabel={`"Done: ${progressBar} of 10 issues"`}
+              value={`${progress}`}
+            />
+          </div>
           <div className={css.number}>
             <div>
               <p>0%</p>
