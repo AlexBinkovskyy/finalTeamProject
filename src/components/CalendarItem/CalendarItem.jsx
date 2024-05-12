@@ -1,4 +1,3 @@
-
 // CalendarItem.js
 import React from 'react';
 import css from './CalendarItem.module.css';
@@ -9,13 +8,14 @@ const CalendarItem = ({ day, waterPercentage, isFullWater }) => {
 
   return (
     <div className={`${css.day} ${isCurrentDay ? css.currentDay : ''}`}>
-      <div
+      <button
+        type="button"
         className={`${css.dayNumber}
         ${isCurrentDay ? css.currentDay : ''}
         ${isFullWater ? css.fullWater : ''}`}
       >
         {format(day, 'd')}
-      </div>
+      </button>
       <div className={css.waterPercentage}>{waterPercentage}%</div>
     </div>
   );
