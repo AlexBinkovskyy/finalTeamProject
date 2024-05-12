@@ -38,6 +38,30 @@
   }
 }
 
+.avatarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.thumb {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 768px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 .avatarInput {
   display: none;
 }
@@ -108,7 +132,7 @@
   margin-bottom: 14px;
 }
 
-.waterValue{
+.waterValue {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -170,5 +194,5 @@ input[type='radio']:checked + label:after {
 .icon {
   width: 24px;
   height: 24px;
-  stroke: #000; 
+  stroke: #000;
 }
