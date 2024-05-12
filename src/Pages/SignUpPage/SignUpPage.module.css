@@ -1,11 +1,7 @@
-body {
-  max-width: 375px;
-  margin: 0 auto;
-  padding: 18px;
-  font-family: 'Poppins-Bold';
-}
-
 .div {
+  margin: 18px;
+  font-family: 'Poppins-Bold';
+  max-width: 375px;
   background-color: var(--background-color);
   border-radius: 30px;
   display: flex;

@@ -18,7 +18,7 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    items: [],
+    data: [],
     loading: false,
     error: null,
   },
