@@ -31,16 +31,15 @@ export default function ConfirmInfo() {
             {' '}
             request to resend{' '}
           </button>{' '}
-          it or{' '}
-          <Link to="/signup" className={css.link}>
-            Double-check
-          </Link>{' '}
-          the email address you provided.
+          it.
         </p>
         <p>
           Once your email address is confirmed, you'll be resend to our main
           page.
         </p>
+        <Link to="/signin" className={css.link}>
+          Got It
+        </Link>{' '}
       </div>
     </div>
   );
