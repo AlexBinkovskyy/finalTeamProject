@@ -13,12 +13,15 @@ import storage from 'redux-persist/lib/storage';
 
 import { authReducer, verifyEmailSuccess } from './auth/slice';
 import { waterReducer } from './water/waterSlice';
+import { createBrowserHistory } from 'history';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
+
+const history = createBrowserHistory();
 
 export const store = configureStore({
   reducer: {
@@ -40,6 +43,7 @@ const persistor = persistStore(store, null, () => {
 
   if (token) {
     store.dispatch(verifyEmailSuccess(token));
+    history.push('/finalTeamProject/tracker');
   }
 });
 
