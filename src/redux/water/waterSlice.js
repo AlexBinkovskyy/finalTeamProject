@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addConsumption,
   deleteConsumption,
-  fetchConsumption,
+  fetchDailyConsumption,
+  fetchMonthlyConsumption,
   updateConsumption,
 } from './operations';
 
@@ -18,20 +19,28 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    data: [],
+    items: [],
     loading: false,
     error: null,
   },
 
   extraReducers: builder =>
     builder
-      .addCase(fetchConsumption.pending, handlePending)
-      .addCase(fetchConsumption.fulfilled, (state, action) => {
+      .addCase(fetchDailyConsumption.pending, handlePending)
+      .addCase(fetchDailyConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.dailyCount;
       })
-      .addCase(fetchConsumption.rejected, handleRejected)
+      .addCase(fetchDailyConsumption.rejected, handleRejected)
+
+      .addCase(fetchMonthlyConsumption.pending, handlePending)
+      .addCase(fetchMonthlyConsumption.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = action.payload.dailyCount;
+      })
+      .addCase(fetchMonthlyConsumption.rejected, handleRejected)
 
       .addCase(addConsumption.pending, handlePending)
       .addCase(addConsumption.fulfilled, (state, action) => {
@@ -45,7 +54,9 @@ const waterSlice = createSlice({
       .addCase(deleteConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.items = state.items.filter(
+          item => item._id !== action.payload._id
+        );
       })
       .addCase(deleteConsumption.rejected, handleRejected)
 
@@ -55,7 +66,7 @@ const waterSlice = createSlice({
         state.error = null;
         const updatedConsumption = action.payload;
         const index = state.items.findIndex(
-          item => item.id === updatedConsumption.id
+          item => item._id === updatedConsumption._id
         );
         if (index !== -1) {
           state.items[index] = updatedConsumption;

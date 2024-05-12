@@ -55,9 +55,9 @@ export const deleteConsumption = createAsyncThunk(
 
 export const updateConsumption = createAsyncThunk(
   'consumption/updateConsumption',
-  async ({ id, amount, time }, thunkAPI) => {
+  async ({ _id, amount, time }, thunkAPI) => {
     try {
-      const response = await axios.put(`/water/edit/${id}`, {
+      const response = await axios.put(`/water/edit/${_id}`, {
         amount,
         time,
       });
