@@ -68,11 +68,6 @@
   }
 }
 
-.css-1j452st-ProgressBar {
-  background: var(--accent-color);
-  height: 8px;
-}
-
 .progressProc {
   font-size: 8px;
   color: var(--accent-color);
@@ -85,4 +80,27 @@
     font-size: 10px;
     bottom: 28px;
   }
+}
+
+.Progress div {
+  overflow: visible;
+  height: 8px;
+}
+
+.Progress span {
+  background: var(--accent-color);
+  height: 8px;
+}
+
+.Progress span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid var(--accent-color);
+  transform: translateY(-50%);
 }
