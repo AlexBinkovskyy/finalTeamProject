@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import {
-  selectConsumptionItem,
+  // selectConsumptionItem,
   selectLoadingStatus,
   selectError,
 } from '../../redux/water/selectors';
@@ -25,11 +25,12 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   // const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const user = useSelector(selectConsumptionItem);
+  // const user = useSelector(selectConsumptionItem);
   const loading = useSelector(selectLoadingStatus);
   const error = useSelector(selectError);
   const [calculatedWaterIntake, setCalculatedWaterIntake] = useState(0);
   const [waterIntakeValue, setWaterIntakeValue] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
 
   const {
     register,
@@ -42,8 +43,8 @@ const UserSettingsForm = ({ closeModal }) => {
   });
 
   useEffect(() => {
-    if (userInfo && userInfo.user && userInfo.user.email) {
-      const email = userInfo.user.email;
+    if (userInfo && userInfo.email) {
+      const email = userInfo.email;
       const name = email.split('@')[0];
       setValue('name', name);
       setValue('email', email);
@@ -65,21 +66,50 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   }, [gender, weight, sportTime, calculatedWaterIntake]);
 
-  const onSubmit = data => {
-    let intakeValue = parseFloat(data.waterIntake);
-    if (isNaN(intakeValue)) {
-      intakeValue = parseFloat(waterIntakeValue);
-    }
-    data.waterIntake = intakeValue;
+  // const handleAvatarChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     setAvatarUrl(imageUrl);
+  //   }
+  // };
 
-    console.log(data);
+  const handleAvatarChange = event => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setAvatarUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const onSubmit = data => {
+    console.log(data.avatar);
+    const formData = new FormData();
+    formData.append('avatar', data.avatar[0] || userInfo.avatarUrl);
+    formData.append('gender', data.gender);
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('weight', data.weight);
+    formData.append('sportTime', data.sportTime);
+    formData.append('waterIntake', data.waterIntake);
+
+    console.log('FormData content:');
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+    // dispatch(updateUserInfo(data));
     closeModal();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <div className={css.formGroup}>
-        <img src={user.avatar} alt="User avatar" className={css.avatar} />
+      <div className={`${css.formGroup} ${css.avatarContainer}`}>
+        <div class="thumb">
+          <img src={avatarUrl} alt="User avatar" className={css.avatar} />
+        </div>
         <label htmlFor="uploadInput" className={css.label}>
           <svg className={css.icon}>
             <use href={`${IconUpload}#IconUpload`}></use>
@@ -90,6 +120,8 @@ const UserSettingsForm = ({ closeModal }) => {
             type="file"
             {...register('avatar')}
             className={css.avatarInput}
+            accept="image/*, .png, .jpg, .jpeg"
+            onChange={handleAvatarChange}
           />
         </label>
       </div>
