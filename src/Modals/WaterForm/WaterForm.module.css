@@ -1,0 +1,24 @@
+.buttonIncrement{
+height: 40px;
+width: 40px;
+border-radius: 30px;
+border-color:var(--main-color);
+align-items: center;
+text-align: centerl
+}
+.saveBtn{
+    background-color:var(--accent-color);
+	width:116px;
+	height:46px;
+	border-radius:30px;
+	color:var(--main-color);
+	padding: 14px 40px;
+	text-align:center;
+	font-size:14px;
+    border:none;
+    font-weight: bold;
+}
+.saveBtn:hover,
+.saveBtn:focus {
+  background-color: var(--hover-focus-color);
+}
