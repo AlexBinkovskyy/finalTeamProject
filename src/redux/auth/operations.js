@@ -87,24 +87,24 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const verifyEmail = createAsyncThunk(
-  'auth/verifyEmail',
-  async (_, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    const urlParams = window.location.href.split('?');
-    const verifyToken = urlParams[1];
-    window.location.href = urlParams[0];
+// export const verifyEmail = createAsyncThunk(
+//   'auth/verifyEmail',
+//   async (_, thunkAPI) => {
+//     // const state = thunkAPI.getState();
+//     const urlParams = window.location.href.split('?');
+//     const verifyToken = urlParams[1];
+//     window.location.href = urlParams[0];
 
-    if (!verifyToken) {
-      return thunkAPI.rejectWithValue('Unable to verify users email');
-    }
+//     if (!verifyToken) {
+//       return thunkAPI.rejectWithValue('Unable to verify users email');
+//     }
 
-    try {
-      setAuthHeader(verifyToken);
-      const res = await axios.get('/users/current');
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//     try {
+//       setAuthHeader(verifyToken);
+//       const res = await axios.get('/users/current');
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

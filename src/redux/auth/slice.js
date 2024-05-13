@@ -4,7 +4,7 @@ import {
   signin,
   signout,
   refreshUser,
-  verifyEmail,
+  // verifyEmail,
 } from './operations';
 
 const authSlice = createSlice({
@@ -14,7 +14,7 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    isEmailVerified: false,
+    // isEmailVerified: false,
   },
   // reducers: {
   //   verifyEmailSuccess: (state, action) => {
@@ -44,18 +44,18 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-      })
-      .addCase(verifyEmail.fulfilled, (state, action) => {
-        state.isEmailVerified = true;
-        state.isLoggedIn = state.isEmailVerified;
-        state.token = action.payload;
       });
+    // .addCase(verifyEmail.fulfilled, (state, action) => {
+    //   state.isEmailVerified = true;
+    //   state.isLoggedIn = state.isEmailVerified;
+    //   state.token = action.payload;
+    // })
   },
 });
 
