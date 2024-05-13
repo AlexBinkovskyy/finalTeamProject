@@ -59,8 +59,8 @@ const UserSettingsForm = ({ closeModal }) => {
     if (gender && weight && sportTime) {
       const setDailyNorma =
         gender === 'woman'
-          ? weight * 0.03 + sportTime * 0.4
-          : weight * 0.04 + sportTime * 0.6;
+          ? (weight * 0.03 + sportTime * 0.4)*1000
+          : (weight * 0.04 + sportTime * 0.6)*1000;
       setCalculatedWaterIntake(setDailyNorma);
       // setWaterIntakeValue(Number(calculatedWaterIntake.toFixed(1)));
     }
@@ -107,10 +107,13 @@ const UserSettingsForm = ({ closeModal }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
       <div className={`${css.formGroup} ${css.avatarContainer}`}>
-        <div class="thumb">
+        <div className={css.thumb}>
           <img src={avatarUrl} alt="User avatar" className={css.avatar} />
         </div>
-        <label htmlFor="uploadInput" className={css.label}>
+        <label
+          htmlFor="uploadInput"
+          className={`${css.uploadLabel} ${css.uploadText}`}
+        >
           <svg className={css.icon}>
             <use href={`${IconUpload}#IconUpload`}></use>
           </svg>
@@ -125,99 +128,122 @@ const UserSettingsForm = ({ closeModal }) => {
           />
         </label>
       </div>
-      <div className={css.formGroup}>
-        <label className={css.accentLabel}>Your gender identity</label>
-        <div>
-          <input
-            type="radio"
-            id="woman"
-            value="woman"
-            {...register('gender')}
-          />
-          <label htmlFor="woman">Woman</label>
-          <input type="radio" id="man" value="man" {...register('gender')} />
-          <label htmlFor="man">Man</label>
+      <div className={css.formWraper}>
+        <div className={css.formWrap_1}>
+          <div className={css.formGroup}>
+            <label className={css.accentLabel}>Your gender identity</label>
+            <div className={css.genderInput}>
+              <input
+                type="radio"
+                id="woman"
+                value="woman"
+                {...register('gender')}
+              />
+              <label htmlFor="woman" className={css.genderLabel}>
+                Woman
+              </label>
+              <input
+                type="radio"
+                id="man"
+                value="man"
+                {...register('gender')}
+              />
+              <label htmlFor="man" className={css.genderLabel}>
+                Man
+              </label>
+            </div>
+            {errors.gender && (
+              <span className={css.error}>{errors.gender.message}</span>
+            )}
+          </div>
+          <div className={css.formGroup}>
+            <label className={css.accentLabel}>Your name</label>
+            <input type="text" {...register('name')} className={css.input} />
+            {errors.name && (
+              <span className={css.error}>{errors.name.message}</span>
+            )}
+          </div>
+          <div className={css.formGroup}>
+            <label className={css.accentLabel}>Email</label>
+            <input type="text" {...register('email')} className={css.input} />
+            {errors.email && (
+              <span className={css.error}>{errors.email.message}</span>
+            )}
+          </div>
+          <div className={css.formGroup}>
+            <p className={css.infoTitle}>My daily norma</p>
+            <ul className={css.list}>
+              <li className={css.listItem}>
+                <p className={css.listItemText}>For woman:</p>
+                <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
+              </li>
+              <li className={css.listItem}>
+                <p className={css.listItemText}>For man:</p>
+                <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
+              </li>
+            </ul>
+            <p className={css.calculation}>
+              * V is the volume of the water norm in liters per day, M is your
+              body weight, T is the time of active sports, or another type of
+              activity commensurate in terms of loads (in the absence of these,
+              you must set 0)
+            </p>
+            <p className={css.info}>Active time in hours</p>
+          </div>
         </div>
-        {errors.gender && (
-          <span className={css.error}>{errors.gender.message}</span>
-        )}
+        <div className={css.formWrap_2}>
+          <div className={css.formGroup}>
+            <label className={css.label}>Your weight in kilograms:</label>
+            <input
+              type="number"
+              {...register('weight')}
+              className={css.input}
+            />
+            {errors.weight && (
+              <span className={css.error}>{errors.weight.message}</span>
+            )}
+          </div>
+          <div className={css.formGroup}>
+            <label className={css.label}>
+              The time of active participation in sports:
+            </label>
+            <input
+              type="number"
+              {...register('sportTime')}
+              className={css.input}
+            />
+            {errors.sportTime && (
+              <span className={css.error}>{errors.sportTime.message}</span>
+            )}
+          </div>
+          <div className={css.formGroup}>
+            <p className={css.info}>
+              The required amount of water in liters per day:
+              {calculatedWaterIntake.toFixed(1)}ml
+            </p>
+          </div>
+          <div className={css.formGroup}>
+            <label className={css.accentLabel}>
+              Write down how much water you will drink:
+            </label>
+            <input
+              type="number"
+              {...register('waterIntake')}
+              className={css.input}
+              // value={waterIntakeValue}
+              placeholder={calculatedWaterIntake.toFixed(1)}
+              onChange={e => setWaterIntakeValue(e.target.value)}
+            />
+            {errors.waterIntake && (
+              <span className={css.error}>{errors.waterIntake.message}</span>
+            )}
+          </div>
+        </div>
       </div>
-      <div className={css.formGroup}>
-        <label className={css.accentLabel}>Your name</label>
-        <input type="text" {...register('name')} className={css.input} />
-        {errors.name && (
-          <span className={css.error}>{errors.name.message}</span>
-        )}
-      </div>
-      <div className={css.formGroup}>
-        <label className={css.accentLabel}>Email</label>
-        <input type="text" {...register('email')} className={css.input} />
-        {errors.email && (
-          <span className={css.error}>{errors.email.message}</span>
-        )}
-      </div>
-      <div className={css.formGroup}>
-        <p className={css.infoTitle}>My daily norma</p>
-        <ul className={css.list}>
-          <li className={css.listItem}>
-            <p className={css.listItemText}>For woman:</p>
-            <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
-          </li>
-          <li className={css.listItem}>
-            <p className={css.listItemText}>For man:</p>
-            <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
-          </li>
-        </ul>
-        <p className={css.calculation}>
-          * V is the volume of the water norm in liters per day, M is your body
-          weight, T is the time of active sports, or another type of activity
-          commensurate in terms of loads (in the absence of these, you must set
-          0)
-        </p>
-        <p className={css.info}>Active time in hours</p>
-      </div>
-      <div className={css.formGroup}>
-        <label className={css.label}>Your weight in kilograms:</label>
-        <input type="number" {...register('weight')} className={css.input} />
-        {errors.weight && (
-          <span className={css.error}>{errors.weight.message}</span>
-        )}
-      </div>
-      <div className={css.formGroup}>
-        <label className={css.label}>
-          The time of active participation in sports:
-        </label>
-        <input type="number" {...register('sportTime')} className={css.input} />
-        {errors.sportTime && (
-          <span className={css.error}>{errors.sportTime.message}</span>
-        )}
-      </div>
-      <div className={css.formGroup}>
-        <p className={css.info}>
-          The required amount of water in liters per day:
-          {calculatedWaterIntake.toFixed(1)}L
-        </p>
-      </div>
-      <div className={css.formGroup}>
-        <label className={css.accentLabel}>
-          Write down how much water you will drink:
-        </label>
-        <input
-          type="number"
-          {...register('waterIntake')}
-          className={css.input}
-          // value={waterIntakeValue}
-          placeholder={calculatedWaterIntake.toFixed(1)}
-          onChange={e => setWaterIntakeValue(e.target.value)}
-        />
-        {errors.waterIntake && (
-          <span className={css.error}>{errors.waterIntake.message}</span>
-        )}
-      </div>
-      <button type="submit" className={css.submitBtn} disabled={loading}>
-        {loading ? 'Saving...' : 'Save'}
-      </button>
-      {error && <span className={css.error}>{error}</span>}
+        <button type="submit" className={css.submitBtn} disabled={loading}>
+          {loading ? 'Saving...' : 'Save'}
+        </button>
+        {error && <span className={css.error}>{error}</span>}
     </form>
   );
 };
