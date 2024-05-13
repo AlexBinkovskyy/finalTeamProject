@@ -8,12 +8,12 @@ import { signup } from '../../redux/auth/operations';
 import { Link, useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Must be a valid email!').required('Required'),
+  email: Yup.string().email('Must be valid email!').required('Required'),
   password: Yup.string()
     .min(7, 'Too Short!')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'The password must contain at least one capital letter, one uppercase letter and one number'
+      ' Must contain: capital, uppercase letter, number'
     )
     .required('Required'),
   repeatPassword: Yup.string()
@@ -37,6 +37,7 @@ export default function SignUpForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = ({ email, password }) => {
@@ -55,49 +56,57 @@ export default function SignUpForm() {
   }, [submitted, navigate]);
 
   return (
-    <div>
+    <div className={css.divWrap}>
       <h1 className={css.title}>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label htmlFor={emailFieldId} className={css.label}>
           Email
         </label>
-        <input
-          {...register('email')}
-          className={css.input}
-          id={emailFieldId}
-          placeholder="Enter your email"
-        />
-        {errors.email && (
-          <span className={css.error}>{errors.email.message}</span>
-        )}
+        <div className={css.errorContainer}>
+          <input
+            {...register('email')}
+            className={`${css.input} ${errors.email && css.errorInput}`}
+            id={emailFieldId}
+            placeholder="Enter your email"
+          />
+          {errors.email && (
+            <span className={css.error}>{errors.email.message}</span>
+          )}
+        </div>
 
         <label htmlFor={passwordFieldId} className={css.label}>
           Password
         </label>
-        <input
-          {...register('password')}
-          autoComplete="off"
-          className={css.input}
-          id={passwordFieldId}
-          placeholder="Enter your password"
-        />
-        {errors.password && (
-          <span className={css.error}>{errors.password.message}</span>
-        )}
+        <div className={css.errorContainer}>
+          <input
+            {...register('password')}
+            autoComplete="off"
+            className={`${css.input} ${errors.password && css.errorInput}`}
+            id={passwordFieldId}
+            placeholder="Enter your password"
+          />
+          {errors.password && (
+            <span className={css.error}>{errors.password.message}</span>
+          )}
+        </div>
 
         <label htmlFor={repeatPassword} className={css.label}>
           Repeat Password
         </label>
-        <input
-          {...register('repeatPassword')}
-          autoComplete="off"
-          className={css.input}
-          id={repeatPassword}
-          placeholder="Repeat password"
-        />
-        {errors.repeatPassword && (
-          <span className={css.error}>{errors.repeatPassword.message}</span>
-        )}
+        <div className={css.errorContainer}>
+          <input
+            {...register('repeatPassword')}
+            autoComplete="off"
+            className={`${css.input} ${
+              errors.repeatPassword && css.errorInput
+            }`}
+            id={repeatPassword}
+            placeholder="Repeat password"
+          />
+          {errors.repeatPassword && (
+            <span className={css.error}>{errors.repeatPassword.message}</span>
+          )}
+        </div>
 
         <button type="submit" className={css.button}>
           Sign Up

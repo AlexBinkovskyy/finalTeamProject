@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addConsumption,
   deleteConsumption,
-  fetchConsumption,
+  fetchDailyConsumption,
+  fetchMonthlyConsumption,
   updateConsumption,
 } from './operations';
 
@@ -18,26 +19,35 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    items: [],
+    dayNotes: [],
+    monthNotes: [],
     loading: false,
     error: null,
   },
 
   extraReducers: builder =>
     builder
-      .addCase(fetchConsumption.pending, handlePending)
-      .addCase(fetchConsumption.fulfilled, (state, action) => {
+      .addCase(fetchDailyConsumption.pending, handlePending)
+      .addCase(fetchDailyConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.dayNotes = action.payload.dailyCount;
       })
-      .addCase(fetchConsumption.rejected, handleRejected)
+      .addCase(fetchDailyConsumption.rejected, handleRejected)
+
+      .addCase(fetchMonthlyConsumption.pending, handlePending)
+      .addCase(fetchMonthlyConsumption.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.monthNotes = action.payload;
+      })
+      .addCase(fetchMonthlyConsumption.rejected, handleRejected)
 
       .addCase(addConsumption.pending, handlePending)
       .addCase(addConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(addConsumption.rejected, handleRejected)
 
@@ -45,7 +55,7 @@ const waterSlice = createSlice({
       .addCase(deleteConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(deleteConsumption.rejected, handleRejected)
 
@@ -53,13 +63,7 @@ const waterSlice = createSlice({
       .addCase(updateConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const updatedConsumption = action.payload;
-        const index = state.items.findIndex(
-          item => item.id === updatedConsumption.id
-        );
-        if (index !== -1) {
-          state.items[index] = updatedConsumption;
-        }
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(updateConsumption.rejected, handleRejected),
 });
