@@ -5,9 +5,9 @@ axios.defaults.baseURL = 'https://finalteamproject-backend.onrender.com/api';
 
 export const fetchConsumption = createAsyncThunk(
   'consumption/fetchall',
-  async (_, thunkAPI) => {
+  async (values, thunkAPI) => {
     try {
-      const response = await axios.get('/consumption');
+      const response = await axios.get(`/water/monthconsumption/${values}`);
       return response.data;
     } catch (er) {
       return thunkAPI.rejectWithValue(er.message);

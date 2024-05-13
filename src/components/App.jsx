@@ -23,7 +23,16 @@ import ConfirmPage from 'Pages/ConfirmPage/ConfirmPage';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <>
       <Routes>
         <Route index element={<HomePage />} />
@@ -59,8 +68,6 @@ export const App = () => {
         />
       </Routes>
       <Toaster />
-
     </>
   );
-
-  
+};
