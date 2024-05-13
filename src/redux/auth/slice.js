@@ -8,12 +8,10 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    isEmailVerified: false,
   },
   reducers: {
     verifyEmailSuccess: (state, action) => {
-      state.isEmailVerified = true;
-      state.isLoggedIn = state.isEmailVerified;
+      state.isLoggedIn = true;
       state.token = action.payload;
     },
   },

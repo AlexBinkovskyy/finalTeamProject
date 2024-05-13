@@ -19,7 +19,8 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    items: [],
+    dayNotes: [],
+    monthNotes: [],
     loading: false,
     error: null,
   },
@@ -30,7 +31,7 @@ const waterSlice = createSlice({
       .addCase(fetchDailyConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload.dailyCount;
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(fetchDailyConsumption.rejected, handleRejected)
 
@@ -38,7 +39,7 @@ const waterSlice = createSlice({
       .addCase(fetchMonthlyConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload.dailyCount;
+        state.monthNotes = action.payload;
       })
       .addCase(fetchMonthlyConsumption.rejected, handleRejected)
 
@@ -46,7 +47,7 @@ const waterSlice = createSlice({
       .addCase(addConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(addConsumption.rejected, handleRejected)
 
@@ -54,9 +55,7 @@ const waterSlice = createSlice({
       .addCase(deleteConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.filter(
-          item => item._id !== action.payload._id
-        );
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(deleteConsumption.rejected, handleRejected)
 
@@ -64,13 +63,7 @@ const waterSlice = createSlice({
       .addCase(updateConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const updatedConsumption = action.payload;
-        const index = state.items.findIndex(
-          item => item._id === updatedConsumption._id
-        );
-        if (index !== -1) {
-          state.items[index] = updatedConsumption;
-        }
+        state.dayNotes = action.payload.dailyCount;
       })
       .addCase(updateConsumption.rejected, handleRejected),
 });
