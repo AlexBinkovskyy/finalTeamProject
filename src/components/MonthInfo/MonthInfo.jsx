@@ -6,6 +6,9 @@ import IconPieChart from '../../image/sprite.svg';
 import { format } from 'date-fns';
 import axios from 'axios';
 import DailyInfo from 'components/DailyInfo/DailyInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMonthlyConsumption } from '../../redux/water/operations';
+import { selectMonth } from '../../redux/water/selectors';
 
 const getMounth = async mounth => {
   const response = await axios.get(`/water/monthconsumption/${mounth}`);
@@ -16,11 +19,11 @@ export default function MonthInfo() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const initialMonth = format(selectedDate, 'MM.yyyy');
 
-  const [daysQuantity, setDaysQuantity] = useState({});
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   getMounth(initialMonth).then(data => setDaysQuantity(data));
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchMonthlyConsumption(initialMonth));
+  }, [initialMonth]);
 
   const handleDateChange = date => {
     setSelectedDate(date);
