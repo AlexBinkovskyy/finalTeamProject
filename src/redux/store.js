@@ -14,7 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
 // import { authReducer, verifyEmailSuccess } from './auth/slice';
 import { waterReducer } from './water/waterSlice';
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 
 const authPersistConfig = {
   key: 'auth',
@@ -22,7 +22,7 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 export const store = configureStore({
   reducer: {
