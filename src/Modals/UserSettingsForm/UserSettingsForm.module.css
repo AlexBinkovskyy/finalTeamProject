@@ -1,8 +1,22 @@
-/* .form{
+.form {
   display: flex;
   flex-direction: column;
+  /* max-width: 343px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+/* .container {
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  } */
 
-} */
+/* @media only screen and (min-width: 1440px) {
+    .container {
+      max-width: 840px;
+    }
+  } */
+/*  */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -38,8 +52,53 @@
   }
 }
 
+.avatarContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.thumb {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 768px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 .avatarInput {
   display: none;
+}
+
+.uploadLabel {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
+}
+
+.uploadText {
+  display: flex;
+  align-items: flex-end;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
 }
 
 .input {
@@ -48,6 +107,67 @@
   padding: 14px 16px 14px 16px;
   width: 303px;
   height: 46px;
+}
+
+@media only screen and (min-width: 768px) {
+  .input {
+    width: 568px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .input {
+    width: 400px;
+  }
+}
+
+.genderInput {
+}
+
+.formWraper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1440px) {
+  .formWraper {
+    flex-direction: row;
+  }
+}
+
+.formWrap_1 {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1440px) {
+  .formWrap_1 {
+    margin-right: 40px;
+  }
+}
+
+.formWrap_2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.genderLabel {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
+}
+
+.genderLabel:not(:last-child) {
+  margin-right: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .genderLabel {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 .infoTitle {
@@ -108,7 +228,18 @@
   margin-bottom: 14px;
 }
 
-.waterValue{
+@media only screen and (min-width: 768px) {
+  .calculation {
+    max-width: 568px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .calculation {
+    max-width: 400px;
+  }
+}
+
+.waterValue {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -142,7 +273,7 @@ input[type='radio'] + label:before {
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   border: 1px solid var(--accent-color);
   border-radius: 50%;
   position: absolute;
@@ -159,8 +290,14 @@ input[type='radio'] + label:after {
   border-radius: 50%;
   position: absolute;
   left: 5px;
-  top: 5px;
+  top: 4px;
   display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  input[type='radio'] + label:after{
+    top: 7px;
+  }
 }
 
 input[type='radio']:checked + label:after {
@@ -170,5 +307,15 @@ input[type='radio']:checked + label:after {
 .icon {
   width: 24px;
   height: 24px;
-  stroke: #000; 
+  stroke: #000;
+  margin-right: 8px;
+}
+
+.submitBtn {
+  border: none;
+  border-radius: 30px;
+  padding: 16px 50px;
+  width: 141px;
+  height: 56px;
+  background-color: var(--accent-color);
 }

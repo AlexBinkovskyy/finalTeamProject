@@ -1,38 +1,53 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 311px;
 }
 
 .title {
   font-weight: 700;
   font-size: 32px;
-  color: #323f47;
+  color: var(--main-color);
+  line-height: 1;
+  letter-spacing: -0.01em;
   margin-bottom: 32px;
 }
 
 .button {
-  margin-top: 16px;
+  margin-top: 10px;
   border-radius: 30px;
-  padding: 16px 131px;
-  width: 311px;
+  padding: 16px 50px;
+  width: 100%;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   border: none;
-  background: #9be1a0;
+  transition: all 250ms ease-in-out;
+  background: var(--accent-color);
+}
+
+.button:is(:hover, :focus) {
+  background-color: var(--hover-focus-color);
 }
 
 .input {
+  font-family: 'Poppins-Regular';
   border: 1px solid rgba(47, 47, 47, 0.2);
+  outline: none;
   border-radius: 15px;
-  padding: 16px 80px 16px 16px;
-  width: 311px;
-  margin-bottom: 16px;
+  background-color: transparent;
+  padding: 16px 40px 16px 16px;
+  width: 100%;
+  transition: all 250ms ease-in-out;
+  margin-bottom: 22px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
 }
 
 .input::placeholder {
+  font-family: 'Poppins-Regular';
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
@@ -40,35 +55,120 @@
   color: rgba(47, 47, 47, 0.6);
 }
 
+.input:is(:hover, :focus) {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+}
+
+.errorInput {
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+.errorInput::placeholder {
+  color: var(--error-color);
+}
+
+.errorInput:is(:hover, :focus) {
+  border-color: var(--error-color);
+}
+
 .label {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: #2f2f2f;
+  color: var(--main-text-color);
   margin-bottom: 8px;
 }
 
 .error {
-  font-weight: 400;
+  font-family: 'Poppins-Regular';
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: #ef5050;
+  color: var(--error-color);
+  position: absolute;
+  top: 75%;
+  left: 0;
+}
+
+.errorContainer {
+  position: relative;
 }
 
 .text {
+  font-family: 'Poppins-Regular';
   margin-top: 16px;
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: rgba(47, 47, 47, 0.5);
+  display: flex;
+  justify-content: center;
+  gap: 4px;
 }
 
 .link {
-  font-weight: 700;
+  font-family: 'Poppins-Bold';
   text-decoration: underline;
   text-decoration-skip-ink: none;
-  color: #2f2f2f;
+  color: var(--main-text-color);
+  transition: color 250ms ease-in-out;
+}
+
+.link:hover {
+  color: rgba(50, 63, 71, 0.4);
+}
+
+.eyeIcon {
+  fill: black;
+}
+
+.eyeBtn {
+  border: 1px solid;
+  background-color: transparent;
+  height: 36px;
+  width: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 36px;
+    line-height: 1.05556;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+    width: 436px;
+  }
+
+  .input {
+    width: 436px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .error {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .divWrap {
+    margin: 0 auto;
+  }
 }
