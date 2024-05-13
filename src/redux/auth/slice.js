@@ -22,11 +22,11 @@ const authSlice = createSlice({
     builder
       .addCase(signup.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        console.log(state.user);
       })
       .addCase(signin.fulfilled, (state, action) => {
-        state.user = action.payload.loggedUser;
-        state.token = action.payload.loggedUser.token;
+        console.log(action.payload);
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(signout.fulfilled, state => {
