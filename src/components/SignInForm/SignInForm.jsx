@@ -8,7 +8,7 @@ import { signin } from '../../redux/auth/operations';
 import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Must be a valid email!').required('Required'),
+  email: Yup.string().email('Must be valid email!').required('Required'),
   password: Yup.string().min(7, 'Too Short!').required('Required'),
 });
 
@@ -30,7 +30,6 @@ export default function SignInForm() {
 
   const onSubmit = data => {
     dispatch(signin(data));
-    console.log(data);
     reset();
   };
 
@@ -41,29 +40,33 @@ export default function SignInForm() {
         <label htmlFor={emailFieldId} className={css.label}>
           Email
         </label>
-        <input
-          {...register('email')}
-          className={`${css.input} ${errors.email && css.errorInput}`}
-          id={emailFieldId}
-          placeholder="Enter your email"
-        />
-        {errors.email && (
-          <span className={css.error}>{errors.email.message}</span>
-        )}
+        <div className={css.errorContainer}>
+          <input
+            {...register('email')}
+            className={`${css.input} ${errors.email && css.errorInput}`}
+            id={emailFieldId}
+            placeholder="Enter your email"
+          />
+          {errors.email && (
+            <span className={css.error}>{errors.email.message}</span>
+          )}
+        </div>
 
         <label htmlFor={passwordFieldId} className={css.label}>
           Password
         </label>
-        <input
-          {...register('password')}
-          autoComplete="off"
-          className={`${css.input} ${errors.password && css.errorInput}`}
-          id={passwordFieldId}
-          placeholder="Enter your password"
-        />
-        {errors.password && (
-          <span className={css.error}>{errors.password.message}</span>
-        )}
+        <div className={css.errorContainer}>
+          <input
+            {...register('password')}
+            autoComplete="off"
+            className={`${css.input} ${errors.password && css.errorInput}`}
+            id={passwordFieldId}
+            placeholder="Enter your password"
+          />
+          {errors.password && (
+            <span className={css.error}>{errors.password.message}</span>
+          )}
+        </div>
 
         <button type="submit" className={css.button}>
           Sign In

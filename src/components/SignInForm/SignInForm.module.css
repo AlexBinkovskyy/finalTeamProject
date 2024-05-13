@@ -11,7 +11,7 @@
 }
 
 .button {
-  margin-top: 16px;
+  margin-top: 10px;
   border-radius: 30px;
   padding: 16px 50px;
   width: 100%;
@@ -37,7 +37,7 @@
   padding: 16px 40px 16px 16px;
   width: 100%;
   transition: all 250ms ease-in-out;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 
 .input::placeholder {
@@ -76,11 +76,18 @@
 }
 
 .error {
-  font-weight: 400;
+  font-family: 'Poppins-Regular';
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--error-color);
+  position: absolute;
+  top: 75%;
+  left: 0;
+}
+
+.errorContainer {
+  position: relative;
 }
 
 .text {
