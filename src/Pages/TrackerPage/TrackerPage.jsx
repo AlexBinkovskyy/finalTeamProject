@@ -4,8 +4,10 @@ import WaterMainInfo from 'components/WaterMainInfo/WaterMainInfo';
 export default function TrackerPage() {
   return (
     <>
-      <WaterMainInfo />
-      <WaterDetailedInfo />
+      <div style={{ display: 'flex' }}>
+        <WaterMainInfo />
+        <WaterDetailedInfo />
+      </div>
     </>
   );
 }

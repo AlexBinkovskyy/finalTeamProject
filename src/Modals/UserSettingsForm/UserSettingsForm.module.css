@@ -1,22 +1,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  /* max-width: 343px; */
-  /* display: flex; */
-  /* flex-direction: column; */
 }
-/* .container {
-  max-width: 200px;
-  margin: 0 auto;
-  padding: 0 16px;
-  } */
 
-/* @media only screen and (min-width: 1440px) {
-    .container {
-      max-width: 840px;
-    }
-  } */
-/*  */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -120,9 +106,6 @@
   }
 }
 
-.genderInput {
-}
-
 .formWraper {
   display: flex;
   flex-direction: column;
@@ -165,6 +148,23 @@
 
 @media only screen and (min-width: 768px) {
   .genderLabel {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.info {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+@media only screen and (min-width: 768px) {
+  .info {
     font-size: 16px;
     line-height: 1.5;
   }
@@ -295,7 +295,7 @@ input[type='radio'] + label:after {
 }
 
 @media only screen and (min-width: 768px) {
-  input[type='radio'] + label:after{
+  input[type='radio'] + label:after {
     top: 7px;
   }
 }
@@ -309,6 +309,23 @@ input[type='radio']:checked + label:after {
   height: 24px;
   stroke: #000;
   margin-right: 8px;
+}
+
+.calcIcon {
+  font-size: 14px;
+  color: var(--accent-color);
+  margin-right: 5px;
+}
+.iconInfo {
+  width: 20px;
+  height: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .iconInfo {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .submitBtn {
