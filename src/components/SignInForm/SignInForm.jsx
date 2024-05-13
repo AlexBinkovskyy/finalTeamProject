@@ -73,7 +73,7 @@ export default function SignInForm() {
             <span className={css.error}>{errors.password.message}</span>
           )}
 
-          {window.innerWidth > 768 && (
+          {/* {window.innerWidth > 768 && (
             <button
               type="button"
               className={css.eyeBtn}
@@ -89,7 +89,7 @@ export default function SignInForm() {
                 </svg>
               )}
             </button>
-          )}
+          )} */}
         </div>
 
         <button type="submit" className={css.button}>
