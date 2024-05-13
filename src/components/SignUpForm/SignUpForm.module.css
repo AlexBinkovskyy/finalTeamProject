@@ -7,6 +7,8 @@
   font-weight: 700;
   font-size: 32px;
   color: var(--main-color);
+  line-height: 1;
+  letter-spacing: -0.01em;
   margin-bottom: 32px;
 }
 
@@ -38,6 +40,10 @@
   width: 100%;
   transition: all 250ms ease-in-out;
   margin-bottom: 22px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
 }
 
 .input::placeholder {
@@ -77,7 +83,7 @@
 
 .error {
   font-family: 'Poppins-Regular';
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--error-color);
@@ -91,8 +97,8 @@
 }
 
 .text {
+  font-family: 'Poppins-Regular';
   margin-top: 16px;
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
@@ -103,7 +109,7 @@
 }
 
 .link {
-  font-weight: 700;
+  font-family: 'Poppins-Bold';
   text-decoration: underline;
   text-decoration-skip-ink: none;
   color: var(--main-text-color);
@@ -112,4 +118,46 @@
 
 .link:hover {
   color: rgba(50, 63, 71, 0.4);
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 36px;
+    line-height: 1.05556;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+    width: 436px;
+  }
+
+  .input {
+    width: 436px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .error {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .divWrap {
+    margin: 0 auto;
+  }
 }

@@ -56,7 +56,7 @@ export default function SignUpForm() {
   }, [submitted, navigate]);
 
   return (
-    <div>
+    <div className={css.divWrap}>
       <h1 className={css.title}>Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label htmlFor={emailFieldId} className={css.label}>
