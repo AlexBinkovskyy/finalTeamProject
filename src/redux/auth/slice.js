@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signup, signin, signout, refreshUser } from './operations';
+import {
+  signup,
+  signin,
+  signout,
+  refreshUser,
+  // verifyEmail,
+} from './operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -8,13 +14,15 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    // isEmailVerified: false,
   },
-  reducers: {
-    verifyEmailSuccess: (state, action) => {
-      state.isLoggedIn = true;
-      state.token = action.payload;
-    },
-  },
+  // reducers: {
+  //   verifyEmailSuccess: (state, action) => {
+  //     state.isEmailVerified = true;
+  //     state.isLoggedIn = state.isEmailVerified;
+  //     state.token = action.payload;
+  //   },
+  // },
 
   extraReducers: builder => {
     builder
@@ -36,15 +44,20 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       });
+    // .addCase(verifyEmail.fulfilled, (state, action) => {
+    //   state.isEmailVerified = true;
+    //   state.isLoggedIn = state.isEmailVerified;
+    //   state.token = action.payload;
+    // })
   },
 });
 
-export const { verifyEmailSuccess } = authSlice.actions;
+// export const { verifyEmailSuccess } = authSlice.actions;
 export const authReducer = authSlice.reducer;

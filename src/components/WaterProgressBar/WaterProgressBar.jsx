@@ -1,9 +1,8 @@
 import css from './WaterProgressBar.module.css';
-import ProgressBar from '@atlaskit/progress-bar';
 import WaterProgressBarStyle from './WaterProgressBarStyle';
 
 export default function WaterProgressBar() {
-  let progressBar = 2;
+  let progressBar = 8;
   let progress = Math.round(progressBar) / 10;
   progress = Math.min(progress, 1);
   const progressProc = progress * 100;
@@ -19,11 +18,14 @@ export default function WaterProgressBar() {
         <div className={css.ProgressBar}>
           <p className={css.text}>Today</p>
           <div className={css.Progress}>
-            <ProgressBar
-              appearance="success"
-              ariaLabel={`"Done: ${progressBar} of 10 issues"`}
-              value={`${progress}`}
-            />
+            <div className={css.ProgressAll}>
+              <div
+                className={css.ProgressResult}
+                style={{
+                  width: `${progressProc}%`,
+                }}
+              ></div>
+            </div>
           </div>
           <div className={css.number}>
             <div>

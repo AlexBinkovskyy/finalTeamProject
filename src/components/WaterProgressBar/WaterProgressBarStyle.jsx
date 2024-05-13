@@ -7,12 +7,12 @@ export default function WaterProgressBarStyle({ progress }) {
       return window.matchMedia('(min-width: 768px)').matches ? -1.5 : -4;
     case 0.6:
     case 0.7:
-      return -4;
+      return -5;
     case 0.8:
       return -7;
     case 0.9:
       return window.matchMedia('(min-width: 768px)').matches ? -12 : -15;
     default:
-      return 1;
+      return -1;
   }
 }
