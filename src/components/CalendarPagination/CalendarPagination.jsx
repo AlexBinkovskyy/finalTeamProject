@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { format, addMonths, subMonths, isValid } from 'date-fns';
 import css from './CalendarPagination.module.css';
 

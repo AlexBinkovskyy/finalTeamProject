@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+// import { useForm } from 'react-hook-form';
+// import * as Yup from 'yup';
 import css from './WaterForm.module.css'; 
 
-const schema = Yup.object().shape({
-  waterAmount: Yup.number()
-    .required('Water amount is required')
-    .positive('Water amount must be positive'),
-  time: Yup.string() 
-    .required('Time is required')
-    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format'),
-});
+// const schema = Yup.object().shape({
+//   waterAmount: Yup.number()
+//     .required('Water amount is required')
+//     .positive('Water amount must be positive'),
+//   time: Yup.string() 
+//     .required('Time is required')
+//     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format'),
+// });
 
 const WaterForm = () => {
   const [waterAmount, setWaterAmount] = useState(50);
