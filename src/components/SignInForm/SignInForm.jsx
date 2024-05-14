@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../../redux/auth/operations';
 import { Link } from 'react-router-dom';
 import Image from '../../image/sprite.svg';
-import { selectDailyNorma } from '../../redux/auth/selectors';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -17,8 +16,6 @@ const validationSchema = Yup.object().shape({
 export default function SignInForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const dailyNorma = useSelector(selectDailyNorma);
-  console.log(dailyNorma);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
