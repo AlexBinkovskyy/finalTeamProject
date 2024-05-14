@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.08eb732a.css",
+    "main.css": "/finalTeamProject/static/css/main.4cba61ef.css",
     "main.js": "/finalTeamProject/static/js/main.494f14f9.js",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
@@ -12,11 +12,11 @@
     "static/media/transparent_bottle_for_water_mob@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_mob@1x.0421a9f1550560fe8bce.png",
     "static/media/sprite.svg": "/finalTeamProject/static/media/sprite.d333ac5ce3a2422276940179c77de957.svg",
     "index.html": "/finalTeamProject/index.html",
-    "main.08eb732a.css.map": "/finalTeamProject/static/css/main.08eb732a.css.map",
+    "main.4cba61ef.css.map": "/finalTeamProject/static/css/main.4cba61ef.css.map",
     "main.494f14f9.js.map": "/finalTeamProject/static/js/main.494f14f9.js.map"
   },
   "entrypoints": [
-    "static/css/main.08eb732a.css",
+    "static/css/main.4cba61ef.css",
     "static/js/main.494f14f9.js"
   ]
 }
