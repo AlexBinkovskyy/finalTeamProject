@@ -56,10 +56,15 @@
   width: 20px;
   height: 20px;
   stroke: rgb(50, 63, 71, 0.4);
+  transition: transform 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
   .icon {
     width: 24px;
     height: 24px;
   }
+}
+.icon:hover {
+  stroke: var(--main-color, #323f47);
+  transform: scale(1.2);
 }

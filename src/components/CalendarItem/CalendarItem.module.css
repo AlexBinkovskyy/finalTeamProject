@@ -1,14 +1,3 @@
-.calendar {
-  width: 500px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.days {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 /* CalendarItem.module.css */
 .day {
   position: relative;
@@ -44,10 +33,12 @@
   height: 28px;
   background-color: rgb(158, 162, 163);
   border-radius: 50%;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 4px;
+  transition: transform 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
   .dayNumber {
@@ -64,23 +55,37 @@
   background-color: white;
 }
 
+.dayNumber:hover,
+.dayNumber:focus,
+.dayNumber:active {
+  color: var(--accent-color, #9be1a0);
+  background-color: var(--main-color, #323f47);
+  transform: scale(1.2);
+}
+.day:hover .dayNumber,
+.day:focus .dayNumber {
+  color: var(--accent-color, #9be1a0);
+  background-color: var(--main-color, #323f47);
+  transform: scale(1.2);
+}
+
 .waterPercentage {
   font-family: Poppins-Bold;
   color: var(--main-color, #323f47);
   font-size: 10px;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  transition: transform 0.3s ease;
+  transform-origin: center bottom;
 }
 
-/* @media only screen and (min-width: 768px) {
-  .monthInfo {
-    width: 700px;
-  }
+.waterPercentage:hover,
+.waterPercentage:focus {
+  transform: translateX(-50%) scale(1.4);
 }
-@media (min-width: 1440px) {
-  .monthInfo {
-    width: 608px;
-  }
-} */
+.day:hover .waterPercentage,
+.day:focus .waterPercentage:focus {
+  transform: translateX(-50%) scale(1.4);
+}
