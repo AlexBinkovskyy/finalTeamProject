@@ -9,18 +9,18 @@ export default function UserBarPopover() {
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
   const ref = useRef();
 
-  const handleClickOutside = event => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
+  
   useEffect(() => {
+    const handleClickOutside = event => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [setIsOpen]);
 
   const openSettingModal = () => {
     setSettingModalIsOpen(true);

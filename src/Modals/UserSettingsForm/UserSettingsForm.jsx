@@ -25,7 +25,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const loading = useSelector(selectLoadingStatus);
   const error = useSelector(selectError);
   const [calculatedWaterIntake, setCalculatedWaterIntake] = useState(0);
-  // const [waterIntakeValue, setWaterIntakeValue] = useState('');
+  const [waterIntakeValue, setWaterIntakeValue] = useState('');
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
 
   const {
@@ -58,9 +58,9 @@ const UserSettingsForm = ({ closeModal }) => {
           ? (weight * 0.03 + activeTime * 0.4) * 1000
           : (weight * 0.04 + activeTime * 0.6) * 1000;
       setCalculatedWaterIntake(setDailyNorma);
-      // setWaterIntakeValue(Number(calculatedWaterIntake.toFixed(1)));
+      setWaterIntakeValue(Number(calculatedWaterIntake.toFixed(1)));
     }
-  }, [gender, weight, activeTime]);
+  }, [gender, weight, activeTime, calculatedWaterIntake]);
 
   // const handleAvatarChange = (event) => {
   //   const file = event.target.files[0];
@@ -245,7 +245,7 @@ const UserSettingsForm = ({ closeModal }) => {
               type="number"
               {...register('goal')}
               className={css.input}
-              // value={waterIntakeValue}
+              value={waterIntakeValue}
               placeholder={calculatedWaterIntake.toFixed(1)}
               onChange={e => setWaterIntakeValue(e.target.value)}
             />
