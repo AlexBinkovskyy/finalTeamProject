@@ -1,0 +1,17 @@
+.logo {
+  font-family: 'Poppins-Bold';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.12;
+  color: var(--main-color);
+  text-transform: uppercase;
+  width: 114px;
+}
+
+@media only screen and (min-width: 768px) {
+  .logo {
+    font-size: 24px;
+    width: 155px;
+    line-height: 1;
+  }
+}
