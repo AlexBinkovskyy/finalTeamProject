@@ -1,22 +1,27 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.c01188de.css",
-    "main.js": "/finalTeamProject/static/js/main.5321e67f.js",
+    "main.css": "/finalTeamProject/static/css/main.a5268b90.css",
+    "main.js": "/finalTeamProject/static/js/main.3deb656a.js",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
     "static/media/Poppins-Regular.ttf": "/finalTeamProject/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/finalTeamProject/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/transparent_bottle_for_water_mob@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_mob@2x.64b32f16ec148dbc0fbd.png",
     "static/media/transparent_bottle_for_water_desk@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@1x.6cf5991eb65daf7a4333.png",
+    "static/media/rectangle_desk@2x.jpg": "/finalTeamProject/static/media/rectangle_desk@2x.f9c02a979b951fe97459.jpg",
     "static/media/transparent_bottle_for_water_tab@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@1x.be17d30cbed5674fcc18.png",
+    "static/media/rectangle_tab@2x.jpg": "/finalTeamProject/static/media/rectangle_tab@2x.2f07c3fec9273ae85630.jpg",
     "static/media/transparent_bottle_for_water_mob@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_mob@1x.0421a9f1550560fe8bce.png",
+    "static/media/rectangle_desk@1x.jpg": "/finalTeamProject/static/media/rectangle_desk@1x.b9fa2cc4a706fa06bc66.jpg",
+    "static/media/rectangle_tab@1x.jpg": "/finalTeamProject/static/media/rectangle_tab@1x.997aee7c132d4df33b99.jpg",
+    "static/media/group.jpg": "/finalTeamProject/static/media/group.02c4e1855ac9a22cd05c.jpg",
     "static/media/sprite.svg": "/finalTeamProject/static/media/sprite.d333ac5ce3a2422276940179c77de957.svg",
     "index.html": "/finalTeamProject/index.html",
-    "main.c01188de.css.map": "/finalTeamProject/static/css/main.c01188de.css.map",
-    "main.5321e67f.js.map": "/finalTeamProject/static/js/main.5321e67f.js.map"
+    "main.a5268b90.css.map": "/finalTeamProject/static/css/main.a5268b90.css.map",
+    "main.3deb656a.js.map": "/finalTeamProject/static/js/main.3deb656a.js.map"
   },
   "entrypoints": [
-    "static/css/main.c01188de.css",
-    "static/js/main.5321e67f.js"
+    "static/css/main.a5268b90.css",
+    "static/js/main.3deb656a.js"
   ]
 }
