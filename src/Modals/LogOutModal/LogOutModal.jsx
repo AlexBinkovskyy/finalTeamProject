@@ -2,21 +2,14 @@ import React from 'react';
 import ComponentWithModal from '../Modal/Modal';
 import IconX from '../../image/sprite.svg';
 import css from './LogOutModal.module.css';
+import {signout} from '../../redux/auth/operations.js'
+import { useDispatch } from 'react-redux';
 
 export const LogOutModal = ({ isOpen, isClose }) => {
-  // const [modalIsOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  // };
-
-  // Функция logOut
   const logOut = () => {
-    // Здесь можно добавить логику для удаления записи
+    dispatch(signout());
   };
 
   return (
@@ -24,7 +17,7 @@ export const LogOutModal = ({ isOpen, isClose }) => {
       <ComponentWithModal isOpen={isOpen} isClose={isClose}>
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <button className={css.closeButton}>
+            <button className={css.closeButton} onClick={isClose}>
               <svg className={css.iconClose}>
                 <use href={`${IconX}#IconX`}></use>
               </svg>
