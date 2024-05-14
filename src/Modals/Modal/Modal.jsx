@@ -10,6 +10,8 @@ export const modalWrapper = WrappedComponent => {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
+        borderRadius: '15px',
+        padding: '40px 20px',
         transform: 'translate(-50%, -50%)',
       },
     };
