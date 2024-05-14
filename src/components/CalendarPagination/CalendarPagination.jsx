@@ -2,7 +2,6 @@ import React from 'react';
 import { format, addMonths, subMonths, isValid } from 'date-fns';
 import css from './CalendarPagination.module.css';
 
-
 export default function CalendarPagination({ currentDate, setCurrentDate }) {
   const handlePrevMonth = () => {
     setCurrentDate(prevDate => subMonths(prevDate, 1));

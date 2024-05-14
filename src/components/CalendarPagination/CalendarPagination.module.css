@@ -5,11 +5,21 @@
   align-items: center;
 }
 
+@media screen and (min-width: 768px) {
+  .pagination {
+    width: 222px;
+  }
+}
+
 .button {
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-family: Poppins-Bold;
+  transition: transform 0.3s ease;
+}
+.button:hover {
+  transform: scale(1.6);
 }
 .date {
   font-family: Poppins-Bold;
