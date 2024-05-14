@@ -14,14 +14,14 @@ const validationSchema = Yup.object().shape({
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevState => !prevState);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(prevState => !prevState);
+  // };
 
   const {
     register,

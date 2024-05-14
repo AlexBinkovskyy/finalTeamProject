@@ -4,16 +4,16 @@ import css from './MonthInfo.module.css';
 import Calendar from '../Calendar/Calendar';
 import IconPieChart from '../../image/sprite.svg';
 import { format } from 'date-fns';
-import axios from 'axios';
+// import axios from 'axios';
 import DailyInfo from 'components/DailyInfo/DailyInfo';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchMonthlyConsumption } from '../../redux/water/operations';
-import { selectMonth } from '../../redux/water/selectors';
+// import { selectMonth } from '../../redux/water/selectors';
 
-const getMounth = async mounth => {
-  const response = await axios.get(`/water/monthconsumption/${mounth}`);
-  return response.data;
-};
+// const getMounth = async mounth => {
+//   const response = await axios.get(`/water/monthconsumption/${mounth}`);
+//   return response.data;
+// };
 
 export default function MonthInfo() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,7 +23,7 @@ export default function MonthInfo() {
 
   useEffect(() => {
     dispatch(fetchMonthlyConsumption(initialMonth));
-  }, [initialMonth]);
+  }, [initialMonth, dispatch]);
 
   const handleDateChange = date => {
     setSelectedDate(date);

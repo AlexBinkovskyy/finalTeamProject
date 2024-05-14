@@ -4,7 +4,7 @@ import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 
 export default function UserBarPopover() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [setIsOpen] = useState(false);
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
   const ref = useRef();

@@ -25,7 +25,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const loading = useSelector(selectLoadingStatus);
   const error = useSelector(selectError);
   const [calculatedWaterIntake, setCalculatedWaterIntake] = useState(0);
-  const [waterIntakeValue, setWaterIntakeValue] = useState('');
+  // const [waterIntakeValue, setWaterIntakeValue] = useState('');
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
 
   const {
