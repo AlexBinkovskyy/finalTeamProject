@@ -1,5 +1,5 @@
 import css from './SignInForm.module.css';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -15,14 +15,14 @@ const validationSchema = Yup.object().shape({
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-  // const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword(prevState => !prevState);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
 
   const {
     register,
