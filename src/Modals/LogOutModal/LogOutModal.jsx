@@ -24,7 +24,7 @@ export const LogOutModal = ({ isOpen, isClose }) => {
       <ComponentWithModal isOpen={isOpen} isClose={isClose}>
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <button className={css.closeButton}>
+            <button className={css.closeButton} onClick={isClose}>
               <svg className={css.iconClose}>
                 <use href={`${IconX}#IconX`}></use>
               </svg>

@@ -1,0 +1,14 @@
+.iconClose {
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-color);
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
