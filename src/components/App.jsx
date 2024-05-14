@@ -15,6 +15,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';
 import SignUpPage from '../Pages/SignUpPage/SignUpPage';
 import TrackerPage from '../Pages/TrackerPage/TrackerPage';
+import ConfirmPage from 'Pages/ConfirmPage/ConfirmPage';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -46,6 +47,16 @@ export const App = () => {
           path="/signin"
           element={
             <RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />
+          }
+        />
+
+        <Route
+          path="/confirm-page"
+          element={
+            <RestrictedRoute
+              redirectTo="/tracker"
+              component={<ConfirmPage />}
+            />
           }
         />
 

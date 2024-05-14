@@ -1,5 +1,19 @@
+.modalOverlay {
+  background-color: var(--main-white);
+  max-width: 344px;
+}
+  
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+
 .modalTitle {
   color: var(--main-color);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
   font-size: 24px;
   margin-bottom: 10px;
   text-align: center;
@@ -9,33 +23,79 @@
   font-size: 18px;
   color: var(--main-color);
   margin-bottom: 28px;
+  text-align: center;
+}
+.iconClose {
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-color);
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.deleteButton {
+  background-color: var(--accent-color);
+  color: var(--main-color);
+  border-radius: 30px;
+  padding: 14px 129px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
 }
 
-.deleteButton{
- background-color:var(--accent-color);
- color: var(--main-color);
- border-radius: 30px;
- padding: 14px 129px;
- font-size: 14px;
- font-weight: bold;
- text-align: center;
+.cancelButton {
+  background-color: var(--background-color);
+  color: var(--main-color);
+  opacity: 0.7;
+  border-radius: 30px;
+  padding: 14px 129px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
 }
 
-.cancelButton{
-    background-color:var(--background-color);
-    color: var(--main-color);
-    opacity: 0.7;
-    border-radius: 30px;
-    padding: 14px 129px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: var(--hover-focus-color);
 }
-.deleteButton:hover, 
-.deleteButton:focus{
-    background-color:var(--hover-focus-color);
+.cancelButton:hover,
+.cancelButton:focus {
+  opacity: 1;
 }
-.cancelButton:hover, 
-.cancelButton:focus{
-    opacity: 1;
+@media only screen and (min-width: 768px) {
+  .modalOverlay {
+    max-width: 516px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .modalTitle {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .modalQuestion {
+    margin-bottom: 24px;
+  }
+  .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .deleteButton {
+    padding: 18px 67px;
+    font-size: 16px;
+  }
+  .cancelButton {
+    padding: 18px 67px;
+    font-size: 16px;
+  }
+
 }

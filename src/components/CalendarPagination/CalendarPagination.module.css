@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  width: 162px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .pagination {
+    width: 222px;
+  }
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: Poppins-Bold;
+  transition: transform 0.3s ease;
+}
+.button:hover {
+  transform: scale(1.6);
+}
+.date {
+  font-family: Poppins-Bold;
+  letter-spacing: -0.01em;
+  font-size: 14px;
+}
+@media screen and (min-width: 768px) {
+  .date {
+    font-size: 20px;
+  }
+}

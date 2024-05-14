@@ -1,50 +1,26 @@
-import React, { useState } from 'react';
-import ReactModal from 'react-modal';
-
+import React from 'react';
+import ComponentWithModal from '../Modal/Modal';
+import IconX from '../../image/sprite.svg';
 import css from './LogOutModal.module.css';
+import {signout} from '../../redux/auth/operations.js'
+import { useDispatch } from 'react-redux';
 
-export const LogOutModal = () => {
-  ReactModal.setAppElement('#root');
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+export const LogOutModal = ({ isOpen, isClose }) => {
+  const dispatch = useDispatch();
 
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  // Функция logOut
   const logOut = () => {
-    // Здесь можно добавить логику для удаления записи
-    closeModal();
+    dispatch(signout());
   };
 
   return (
     <>
-      <button onClick={openModal}>Open Modal</button>
-      <ReactModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="LogOut Modal"
-      >
+      <ComponentWithModal isOpen={isOpen} isClose={isClose}>
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <button className={css.closeButton} onClick={closeModal}>
-              ×
+            <button className={css.closeButton} onClick={isClose}>
+              <svg className={css.iconClose}>
+                <use href={`${IconX}#IconX`}></use>
+              </svg>
             </button>
             <h2 className={css.modalTitle}>Log out</h2>
             <p className={css.modalQuestion}>Do you really want to leave?</p>
@@ -52,13 +28,13 @@ export const LogOutModal = () => {
               <button className={css.deleteButton} onClick={logOut}>
                 Log out
               </button>
-              <button className={css.cancelButton} onClick={closeModal}>
+              <button className={css.cancelButton} onClick={isClose}>
                 Cancel
               </button>
             </div>
           </div>
         </div>
-      </ReactModal>
+      </ComponentWithModal>
     </>
   );
 };

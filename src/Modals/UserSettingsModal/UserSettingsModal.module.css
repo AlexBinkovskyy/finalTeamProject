@@ -1,0 +1,33 @@
+.title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--main-color);
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.14286;
+  }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .closeBtn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #000; 
+  }
+  

@@ -1,0 +1,40 @@
+.div {
+  margin: 0 auto;
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.link {
+  margin-top: 16px;
+  border-radius: 30px;
+  padding: 16px 129px;
+  width: 311px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  border: none;
+  background: var(--accent-color);
+}
+
+.btn {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main-color);
+  background-color: transparent;
+  border: none;
+}
