@@ -14,10 +14,19 @@
 
 @media screen and (min-width: 768px) {
   .div {
-    margin-top: 34px;
-    margin-bottom: 34px;
+    margin-top: 32px;
+    margin-bottom: 32px;
     max-width: 704px;
-    padding: 34px 34px 284px;
+    padding: 32px 32px 284px;
     gap: 226px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .div {
+    margin: 32px;
+    max-width: 672px;
+    padding: 32px 32px 170px;
+    gap: 114px;
   }
 }

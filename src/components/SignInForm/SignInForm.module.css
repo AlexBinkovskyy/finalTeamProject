@@ -121,21 +121,9 @@
   color: rgba(50, 63, 71, 0.4);
 }
 
-/* .eyeIcon {
-  stroke: var(--main-text-color);
-  stroke-width: 1.8px;
-  fill: transparent;
-}
-
 .eyeBtn {
-  border: none;
-  background-color: transparent;
-  height: 36px;
-  width: 50px;
-  position: absolute;
-  top: 12px;
-  left: 384px;
-} */
+  display: none;
+}
 
 @media screen and (min-width: 768px) {
   .title {
@@ -186,6 +174,7 @@
   }
 
   .eyeBtn {
+    display: block;
     outline: none;
     border: none;
     background-color: transparent;
