@@ -9,3 +9,5 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectState = state => state.auth;
 
 export const selectDailyNorma = state => state.auth.user.dailyNorma;
+
+export const selectVerified = state => state.auth.user.isVerified;
