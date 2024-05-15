@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.71a01535.css",
-    "main.js": "/finalTeamProject/static/js/main.a07f8da0.js",
+    "main.css": "/finalTeamProject/static/css/main.1c20b794.css",
+    "main.js": "/finalTeamProject/static/js/main.5cd7ade5.js",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
     "static/media/Poppins-Regular.ttf": "/finalTeamProject/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
@@ -17,11 +17,11 @@
     "static/media/group.jpg": "/finalTeamProject/static/media/group.02c4e1855ac9a22cd05c.jpg",
     "static/media/sprite.svg": "/finalTeamProject/static/media/sprite.d333ac5ce3a2422276940179c77de957.svg",
     "index.html": "/finalTeamProject/index.html",
-    "main.71a01535.css.map": "/finalTeamProject/static/css/main.71a01535.css.map",
-    "main.a07f8da0.js.map": "/finalTeamProject/static/js/main.a07f8da0.js.map"
+    "main.1c20b794.css.map": "/finalTeamProject/static/css/main.1c20b794.css.map",
+    "main.5cd7ade5.js.map": "/finalTeamProject/static/js/main.5cd7ade5.js.map"
   },
   "entrypoints": [
-    "static/css/main.71a01535.css",
-    "static/js/main.a07f8da0.js"
+    "static/css/main.1c20b794.css",
+    "static/js/main.5cd7ade5.js"
   ]
 }
