@@ -2,31 +2,46 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
-import { selectLoadingStatus, selectError } from '../../redux/water/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
+import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
-  gender: yup.string().required('Gender is required'),
-  name: yup.string().required('Name is required'),
+  gender: yup
+    .string()
+    .required('Gender is required')
+    .oneOf(['male', 'female'], 'Gender must be either male or female'),
+  name: yup
+    .string()
+    .required('Name is required')
+    .min(2, 'Name must be at least 2 characters')
+    .max(20, 'Name must be at most 20 characters'),
   email: yup.string().email('Invalid email').required('Email is required'),
-  weight: yup.number().required('Weight is required'),
-  activeTime: yup.number().required('Sport time is required'),
-  goal: yup.number().required('Water intake is required'),
+  weight: yup
+    .number()
+    .required('Weight is required')
+    .min(0, 'Weight must be a positive number'),
+  activeTime: yup
+    .number()
+    .required('Sport time is required')
+    .positive('Active time must be a positive number'),
+  goal: yup
+    .number()
+    .required('Water intake is required')
+    .min(0, 'Water intake must be a positive number'),
 });
 
 const UserSettingsForm = ({ closeModal }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  // const user = useSelector(selectConsumptionItem);
   const loading = useSelector(selectLoadingStatus);
-  const error = useSelector(selectError);
-  const [calculatedWaterIntake, setCalculatedWaterIntake] = useState(0);
-  const [waterIntakeValue, setWaterIntakeValue] = useState('');
+  // const error = useSelector(selectError);
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
+  const [userInfoUpdated, setUserInfoUpdated] = useState(false);
 
   const {
     register,
@@ -39,13 +54,26 @@ const UserSettingsForm = ({ closeModal }) => {
   });
 
   useEffect(() => {
-    if (userInfo && userInfo.email) {
+    if (userInfo && userInfo.email && !userInfoUpdated) {
       const email = userInfo.email;
-      const name = email.split('@')[0];
-      setValue('name', name);
+      const name = userInfo.name ? userInfo.name : email.split('@')[0];
+      const gender = userInfo.gender ? userInfo.gender : '';
+      const weight = userInfo.weight ? userInfo.weight : '';
+      const activeTime = userInfo.activeTime ? userInfo.activeTime : '';
+      const goal = userInfo.goal ? userInfo.goal : '';
       setValue('email', email);
+      setValue('name', name);
+      setValue('gender', gender);
+      setValue('weight', weight);
+      setValue('activeTime', activeTime);
+      setValue('goal', goal);
+      setUserInfoUpdated(true);
     }
-  }, [userInfo, setValue]);
+  }, [userInfo, setValue, userInfoUpdated]);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   const gender = watch('gender');
   const weight = watch('weight');
@@ -54,13 +82,13 @@ const UserSettingsForm = ({ closeModal }) => {
   useEffect(() => {
     if (gender && weight && activeTime) {
       const setDailyNorma =
-        gender === 'woman'
-          ? (weight * 0.03 + activeTime * 0.4) * 1000
-          : (weight * 0.04 + activeTime * 0.6) * 1000;
-      setCalculatedWaterIntake(setDailyNorma);
-      // setWaterIntakeValue(Number(calculatedWaterIntake.toFixed(1)));
+
+        gender === 'female'
+          ? weight * 0.03 + activeTime * 0.4
+          : weight * 0.04 + activeTime * 0.6;
+      setValue('goal', setDailyNorma.toFixed(1));
     }
-  }, [gender, weight, activeTime]);
+  }, [gender, weight, activeTime, setValue]);
 
   // const handleAvatarChange = (event) => {
   //   const file = event.target.files[0];
@@ -72,7 +100,6 @@ const UserSettingsForm = ({ closeModal }) => {
 
   const handleAvatarChange = event => {
     const file = event.target.files[0];
-    // console.log(file);
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -83,9 +110,13 @@ const UserSettingsForm = ({ closeModal }) => {
   };
 
   const onSubmit = data => {
-    // console.log(data);
+    if (avatarUrl !== userInfo.avatarUrl) {
     const formData = new FormData();
-    formData.append('avatar', data.avatarUrl || userInfo.avatarUrl);
+    const avatarFile = new File([avatarUrl], 'avatar.jpg', {
+      type: 'image/jpeg',
+    });
+
+    formData.append('avatar', avatarFile);
     formData.append('gender', data.gender);
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -93,27 +124,31 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('activeTime', data.activeTime);
     formData.append('goal', data.goal);
 
-    // console.log('FormData content:');
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
-    // // dispatch(updateUserInfo(data));
-    // closeModal();
-
-    fetch('/profile', {
-      method: 'PUT',
-      body: formData,
-    }).then(result => {
+    dispatch(updateUserSettings(formData)).then(() => {
       closeModal();
     });
-  };
+  } else {
+    const formData = {
+      gender: data.gender,
+      name: data.name,
+      email: data.email,
+      weight: data.weight,
+      activeTime: data.activeTime,
+      goal: data.goal,
+    };
+
+    dispatch(updateUserSettings(formData)).then(() => {
+      closeModal();
+    });
+  }
+};
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={css.form}
       action="/profile"
-      method="post"
+      method="put"
       encType="multipart/form-data"
     >
       <div className={`${css.formGroup} ${css.avatarContainer}`}>
@@ -145,20 +180,20 @@ const UserSettingsForm = ({ closeModal }) => {
             <div className={css.genderInput}>
               <input
                 type="radio"
-                id="woman"
-                value="woman"
+                id="female"
+                value="female"
                 {...register('gender')}
               />
-              <label htmlFor="woman" className={css.genderLabel}>
+              <label htmlFor="female" className={css.genderLabel}>
                 Woman
               </label>
               <input
                 type="radio"
-                id="man"
-                value="man"
+                id="male"
+                value="male"
                 {...register('gender')}
               />
-              <label htmlFor="man" className={css.genderLabel}>
+              <label htmlFor="male" className={css.genderLabel}>
                 Man
               </label>
             </div>
@@ -214,8 +249,11 @@ const UserSettingsForm = ({ closeModal }) => {
               {...register('weight')}
               className={css.input}
             />
-            {errors.weight && (
+            {/* {errors.weight && (
               <span className={css.error}>{errors.weight.message}</span>
+            )} */}
+            {errors.weight && errors.weight.type === 'typeError' && (
+              <span className={css.error}>Weight is required</span>
             )}
           </div>
           <div className={css.formGroup}>
@@ -227,14 +265,17 @@ const UserSettingsForm = ({ closeModal }) => {
               {...register('activeTime')}
               className={css.input}
             />
-            {errors.sportTime && (
-              <span className={css.error}>{errors.sportTime.message}</span>
+            {/* {errors.activeTime && (
+              <span className={css.error}>{errors.activeTime.message}</span>
+            )} */}
+            {errors.activeTime && errors.activeTime.type === 'typeError' && (
+              <span className={css.error}>ActiveTime is required</span>
             )}
           </div>
           <div className={css.formGroup}>
             <p className={css.info}>
               The required amount of water in liters per day:
-              {calculatedWaterIntake.toFixed(1)}ml
+              {watch('goal')}L
             </p>
           </div>
           <div className={css.formGroup}>
@@ -246,11 +287,15 @@ const UserSettingsForm = ({ closeModal }) => {
               {...register('goal')}
               className={css.input}
               // value={waterIntakeValue}
-              placeholder={calculatedWaterIntake.toFixed(1)}
-              onChange={e => setWaterIntakeValue(e.target.value)}
+              value={Math.round(parseFloat(watch('goal')))}
+              // placeholder={Math.round(parseFloat(watch('goal')))}
+
             />
-            {errors.goal && (
+            {/* {errors.goal && (
               <span className={css.error}>{errors.goal.message}</span>
+            )} */}
+            {errors.goal && errors.goal.type === 'typeError' && (
+              <span className={css.error}>Goal is required</span>
             )}
           </div>
         </div>
@@ -258,7 +303,6 @@ const UserSettingsForm = ({ closeModal }) => {
       <button type="submit" className={css.submitBtn} disabled={loading}>
         {loading ? 'Saving...' : 'Save'}
       </button>
-      {error && <span className={css.error}>{error}</span>}
     </form>
   );
 };

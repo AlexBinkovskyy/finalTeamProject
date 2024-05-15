@@ -233,7 +233,7 @@
     max-width: 568px;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1440px) {
   .calculation {
     max-width: 400px;
   }
@@ -335,4 +335,20 @@ input[type='radio']:checked + label:after {
   width: 141px;
   height: 56px;
   background-color: var(--accent-color);
+}
+
+.error{
+  color: red;
+  max-width: 303px;
+}
+
+@media only screen and (min-width: 768px) {
+  .error {
+    max-width: 568px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .error {
+    max-width: 400px;
+  }
 }

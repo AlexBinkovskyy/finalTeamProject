@@ -44,6 +44,7 @@
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--main-text-color);
+  position: relative;
 }
 
 .input::placeholder {
@@ -120,6 +121,10 @@
   color: rgba(50, 63, 71, 0.4);
 }
 
+.eyeBtn {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .title {
     font-size: 36px;
@@ -135,6 +140,7 @@
 
   .input {
     width: 436px;
+    padding: 16px 60px 16px 16px;
   }
 
   .input::placeholder {
@@ -159,5 +165,23 @@
 
   .divWrap {
     margin: 0 auto;
+  }
+
+  .eyeIcon {
+    stroke: var(--main-text-color);
+    stroke-width: 1.8px;
+    fill: transparent;
+  }
+
+  .eyeBtn {
+    display: block;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    height: 36px;
+    width: 50px;
+    position: absolute;
+    top: 12px;
+    left: 384px;
   }
 }

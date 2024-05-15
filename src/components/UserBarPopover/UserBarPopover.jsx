@@ -4,23 +4,23 @@ import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 
 export default function UserBarPopover() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [setIsOpen] = useState(false);
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
   const ref = useRef();
 
-  const handleClickOutside = event => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
+  
   useEffect(() => {
+    const handleClickOutside = event => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [setIsOpen]);
 
   const openSettingModal = () => {
     setSettingModalIsOpen(true);
@@ -58,7 +58,7 @@ export default function UserBarPopover() {
       )}
       {settingModalIsOpen && (
         <UserSettingsModal
-          isOpen={openSettingModal}
+          isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
         />
       )}

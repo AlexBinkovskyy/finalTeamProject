@@ -3,21 +3,46 @@
   margin-top: 18px;
   margin-bottom: 18px;
   font-family: 'Poppins-Bold';
-  max-width: 344px;
+  width: 344px;
+  height: 780px;
   background-color: var(--background-color);
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  gap: 174px;
+  gap: 126px;
   padding: 24px 16px 218px;
+}
+
+.advantage {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
   .div {
-    margin-top: 34px;
-    margin-bottom: 34px;
-    max-width: 704px;
-    padding: 34px 34px 284px;
-    gap: 226px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 704px;
+    height: 960px;
+    padding: 32px 32px 284px;
+    gap: 172px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .div {
+    margin: 32px;
+    width: 672px;
+    height: 736px;
+    gap: 74px;
+  }
+
+  .divMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .advantage {
+    display: block;
   }
 }
