@@ -1,5 +1,5 @@
 .sectionAdvantages {
-  padding: 0 16px 16px 16px;
+  padding: 16px;
 }
 .container {
   background-image: url(../../image/rectangle_mob@1x.jpg);
@@ -103,6 +103,7 @@
 @media only screen and (min-width: 768px) {
   .sectionAdvantages {
     max-width: 768px;
+    padding: 0 16px 16px 16px;
   }
 
   .container {
@@ -173,6 +174,7 @@
     padding-bottom: 62px;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 16px;
   }
   .staticElements {
     display: flex;
