@@ -11,7 +11,7 @@ export const modalWrapper = WrappedComponent => {
         bottom: 'auto',
         marginRight: '-50%',
         borderRadius: '15px',
-        padding: '40px 20px',
+        padding: '40px 40px',
         transform: 'translate(-50%, -50%)',
       },
     };

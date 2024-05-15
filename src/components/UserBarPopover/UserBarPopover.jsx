@@ -58,7 +58,7 @@ export default function UserBarPopover() {
       )}
       {settingModalIsOpen && (
         <UserSettingsModal
-          isOpen={openSettingModal}
+          isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
         />
       )}
