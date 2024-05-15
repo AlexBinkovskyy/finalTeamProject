@@ -19,7 +19,7 @@ const authSlice = createSlice({
   reducers: {
     verifyEmailSuccess: (state, action) => {
       state.isLoggedIn = true;
-      state.token = action.payload;
+      // state.token = action.payload;
     },
     tokenIsInvalid: state => {
       state.isLoggedIn = false;
