@@ -3,6 +3,11 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import css from './WaterForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
@@ -29,23 +34,25 @@ const WaterForm = () => {
   };
 
   const handleDecrement = () => {
-    if (waterAmount > 0) {
+    if (waterAmount >= 50) {
       setWaterAmount(prevAmount => prevAmount - 50);
+    } else {
+      setWaterAmount(0);
     }
   };
 
   const handleInputChange = event => {
     const { value } = event.target;
-    setWaterAmount(parseInt(value) || 0);
-    setValue('time', getCurrentTime());
+    if (parseInt(value) >= 0) {
+      setWaterAmount(parseInt(value));
+    }
   };
-  
-  const getCurrentTime = () => {
-    const now = new Date();
-    const hours = ('0' + now.getHours()).slice(-2);
-    const minutes = ('0' + now.getMinutes()).slice(-2);
-    return `${hours}:${minutes}`;
-  };
+  const [currentTime, setCurrentTime] = useState(dayjs()); 
+
+  const handleTimeChange = (newValue) => {
+    setCurrentTime(newValue); 
+    setValue('time', newValue); 
+  }
 
   const onSubmit = data => {
     console.log(data);
@@ -75,13 +82,28 @@ const WaterForm = () => {
         {errors && errors.waterAmount && <p>{errors.waterAmount.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label htmlFor="time">Recording time:</label>
-        <input type="text" name="time" defaultValue={getCurrentTime()} />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={['DesktopTimePicker']}>
+            <DemoItem label="Recording time:">
+            <DesktopTimePicker
+          
+            value={currentTime}
+            onChange={handleTimeChange}
+            renderInput={(params) => <input {...params} />}
+          />
+            </DemoItem>
+          </DemoContainer>
+        </LocalizationProvider>
       </div>
       {/* {errors && errors.time && <p>{errors.time.message}</p>} */}
       <div className={css.inputGroup}>
         <label htmlFor="water">Enter the value of water used:</label>
-        <input type="number" name="waterAmount" onChange={handleInputChange} />
+        <input
+          type="number"
+          name="waterAmount"
+          onChange={handleInputChange}
+          min="0"
+        />
       </div>
       <div>
         <button type="submit" className={css.saveBtn}>
