@@ -170,6 +170,10 @@
     }
   }
 
+  .sectionAdvantages {
+    padding: 0;
+  }
+
   .contentContainer {
     padding-bottom: 62px;
     display: flex;

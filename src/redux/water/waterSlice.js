@@ -32,6 +32,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
+        console.log(state.dayNotes);
       })
       .addCase(fetchDailyConsumption.rejected, handleRejected)
 

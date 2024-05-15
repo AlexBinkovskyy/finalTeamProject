@@ -1,5 +1,5 @@
-import WaterDetailedInfo from '../../components/WaterMainInfo/WaterMainInfo';
-import WaterMainInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
+import WaterDetailedInfo from 'components/WaterMainInfo/WaterMainInfo';
+import WaterMainInfo from 'components/WaterDetailedInfo/WaterDetailedInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectVerified } from '../../redux/auth/selectors';
 import { useEffect } from 'react';

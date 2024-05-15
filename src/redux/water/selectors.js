@@ -5,3 +5,5 @@ export const selectError = state => state.water.error;
 export const selectMonth = state => state.water.monthNotes;
 
 export const selectDay = state => state.water.dayNotes.amount;
+
+export const selectDayState = state => state.water.dayNotes;
