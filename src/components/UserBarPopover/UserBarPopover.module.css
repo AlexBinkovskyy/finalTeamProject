@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 157px;
+  height: 82px;
+  border-radius: 15px;
+  background-color: white;
+  padding: 16px 40px 16px 20px;
+  margin-top: 14px;
+  right: 10px;
+  box-shadow: 0px 4px 50px 0px #0000001a;
+  justify-content: space-between;
+  max-height: 82px;
+  opacity: 1;
+  /* visibility: visible; */
+  transition: max-height 0.5s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.wrapper.closed {
+  height: 50;
+  width: 10;
+  overflow: hidden;
+  opacity: 0;
+}
+.iconSettings {
+  fill: none;
+  stroke: var(--main-color);
+  width: 16px;
+  height: 16px;
+  margin-right: auto;
+}
+
+.iconLogout {
+  fill: none;
+  stroke: var(--main-color);
+  width: 16px;
+  height: 16px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.settingsItem {
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  color: var(--main-text-color);
+  transition: opacity 0.5s ease-out, box-shadow 0.5s ease-out;
+  opacity: 40%;
+}
+.settingsItem:hover,
+.settingsItem:focus {
+  color: var(--main-text-color);
+  opacity: 100%;
+  box-shadow: 0px 4px 50px 0px #0000001a;
+}

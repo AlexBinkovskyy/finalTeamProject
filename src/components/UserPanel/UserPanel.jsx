@@ -6,7 +6,7 @@ import css from './UserPanel.module.css';
 
 export default function UserPanel() {
   const userInfo = useSelector(selectUser);
-  const username = userInfo.email.split('@')[0];
+  const username = userInfo.name.split(' ')[0] || userInfo.email.split('@')[0];
 
   return (
     <>
