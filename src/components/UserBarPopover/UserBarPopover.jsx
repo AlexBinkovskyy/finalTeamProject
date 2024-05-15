@@ -49,13 +49,13 @@ export default function UserBarPopover({ isOpen }) {
       }
     >
       <div className={css.button} onClick={openSettingModal}>
-        <svg class={css.iconSettings}>
+        <svg className={css.iconSettings}>
           <use href={`${IconSprite}#IconSettings`}></use>
         </svg>
         <span className={css.settingsItem}>Settings</span>
       </div>
       <div className={css.button} onClick={openLogOutModal}>
-        <svg class={css.iconLogout}>
+        <svg className={css.iconLogout}>
           <use href={`${IconSprite}#IconLogOut`}></use>
         </svg>
         <span className={css.settingsItem}>Log out</span>
