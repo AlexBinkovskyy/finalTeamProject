@@ -61,8 +61,8 @@ const WaterForm = () => {
   return (
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
-        <label htmlFor="waterAmount">Amount of water:</label>
-        <div>
+        <label htmlFor="waterAmount" className={css.inputParagraph}>Amount of water:</label>
+        <div className={css.buttonsContainer}>
           <button
             type="button"
             onClick={handleDecrement}
@@ -84,10 +84,10 @@ const WaterForm = () => {
       <div className={css.inputGroup}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopTimePicker']}>
-            <DemoItem label="Recording time:">
+            <DemoItem label="" className={css.inputParagraph}>Recording time:
             <DesktopTimePicker
-          
             value={currentTime}
+            // className={css.inputTime}
             onChange={handleTimeChange}
             renderInput={(params) => <input {...params} />}
           />
@@ -96,11 +96,12 @@ const WaterForm = () => {
         </LocalizationProvider>
       </div>
       {/* {errors && errors.time && <p>{errors.time.message}</p>} */}
-      <div className={css.inputGroup}>
-        <label htmlFor="water">Enter the value of water used:</label>
+      <div className={css.inputGroupWater}>
+        <label htmlFor="water" className={css.labelWater}>Enter the value of water used:</label>
         <input
           type="number"
           name="waterAmount"
+          className={css.waterInput}
           onChange={handleInputChange}
           min="0"
         />
