@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
