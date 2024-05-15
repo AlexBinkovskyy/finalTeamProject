@@ -13,8 +13,8 @@
   justify-content: space-between;
   max-height: 82px;
   opacity: 1;
-  /* visibility: visible; */
   transition: max-height 0.5s ease-in-out, opacity 0.2s ease-in-out;
+  z-index: 10;
 }
 
 .wrapper.closed {
