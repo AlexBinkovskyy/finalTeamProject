@@ -2,18 +2,20 @@
 
 // import AddWaterBtn from 'components/AddWaterBtn/AddWaterBtn';
 
+import WaterList from 'components/WaterList/WaterList';
 import { format } from 'date-fns';
 
 export default function DailyInfo({ selectedDate }) {
   if (!selectedDate) {
     return null;
   }
-
-  const formattedDate = format(selectedDate, 'd MMMM');
+  const todayDate = format(new Date(), 'd MMMM');
+  const incommingDate = format(selectedDate, 'd MMMM');
 
   return (
     <>
-      <div>{formattedDate}</div>
+      {incommingDate === todayDate ? <h3>Today</h3> : <h3>{incommingDate}</h3>}
+      <WaterList selectedDate={selectedDate} />
     </>
   );
 }
