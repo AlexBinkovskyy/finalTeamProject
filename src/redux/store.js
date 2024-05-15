@@ -11,10 +11,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { authReducer } from './auth/slice';
-// import { authReducer, verifyEmailSuccess } from './auth/slice';
+import { authReducer, verifyEmailSuccess } from './auth/slice';
 import { waterReducer } from './water/waterSlice';
-// import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from 'history';
 
 const authPersistConfig = {
   key: 'auth',
@@ -22,7 +21,7 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-// const history = createBrowserHistory();
+const history = createBrowserHistory();
 
 export const store = configureStore({
   reducer: {
@@ -38,13 +37,15 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-// const persistor = persistStore(store, null, () => {
-//   const urlParams = window.location.search;
-//   const token = urlParams.substring(1);
-//   if (token) {
-//     store.dispatch(verifyEmailSuccess(token));
-//   }
-// });
-// export { persistor };
+const persistor = persistStore(store, null, () => {
+  const urlParams = window.location.search;
+  const token = urlParams.substring(1);
 
-export const persistor = persistStore(store);
+  if (token) {
+    store.dispatch(verifyEmailSuccess(token));
+    history.push('/finalTeamProject/tracker');
+  }
+});
+export { persistor };
+
+// export const persistor = persistStore(store);

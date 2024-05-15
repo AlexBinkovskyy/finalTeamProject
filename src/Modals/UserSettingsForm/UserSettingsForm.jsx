@@ -82,6 +82,7 @@ const UserSettingsForm = ({ closeModal }) => {
   useEffect(() => {
     if (gender && weight && activeTime) {
       const setDailyNorma =
+
         gender === 'female'
           ? weight * 0.03 + activeTime * 0.4
           : weight * 0.04 + activeTime * 0.6;
@@ -288,6 +289,7 @@ const UserSettingsForm = ({ closeModal }) => {
               // value={waterIntakeValue}
               value={Math.round(parseFloat(watch('goal')))}
               // placeholder={Math.round(parseFloat(watch('goal')))}
+
             />
             {/* {errors.goal && (
               <span className={css.error}>{errors.goal.message}</span>

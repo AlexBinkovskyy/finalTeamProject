@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signin } from '../../redux/auth/operations';
 import { Link } from 'react-router-dom';
+import Image from '../../image/sprite.svg';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -67,29 +68,29 @@ export default function SignInForm() {
             className={`${css.input} ${errors.password && css.errorInput}`}
             id={passwordFieldId}
             placeholder="Enter your password"
-            type="text"
+            type={showPassword ? 'text' : 'password'}
           />
           {errors.password && (
             <span className={css.error}>{errors.password.message}</span>
           )}
 
-          {/* {window.innerWidth > 768 && (
+          {window.innerWidth > 768 && (
             <button
               type="button"
               className={css.eyeBtn}
               onClick={togglePasswordVisibility}
             >
               {showPassword ? (
-                <svg className={`${css.eyeIcon}`} width="18" height="18">
-                  <use href="../../image/sprite.svg#IconEye" />
+                <svg className={css.eyeIcon} width="18" height="18">
+                  <use href={`${Image}#IconEye`} />
                 </svg>
               ) : (
-                <svg className={css.eyeIcon} width="18" height="18">
-                  <use href="../../image/sprite.svg#IconEye-off" />
+                <svg className={`${css.eyeIcon}`} width="18" height="18">
+                  <use href={`${Image}#IconEye-off`} />
                 </svg>
               )}
             </button>
-          )} */}
+          )}
         </div>
 
         <button type="submit" className={css.button}>

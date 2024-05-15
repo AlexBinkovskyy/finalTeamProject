@@ -1,0 +1,57 @@
+.modalOverlay {
+  background-color: var(--main-white);
+  max-width: 343px;
+}
+.title {
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  font-size: 20px;
+  letter-spacing: -1;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.paragraph {
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-align: left;
+  font-size: 16px;
+  letter-spacing: -1;
+  margin-bottom: 20px;
+}
+
+.iconClose {
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-color);
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .modalOverlay {
+    max-width: 518px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .paragraph {
+    font-size: 18px;
+  }
+
+  .iconClose {
+    width: 28px;
+    height: 28px;
+  }
+}
+

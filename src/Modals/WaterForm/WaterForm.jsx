@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
-// import { useForm } from 'react-hook-form';
-// import * as Yup from 'yup';
-import css from './WaterForm.module.css'; 
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import css from './WaterForm.module.css';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
-// const schema = Yup.object().shape({
-//   waterAmount: Yup.number()
-//     .required('Water amount is required')
-//     .positive('Water amount must be positive'),
-//   time: Yup.string() 
-//     .required('Time is required')
-//     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format'),
-// });
+const schema = Yup.object().shape({
+  waterAmount: Yup.number()
+    .required('Water amount is required')
+    .positive('Water amount must be positive'),
+  time: Yup.string()
+    .required('Time is required')
+    .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format'),
+});
 
 const WaterForm = () => {
+  const {
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const [waterAmount, setWaterAmount] = useState(50);
 
   const handleIncrement = () => {
@@ -20,36 +34,81 @@ const WaterForm = () => {
   };
 
   const handleDecrement = () => {
-    if (waterAmount > 0) {
+    if (waterAmount >= 50) {
       setWaterAmount(prevAmount => prevAmount - 50);
+    } else {
+      setWaterAmount(0);
     }
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const { value } = event.target;
-    setWaterAmount(parseInt(value) || 0);
+    if (parseInt(value) >= 0) {
+      setWaterAmount(parseInt(value));
+    }
+  };
+  const [currentTime, setCurrentTime] = useState(dayjs()); 
+
+  const handleTimeChange = (newValue) => {
+    setCurrentTime(newValue); 
+    setValue('time', newValue); 
+  }
+
+  const onSubmit = data => {
+    console.log(data);
   };
 
   return (
-    <form className={css.waterForm}> 
+    <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
         <label htmlFor="waterAmount">Amount of water:</label>
         <div>
-          <button type="button" onClick={handleDecrement}  className={css.buttonIncrement}>-</button>
-          <span  className={css.waterAmount}>{waterAmount} ml </span>
-          <button type="button" onClick={handleIncrement} className={css.buttonIncrement}>+</button>
+          <button
+            type="button"
+            onClick={handleDecrement}
+            className={css.buttonIncrement}
+          >
+            -
+          </button>
+          <span className={css.waterAmount}>{waterAmount} ml </span>
+          <button
+            type="button"
+            onClick={handleIncrement}
+            className={css.buttonIncrement}
+          >
+            +
+          </button>
         </div>
+        {errors && errors.waterAmount && <p>{errors.waterAmount.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label htmlFor="time">Recording time:</label>
-        <input type="text" name="time" />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={['DesktopTimePicker']}>
+            <DemoItem label="Recording time:">
+            <DesktopTimePicker
+          
+            value={currentTime}
+            onChange={handleTimeChange}
+            renderInput={(params) => <input {...params} />}
+          />
+            </DemoItem>
+          </DemoContainer>
+        </LocalizationProvider>
       </div>
+      {/* {errors && errors.time && <p>{errors.time.message}</p>} */}
       <div className={css.inputGroup}>
         <label htmlFor="water">Enter the value of water used:</label>
-        <input type="number" name="waterAmount" onChange={handleInputChange} />
+        <input
+          type="number"
+          name="waterAmount"
+          onChange={handleInputChange}
+          min="0"
+        />
       </div>
       <div>
-        <button type="submit" className={css.saveBtn}>Save</button>
+        <button type="submit" className={css.saveBtn}>
+          Save
+        </button>
       </div>
     </form>
   );

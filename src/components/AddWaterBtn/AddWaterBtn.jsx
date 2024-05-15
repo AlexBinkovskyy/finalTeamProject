@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { GoPlus } from 'react-icons/go';
 import { WaterModal } from '../../Modals/WaterModal/WaterModal';
 import css from './AddWaterBtn.module.css';
-import { add } from 'date-fns';
 
 export default function AddWaterBtn({ selectedDay = new Date() }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
@@ -35,7 +34,7 @@ export default function AddWaterBtn({ selectedDay = new Date() }) {
       {waterModalIsOpen && (
         <WaterModal
           onSubmit={onSubmit}
-          operationType={'add'}
+          operationType={operationType}
           isOpen={waterModalIsOpen}
           isClose={closeWaterModal}
         />

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/auth/operations';
 import { Link, useNavigate } from 'react-router-dom';
+import Image from '../../image/sprite.svg';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -25,10 +26,15 @@ export default function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
   const repeatPassword = useId();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
 
   const {
     register,
@@ -84,9 +90,28 @@ export default function SignUpForm() {
             className={`${css.input} ${errors.password && css.errorInput}`}
             id={passwordFieldId}
             placeholder="Enter your password"
+            type={showPassword ? 'text' : 'password'}
           />
           {errors.password && (
             <span className={css.error}>{errors.password.message}</span>
+          )}
+
+          {window.innerWidth > 768 && (
+            <button
+              type="button"
+              className={css.eyeBtn}
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <svg className={css.eyeIcon} width="18" height="18">
+                  <use href={`${Image}#IconEye`} />
+                </svg>
+              ) : (
+                <svg className={`${css.eyeIcon}`} width="18" height="18">
+                  <use href={`${Image}#IconEye-off`} />
+                </svg>
+              )}
+            </button>
           )}
         </div>
 
@@ -102,9 +127,28 @@ export default function SignUpForm() {
             }`}
             id={repeatPassword}
             placeholder="Repeat password"
+            type={showPassword ? 'text' : 'password'}
           />
           {errors.repeatPassword && (
             <span className={css.error}>{errors.repeatPassword.message}</span>
+          )}
+
+          {window.innerWidth > 768 && (
+            <button
+              type="button"
+              className={css.eyeBtn}
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <svg className={css.eyeIcon} width="18" height="18">
+                  <use href={`${Image}#IconEye`} />
+                </svg>
+              ) : (
+                <svg className={`${css.eyeIcon}`} width="18" height="18">
+                  <use href={`${Image}#IconEye-off`} />
+                </svg>
+              )}
+            </button>
           )}
         </div>
 
