@@ -8,6 +8,7 @@ import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import { addConsumption } from  '../../redux/water/operations.js';
 
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
@@ -23,6 +24,7 @@ const WaterForm = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    register,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -54,14 +56,22 @@ const WaterForm = () => {
     setValue('time', newValue); 
   }
 
-  const onSubmit = data => {
-    console.log(data);
+  // const onSubmit = data => {
+  //   console.log(data);
+  // };
+  const onSubmit = async (data) => {
+    try {
+      await addConsumption(data); 
+      console.log('Consumption added successfully');
+    } catch (error) {
+      console.error('Failed to add consumption:', error);
+    }
   };
 
   return (
-    <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
+    <form className={css.waterForm}  onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
-        <label htmlFor="waterAmount" className={css.inputParagraph}>Amount of water:</label>
+        <label htmlFor="waterAmount" className={css.inputParagraph} >Amount of water:</label>
         <div className={css.buttonsContainer}>
           <button
             type="button"
@@ -89,6 +99,7 @@ const WaterForm = () => {
             value={currentTime}
             // className={css.inputTime}
             onChange={handleTimeChange}
+            {...register("time")}
             renderInput={(params) => <input {...params} />}
           />
             </DemoItem>
@@ -102,8 +113,11 @@ const WaterForm = () => {
           type="number"
           name="waterAmount"
           className={css.waterInput}
+          // value={waterAmount} 
           onChange={handleInputChange}
+          {...register("water")}
           min="0"
+         
         />
       </div>
       <div>
