@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
 
-export default function UserBarPopover({ isOpen }) {
+export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   // const [setIsOpen] = useState(false);
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
@@ -13,16 +13,17 @@ export default function UserBarPopover({ isOpen }) {
   // useEffect(() => {
   //   const handleClickOutside = event => {
   //     if (ref.current && !ref.current.contains(event.target)) {
-  //       setIsOpen(false);
+  //       setIsOpenPop(false);
   //     }
   //   };
   //   document.addEventListener('click', handleClickOutside);
   //   return () => {
   //     document.removeEventListener('click', handleClickOutside);
   //   };
-  // }, [setIsOpen]);
+  // }, [setIsOpenPop]);
 
   const openSettingModal = () => {
+    setPopoverOpen(false);
     setSettingModalIsOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -38,6 +39,7 @@ export default function UserBarPopover({ isOpen }) {
   };
 
   const closeLogOutModal = () => {
+    setPopoverOpen(false);
     setlogOutModalIsOpen(false);
     document.body.style.overflow = '';
   };
@@ -45,7 +47,7 @@ export default function UserBarPopover({ isOpen }) {
   return (
     <div
       className={
-        isOpen ? `${css.wrapper} ${css.open}` : `${css.wrapper} ${css.closed}`
+        popoverOpen ? `${css.wrapper} ${css.open}` : `${css.wrapper} ${css.closed}`
       }
     >
       <div className={css.button} onClick={openSettingModal}>
@@ -53,12 +55,6 @@ export default function UserBarPopover({ isOpen }) {
           <use href={`${IconSprite}#IconSettings`}></use>
         </svg>
         <span className={css.settingsItem}>Settings</span>
-      </div>
-      <div className={css.button} onClick={openLogOutModal}>
-        <svg className={css.iconLogout}>
-          <use href={`${IconSprite}#IconLogOut`}></use>
-        </svg>
-        <span className={css.settingsItem}>Log out</span>
       </div>
       {logOutlIsOpen && (
         <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
@@ -69,6 +65,12 @@ export default function UserBarPopover({ isOpen }) {
           isClose={closeSettingModal}
         />
       )}
+      <div className={css.button} onClick={openLogOutModal}>
+        <svg className={css.iconLogout}>
+          <use href={`${IconSprite}#IconLogOut`}></use>
+        </svg>
+        <span className={css.settingsItem}>Log out</span>
+      </div>
     </div>
   );
 }

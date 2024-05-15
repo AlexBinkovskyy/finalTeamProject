@@ -25,9 +25,8 @@ export default function UserBar({ name, avatarUrl }) {
           <use href={`${IconSprite}#UserBarIcon`}></use>
         </svg>
       </button>
-
       <div className={css.menuWrapper}>
-        <UserBarPopover isOpen={popoverOpen} />
+        <UserBarPopover popoverOpen={popoverOpen} setPopoverOpen={setPopoverOpen}/>
       </div>
     </div>
   );
