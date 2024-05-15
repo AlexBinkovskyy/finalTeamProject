@@ -10,8 +10,10 @@ export default function AdvantagesSection() {
           <div className={css.customers}>
             <img className={css.img_group} src={`${group}`} alt="group"></img>
             <p className={css.elements}>
-              Our <span className={css.happy}>happy </span>
-              customers
+              <span className={css.line}>
+                Our <span className={css.happy}>happy</span>
+              </span>
+              <span className={css.line}>customers</span>
             </p>
           </div>
           <div className={css.staticElements}>
