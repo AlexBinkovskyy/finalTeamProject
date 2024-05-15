@@ -1,5 +1,7 @@
 @media only screen and (min-width: 1440px) {
   .sections_home {
     display: flex;
+    width: 1440px;
+    margin: 0 auto;
   }
 }
