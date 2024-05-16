@@ -1,6 +1,6 @@
 import css from './WaterItem.module.css';
 // import WaterModal from '../../Modals/WaterModal/WaterModal';
-// import DeleteWaterModal from '../../Modals/DeleteWaterModal/DeleteWaterModal';
+import {DeleteWaterModal} from '../../Modals/DeleteWaterModal/DeleteWaterModal';
 import icons from '../../image/sprite.svg';
 // import { LogOutModal } from 'Modals/LogOutModal/LogOutModal';
 import { useState } from 'react';
@@ -9,15 +9,27 @@ import WaterModal from 'Modals/WaterModal/WaterModal';
 export default function WaterItem({ water: { amount, time, _id } }) {
   // Modal logic
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
   const openLogOutModal = () => {
     setModalIsOpen(true);
     document.body.style.overflow = 'hidden';
   };
+
   const closeLogOutModal = () => {
     setModalIsOpen(false);
     document.body.style.overflow = '';
+  };  
+
+  const openDeleteModal = () => {
+    setDeleteModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
   };
-  //
+
+  const closeDeleteModal = () => {
+    setDeleteModalIsOpen(false);
+    document.body.style.overflow = '';
+  };
 
   return (
     <>
@@ -43,11 +55,17 @@ export default function WaterItem({ water: { amount, time, _id } }) {
             />
           )}
 
-          <svg className={css.icon}>
+          <svg className={css.icon} onClick={openDeleteModal}>
             <use href={`${icons}#IconTrash04`}></use>
           </svg>
           {/* <WaterModal /> */}
-          {/* <DeleteWaterModal /> */}
+           {deleteModalIsOpen && (
+        <DeleteWaterModal
+          isOpen={deleteModalIsOpen}
+          isClose={closeDeleteModal}
+          consumptionID={_id}
+        />
+      )}
         </div>
       </div>
     </>
