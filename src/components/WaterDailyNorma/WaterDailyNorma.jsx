@@ -3,7 +3,8 @@ import { selectGoal } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 
 export default function WaterDailyNorma() {
-  const dailyNorma = useSelector(selectGoal);
+  const goal = useSelector(selectGoal);
+  const dailyNorma = Math.round((goal / 1000) * 10) / 10;
 
   return (
     <>

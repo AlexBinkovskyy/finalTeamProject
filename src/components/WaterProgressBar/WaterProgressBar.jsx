@@ -1,7 +1,17 @@
 import css from './WaterProgressBar.module.css';
 import WaterProgressBarStyle from './WaterProgressBarStyle';
+import { selectChosenDate } from '../../redux/water/selectors';
+import { useSelector } from 'react-redux';
+import { format, parse } from 'date-fns';
 
 export default function WaterProgressBar() {
+  const chosenDateStr = useSelector(selectChosenDate);
+  if (!chosenDateStr) {
+    return null;
+  }
+  const chosenDate = parse(chosenDateStr, 'dd.MM.yyyy', new Date());
+  const today = format(new Date(), 'd MMMM');
+  const chosen = format(chosenDate, 'd MMMM');
   let progressBar = 8;
   let progress = Math.round(progressBar) / 10;
   progress = Math.min(progress, 1);
@@ -16,7 +26,11 @@ export default function WaterProgressBar() {
     <>
       <div className={css.WaterProgressBar}>
         <div className={css.ProgressBar}>
-          <p className={css.text}>Today</p>
+          {chosen === today ? (
+            <p className={css.text}>Today</p>
+          ) : (
+            <p className={css.text}>{chosen}</p>
+          )}
           <div className={css.Progress}>
             <div className={css.ProgressAll}>
               <div
