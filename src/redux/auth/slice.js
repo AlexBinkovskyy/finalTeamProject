@@ -14,7 +14,6 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    // isEmailVerified: false,
   },
   reducers: {
     verifyEmailSuccess: (state, action) => {
@@ -52,11 +51,6 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       });
-    // .addCase(verifyEmail.fulfilled, (state, action) => {
-    //   state.isEmailVerified = true;
-    //   state.isLoggedIn = state.isEmailVerified;
-    //   state.token = action.payload;
-    // })
   },
 });
 

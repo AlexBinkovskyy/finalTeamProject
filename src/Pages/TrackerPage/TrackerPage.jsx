@@ -12,14 +12,12 @@ export default function TrackerPage() {
   const checkVerify = useSelector(selectVerified);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('Tracker');
 
   useEffect(() => {
     if (!checkVerify) {
       dispatch(refreshUser()).then(response => {
         if (response.type === 'auth/refresh/rejected')
           dispatch(tokenIsInvalid());
-        console.log('Pff');
         navigate('/signin');
       });
     }

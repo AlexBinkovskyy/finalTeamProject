@@ -8,16 +8,12 @@ import { useEffect } from 'react';
 
 export default function HomePage() {
   const storedData = JSON.parse(localStorage.getItem('persist:auth'));
-  console.log(storedData);
-  // const token = storedData.token;
-  // console.log(token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (storedData && storedData.token !== 'null') {
       dispatch(verifyEmailSuccess());
-      console.log('Inside');
       navigate('/tracker');
     }
   }, [dispatch, navigate, storedData]);
