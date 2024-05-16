@@ -1,19 +1,16 @@
 .monthInfo {
   margin: 0 auto;
-  padding: 20px 20px;
-  width: 303px;
-  gap: 20px;
+
+  width: 100%;
 
   background-color: var(--background-color, #f0eff4);
 }
 @media only screen and (min-width: 768px) {
   .monthInfo {
-    width: 700px;
   }
 }
 @media (min-width: 1440px) {
   .monthInfo {
-    width: 608px;
   }
 }
 .monthInfo__wrapper {

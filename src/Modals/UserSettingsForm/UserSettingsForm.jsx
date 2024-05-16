@@ -5,7 +5,8 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
-import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import {updateUserSettings } from '../../redux/auth/operations';
+// import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -71,9 +72,9 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   }, [userInfo, setValue, userInfoUpdated]);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
   const gender = watch('gender');
   const weight = watch('weight');
@@ -287,7 +288,7 @@ const UserSettingsForm = ({ closeModal }) => {
               {...register('goal')}
               className={css.input}
               // value={waterIntakeValue}
-              value={Math.round(parseFloat(watch('goal')))}
+              value={(watch('goal'))}
               // placeholder={Math.round(parseFloat(watch('goal')))}
 
             />

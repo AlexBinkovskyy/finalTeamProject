@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  gap: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .card {
+    gap: 20px;
+  }
+}
+
+.waterIcon {
+  width: 38px;
+  height: 38px;
+  transition: transform 0.3s ease;
+}
+@media only screen and (min-width: 768px) {
+  .waterIcon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.amount {
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: normal;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.data :not(:last-of-type) {
+  margin-bottom: 6px;
+}
+@media only screen and (min-width: 768px) {
+  .data :not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+}
+
+.buttons {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media only screen and (min-width: 768px) {
+  .buttons {
+    gap: 14px;
+  }
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  stroke: #323f47;
+  transition: transform 0.3s ease;
+}
+@media only screen and (min-width: 768px) {
+  .icon {
+    width: 16x;
+    height: 16px;
+  }
+}
+
+.icon:hover {
+  stroke: var(--main-color, #323f47);
+  transform: scale(1.2);
+}
