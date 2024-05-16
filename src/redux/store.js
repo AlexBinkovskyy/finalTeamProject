@@ -42,7 +42,7 @@ const persistor = persistStore(store, null, () => {
   const token = urlParams.substring(1);
 
   if (token) {
-    store.dispatch(verifyEmailSuccess(token));
+    store.dispatch(verifyEmailSuccess());
     history.push('/finalTeamProject/tracker');
   }
 });
