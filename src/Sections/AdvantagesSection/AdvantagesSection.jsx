@@ -1,6 +1,5 @@
 import React from 'react';
 import css from './AdvantagesSection.module.css';
-import group from '../../image/group.jpg';
 import HappyCostumers from 'components/HappyCostumers/HappyCostumers';
 
 export default function AdvantagesSection() {
