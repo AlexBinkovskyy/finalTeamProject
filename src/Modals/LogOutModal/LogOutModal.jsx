@@ -9,7 +9,7 @@ export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
 
   const logOut = () => dispatch(signout());
-  ;
+  
 
   return (
     <>

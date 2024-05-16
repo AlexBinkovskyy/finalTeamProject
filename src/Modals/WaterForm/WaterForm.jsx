@@ -9,6 +9,7 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { addConsumption } from  '../../redux/water/operations.js';
+import { useDispatch } from 'react-redux';
 
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
@@ -47,6 +48,7 @@ const WaterForm = () => {
     const { value } = event.target;
     if (parseInt(value) >= 0) {
       setWaterAmount(parseInt(value));
+      setValue('waterAmount', parseInt(value));
     }
   };
   const [currentTime, setCurrentTime] = useState(dayjs()); 
@@ -56,16 +58,12 @@ const WaterForm = () => {
     setValue('time', newValue); 
   }
 
-  // const onSubmit = data => {
-  //   console.log(data);
-  // };
-  const onSubmit = async (data) => {
-    try {
-      await addConsumption(data); 
-      console.log('Consumption added successfully');
-    } catch (error) {
-      console.error('Failed to add consumption:', error);
-    }
+  
+  const dispatch = useDispatch();
+
+  // const onSubmit = () => dispatch(addConsumption(data));
+  const onSubmit = (formData) => {
+    dispatch(addConsumption(formData));
   };
 
   return (
