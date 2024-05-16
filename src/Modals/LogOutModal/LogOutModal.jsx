@@ -8,9 +8,8 @@ import { useDispatch } from 'react-redux';
 export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
 
-  const logOut = () => {
-    dispatch(signout());
-  };
+  const logOut = () => dispatch(signout());
+  ;
 
   return (
     <>
