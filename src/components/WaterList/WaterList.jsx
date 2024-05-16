@@ -9,14 +9,12 @@ import { fetchDailyConsumption } from '../../redux/water/operations';
 
 export default function WaterList({ selectedDate }) {
   const initialDay = format(selectedDate, 'dd.MM.yyyy');
+  const waterList = useSelector(selectDayState);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDailyConsumption(initialDay));
   }, [dispatch, initialDay]);
-
-  const waterList = useSelector(selectDayState);
-  console.log(waterList);
 
   return (
     <>
