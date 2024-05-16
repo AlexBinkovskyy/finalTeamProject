@@ -32,7 +32,8 @@ const schema = yup.object().shape({
   goal: yup
     .number()
     .required('Water intake is required')
-    .min(0, 'Water intake must be a positive number'),
+    .min(0, 'Water intake must be a positive number')
+    .positive('Water intake must be a positive number'),
 });
 
 const UserSettingsForm = ({ closeModal }) => {
@@ -259,6 +260,7 @@ const UserSettingsForm = ({ closeModal }) => {
             <label className={css.label}>Your weight in kilograms:</label>
             <input
               type="number"
+              min="0"
               {...register('weight')}
               className={css.input}
             />
@@ -275,6 +277,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </label>
             <input
               type="number"
+              min="0"
               {...register('activeTime')}
               className={css.input}
             />
@@ -299,6 +302,7 @@ const UserSettingsForm = ({ closeModal }) => {
               type="number"
               {...register('goal')}
               className={css.input}
+              min="0"
               // value={waterIntakeValue}
               step="0.1"
               value={(watch('goal'))}
