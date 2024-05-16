@@ -1,14 +1,14 @@
-import css from './ResendPage.module.css';
+import css from './RecoverPage.module.css';
 import Logo from 'components/Logo/Logo';
 import PutMailForm from 'components/PutMailForm/PutMailForm';
 import { useDispatch } from 'react-redux';
-import { resendMail } from '../../redux/auth/operations';
+import { recoverMail } from '../../redux/auth/operations';
 
-export default function ResendPage() {
+export default function RecoverPage() {
   const dispatch = useDispatch();
 
-  const resendMailFunction = data => {
-    return dispatch(resendMail(data));
+  const changePassMailFunction = data => {
+    return dispatch(recoverMail(data));
   };
 
   return (
@@ -16,9 +16,9 @@ export default function ResendPage() {
       <div className={css.div}>
         <Logo />
         <PutMailForm
-          onSubmit={resendMailFunction}
-          btnText="Resend"
-          operationType="resend"
+          onSubmit={changePassMailFunction}
+          btnText="Recover"
+          operationType="recover"
         />
       </div>
     </div>

@@ -117,7 +117,7 @@ export default function SignInForm() {
         <li>
           <p className={css.text}>
             Forgot password?{' '}
-            <Link to="" className={css.link}>
+            <Link to="/recover-page" className={css.link}>
               Recover
             </Link>
           </p>
