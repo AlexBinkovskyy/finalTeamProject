@@ -1,7 +1,9 @@
+.divMain {
+  padding: 16px;
+}
+
 .div {
   margin: 0 auto;
-  margin-top: 18px;
-  margin-bottom: 18px;
   font-family: 'Poppins-Bold';
   width: 344px;
   height: 780px;
@@ -18,9 +20,11 @@
 }
 
 @media screen and (min-width: 768px) {
+  .divMain {
+    padding: 32px;
+  }
+
   .div {
-    margin-top: 32px;
-    margin-bottom: 32px;
     width: 704px;
     height: 960px;
     padding: 32px 32px 284px;
@@ -30,7 +34,8 @@
 
 @media screen and (min-width: 1440px) {
   .div {
-    margin: 32px;
+    margin: 0;
+    margin-right: 32px;
     width: 672px;
     height: 736px;
     gap: 74px;
