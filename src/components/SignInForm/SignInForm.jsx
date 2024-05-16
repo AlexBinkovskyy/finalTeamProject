@@ -95,12 +95,34 @@ export default function SignInForm() {
           Sign In
         </button>
       </form>
-      <p className={css.text}>
-        Don't have any account?{' '}
-        <Link to="/signup" className={css.link}>
-          Sign Up
-        </Link>
-      </p>
+      <ul>
+        <li>
+          <p className={css.text}>
+            Don't have any account?{' '}
+            <Link to="/signup" className={css.link}>
+              Sign Up
+            </Link>
+          </p>
+        </li>
+
+        <li>
+          <p className={css.text}>
+            Resend verification mail?{' '}
+            <Link to="/resend-page" className={css.link}>
+              Resend
+            </Link>
+          </p>
+        </li>
+
+        <li>
+          <p className={css.text}>
+            Forgot password?{' '}
+            <Link to="" className={css.link}>
+              Recover
+            </Link>
+          </p>
+        </li>
+      </ul>
     </div>
   );
 }
