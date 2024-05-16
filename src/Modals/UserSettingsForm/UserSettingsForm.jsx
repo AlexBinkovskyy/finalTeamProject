@@ -43,7 +43,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const {
     register,
@@ -133,7 +133,7 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('email', data.email);
     formData.append('weight', data.weight);
     formData.append('activeTime', data.activeTime);
-    formData.append('goal', (data.goal*1000));
+    formData.append('goal', data.goal*1000);
 
     dispatch(updateUserSettings(formData)).then(() => {
       closeModal();
@@ -146,7 +146,7 @@ const UserSettingsForm = ({ closeModal }) => {
       email: data.email,
       weight: data.weight,
       activeTime: data.activeTime,
-      goal: data.goal,
+      goal: data.goal*1000,
     };
 
     dispatch(updateUserSettings(formData)).then(() => {
@@ -300,6 +300,7 @@ const UserSettingsForm = ({ closeModal }) => {
               {...register('goal')}
               className={css.input}
               // value={waterIntakeValue}
+              step="0.1"
               value={(watch('goal'))}
               // placeholder={Math.round(parseFloat(watch('goal')))}
 
