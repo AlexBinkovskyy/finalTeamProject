@@ -14,7 +14,9 @@
 @media only screen and (min-width: 1440px) {
   .sectionAdvantages {
     padding: 32px 32px 32px 0;
-    width: 1440px;
+    width: 704px;
+    margin-right: auto;
+    margin-left: 0;
   }
 }
 
@@ -41,7 +43,7 @@
   .container {
     background-image: url(../../image/rectangle_tab@1x.jpg);
     height: 446px;
-    padding: 282px 32px 32px;
+    padding: 32px;
   }
   @media only screen and (min-resolution: 192dpi),
     only screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -55,7 +57,7 @@
   .container {
     background-image: url(../../image/rectangle_desk@1x.jpg);
     height: 736px;
-    padding: 538px 32px 64px;
+    padding: 32px 32px 64px;
   }
   @media only screen and (min-resolution: 192dpi),
     only screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -70,6 +72,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    align-items: flex-end;
   }
 }
 
@@ -93,6 +96,12 @@
   }
 }
 
+@media only screen and (min-width: 1440px) {
+  .customers {
+    margin: 0 128px 68px 0;
+  }
+}
+
 .img_group {
   margin-right: 4px;
 }
@@ -107,7 +116,8 @@
 @media only screen and (min-width: 768px) {
   .elements {
     font-size: 15px;
-    line-height: 1.48;
+    line-height: 1.6;
+    width: 90px;
   }
 }
 
@@ -137,6 +147,12 @@
   .staticElements {
     width: 242px;
     font-size: 12px;
+    margin: 52px 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .staticElements {
     margin: 58px 0 0 0;
   }
 }
@@ -145,12 +161,10 @@
   margin-bottom: 4px;
   text-align: center;
   display: flex;
-  gap: 4px;
 }
 
 @media only screen and (min-width: 768px) {
   .list {
-    gap: 10px;
     margin-bottom: 10px;
   }
 }
@@ -162,42 +176,59 @@
   padding: 9px 12px;
   display: flex;
   border-radius: 30px;
-  gap: 4px;
 }
 
 @media only screen and (min-width: 768px) {
   .drive {
     padding: 11px 16px;
     width: 112px;
+    margin-right: 10px;
   }
 }
 .circle {
-  /* gap: 4px; */
+  margin-right: 4px;
 }
 .statistics {
   background-color: var(--accent-color);
   width: 82px;
   border-radius: 30px;
-  padding: 9px 12px;
 }
 
 @media only screen and (min-width: 768px) {
   .statistics {
     width: 120px;
+  }
+}
+
+.statisticsText {
+  padding: 9px 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .statisticsText {
     padding: 11px 16px;
   }
 }
+
 .setting {
   text-align: center;
   background-color: var(--main-white);
   border-radius: 30px;
   width: 108px;
-  padding: 9px 12px;
 }
 
 @media only screen and (min-width: 768px) {
   .setting {
     width: 158px;
-    /* padding: 11px 16px; */
+  }
+}
+
+.settingText {
+  padding: 9px 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .settingText {
+    padding: 11px 16px;
   }
 }
