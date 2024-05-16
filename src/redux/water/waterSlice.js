@@ -19,6 +19,7 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
+    chosenDate: null,
     dayNotes: [],
     monthNotes: [],
     loading: false,
@@ -32,7 +33,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
-        console.log(state.dayNotes);
+        state.chosenDate = action.payload.date;
       })
       .addCase(fetchDailyConsumption.rejected, handleRejected)
 
