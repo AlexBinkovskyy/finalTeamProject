@@ -6,7 +6,7 @@ import css from './UserSettingsModal.module.css';
 export default function UserSettingsModal({ isOpen, isClose }) {
   return (
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
-      <div>
+      <div className={css.settingModalWraper}>
         <button className={css.closeBtn} onClick={isClose}>
           <svg className={css.icon}>
             <use href={`${IconX}#IconX`}></use>
