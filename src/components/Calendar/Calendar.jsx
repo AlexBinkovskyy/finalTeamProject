@@ -15,7 +15,7 @@ export const Calendar = ({ selectedDate, setSelectedDate }) => {
 
   return (
     <div className={css.calendar}>
-      {getDaysInMonth().map((day, index) => (
+      {getDaysInMonth().map(day => (
         <CalendarItem
           key={day.toISOString()}
           day={day}

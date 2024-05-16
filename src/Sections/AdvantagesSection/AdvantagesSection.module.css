@@ -1,20 +1,79 @@
 .sectionAdvantages {
-  padding: 16px;
+  padding: 0 16px 16px;
+  width: 375px;
+  margin: 0 auto;
 }
+
+@media only screen and (min-width: 768px) {
+  .sectionAdvantages {
+    padding: 0 32px 32px;
+    width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .sectionAdvantages {
+    padding: 32px 32px 32px 0;
+    width: 704px;
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+
 .container {
   background-image: url(../../image/rectangle_mob@1x.jpg);
   height: 354px;
-  width: 344px;
   border-radius: 30px;
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: flex-end;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 208px 16px 32px;
 }
 
-.contentContainer {
-  padding-bottom: 32px;
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .container {
+    background-image: url(../../image//rectangle_mob@2x.jpg);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    background-image: url(../../image/rectangle_tab@1x.jpg);
+    height: 446px;
+    padding: 32px;
+  }
+  @media only screen and (min-resolution: 192dpi),
+    only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .container {
+      background-image: url(../../image/rectangle_tab@2x.jpg);
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    background-image: url(../../image/rectangle_desk@1x.jpg);
+    height: 736px;
+    padding: 32px 32px 64px;
+  }
+  @media only screen and (min-resolution: 192dpi),
+    only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .container {
+      background-image: url(../../image/rectangle_desk@2x.jpg);
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .contentContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+  }
 }
 
 .customers {
@@ -24,22 +83,50 @@
   height: 48px;
   border-radius: 30px;
   display: flex;
-  flex-wrap: wrap;
-  padding-left: 14px;
-  align-content: center;
+  padding: 10px 14px;
+  margin: 0 auto 8px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .customers {
+    width: 238px;
+    height: 68px;
+    padding: 10px 20px;
+    margin: 0 160px 64px 0;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .customers {
+    margin: 0 128px 68px 0;
+  }
 }
 
 .img_group {
   margin-right: 4px;
 }
+
 .elements {
-  font-family: 'Poppins-Regular';
+  font-family: 'Poppins-Bold';
   font-weight: 700;
   font-size: 12px;
+  line-height: 1.16;
 }
+
+@media only screen and (min-width: 768px) {
+  .elements {
+    font-size: 15px;
+    line-height: 1.6;
+    width: 90px;
+  }
+}
+
 .happy {
-  display: block;
   color: var(--accent-color);
+}
+
+.line {
+  display: block;
 }
 
 .staticElements {
@@ -47,18 +134,41 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   flex-direction: row-reverse;
-  padding-left: 152px;
-}
-.list {
+  width: 168px;
+  margin-left: 142px;
   font-family: 'Poppins-Regular';
   font-weight: 700;
   font-size: 8px;
   letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .staticElements {
+    width: 242px;
+    font-size: 12px;
+    margin: 52px 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .staticElements {
+    margin: 58px 0 0 0;
+  }
+}
+
+.list {
   margin-bottom: 4px;
   text-align: center;
   display: flex;
-  gap: 4px;
 }
+
+@media only screen and (min-width: 768px) {
+  .list {
+    margin-bottom: 10px;
+  }
+}
+
 .drive {
   background-color: var(--main-color);
   color: var(--main-white);
@@ -66,127 +176,59 @@
   padding: 9px 12px;
   display: flex;
   border-radius: 30px;
-  gap: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+  .drive {
+    padding: 11px 16px;
+    width: 112px;
+    margin-right: 10px;
+  }
 }
 .circle {
-  gap: 4px;
+  margin-right: 4px;
 }
 .statistics {
   background-color: var(--accent-color);
   width: 82px;
   border-radius: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .statistics {
+    width: 120px;
+  }
+}
+
+.statisticsText {
   padding: 9px 12px;
 }
+
+@media only screen and (min-width: 768px) {
+  .statisticsText {
+    padding: 11px 16px;
+  }
+}
+
 .setting {
-  font-weight: 700;
-  font-size: 8px;
-  letter-spacing: -0.01em;
   text-align: center;
   background-color: var(--main-white);
   border-radius: 30px;
   width: 108px;
-  padding: 10px 12px;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi) {
-  .container {
-    background-image: url(../../image//rectangle_mob@2x.jpg);
-  }
-}
-
-@media only screen and (max-width: 320px) {
-  .staticElements {
-    padding-left: 152px;
-  }
 }
 
 @media only screen and (min-width: 768px) {
-  .sectionAdvantages {
-    max-width: 768px;
-    padding: 0 16px 16px 16px;
-  }
-
-  .container {
-    width: 704px;
-    height: 446px;
-
-    background-image: url(../../image/rectangle_tab@1x.jpg);
-  }
-  @media only screen and (min-resolution: 192dpi),
-    only screen and (-webkit-min-device-pixel-ratio: 2) {
-    .container {
-      background-image: url(../../image/rectangle_tab@2x.jpg);
-    }
-  }
-
-  .customers {
-    width: 238px;
-    height: 67px;
-  }
-
-  .elements {
-    font-size: 16px;
-  }
-
-  .happy {
-    font-size: 16px;
-  }
-
-  .staticElements {
-    padding: 0;
-  }
-
-  .list {
-    font-size: 12px;
-    margin-left: 430px;
-  }
-
-  .drive {
-    padding: 12px 16px;
-    width: 112px;
-  }
-  .statistics {
-    padding: 12px 16px;
-    width: 122px;
-  }
   .setting {
-    font-size: 12px;
-    padding: 12px 16px;
     width: 158px;
-    margin-left: 430px;
   }
 }
 
-@media only screen and (min-width: 1440px) {
-  .container {
-    background-image: url(../../image/rectangle_desk@1x.jpg);
-    height: 736px;
-    padding: 0;
-  }
-  @media only screen and (min-resolution: 192dpi),
-    only screen and (-webkit-min-device-pixel-ratio: 2) {
-    .container {
-      background-image: url(../../image/rectangle_desk@2x.jpg);
-    }
-  }
+.settingText {
+  padding: 9px 12px;
+}
 
-  .sectionAdvantages {
-    padding: 0;
-  }
-
-  .contentContainer {
-    padding-bottom: 62px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 16px;
-  }
-  .staticElements {
-    display: flex;
-    align-items: baseline;
-  }
-
-  .list {
-    margin-left: 398px;
-    font-size: 12px;
+@media only screen and (min-width: 768px) {
+  .settingText {
+    padding: 11px 16px;
   }
 }
