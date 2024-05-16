@@ -24,8 +24,17 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
     console.log(data);
     onSubmit(data).then(response => {
       console.log(response);
-      if (response.type !== `auth/${operationType}/rejected`)
+      if (
+        operationType === 'resend' &&
+        response.type !== `auth/${operationType}/rejected`
+      ) {
         navigate('/signin');
+      } else if (
+        operationType === 'recover' &&
+        response.type !== `auth/${operationType}/rejected`
+      ) {
+        navigate('/change-pass-page');
+      }
     });
   };
 
