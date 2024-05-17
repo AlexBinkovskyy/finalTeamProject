@@ -74,35 +74,55 @@ export default function SignInForm() {
             <span className={css.error}>{errors.password.message}</span>
           )}
 
-          {window.innerWidth > 768 && (
-            <button
-              type="button"
-              className={css.eyeBtn}
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? (
-                <svg className={css.eyeIcon} width="18" height="18">
-                  <use href={`${Image}#IconEye`} />
-                </svg>
-              ) : (
-                <svg className={`${css.eyeIcon}`} width="18" height="18">
-                  <use href={`${Image}#IconEye-off`} />
-                </svg>
-              )}
-            </button>
-          )}
+          <button
+            type="button"
+            className={css.eyeBtn}
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <svg className={css.eyeIcon} width="18" height="18">
+                <use href={`${Image}#IconEye`} />
+              </svg>
+            ) : (
+              <svg className={`${css.eyeIcon}`} width="18" height="18">
+                <use href={`${Image}#IconEye-off`} />
+              </svg>
+            )}
+          </button>
         </div>
 
         <button type="submit" className={css.button}>
           Sign In
         </button>
       </form>
-      <p className={css.text}>
-        Don't have any account?{' '}
-        <Link to="/signup" className={css.link}>
-          Sign Up
-        </Link>
-      </p>
+      <ul>
+        <li>
+          <p className={css.text}>
+            Don't have any account?{' '}
+            <Link to="/signup" className={css.link}>
+              Sign Up
+            </Link>
+          </p>
+        </li>
+
+        <li>
+          <p className={css.text}>
+            Resend verification mail?{' '}
+            <Link to="/resend-page" className={css.link}>
+              Resend
+            </Link>
+          </p>
+        </li>
+
+        <li>
+          <p className={css.text}>
+            Forgot password?{' '}
+            <Link to="/recover-page" className={css.link}>
+              Recover
+            </Link>
+          </p>
+        </li>
+      </ul>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './AdvantagesSection.module.css';
-import group from '../../image/group.jpg';
+import HappyCostumers from 'components/HappyCostumers/HappyCostumers';
 
 export default function AdvantagesSection() {
   return (
@@ -8,7 +8,7 @@ export default function AdvantagesSection() {
       <div className={css.container}>
         <div className={css.contentContainer}>
           <div className={css.customers}>
-            <img className={css.img_group} src={`${group}`} alt="group"></img>
+            <HappyCostumers />
             <p className={css.elements}>
               <span className={css.line}>
                 Our <span className={css.happy}>happy</span>
