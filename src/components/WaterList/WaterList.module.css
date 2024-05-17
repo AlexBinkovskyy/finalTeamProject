@@ -1,9 +1,22 @@
 .waterList {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 8px;
+  overflow: scroll;
+  overflow-y: hidden;
 }
+
+.waterList::-webkit-scrollbar {
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #323f47;
+  border-radius: 9px;
+  max-width: 150px;
+}
+
 @media only screen and (min-width: 768px) {
   .waterList {
     gap: 32px;
@@ -20,6 +33,7 @@
   background-color: white;
   border: 1px solid white;
   border-radius: 15px;
+  margin-bottom: 24px;
 }
 @media only screen and (min-width: 768px) {
   .waterItem {

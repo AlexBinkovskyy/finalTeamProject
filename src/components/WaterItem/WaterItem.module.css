@@ -21,23 +21,18 @@
 }
 
 .amount {
-  font-size: smaller;
-  font-weight: bold;
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  width: 60px;
 }
 
 .time {
+  font-family: 'Poppins-Regular';
   font-size: 12px;
+  line-height: 1.5;
   font-weight: normal;
   color: rgba(47, 47, 47, 0.6);
-}
-
-.data :not(:last-of-type) {
-  margin-bottom: 6px;
-}
-@media only screen and (min-width: 768px) {
-  .data :not(:last-of-type) {
-    margin-bottom: 8px;
-  }
 }
 
 .buttons {
@@ -57,6 +52,7 @@
   height: 14px;
   stroke: #323f47;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 @media only screen and (min-width: 768px) {
   .icon {
