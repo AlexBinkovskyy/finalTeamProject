@@ -1,11 +1,7 @@
 .card {
   display: flex;
-  gap: 10px;
-}
-@media only screen and (min-width: 768px) {
-  .card {
-    gap: 20px;
-  }
+  justify-content: space-between;
+  width: 180px;
 }
 
 .waterIcon {
@@ -23,20 +19,19 @@
 .amount {
   font-family: Poppins-Bold;
   font-size: 15px;
-  line-height: 1.5;
-  width: 60px;
+  line-height: 1.6;
 }
 
 .time {
   font-family: 'Poppins-Regular';
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: normal;
-  color: rgba(47, 47, 47, 0.6);
+  color: var(--main-text-color);
 }
 
 .buttons {
-  background-color: white;
+  background-color: var(--main-white);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -50,7 +45,7 @@
 .icon {
   width: 14px;
   height: 14px;
-  stroke: #323f47;
+  stroke: var(--main-color);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -62,6 +57,6 @@
 }
 
 .icon:hover {
-  stroke: var(--main-color, #323f47);
+  stroke: var(--main-color);
   transform: scale(1.2);
 }
