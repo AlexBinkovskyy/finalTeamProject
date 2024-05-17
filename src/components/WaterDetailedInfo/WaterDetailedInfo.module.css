@@ -26,7 +26,6 @@
 @media only screen and (min-width: 1440px) {
   .WaterDetailedInfo {
     display: flex;
-    width: 736px;
     margin: 0;
   }
 }

@@ -1,6 +1,5 @@
 .waterList {
   display: flex;
-  flex-direction: row;
   gap: 8px;
   overflow: scroll;
   overflow-y: hidden;
@@ -8,11 +7,11 @@
 
 .waterList::-webkit-scrollbar {
   height: 8px;
-  background-color: #ffffff;
+  background-color: var(--main-white);
   border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #323f47;
+  background-color: var(--main-color);
   border-radius: 9px;
   max-width: 150px;
 }
@@ -30,8 +29,8 @@
 
 .waterItem {
   padding: 18px 14px;
-  background-color: white;
-  border: 1px solid white;
+  background-color: var(--main-white);
+  border: 1px solid var(--main-white);
   border-radius: 15px;
   margin-bottom: 24px;
 }
@@ -39,4 +38,10 @@
   .waterItem {
     padding: 20px;
   }
+}
+
+.placeholder {
+  width: 222px;
+  opacity: 0.4;
+  margin-bottom: 32px;
 }
