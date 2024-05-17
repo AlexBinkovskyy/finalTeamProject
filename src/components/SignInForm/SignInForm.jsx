@@ -95,7 +95,7 @@ export default function SignInForm() {
           Sign In
         </button>
       </form>
-      <ul>
+      <ul className={css.ul}>
         <li>
           <p className={css.text}>
             Don't have any account?{' '}
@@ -107,19 +107,19 @@ export default function SignInForm() {
 
         <li>
           <p className={css.text}>
-            Resend verification mail?{' '}
             <Link to="/resend-page" className={css.link}>
               Resend
-            </Link>
+            </Link>{' '}
+            verification mail
           </p>
         </li>
 
         <li>
           <p className={css.text}>
-            Forgot password?{' '}
             <Link to="/recover-page" className={css.link}>
-              Recover
-            </Link>
+              Forgot
+            </Link>{' '}
+            password
           </p>
         </li>
       </ul>

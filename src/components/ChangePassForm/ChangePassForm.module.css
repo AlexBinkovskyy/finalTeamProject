@@ -7,13 +7,8 @@
   margin-bottom: 32px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .button {
+  margin-top: 10px;
   border-radius: 30px;
   padding: 16px 50px;
   width: 100%;
@@ -39,6 +34,7 @@
   padding: 16px 40px 16px 16px;
   width: 100%;
   transition: all 250ms ease-in-out;
+  margin-bottom: 22px;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
@@ -52,6 +48,10 @@
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: rgba(47, 47, 47, 0.6);
+}
+
+.input:is(:hover, :focus) {
+  border: 1px solid rgba(47, 47, 47, 0.4);
 }
 
 .input:is(:hover, :focus) {
@@ -73,12 +73,12 @@
 
 .error {
   font-family: 'Poppins-Regular';
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--error-color);
   position: absolute;
-  top: 100%;
+  top: 75%;
   left: 0;
 }
 
@@ -86,10 +86,31 @@
   position: relative;
 }
 
-.ul {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.eyeIcon {
+  stroke: var(--main-text-color);
+  stroke-width: 1.8px;
+  fill: transparent;
+}
+
+.eyeBtn {
+  display: block;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  height: 36px;
+  width: 50px;
+  position: absolute;
+  top: 12px;
+  left: 85%;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
+  margin-bottom: 8px;
 }
 
 @media screen and (min-width: 768px) {
@@ -110,6 +131,11 @@
     line-height: 1.5;
   }
 
+  .label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
   .error {
     font-size: 16px;
     line-height: 1.5;
@@ -117,5 +143,17 @@
 
   .divWrap {
     margin: 0 auto;
+  }
+
+  .eyeBtn {
+    display: block;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    height: 36px;
+    width: 50px;
+    position: absolute;
+    top: 12px;
+    left: 384px;
   }
 }

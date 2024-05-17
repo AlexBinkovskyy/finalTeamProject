@@ -18,6 +18,7 @@ import TrackerPage from '../Pages/TrackerPage/TrackerPage';
 import ConfirmPage from 'Pages/ConfirmPage/ConfirmPage';
 import ResendPage from 'Pages/ResendPage/ResendPage';
 import RecoverPage from 'Pages/RecoverPage/RecoverPage';
+import ChangePassPage from 'Pages/ChangePassPage/ChangePassPage';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -75,6 +76,16 @@ export const App = () => {
             <RestrictedRoute
               redirectTo="/tracker"
               component={<RecoverPage />}
+            />
+          }
+        />
+
+        <Route
+          path="/change-pass-page"
+          element={
+            <RestrictedRoute
+              redirectTo="/tracker"
+              component={<ChangePassPage />}
             />
           }
         />

@@ -24,14 +24,27 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
     console.log(data);
     onSubmit(data).then(response => {
       console.log(response);
-      if (response.type !== `auth/${operationType}/rejected`)
+      if (
+        operationType === 'resend' &&
+        response.type !== `auth/${operationType}/rejected`
+      ) {
         navigate('/signin');
+      } else if (
+        operationType === 'recover' &&
+        response.type !== `auth/${operationType}/rejected`
+      ) {
+        navigate('/change-pass-page');
+      }
     });
+  };
+
+  const onClickHandler = () => {
+    navigate('/signin');
   };
 
   return (
     <div className={css.divWrap}>
-      <p className={css.text}>Please put your e-mail in the form </p>
+      <p className={css.text}>Provide your e-mail </p>
       <form onSubmit={handleSubmit(onSubmitHandler)} className={css.form}>
         <div className={css.errorContainer}>
           <input
@@ -44,9 +57,23 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
           )}
         </div>
 
-        <button type="submit" className={css.button}>
-          {btnText}
-        </button>
+        <ul className={css.ul}>
+          <li>
+            <button type="submit" className={css.button}>
+              {btnText}
+            </button>
+          </li>
+
+          <li>
+            <button
+              type="button"
+              className={css.button}
+              onClick={onClickHandler}
+            >
+              Back
+            </button>
+          </li>
+        </ul>
       </form>
     </div>
   );
