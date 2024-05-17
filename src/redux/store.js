@@ -39,6 +39,7 @@ export const store = configureStore({
 
 const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;
+  console.log(urlParams)
   const token = urlParams.substring(1);
 console.log(token)
   if (token) {
