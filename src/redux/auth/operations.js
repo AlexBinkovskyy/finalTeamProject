@@ -67,6 +67,20 @@ export const resendMail = createAsyncThunk(
   }
 );
 
+export const recoverMail = createAsyncThunk(
+  'auth/recover',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/users/passrecovery', credentials);
+      toast.success('Please check your mail');
+    } catch (error) {
+      toast.error('Wrong Mail');
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -108,3 +122,17 @@ export const refreshUser = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const updateUserSettings = createAsyncThunk(
+  'auth/updateSettings',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await axios.put('/users/update', formData);
+      toast.success('Settings updated successfully');
+      return res.data;
+    } catch (error) {
+      toast.error('Failed to update settings');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

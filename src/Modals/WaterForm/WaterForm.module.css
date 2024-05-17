@@ -1,22 +1,77 @@
-.buttonIncrement{
-height: 40px;
-width: 40px;
-border-radius: 30px;
-border-color:var(--main-color);
-align-items: center;
-text-align: centerl
+.inputParagraph {
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  /* font-size: 16px; */
+  font-size: 14px;
 }
-.saveBtn{
-    background-color:var(--accent-color);
-	width:116px;
-	height:46px;
-	border-radius:30px;
-	color:var(--main-color);
-	padding: 14px 40px;
-	text-align:center;
-	font-size:14px;
-    border:none;
-    font-weight: bold;
+.inputGroup {
+  /* padding-bottom: 16px; */
+  margin-bottom: 16px;
+}
+.inputTime {
+  margin-top: 8px;
+}
+.labelWater {
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  /* font-size: 18px; */
+  font-size: 16px; 
+  font-weight: bold;
+}
+.inputGroupWater {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.waterInput {
+  border-radius: 15px;
+  padding : 14px 16px; 
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  border: 1px solid rgba(46, 46, 46, 0.15);
+  text-align: left;
+  font-size: 16px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 8px;
+}
+.waterAmount {
+  text-align: center;
+  padding: 11px 20px;
+  background-color: var(--main-color);
+  border-radius: 30px;
+  color: var(--main-white);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.buttonIncrement {
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
+  border-color: var(--main-color);
+  align-items: center;
+  text-align: centerl;
+}
+.saveBtn {
+  background-color: var(--accent-color);
+  width: 116px;
+  height: 46px;
+  border-radius: 30px;
+  color: var(--main-color);
+  padding: 14px 40px;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  font-weight: bold;
+  margin-top: 24px;
 }
 .saveBtn:hover,
 .saveBtn:focus {

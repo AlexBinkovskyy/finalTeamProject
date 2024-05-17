@@ -1,11 +1,12 @@
-import WaterDetailedInfo from '../../components/WaterMainInfo/WaterMainInfo';
-import WaterMainInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
+import WaterDetailedInfo from 'components/WaterMainInfo/WaterMainInfo';
+import WaterMainInfo from 'components/WaterDetailedInfo/WaterDetailedInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectVerified } from '../../redux/auth/selectors';
 import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
 import { tokenIsInvalid } from '../../redux/auth/slice';
+import css from './TrackerPage.module.css';
 
 export default function TrackerPage() {
   const checkVerify = useSelector(selectVerified);
@@ -26,9 +27,9 @@ export default function TrackerPage() {
     <b>Refreshing user...</b>
   ) : (
     <>
-      <div style={{ display: 'flex' }}>
-        <WaterMainInfo />
+      <div className={css.TrackerPage}>
         <WaterDetailedInfo />
+        <WaterMainInfo />
       </div>
     </>
   );

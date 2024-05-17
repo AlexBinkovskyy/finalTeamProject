@@ -1,0 +1,62 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+}
+
+.waterIcon {
+  width: 38px;
+  height: 38px;
+  transition: transform 0.3s ease;
+}
+@media only screen and (min-width: 768px) {
+  .waterIcon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.amount {
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.time {
+  font-family: 'Poppins-Regular';
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: normal;
+  color: var(--main-text-color);
+}
+
+.buttons {
+  background-color: var(--main-white);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media only screen and (min-width: 768px) {
+  .buttons {
+    gap: 14px;
+  }
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  stroke: var(--main-color);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+@media only screen and (min-width: 768px) {
+  .icon {
+    width: 16x;
+    height: 16px;
+  }
+}
+
+.icon:hover {
+  stroke: var(--main-color);
+  transform: scale(1.2);
+}

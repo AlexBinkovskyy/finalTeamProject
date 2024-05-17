@@ -44,12 +44,11 @@
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--main-text-color);
-  /* position: relative; */
+  position: relative;
 }
 
 .input::placeholder {
   font-family: 'Poppins-Regular';
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
@@ -99,13 +98,19 @@
 
 .text {
   font-family: 'Poppins-Regular';
-  margin-top: 16px;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: rgba(47, 47, 47, 0.5);
   display: flex;
   justify-content: center;
+  gap: 4px;
+}
+
+.ul {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
 
@@ -121,21 +126,23 @@
   color: rgba(50, 63, 71, 0.4);
 }
 
-/* .eyeIcon {
+.eyeIcon {
   stroke: var(--main-text-color);
   stroke-width: 1.8px;
   fill: transparent;
 }
 
 .eyeBtn {
+  display: block;
+  outline: none;
   border: none;
   background-color: transparent;
   height: 36px;
   width: 50px;
   position: absolute;
   top: 12px;
-  left: 384px;
-} */
+  left: 85%;
+}
 
 @media screen and (min-width: 768px) {
   .title {
@@ -179,20 +186,7 @@
     margin: 0 auto;
   }
 
-  .eyeIcon {
-    stroke: var(--main-text-color);
-    stroke-width: 1.8px;
-    fill: transparent;
-  }
-
   .eyeBtn {
-    outline: none;
-    border: none;
-    background-color: transparent;
-    height: 36px;
-    width: 50px;
-    position: absolute;
-    top: 12px;
     left: 384px;
   }
 }

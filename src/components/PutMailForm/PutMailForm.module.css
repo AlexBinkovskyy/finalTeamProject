@@ -1,0 +1,121 @@
+.text {
+  font-family: 'Poppins-Regular';
+  font-size: 28px;
+  color: var(--main-color);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.button {
+  border-radius: 30px;
+  padding: 16px 50px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  border: none;
+  transition: all 250ms ease-in-out;
+  background: var(--accent-color);
+}
+
+.button:is(:hover, :focus) {
+  background-color: var(--hover-focus-color);
+}
+
+.input {
+  font-family: 'Poppins-Regular';
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  outline: none;
+  border-radius: 15px;
+  background-color: transparent;
+  padding: 16px 40px 16px 16px;
+  width: 100%;
+  transition: all 250ms ease-in-out;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
+  position: relative;
+}
+
+.input::placeholder {
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.input:is(:hover, :focus) {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+}
+
+.errorInput {
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+.errorInput::placeholder {
+  color: var(--error-color);
+}
+
+.errorInput:is(:hover, :focus) {
+  border-color: var(--error-color);
+}
+
+.error {
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--error-color);
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.errorContainer {
+  position: relative;
+}
+
+.ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+    width: 436px;
+  }
+
+  .input {
+    width: 436px;
+    padding: 16px 60px 16px 16px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .error {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .divWrap {
+    margin: 0 auto;
+  }
+}

@@ -7,7 +7,7 @@ export const WaterModal = ({ operationType, onSubmit, defaultValues, isOpen, isC
 
   return (
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
-      <div className={css.modal}>
+      <div className={css.modalOverlay}>
         <div className={css.modalContent}>
         <button className={css.closeButton} onClick={isClose}>
               <svg className={css.iconClose}>
@@ -16,13 +16,13 @@ export const WaterModal = ({ operationType, onSubmit, defaultValues, isOpen, isC
             </button>
           {operationType === 'add' ? (
           <div>
-            <h2>Add Water</h2>
-            <h3>Choose a value</h3>
+            <h2 className={css.title}>Add Water</h2>
+            <h3 className={css.paragraph}>Choose a value</h3>
           </div>
         ) : (
           <div>
-            <h2>Edit the entered amount of water</h2>
-            <h3>Correct entered data:</h3>
+            <h2 className={css.title}>Edit the entered amount of water</h2>
+            <h3 className={css.paragraph}>Correct entered data:</h3>
           </div>
         )}
           <WaterForm onSubmit={onSubmit} defaultValues={defaultValues} />

@@ -1,0 +1,47 @@
+.waterList {
+  display: flex;
+  gap: 8px;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+
+.waterList::-webkit-scrollbar {
+  height: 8px;
+  background-color: var(--main-white);
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 9px;
+  max-width: 150px;
+}
+
+@media only screen and (min-width: 768px) {
+  .waterList {
+    gap: 32px;
+  }
+}
+@media (min-width: 1440px) {
+  .waterList {
+    gap: 16px;
+  }
+}
+
+.waterItem {
+  padding: 18px 14px;
+  background-color: var(--main-white);
+  border: 1px solid var(--main-white);
+  border-radius: 15px;
+  margin-bottom: 24px;
+}
+@media only screen and (min-width: 768px) {
+  .waterItem {
+    padding: 20px;
+  }
+}
+
+.placeholder {
+  width: 222px;
+  opacity: 0.4;
+  margin-bottom: 32px;
+}
