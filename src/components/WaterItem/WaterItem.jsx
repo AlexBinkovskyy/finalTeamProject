@@ -1,17 +1,14 @@
 import css from './WaterItem.module.css';
-// import WaterModal from '../../Modals/WaterModal/WaterModal';
-import {DeleteWaterModal} from '../../Modals/DeleteWaterModal/DeleteWaterModal';
+import { DeleteWaterModal } from '../../Modals/DeleteWaterModal/DeleteWaterModal';
 import icons from '../../image/sprite.svg';
-// import { LogOutModal } from 'Modals/LogOutModal/LogOutModal';
 import { useState } from 'react';
 import WaterModal from 'Modals/WaterModal/WaterModal';
 
 export default function WaterItem({ water: { amount, time, _id } }) {
-  // Modal logic
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
-  const openLogOutModal = () => {
+  const openEditModal = () => {
     setModalIsOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -19,7 +16,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
   const closeLogOutModal = () => {
     setModalIsOpen(false);
     document.body.style.overflow = '';
-  };  
+  };
 
   const openDeleteModal = () => {
     setDeleteModalIsOpen(true);
@@ -39,11 +36,11 @@ export default function WaterItem({ water: { amount, time, _id } }) {
         </svg>
 
         <div className={css.data}>
-          <p className={css.amount}>{amount}</p>
+          <p className={css.amount}>{amount} ml</p>
           <p className={css.time}>{time}</p>
         </div>
         <div className={css.buttons}>
-          <svg className={css.icon} onClick={openLogOutModal}>
+          <svg className={css.icon} onClick={openEditModal}>
             <use href={`${icons}#IconEdit2`}></use>
           </svg>
           {modalIsOpen && (
@@ -58,14 +55,13 @@ export default function WaterItem({ water: { amount, time, _id } }) {
           <svg className={css.icon} onClick={openDeleteModal}>
             <use href={`${icons}#IconTrash04`}></use>
           </svg>
-          {/* <WaterModal /> */}
-           {deleteModalIsOpen && (
-        <DeleteWaterModal
-          isOpen={deleteModalIsOpen}
-          isClose={closeDeleteModal}
-          consumptionID={_id}
-        />
-      )}
+          {deleteModalIsOpen && (
+            <DeleteWaterModal
+              isOpen={deleteModalIsOpen}
+              isClose={closeDeleteModal}
+              consumptionID={_id}
+            />
+          )}
         </div>
       </div>
     </>
