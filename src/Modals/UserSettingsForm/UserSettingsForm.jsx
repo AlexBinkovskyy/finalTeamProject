@@ -5,8 +5,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
-import {updateUserSettings } from '../../redux/auth/operations';
-// import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -44,6 +43,8 @@ const UserSettingsForm = ({ closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
 
+  console.log(userInfo);
+
   const {
     register,
     handleSubmit,
@@ -52,6 +53,15 @@ const UserSettingsForm = ({ closeModal }) => {
     watch,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      avatar: '',
+      gender: '',
+      name: '',
+      email: '',
+      weight: 0,
+      activeTime: 0,
+      goal: 0,
+    },
   });
 
   useEffect(() => {
@@ -123,10 +133,11 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('email', data.email);
     formData.append('weight', data.weight);
     formData.append('activeTime', data.activeTime);
-    formData.append('goal', data.goal);
+    formData.append('goal', (data.goal*1000));
 
     dispatch(updateUserSettings(formData)).then(() => {
       closeModal();
+      dispatch(refreshUser());
     });
   } else {
     const formData = {
@@ -140,6 +151,7 @@ const UserSettingsForm = ({ closeModal }) => {
 
     dispatch(updateUserSettings(formData)).then(() => {
       closeModal();
+      dispatch(refreshUser());
     });
   }
 };
@@ -276,7 +288,7 @@ const UserSettingsForm = ({ closeModal }) => {
           <div className={css.formGroup}>
             <p className={css.info}>
               The required amount of water in liters per day:
-              {watch('goal')}L
+              {watch('goal') ? `${watch('goal')}L` : ''}
             </p>
           </div>
           <div className={css.formGroup}>

@@ -1,5 +1,6 @@
 .div {
   margin: 0 auto;
+  margin-bottom: 36px;
   max-width: 600px;
   font-weight: 400;
   font-size: 18px;
@@ -8,7 +9,7 @@
   color: var(--main-color);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -18,7 +19,8 @@
 }
 
 .link {
-  margin-top: 16px;
+  display: block;
+  margin: 0 auto;
   border-radius: 30px;
   padding: 16px 129px;
   width: 311px;

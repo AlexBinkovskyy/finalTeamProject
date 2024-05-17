@@ -92,7 +92,6 @@
   border-radius: 15px;
   padding: 14px 16px 14px 16px;
   width: 303px;
-  height: 46px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -189,11 +188,21 @@
 }
 
 .list {
-  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
 }
 
-.listItem:not(:last-child) {
-  margin-bottom: 12px;
+@media only screen and (min-width: 768px) {
+  .list {
+    flex-direction: row;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .listItem:not(:last-child) {
+    margin-right: 28px;
+    margin-bottom: 0px;
+  }
 }
 
 .listItemText {
