@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { ThreeDots } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 // import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
 import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -321,17 +321,7 @@ const UserSettingsForm = ({ closeModal }) => {
       <button type="submit" className={css.submitBtn} disabled={loading}>
         {loading ? 'Saving...' : 'Save'}
       </button>
-      {loading && (
-        <div className={css.loader}>
-          <ThreeDots
-            height={80}
-            width={80}
-            radius={9}
-            color="green"
-            ariaLabel="three-dots-loading"
-          />
-        </div>
-      )}
+      {loading && <Loader />}
     </form>
   );
 };
