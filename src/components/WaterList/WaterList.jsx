@@ -16,7 +16,7 @@ export default function WaterList({ selectedDate }) {
   }, [dispatch, initialDay]);
 
   const waterList = useSelector(selectDayState);
-  console.log(waterList);
+  // console.log(waterList);
 
   return (
     <>
