@@ -1,12 +1,12 @@
-.settingModalWraper{
+/* .settingModalWraper{
   max-height: 1300px;
-}
+} */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .settingModalWraper {
     max-height: 850px;
   }
-}
+} */
 
 .title {
     font-family: "Poppins", sans-serif;
