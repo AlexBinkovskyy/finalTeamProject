@@ -97,11 +97,11 @@ const WaterForm = () => {
         {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label htmlFor="time" className={css.inputParagraph}>Recording time:</label>
+        <label htmlFor="time" className={css.labelWater}>Recording time:</label>
         <input
           type="text"
           name="time"
-          className={css.timeInput}
+          className={css.waterInput}
           onChange={handleTimeChange}
           {...register('time')}
         />  
