@@ -47,7 +47,7 @@ export default function ChangePassForm() {
   });
 
   const onSubmit = ({ resetToken, password }) => {
-    console.log({ resetToken, password });
+    resetToken = resetToken.split(' ').join('').trim();
     dispatch(recoverPass({ resetToken, password }))
       .unwrap()
       .then(() => {
@@ -157,7 +157,7 @@ export default function ChangePassForm() {
         <ul className={css.ul}>
           <li>
             <button type="submit" className={css.button}>
-              Reset
+              Send
             </button>
           </li>
 

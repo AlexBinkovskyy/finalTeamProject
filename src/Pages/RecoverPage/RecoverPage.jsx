@@ -18,7 +18,7 @@ export default function RecoverPage() {
         <Logo />
         <PutMailForm
           onSubmit={changePassMailFunction}
-          btnText="Reset"
+          btnText="Send"
           operationType="recoverMail"
         />
       </div>
