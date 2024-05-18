@@ -1,11 +1,12 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import css from './ChangePassForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import Image from '../../image/sprite.svg';
+import { recoverPass } from '../../redux/auth/operations';
 
 const validationSchema = Yup.object().shape({
   resetToken: Yup.string().required('Required'),
@@ -22,9 +23,9 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function ChangePassForm() {
-  //   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
-  //   const [submitted, setSubmitted] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const codeFieldId = useId();
@@ -38,6 +39,7 @@ export default function ChangePassForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -46,13 +48,23 @@ export default function ChangePassForm() {
 
   const onSubmit = ({ resetToken, password }) => {
     console.log({ resetToken, password });
+    dispatch(recoverPass({ resetToken, password }))
+      .unwrap()
+      .then(() => {
+        reset();
+        setSubmitted(true);
+      });
   };
 
-  //   useEffect(() => {
-  //     if (submitted) {
-  //       navigate('/signin');
-  //     }
-  //   }, [submitted, navigate]);
+  useEffect(() => {
+    if (submitted) {
+      navigate('/signin');
+    }
+  }, [submitted, navigate]);
+
+  const onClickHandler = () => {
+    navigate('/recover-page');
+  };
 
   return (
     <div className={css.divWrap}>
@@ -142,9 +154,23 @@ export default function ChangePassForm() {
           </button>
         </div>
 
-        <button type="submit" className={css.button}>
-          Reset
-        </button>
+        <ul className={css.ul}>
+          <li>
+            <button type="submit" className={css.button}>
+              Reset
+            </button>
+          </li>
+
+          <li>
+            <button
+              type="button"
+              className={css.button}
+              onClick={onClickHandler}
+            >
+              Back
+            </button>
+          </li>
+        </ul>
       </form>
     </div>
   );

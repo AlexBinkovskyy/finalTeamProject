@@ -19,7 +19,7 @@ export default function RecoverPage() {
         <PutMailForm
           onSubmit={changePassMailFunction}
           btnText="Reset"
-          operationType="recover"
+          operationType="recoverMail"
         />
       </div>
       <div className={css.advantage}>

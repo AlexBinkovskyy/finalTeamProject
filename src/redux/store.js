@@ -41,7 +41,7 @@ const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;
   const token = urlParams.substring(1);
   if (token) {
-    store.dispatch(verifyEmailSuccess());
+    store.dispatch(verifyEmailSuccess(token));
     history.push('/finalTeamProject/tracker');
   }
 });

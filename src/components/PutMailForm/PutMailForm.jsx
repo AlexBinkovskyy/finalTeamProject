@@ -30,7 +30,7 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
       ) {
         navigate('/signin');
       } else if (
-        operationType === 'recover' &&
+        operationType === 'recoverMail' &&
         response.type !== `auth/${operationType}/rejected`
       ) {
         navigate('/change-pass-page');
