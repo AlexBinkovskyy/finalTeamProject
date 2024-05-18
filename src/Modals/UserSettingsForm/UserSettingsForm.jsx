@@ -2,11 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { ThreeDots } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
 import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -41,8 +40,6 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  // const loading = useSelector(selectLoadingStatus);
-  // const error = useSelector(selectError);
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -85,10 +82,6 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   }, [userInfo, setValue, userInfoUpdated]);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-
   const gender = watch('gender');
   const weight = watch('weight');
   const activeTime = watch('activeTime');
@@ -102,14 +95,6 @@ const UserSettingsForm = ({ closeModal }) => {
       setValue('goal', setDailyNorma.toFixed(1));
     }
   }, [gender, weight, activeTime, setValue]);
-
-  // const handleAvatarChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const imageUrl = URL.createObjectURL(file);
-  //     setAvatarUrl(imageUrl);
-  //   }
-  // };
 
   const handleAvatarChange = event => {
     const file = event.target.files[0];
@@ -194,19 +179,23 @@ const UserSettingsForm = ({ closeModal }) => {
             accept="image/*, .png, .jpg, .jpeg"
             onChange={handleAvatarChange}
             ref={avatarInputRef}
+            autoComplete="photo"
           />
         </label>
       </div>
       <div className={css.formWraper}>
         <div className={css.formWrap_1}>
           <div className={css.formGroup}>
-            <label className={css.accentLabel}>Your gender identity</label>
+            <label htmlFor="female" className={css.accentLabel}>
+              Your gender identity
+            </label>
             <div className={css.genderInput}>
               <input
                 type="radio"
                 id="female"
                 value="female"
                 {...register('gender')}
+                autoComplete="gender"
               />
               <label htmlFor="female" className={css.genderLabel}>
                 Woman
@@ -216,6 +205,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 id="male"
                 value="male"
                 {...register('gender')}
+                autoComplete="gender"
               />
               <label htmlFor="male" className={css.genderLabel}>
                 Man
@@ -226,15 +216,31 @@ const UserSettingsForm = ({ closeModal }) => {
             )}
           </div>
           <div className={css.formGroup}>
-            <label className={css.accentLabel}>Your name</label>
-            <input type="text" {...register('name')} className={css.input} />
+            <label htmlFor="name" className={css.accentLabel}>
+              Your name
+            </label>
+            <input
+              type="text"
+              {...register('name')}
+              className={css.input}
+              id="name"
+              autoComplete="name"
+            />
             {errors.name && (
               <span className={css.error}>{errors.name.message}</span>
             )}
           </div>
           <div className={css.formGroup}>
-            <label className={css.accentLabel}>Email</label>
-            <input type="text" {...register('email')} className={css.input} />
+            <label htmlFor="email" className={css.accentLabel}>
+              Email
+            </label>
+            <input
+              type="text"
+              {...register('email')}
+              className={css.input}
+              id="email"
+              autoComplete="email"
+            />
             {errors.email && (
               <span className={css.error}>{errors.email.message}</span>
             )}
@@ -267,26 +273,32 @@ const UserSettingsForm = ({ closeModal }) => {
         </div>
         <div className={css.formWrap_2}>
           <div className={css.formGroup}>
-            <label className={css.label}>Your weight in kilograms:</label>
+            <label htmlFor="weight" className={css.label}>
+              Your weight in kilograms:
+            </label>
             <input
               type="number"
               min="0"
+              id="weight"
               {...register('weight')}
               className={css.input}
+              autoComplete="weight"
             />
             {errors.weight && errors.weight.type === 'typeError' && (
               <span className={css.error}>Weight is required</span>
             )}
           </div>
           <div className={css.formGroup}>
-            <label className={css.label}>
+            <label htmlFor="activeTime" className={css.label}>
               The time of active participation in sports:
             </label>
             <input
               type="number"
               min="0"
+              id="activeTime"
               {...register('activeTime')}
               className={css.input}
+              autoComplete="active-time"
             />
             {errors.activeTime && errors.activeTime.type === 'typeError' && (
               <span className={css.error}>ActiveTime is required</span>
@@ -301,16 +313,18 @@ const UserSettingsForm = ({ closeModal }) => {
             </p>
           </div>
           <div className={css.formGroup}>
-            <label className={css.accentLabel}>
+            <label htmlFor="goal" className={css.accentLabel}>
               Write down how much water you will drink:
             </label>
             <input
               type="number"
+              id="goal"
               {...register('goal')}
               className={css.input}
               min="0"
               step="0.1"
               value={watch('goal')}
+              autoComplete="goal"
             />
             {errors.goal && errors.goal.type === 'typeError' && (
               <span className={css.error}>Goal is required</span>
@@ -321,17 +335,7 @@ const UserSettingsForm = ({ closeModal }) => {
       <button type="submit" className={css.submitBtn} disabled={loading}>
         {loading ? 'Saving...' : 'Save'}
       </button>
-      {loading && (
-        <div className={css.loader}>
-          <ThreeDots
-            height={80}
-            width={80}
-            radius={9}
-            color="green"
-            ariaLabel="three-dots-loading"
-          />
-        </div>
-      )}
+      {loading && <Loader />}
     </form>
   );
 };
