@@ -110,17 +110,7 @@ const Statistics = () => {
           <option value="30">30 days</option>
         </select>
       </div>
-      <AreaChart
-        width={730}
-        height={350}
-        data={formattedChartData}
-        margin={{
-          top: 10,
-          right: 10,
-          bottom: 10,
-          left: 10,
-        }}
-      >
+      <AreaChart width={700} height={250} data={formattedChartData}>
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#9BE1A0" stopOpacity={1} />
