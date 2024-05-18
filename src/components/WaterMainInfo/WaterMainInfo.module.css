@@ -1,67 +1,55 @@
-@media screen and (max-width: 767.9px) and (min-width: 320px) {
-  .MainInfo {
-    min-width: 320px;
-    max-width: 374px;
-    width: 100%;
-    margin: 0 auto;
-  }
-}
+.MainInfo {
+  height: 414px;
+  max-width: 344px;
+  margin: 0 auto 16px;
+  padding: 24px 16px 32px;
 
-@media only screen and (min-width: 768px) {
-  .MainInfo {
-    width: 768px;
-  }
-}
+  border-radius: 30px;
 
-@media only screen and (min-width: 1440px) {
-  .MainInfo {
-    width: 736px;
-    margin: 0;
-  }
-}
-
-.WaterMainInfo {
   background-image: url(../../image/transparent_bottle_for_water_mob@1x.png);
   background-color: var(--accent-color);
-  height: 414px;
-  border-radius: 30px;
   background-size: 262px 336px;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 24px 16px 32px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
-  .WaterMainInfo {
+  .MainInfo {
     background-image: url(../../image/transparent_bottle_for_water_mob@2x.png);
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .WaterMainInfo {
+  .MainInfo {
     height: 578px;
-    background-size: 374px 477px;
+    max-width: 768px;
+    margin-bottom: 32px;
+    padding: 32px 32px 64px 32px;
+
+    background-size: 374px 478px;
     background-image: url(../../image/transparent_bottle_for_water_tab@1x.png);
-    padding: 32px;
   }
   @media only screen and (min-resolution: 192dpi),
     only screen and (-webkit-min-device-pixel-ratio: 2) {
-    .WaterMainInfo {
+    .MainInfo {
       background-image: url(../../image/transparent_bottle_for_water_tab@2x.png);
     }
   }
 }
 
 @media only screen and (min-width: 1440px) {
-  .WaterMainInfo {
-    background-image: url(../../image/transparent_bottle_for_water_desk@1x.png);
+  .MainInfo {
     height: 736px;
+    flex-basis: calc((100% - 32px) / 2);
+    margin: 0;
+
+    background-image: url(../../image/transparent_bottle_for_water_desk@1x.png);
     background-size: 472px 604px;
   }
   @media only screen and (min-resolution: 192dpi),
     only screen and (-webkit-min-device-pixel-ratio: 2) {
-    .WaterMainInfo {
+    .MainInfo {
       background-image: url(../../image/transparent_bottle_for_water_desk@2x.png);
     }
   }
