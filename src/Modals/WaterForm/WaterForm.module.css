@@ -30,6 +30,7 @@
   margin-top: 16px;
 }
 .waterInput {
+  width: 303px;
   border-radius: 15px;
   padding : 14px 16px; 
   color: var(--main-color);
@@ -93,6 +94,9 @@
  
     font-size: 18px;
     
+  }
+  .waterInput {
+    width: 438px;
   }
   
 }
