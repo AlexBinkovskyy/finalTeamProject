@@ -20,6 +20,7 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: {
     chosenDate: null,
+    todayTotal: null,
     dayNotes: [],
     monthNotes: [],
     loading: false,
@@ -34,12 +35,14 @@ const waterSlice = createSlice({
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
         state.chosenDate = action.payload.date;
+        state.todayTotal = action.payload.totalWater;
       })
       .addCase(fetchDailyConsumption.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         state.dayNotes = [];
         state.chosenDate = action.meta.arg;
+        state.todayTotal = null;
       })
 
       .addCase(fetchMonthlyConsumption.pending, handlePending)
