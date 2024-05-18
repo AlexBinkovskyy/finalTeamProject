@@ -1,6 +1,7 @@
 .statistics {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 .customTooltip {
   background-color: white;

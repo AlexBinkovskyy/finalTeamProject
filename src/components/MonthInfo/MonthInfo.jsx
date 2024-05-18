@@ -43,6 +43,7 @@ export default function MonthInfo() {
           <CalendarPagination
             currentDate={selectedDate}
             setCurrentDate={setSelectedDate}
+            isStatisticsOpen={!showCalendar}
           />
           <button className={css.buttonIcon} onClick={handleButtonClick}>
             <svg className={css.icon}>

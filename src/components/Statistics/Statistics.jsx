@@ -1,5 +1,4 @@
-// Statistics.js
-import React from 'react';
+import React, { useState } from 'react';
 import {
   XAxis,
   YAxis,
@@ -11,21 +10,58 @@ import {
 import css from './Statistics.module.css';
 import { useSelector } from 'react-redux';
 import { selectMonth } from '../../redux/water/selectors';
+import { format, subDays, isAfter } from 'date-fns';
 
 const Statistics = () => {
   const data = useSelector(selectMonth);
+  const [daysRange, setDaysRange] = useState(7);
+  const today = new Date();
 
-  const dataCurrent = data.map(el => {
+  const filteredData = data.filter(el => {
+    const dataDate = parseDate(el.date);
+    return isAfter(dataDate, subDays(today, daysRange - 1));
+  });
+
+  const formattedChartData = formatDataForChart(filteredData);
+
+  function formatDataForChart(data) {
+    const formattedData = [];
+
+    const possibleDates = [];
+    for (let i = daysRange - 1; i >= 0; i--) {
+      possibleDates.push(format(subDays(today, i), 'dd.MM.yyyy'));
+    }
+
+    possibleDates.forEach(date => {
+      const foundData = data.find(el => el.date === date);
+      if (foundData) {
+        formattedData.push({
+          Water: foundData.totalWater,
+          date: format(parseDate(foundData.date), 'dd'),
+        });
+      } else {
+        formattedData.push({
+          Water: 0,
+          date: date.split('.')[0],
+        });
+      }
+    });
+
+    return formattedData;
+  }
+  const allDates = [...new Set(data.map(el => el.date.split('.')[0]))];
+
+  const filledData = allDates.map(date => {
+    const existingData = data.find(el => el.date === date);
     return {
-      Water: el.totalWater,
-      date: el.date,
+      date,
+      Water: existingData ? existingData.totalWater : 0,
     };
   });
 
-  const sortedData = [...dataCurrent].sort((a, b) => {
+  filledData.sort((a, b) => {
     const dateA = parseDate(a.date);
     const dateB = parseDate(b.date);
-
     return dateA - dateB;
   });
 
@@ -36,25 +72,18 @@ const Statistics = () => {
     const year = parts[2];
     return new Date(`${year}-${month}-${day}`);
   }
-
-  const formattedData = sortedData.map(el => ({
-    Water: el.Water,
-    date: el.date.split('.')[0],
-  }));
-
   const gradientId = 'waterGradient';
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className={css.customTooltip}>
-          <p className={css.water}>{`Water: ${payload[0].value}`}</p>
+          <p className={css.water}>{`Water: ${payload[0].value}ml`}</p>
         </div>
       );
     }
     return null;
   };
-
   const formatYAxis = tickItem => {
     if (tickItem === 0) {
       return '0%';
@@ -62,12 +91,29 @@ const Statistics = () => {
     const valueInLiters = tickItem / 1000;
     return `${valueInLiters}L`;
   };
+
+  const handleDaysRangeChange = event => {
+    setDaysRange(Number(event.target.value));
+  };
+
   return (
     <div className={css.statistics}>
+      <div className={css.controls}>
+        <label htmlFor="daysRange">Select days range:</label>
+        <select
+          id="daysRange"
+          value={daysRange}
+          onChange={handleDaysRangeChange}
+        >
+          <option value="7">7 days</option>
+          <option value="14">14 days</option>
+          <option value="30">30 days</option>
+        </select>
+      </div>
       <AreaChart
         width={730}
         height={350}
-        data={formattedData}
+        data={formattedChartData}
         margin={{
           top: 10,
           right: 10,
