@@ -40,7 +40,6 @@ export const store = configureStore({
 const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;
   const token = urlParams.substring(1);
-
   if (token) {
     store.dispatch(verifyEmailSuccess());
     history.push('/finalTeamProject/tracker');
