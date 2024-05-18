@@ -25,7 +25,7 @@ export const WaterModal = ({ operationType, onSubmit, defaultValues, isOpen, isC
             <h3 className={css.paragraph}>Correct entered data:</h3>
           </div>
         )}
-          <WaterForm onSubmit={onSubmit} defaultValues={defaultValues} />
+          <WaterForm onSubmit={onSubmit} defaultValues={defaultValues} isClose={isClose}/>
         </div>
       </div>
     </ComponentWithModal>

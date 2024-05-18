@@ -2,7 +2,6 @@
   color: var(--main-color);
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  /* font-size: 16px; */
   font-size: 14px;
 }
 .inputGroup {
@@ -16,7 +15,6 @@
   color: var(--main-color);
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  /* font-size: 18px; */
   font-size: 16px; 
   font-weight: bold;
 }
@@ -25,7 +23,14 @@
   flex-direction: column;
   gap: 8px;
 }
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
 .waterInput {
+  width: 303px;
   border-radius: 15px;
   padding : 14px 16px; 
   color: var(--main-color);
@@ -50,6 +55,7 @@
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 15px;
+  
 }
 
 .buttonIncrement {
@@ -57,8 +63,10 @@
   width: 40px;
   border-radius: 30px;
   border-color: var(--main-color);
-  align-items: center;
-  text-align: centerl;
+  align-items: flex-end;
+  display: flex;
+  font-size: 34px;
+  justify-content: center;
 }
 .saveBtn {
   background-color: var(--accent-color);
@@ -76,4 +84,19 @@
 .saveBtn:hover,
 .saveBtn:focus {
   background-color: var(--hover-focus-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .inputParagraph {
+      font-size: 16px;
+  }
+  .labelWater {
+ 
+    font-size: 18px;
+    
+  }
+  .waterInput {
+    width: 438px;
+  }
+  
 }

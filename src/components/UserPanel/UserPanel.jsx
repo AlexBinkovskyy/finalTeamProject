@@ -12,7 +12,7 @@ export default function UserPanel() {
     <>
       <div className={css.userPanelContainer}>
         <h1 className={css.title}>
-          Hello, <span className={css.name}>{username}!</span>
+          Hello<span className={css.name}>, {username}!</span>
         </h1>
         <UserBar name={username} avatarUrl={userInfo.avatarUrl} />
       </div>

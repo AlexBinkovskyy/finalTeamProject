@@ -86,6 +86,14 @@
   letter-spacing: -0.01em;
   color: var(--main-text-color);
   cursor: pointer;
+  transition-property: color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+.uploadText:hover,
+.uploadText:focus {
+  color: var(--accent-color);
 }
 
 .input {
@@ -93,7 +101,6 @@
   border-radius: 15px;
   padding: 14px 16px 14px 16px;
   width: 303px;
-  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -105,6 +112,11 @@
   .input {
     width: 400px;
   }
+}
+
+.input:focus-within {
+  outline: none;
+  border: 1px solid var(--accent-color);
 }
 
 .formWraper {
@@ -201,7 +213,7 @@
   }
 }
 
-.listItem:not(:last-child){
+.listItem:not(:last-child) {
   margin-bottom: 12px;
 }
 
@@ -255,7 +267,7 @@
   }
 }
 
-.dailyNorma{
+.dailyNorma {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -343,11 +355,18 @@ input[type='radio']:checked + label:after {
 .icon {
   width: 24px;
   height: 24px;
-  stroke: #2F2F2F;
+  stroke: #2f2f2f;
   fill: white;
   margin-right: 8px;
+  transition-property: stroke;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
+.uploadText:hover .icon,
+.uploadText:focus .icon {
+  stroke: var(--accent-color);
+}
 .calcIcon {
   font-size: 14px;
   color: var(--accent-color);
@@ -374,6 +393,11 @@ input[type='radio']:checked + label:after {
   background-color: var(--accent-color);
 }
 
+
+.submitBtn:focus {
+  outline: 1px solid #93d193;
+}
+
 .error {
   color: red;
   max-width: 303px;
@@ -388,13 +412,4 @@ input[type='radio']:checked + label:after {
   .error {
     max-width: 400px;
   }
-}
-
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9999;
 }

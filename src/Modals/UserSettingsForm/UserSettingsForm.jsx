@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { ThreeDots } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
 import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import { toast, Toaster } from 'react-hot-toast';
+import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -41,8 +41,6 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  // const loading = useSelector(selectLoadingStatus);
-  // const error = useSelector(selectError);
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -69,25 +67,16 @@ const UserSettingsForm = ({ closeModal }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.email && !userInfoUpdated) {
-      const email = userInfo.email;
-      const name = userInfo.name ? userInfo.name : email.split('@')[0];
-      const gender = userInfo.gender ? userInfo.gender : '';
-      const weight = userInfo.weight ? userInfo.weight : 0;
-      const activeTime = userInfo.activeTime ? userInfo.activeTime : 0;
-      const goal = userInfo.goal ? userInfo.goal / 1000 : 0;
+      const { email, name, gender, weight, activeTime, goal } = userInfo;
       setValue('email', email);
-      setValue('name', name);
-      setValue('gender', gender);
-      setValue('weight', weight);
-      setValue('activeTime', activeTime);
-      setValue('goal', goal);
+      setValue('name', name || email.split('@')[0]);
+      setValue('gender', gender || '');
+      setValue('weight', weight || 0);
+      setValue('activeTime', activeTime || 0);
+      setValue('goal', goal ? goal / 1000 : 0);
       setUserInfoUpdated(true);
     }
   }, [userInfo, setValue, userInfoUpdated]);
-
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
 
   const gender = watch('gender');
   const weight = watch('weight');
@@ -99,17 +88,9 @@ const UserSettingsForm = ({ closeModal }) => {
         gender === 'female'
           ? weight * 0.03 + activeTime * 0.4
           : weight * 0.04 + activeTime * 0.6;
-      setValue('goal', setDailyNorma.toFixed(1));
+      setValue('goal', parseFloat(setDailyNorma.toFixed(1)));
     }
   }, [gender, weight, activeTime, setValue]);
-
-  // const handleAvatarChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const imageUrl = URL.createObjectURL(file);
-  //     setAvatarUrl(imageUrl);
-  //   }
-  // };
 
   const handleAvatarChange = event => {
     const file = event.target.files[0];
@@ -122,43 +103,29 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   };
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     setLoading(true);
-    const newAvatarUrl = avatarInputRef.current.value;
-    if (newAvatarUrl && newAvatarUrl !== userInfo.avatarUrl) {
-      const formData = new FormData();
-      const avatarFile = new File([avatarUrl], 'avatar.jpg', {
-        type: 'image/jpeg',
-      });
 
-      formData.append('avatar', avatarFile);
-      formData.append('gender', data.gender);
-      formData.append('name', data.name);
-      formData.append('email', data.email);
-      formData.append('weight', data.weight);
-      formData.append('activeTime', data.activeTime);
-      formData.append('goal', data.goal * 1000);
+    const formData = new FormData();
+    if (avatarInputRef.current.files[0]) {
+      formData.append('avatar', avatarInputRef.current.files[0]);
+    }
+    formData.append('gender', data.gender);
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('weight', data.weight);
+    formData.append('activeTime', data.activeTime);
+    formData.append('goal', data.goal * 1000);
 
-      dispatch(updateUserSettings(formData)).then(() => {
-        setLoading(false);
-        closeModal();
-        dispatch(refreshUser());
-      });
-    } else {
-      const formData = {
-        gender: data.gender,
-        name: data.name,
-        email: data.email,
-        weight: data.weight,
-        activeTime: data.activeTime,
-        goal: data.goal * 1000,
-      };
-
-      dispatch(updateUserSettings(formData)).then(() => {
-        setLoading(false);
-        closeModal();
-        dispatch(refreshUser());
-      });
+    try {
+      await dispatch(updateUserSettings(formData));
+      dispatch(refreshUser());
+      toast.success('Settings updated');
+      closeModal();
+    } catch (error) {
+      toast.error('Failed to update settings. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -167,172 +134,194 @@ const UserSettingsForm = ({ closeModal }) => {
   }, [userInfo.avatarUrl]);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={css.form}
-      action="/profile"
-      method="put"
-      encType="multipart/form-data"
-    >
-      <div className={`${css.formGroup} ${css.avatarContainer}`}>
-        <div className={css.thumb}>
-          <img src={avatarUrl} alt="User avatar" className={css.avatar} />
+    <>
+      <Toaster />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={css.form}
+        action="/profile"
+        method="put"
+        encType="multipart/form-data"
+      >
+        <div className={`${css.formGroup} ${css.avatarContainer}`}>
+          <div className={css.thumb}>
+            <img src={avatarUrl} alt="User avatar" className={css.avatar} />
+          </div>
+          <label
+            htmlFor="uploadInput"
+            className={`${css.uploadLabel} ${css.uploadText}`}
+          >
+            <svg className={css.icon}>
+              <use href={`${IconSprite}#IconUpload`}></use>
+            </svg>
+            Upload a photo
+            <input
+              id="uploadInput"
+              type="file"
+              {...register('avatar')}
+              className={css.avatarInput}
+              accept="image/*, .png, .jpg, .jpeg"
+              onChange={handleAvatarChange}
+              ref={avatarInputRef}
+              autoComplete="photo"
+            />
+          </label>
         </div>
-        <label
-          htmlFor="uploadInput"
-          className={`${css.uploadLabel} ${css.uploadText}`}
-        >
-          <svg className={css.icon}>
-            <use href={`${IconSprite}#IconUpload`}></use>
-          </svg>
-          Upload a photo
-          <input
-            id="uploadInput"
-            type="file"
-            {...register('avatar')}
-            className={css.avatarInput}
-            accept="image/*, .png, .jpg, .jpeg"
-            onChange={handleAvatarChange}
-            ref={avatarInputRef}
-          />
-        </label>
-      </div>
-      <div className={css.formWraper}>
-        <div className={css.formWrap_1}>
-          <div className={css.formGroup}>
-            <label className={css.accentLabel}>Your gender identity</label>
-            <div className={css.genderInput}>
-              <input
-                type="radio"
-                id="female"
-                value="female"
-                {...register('gender')}
-              />
-              <label htmlFor="female" className={css.genderLabel}>
-                Woman
+        <div className={css.formWraper}>
+          <div className={css.formWrap_1}>
+            <div className={css.formGroup}>
+              <label htmlFor="female" className={css.accentLabel}>
+                Your gender identity
               </label>
-              <input
-                type="radio"
-                id="male"
-                value="male"
-                {...register('gender')}
-              />
-              <label htmlFor="male" className={css.genderLabel}>
-                Man
-              </label>
+              <div className={css.genderInput}>
+                <input
+                  type="radio"
+                  id="female"
+                  value="female"
+                  {...register('gender')}
+                  autoComplete="gender"
+                />
+                <label htmlFor="female" className={css.genderLabel}>
+                  Woman
+                </label>
+                <input
+                  type="radio"
+                  id="male"
+                  value="male"
+                  {...register('gender')}
+                  autoComplete="gender"
+                />
+                <label htmlFor="male" className={css.genderLabel}>
+                  Man
+                </label>
+              </div>
+              {errors.gender && (
+                <span className={css.error}>{errors.gender.message}</span>
+              )}
             </div>
-            {errors.gender && (
-              <span className={css.error}>{errors.gender.message}</span>
-            )}
+            <div className={css.formGroup}>
+              <label htmlFor="name" className={css.accentLabel}>
+                Your name
+              </label>
+              <input
+                type="text"
+                {...register('name')}
+                className={css.input}
+                id="name"
+                autoComplete="name"
+              />
+              {errors.name && (
+                <span className={css.error}>{errors.name.message}</span>
+              )}
+            </div>
+            <div className={css.formGroup}>
+              <label htmlFor="email" className={css.accentLabel}>
+                Email
+              </label>
+              <input
+                type="text"
+                {...register('email')}
+                className={css.input}
+                id="email"
+                autoComplete="email"
+              />
+              {errors.email && (
+                <span className={css.error}>{errors.email.message}</span>
+              )}
+            </div>
+            <div className={css.formGroup}>
+              <p className={css.infoTitle}>My daily norma</p>
+              <ul className={css.list}>
+                <li className={css.listItem}>
+                  <p className={css.listItemText}>For woman:</p>
+                  <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
+                </li>
+                <li className={css.listItem}>
+                  <p className={css.listItemText}>For man:</p>
+                  <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
+                </li>
+              </ul>
+              <p className={css.calculation}>
+                <span className={css.calcIcon}>*</span>V is the volume of the
+                water norm in liters per day, M is your body weight, T is the
+                time of active sports, or another type of activity commensurate
+                in terms of loads (in the absence of these, you must set 0)
+              </p>
+              <p className={css.info}>
+                <svg className={css.iconInfo}>
+                  <use href={`${IconSprite}#Attention`}></use>
+                </svg>
+                Active time in hours
+              </p>
+            </div>
           </div>
-          <div className={css.formGroup}>
-            <label className={css.accentLabel}>Your name</label>
-            <input type="text" {...register('name')} className={css.input} />
-            {errors.name && (
-              <span className={css.error}>{errors.name.message}</span>
-            )}
-          </div>
-          <div className={css.formGroup}>
-            <label className={css.accentLabel}>Email</label>
-            <input type="text" {...register('email')} className={css.input} />
-            {errors.email && (
-              <span className={css.error}>{errors.email.message}</span>
-            )}
-          </div>
-          <div className={css.formGroup}>
-            <p className={css.infoTitle}>My daily norma</p>
-            <ul className={css.list}>
-              <li className={css.listItem}>
-                <p className={css.listItemText}>For woman:</p>
-                <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
-              </li>
-              <li className={css.listItem}>
-                <p className={css.listItemText}>For man:</p>
-                <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
-              </li>
-            </ul>
-            <p className={css.calculation}>
-              <span className={css.calcIcon}>*</span>V is the volume of the
-              water norm in liters per day, M is your body weight, T is the time
-              of active sports, or another type of activity commensurate in
-              terms of loads (in the absence of these, you must set 0)
-            </p>
-            <p className={css.info}>
-              <svg className={css.iconInfo}>
-                <use href={`${IconSprite}#Attention`}></use>
-              </svg>
-              Active time in hours
-            </p>
+          <div className={css.formWrap_2}>
+            <div className={css.formGroup}>
+              <label htmlFor="weight" className={css.label}>
+                Your weight in kilograms:
+              </label>
+              <input
+                type="number"
+                min="0"
+                id="weight"
+                {...register('weight')}
+                className={css.input}
+                autoComplete="weight"
+              />
+              {errors.weight && errors.weight.type === 'typeError' && (
+                <span className={css.error}>Weight is required</span>
+              )}
+            </div>
+            <div className={css.formGroup}>
+              <label htmlFor="activeTime" className={css.label}>
+                The time of active participation in sports:
+              </label>
+              <input
+                type="number"
+                min="0"
+                id="activeTime"
+                {...register('activeTime')}
+                className={css.input}
+                autoComplete="active-time"
+              />
+              {errors.activeTime && errors.activeTime.type === 'typeError' && (
+                <span className={css.error}>ActiveTime is required</span>
+              )}
+            </div>
+            <div className={css.formGroup}>
+              <p className={css.dailyNorma}>
+                The required amount of water in liters per day:
+                <span className={css.dailyNormaValue}>
+                  {watch('goal') ? `${watch('goal')} L` : ''}
+                </span>
+              </p>
+            </div>
+            <div className={css.formGroup}>
+              <label htmlFor="goal" className={css.accentLabel}>
+                Write down how much water you will drink:
+              </label>
+              <input
+                type="number"
+                id="goal"
+                {...register('goal')}
+                className={css.input}
+                min="0"
+                step="0.1"
+                value={watch('goal')}
+                autoComplete="goal"
+              />
+              {errors.goal && !watch('goal') && (
+                <span className={css.error}>Goal is required</span>
+              )}
+            </div>
           </div>
         </div>
-        <div className={css.formWrap_2}>
-          <div className={css.formGroup}>
-            <label className={css.label}>Your weight in kilograms:</label>
-            <input
-              type="number"
-              min="0"
-              {...register('weight')}
-              className={css.input}
-            />
-            {errors.weight && errors.weight.type === 'typeError' && (
-              <span className={css.error}>Weight is required</span>
-            )}
-          </div>
-          <div className={css.formGroup}>
-            <label className={css.label}>
-              The time of active participation in sports:
-            </label>
-            <input
-              type="number"
-              min="0"
-              {...register('activeTime')}
-              className={css.input}
-            />
-            {errors.activeTime && errors.activeTime.type === 'typeError' && (
-              <span className={css.error}>ActiveTime is required</span>
-            )}
-          </div>
-          <div className={css.formGroup}>
-            <p className={css.dailyNorma}>
-              The required amount of water in liters per day:
-              <span className={css.dailyNormaValue}>
-                {watch('goal') ? `${watch('goal')} L` : ''}
-              </span>
-            </p>
-          </div>
-          <div className={css.formGroup}>
-            <label className={css.accentLabel}>
-              Write down how much water you will drink:
-            </label>
-            <input
-              type="number"
-              {...register('goal')}
-              className={css.input}
-              min="0"
-              step="0.1"
-              value={watch('goal')}
-            />
-            {errors.goal && errors.goal.type === 'typeError' && (
-              <span className={css.error}>Goal is required</span>
-            )}
-          </div>
-        </div>
-      </div>
-      <button type="submit" className={css.submitBtn} disabled={loading}>
-        {loading ? 'Saving...' : 'Save'}
-      </button>
-      {loading && (
-        <div className={css.loader}>
-          <ThreeDots
-            height={80}
-            width={80}
-            radius={9}
-            color="green"
-            ariaLabel="three-dots-loading"
-          />
-        </div>
-      )}
-    </form>
+        <button type="submit" className={css.submitBtn} disabled={loading}>
+          {loading ? 'Saving...' : 'Save'}
+        </button>
+        {loading && <Loader />}
+      </form>
+    </>
   );
 };
 
