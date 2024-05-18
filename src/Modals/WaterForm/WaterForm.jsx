@@ -90,7 +90,7 @@ const WaterForm = ({isClose}) => {
           >
             -
           </button>
-          <span className={css.waterAmount}  onChange={handleInputChange}>{waterAmount} ml </span>
+          <span className={css.waterAmount}  >{waterAmount} ml </span>
           <button
             type="button"
             onClick={handleIncrement}
@@ -116,11 +116,9 @@ const WaterForm = ({isClose}) => {
         <label htmlFor="waterAmount" className={css.labelWater}>Enter the value of water used:</label>
         <input
           type="number"
-          name="waterAmount"
           className={css.waterInput}
-          id="waterAmount"
           onChange={handleInputChange}
-          {...register('waterAmount')}
+          value={waterAmount === 0 ? '' : waterAmount}
           min="0"
         />
       </div>
