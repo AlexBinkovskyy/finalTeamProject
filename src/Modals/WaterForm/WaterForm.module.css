@@ -2,7 +2,6 @@
   color: var(--main-color);
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  /* font-size: 16px; */
   font-size: 14px;
 }
 .inputGroup {
@@ -16,7 +15,6 @@
   color: var(--main-color);
   font-family: 'Poppins', sans-serif;
   text-align: left;
-  /* font-size: 18px; */
   font-size: 16px; 
   font-weight: bold;
 }
@@ -85,4 +83,16 @@
 .saveBtn:hover,
 .saveBtn:focus {
   background-color: var(--hover-focus-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .inputParagraph {
+      font-size: 16px;
+  }
+  .labelWater {
+ 
+    font-size: 18px;
+    
+  }
+  
 }
