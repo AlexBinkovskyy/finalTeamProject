@@ -13,14 +13,20 @@ export default function HappyCostumers() {
       .get(fetchUrl)
       .then(res => {
         const users = res.data.userAvatars;
-        const count = users.length;
-        const chosenIndexes = new Set();
-        while (chosenIndexes.size < Math.min(3, count)) {
-          chosenIndexes.add(Math.floor(Math.random() * count));
-        }
-        const chosenAvatars = Array.from(chosenIndexes).map(
-          index => users[index]
-        );
+        const defaultUrl =
+          'https://finalteamproject-backend.onrender.com/icon/defaultAvatar.png';
+
+          const originalAvatars = users.filter(item => item.avatarUrl !== defaultUrl);
+          
+          const count = Math.min(3, originalAvatars.length);
+          const chosenAvatars = [];
+          while (chosenAvatars.length < count) {
+            const index = Math.floor(Math.random() * originalAvatars.length);
+            const avatar = originalAvatars[index];
+            if (!chosenAvatars.includes(avatar)) {
+              chosenAvatars.push(avatar);
+            }
+          }
         setRandomAvatars(chosenAvatars);
       })
       .catch(error => console.error('Error fetching data:', error));
