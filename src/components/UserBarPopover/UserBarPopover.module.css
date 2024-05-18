@@ -20,9 +20,9 @@
 }
 
 .wrapper.closed {
-  transform: scale(0.1);
-  height: 1;
-  width: 1;
+  transform: scale(0.01);
+  height: 0;
+  width: 0;
   overflow: hidden;
   opacity: 0;
 }
