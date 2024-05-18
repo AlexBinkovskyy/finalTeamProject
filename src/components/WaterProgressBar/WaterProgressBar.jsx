@@ -1,22 +1,33 @@
 import css from './WaterProgressBar.module.css';
 import WaterProgressBarStyle from './WaterProgressBarStyle';
-import { selectChosenDate } from '../../redux/water/selectors';
+import {
+  selectChosenDate,
+  selectTodayTotal,
+} from '../../redux/water/selectors.js';
+import { selectGoal } from '../../redux/auth/selectors.js';
 import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
-  if (!chosenDateStr) {
+  const todayTotal = useSelector(selectTodayTotal);
+  const goal = useSelector(selectGoal);
+
+  if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
   }
+
   const chosenDate = parse(chosenDateStr, 'dd.MM.yyyy', new Date());
   const today = format(new Date(), 'd MMMM');
   const chosen = format(chosenDate, 'd MMMM');
-  let progressBar = 8;
-  let progress = Math.round(progressBar) / 10;
+
+  let progress = todayTotal / goal;
   progress = Math.min(progress, 1);
-  const progressProc = progress * 100;
-  const procStyle = WaterProgressBarStyle({ progress });
+  const progressProcAll = progress * 100;
+
+  const progressProc = Math.round(progressProcAll / 10) * 10;
+
+  const procStyle = WaterProgressBarStyle({ progressProc });
 
   const progressProcStyle = {
     left: `calc(${progressProc}% + ${procStyle}%)`,
@@ -52,11 +63,13 @@ export default function WaterProgressBar() {
               <p>100%</p>
             </div>
           </div>
-          {progress !== 0 && progress !== 0.5 && progress !== 1 && (
-            <p className={css.progressProc} style={progressProcStyle}>
-              {progressProc}%
-            </p>
-          )}
+          {progressProc !== 0 &&
+            progressProc !== 50 &&
+            progressProc !== 100 && (
+              <p className={css.progressProc} style={progressProcStyle}>
+                {progressProc}%
+              </p>
+            )}
         </div>
       </div>
     </>

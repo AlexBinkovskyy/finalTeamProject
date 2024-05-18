@@ -1,16 +1,16 @@
-export default function WaterProgressBarStyle({ progress }) {
-  switch (progress) {
-    case 0.1:
-    case 0.2:
+export default function WaterProgressBarStyle({ progressProc }) {
+  switch (progressProc) {
+    case 10:
+    case 20:
       return 2;
-    case 0.4:
+    case 40:
       return window.matchMedia('(min-width: 768px)').matches ? -1.5 : -4;
-    case 0.6:
-    case 0.7:
+    case 60:
+    case 70:
       return -5;
-    case 0.8:
+    case 80:
       return -7;
-    case 0.9:
+    case 90:
       return window.matchMedia('(min-width: 768px)').matches ? -12 : -15;
     default:
       return -1;
