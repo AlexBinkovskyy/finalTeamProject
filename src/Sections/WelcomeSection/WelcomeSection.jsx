@@ -10,15 +10,14 @@ export default function WelcomeSection() {
         <div className={css.hero}>
           <h3 className={css.subtitle}>Record daily water intake and track</h3>
           <h1 className={css.title}>Water consumption tracker</h1>
-        </div>
-
-        <div className={css.link}>
-          <Link to="/signup" className={css.try}>
-            Try tracker
-          </Link>
-          <Link to="/signin" className={css.sign}>
-            Sign in
-          </Link>
+          <div className={css.link}>
+            <Link to="/signup" className={css.try}>
+              Try tracker
+            </Link>
+            <Link to="/signin" className={css.sign}>
+              Sign in
+            </Link>
+          </div>
         </div>
       </div>
     </section>

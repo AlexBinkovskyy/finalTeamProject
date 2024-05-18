@@ -9,24 +9,30 @@ import { fetchDailyConsumption } from '../../redux/water/operations';
 
 export default function WaterList({ selectedDate }) {
   const initialDay = format(selectedDate, 'dd.MM.yyyy');
+  const waterList = useSelector(selectDayState);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDailyConsumption(initialDay));
   }, [dispatch, initialDay]);
 
-  const waterList = useSelector(selectDayState);
-  // console.log(waterList);
+  const placeholderWater = { amount: '000', time: '00:00' };
 
   return (
     <>
-      <ul className={css.waterList}>
-        {waterList.map(water => (
-          <li key={water._id} className={css.waterItem}>
-            <WaterItem water={water} />
-          </li>
-        ))}
-      </ul>
+      {waterList.length < 1 ? (
+        <div className={`${css.placeholder} ${css.waterItem}`}>
+          <WaterItem water={placeholderWater} />
+        </div>
+      ) : (
+        <ul className={css.waterList}>
+          {waterList.map(water => (
+            <li key={water._id} className={css.waterItem}>
+              <WaterItem water={water} />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }

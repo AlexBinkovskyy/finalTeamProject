@@ -67,6 +67,20 @@ export const resendMail = createAsyncThunk(
   }
 );
 
+export const recoverMail = createAsyncThunk(
+  'auth/recover',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/users/passrecovery', credentials);
+      toast.success('Please check your mail');
+    } catch (error) {
+      toast.error('Wrong Mail');
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {

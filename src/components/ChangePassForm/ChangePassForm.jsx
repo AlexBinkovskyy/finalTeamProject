@@ -1,15 +1,14 @@
-import css from './SignUpForm.module.css';
-import { useEffect, useId, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useId, useState } from 'react';
+import css from './ChangePassForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { signup } from '../../redux/auth/operations';
-import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Image from '../../image/sprite.svg';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Must be valid email!').required('Required'),
+  resetToken: Yup.string().required('Required'),
   password: Yup.string()
     .min(7, 'Too Short!')
     .matches(
@@ -22,13 +21,13 @@ const validationSchema = Yup.object().shape({
     .required('Please repeat your password'),
 });
 
-export default function SignUpForm() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
+export default function ChangePassForm() {
+  //   const dispatch = useDispatch();
+  //   const navigate = useNavigate();
+  //   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const emailFieldId = useId();
+  const codeFieldId = useId();
   const passwordFieldId = useId();
   const repeatPassword = useId();
 
@@ -39,44 +38,39 @@ export default function SignUpForm() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
 
-  const onSubmit = ({ email, password }) => {
-    dispatch(signup({ email, password }))
-      .unwrap()
-      .then(() => {
-        reset();
-        setSubmitted(true);
-      });
+  const onSubmit = ({ resetToken, password }) => {
+    console.log({ resetToken, password });
   };
 
-  useEffect(() => {
-    if (submitted) {
-      navigate('/confirm-page');
-    }
-  }, [submitted, navigate]);
+  //   useEffect(() => {
+  //     if (submitted) {
+  //       navigate('/signin');
+  //     }
+  //   }, [submitted, navigate]);
 
   return (
     <div className={css.divWrap}>
-      <h1 className={css.title}>Sign Up</h1>
+      <p className={css.text}>Fill up form below</p>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <label htmlFor={emailFieldId} className={css.label}>
-          Email
+        <label htmlFor={codeFieldId} className={css.label}>
+          Code
         </label>
         <div className={css.errorContainer}>
           <input
-            {...register('email')}
-            className={`${css.input} ${errors.email && css.errorInput}`}
-            id={emailFieldId}
-            placeholder="Enter your email"
+            {...register('resetToken')}
+            className={`${css.input} ${errors.resetToken && css.errorInput}`}
+            id={codeFieldId}
+            placeholder="Enter your code"
+            autoComplete="off"
           />
-          {errors.email && (
-            <span className={css.error}>{errors.email.message}</span>
+          {errors.resetToken && (
+            <span className={css.error}>{errors.resetToken.message}</span>
           )}
         </div>
 
@@ -89,7 +83,7 @@ export default function SignUpForm() {
             autoComplete="off"
             className={`${css.input} ${errors.password && css.errorInput}`}
             id={passwordFieldId}
-            placeholder="Enter your password"
+            placeholder="Enter new password"
             type={showPassword ? 'text' : 'password'}
           />
           {errors.password && (
@@ -149,15 +143,9 @@ export default function SignUpForm() {
         </div>
 
         <button type="submit" className={css.button}>
-          Sign Up
+          Reset
         </button>
       </form>
-      <p className={css.text}>
-        Already have account?{' '}
-        <Link to="/signin" className={css.link}>
-          Sign In
-        </Link>
-      </p>
     </div>
   );
 }

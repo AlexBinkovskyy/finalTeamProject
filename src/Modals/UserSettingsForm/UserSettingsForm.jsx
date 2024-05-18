@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { ThreeDots } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoadingStatus } from '../../redux/water/selectors';
+// import { selectLoadingStatus } from '../../redux/water/selectors';
 import { selectUser } from '../../redux/auth/selectors';
-import {updateUserSettings } from '../../redux/auth/operations';
-// import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
+import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
@@ -29,20 +29,24 @@ const schema = yup.object().shape({
   activeTime: yup
     .number()
     .required('Sport time is required')
+    .min(0, 'Active time must be a positive number')
     .positive('Active time must be a positive number'),
   goal: yup
     .number()
     .required('Water intake is required')
-    .min(0, 'Water intake must be a positive number'),
+    .min(0, 'Water intake must be a positive number')
+    .positive('Water intake must be a positive number'),
 });
 
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const loading = useSelector(selectLoadingStatus);
+  // const loading = useSelector(selectLoadingStatus);
   // const error = useSelector(selectError);
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const avatarInputRef = useRef(null);
 
   const {
     register,
@@ -52,6 +56,15 @@ const UserSettingsForm = ({ closeModal }) => {
     watch,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      avatar: '',
+      gender: '',
+      name: '',
+      email: '',
+      weight: 0,
+      activeTime: 0,
+      goal: 0,
+    },
   });
 
   useEffect(() => {
@@ -59,9 +72,9 @@ const UserSettingsForm = ({ closeModal }) => {
       const email = userInfo.email;
       const name = userInfo.name ? userInfo.name : email.split('@')[0];
       const gender = userInfo.gender ? userInfo.gender : '';
-      const weight = userInfo.weight ? userInfo.weight : '';
-      const activeTime = userInfo.activeTime ? userInfo.activeTime : '';
-      const goal = userInfo.goal ? userInfo.goal : '';
+      const weight = userInfo.weight ? userInfo.weight : 0;
+      const activeTime = userInfo.activeTime ? userInfo.activeTime : 0;
+      const goal = userInfo.goal ? userInfo.goal / 1000 : 0;
       setValue('email', email);
       setValue('name', name);
       setValue('gender', gender);
@@ -83,7 +96,6 @@ const UserSettingsForm = ({ closeModal }) => {
   useEffect(() => {
     if (gender && weight && activeTime) {
       const setDailyNorma =
-
         gender === 'female'
           ? weight * 0.03 + activeTime * 0.4
           : weight * 0.04 + activeTime * 0.6;
@@ -111,38 +123,48 @@ const UserSettingsForm = ({ closeModal }) => {
   };
 
   const onSubmit = data => {
-    if (avatarUrl !== userInfo.avatarUrl) {
-    const formData = new FormData();
-    const avatarFile = new File([avatarUrl], 'avatar.jpg', {
-      type: 'image/jpeg',
-    });
+    setLoading(true);
+    const newAvatarUrl = avatarInputRef.current.value;
+    if (newAvatarUrl && newAvatarUrl !== userInfo.avatarUrl) {
+      const formData = new FormData();
+      const avatarFile = new File([avatarUrl], 'avatar.jpg', {
+        type: 'image/jpeg',
+      });
 
-    formData.append('avatar', avatarFile);
-    formData.append('gender', data.gender);
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('weight', data.weight);
-    formData.append('activeTime', data.activeTime);
-    formData.append('goal', data.goal);
+      formData.append('avatar', avatarFile);
+      formData.append('gender', data.gender);
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('weight', data.weight);
+      formData.append('activeTime', data.activeTime);
+      formData.append('goal', data.goal * 1000);
 
-    dispatch(updateUserSettings(formData)).then(() => {
-      closeModal();
-    });
-  } else {
-    const formData = {
-      gender: data.gender,
-      name: data.name,
-      email: data.email,
-      weight: data.weight,
-      activeTime: data.activeTime,
-      goal: data.goal,
-    };
+      dispatch(updateUserSettings(formData)).then(() => {
+        setLoading(false);
+        closeModal();
+        dispatch(refreshUser());
+      });
+    } else {
+      const formData = {
+        gender: data.gender,
+        name: data.name,
+        email: data.email,
+        weight: data.weight,
+        activeTime: data.activeTime,
+        goal: data.goal * 1000,
+      };
 
-    dispatch(updateUserSettings(formData)).then(() => {
-      closeModal();
-    });
-  }
-};
+      dispatch(updateUserSettings(formData)).then(() => {
+        setLoading(false);
+        closeModal();
+        dispatch(refreshUser());
+      });
+    }
+  };
+
+  useEffect(() => {
+    setAvatarUrl(userInfo.avatarUrl);
+  }, [userInfo.avatarUrl]);
 
   return (
     <form
@@ -171,6 +193,7 @@ const UserSettingsForm = ({ closeModal }) => {
             className={css.avatarInput}
             accept="image/*, .png, .jpg, .jpeg"
             onChange={handleAvatarChange}
+            ref={avatarInputRef}
           />
         </label>
       </div>
@@ -247,12 +270,10 @@ const UserSettingsForm = ({ closeModal }) => {
             <label className={css.label}>Your weight in kilograms:</label>
             <input
               type="number"
+              min="0"
               {...register('weight')}
               className={css.input}
             />
-            {/* {errors.weight && (
-              <span className={css.error}>{errors.weight.message}</span>
-            )} */}
             {errors.weight && errors.weight.type === 'typeError' && (
               <span className={css.error}>Weight is required</span>
             )}
@@ -263,20 +284,20 @@ const UserSettingsForm = ({ closeModal }) => {
             </label>
             <input
               type="number"
+              min="0"
               {...register('activeTime')}
               className={css.input}
             />
-            {/* {errors.activeTime && (
-              <span className={css.error}>{errors.activeTime.message}</span>
-            )} */}
             {errors.activeTime && errors.activeTime.type === 'typeError' && (
               <span className={css.error}>ActiveTime is required</span>
             )}
           </div>
           <div className={css.formGroup}>
-            <p className={css.info}>
+            <p className={css.dailyNorma}>
               The required amount of water in liters per day:
-              {watch('goal')}L
+              <span className={css.dailyNormaValue}>
+                {watch('goal') ? `${watch('goal')} L` : ''}
+              </span>
             </p>
           </div>
           <div className={css.formGroup}>
@@ -287,14 +308,10 @@ const UserSettingsForm = ({ closeModal }) => {
               type="number"
               {...register('goal')}
               className={css.input}
-              // value={waterIntakeValue}
-              value={(watch('goal'))}
-              // placeholder={Math.round(parseFloat(watch('goal')))}
-
+              min="0"
+              step="0.1"
+              value={watch('goal')}
             />
-            {/* {errors.goal && (
-              <span className={css.error}>{errors.goal.message}</span>
-            )} */}
             {errors.goal && errors.goal.type === 'typeError' && (
               <span className={css.error}>Goal is required</span>
             )}
@@ -304,6 +321,17 @@ const UserSettingsForm = ({ closeModal }) => {
       <button type="submit" className={css.submitBtn} disabled={loading}>
         {loading ? 'Saving...' : 'Save'}
       </button>
+      {loading && (
+        <div className={css.loader}>
+          <ThreeDots
+            height={80}
+            width={80}
+            radius={9}
+            color="green"
+            ariaLabel="three-dots-loading"
+          />
+        </div>
+      )}
     </form>
   );
 };

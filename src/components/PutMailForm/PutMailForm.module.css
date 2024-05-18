@@ -1,19 +1,19 @@
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-weight: 700;
-  font-size: 32px;
+.text {
+  font-family: 'Poppins-Regular';
+  font-size: 28px;
   color: var(--main-color);
   line-height: 1;
   letter-spacing: -0.01em;
   margin-bottom: 32px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .button {
-  margin-top: 10px;
   border-radius: 30px;
   padding: 16px 50px;
   width: 100%;
@@ -39,7 +39,6 @@
   padding: 16px 40px 16px 16px;
   width: 100%;
   transition: all 250ms ease-in-out;
-  margin-bottom: 22px;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
@@ -49,7 +48,6 @@
 
 .input::placeholder {
   font-family: 'Poppins-Regular';
-  font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
@@ -73,23 +71,14 @@
   border-color: var(--error-color);
 }
 
-.label {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.28571;
-  letter-spacing: -0.01em;
-  color: var(--main-text-color);
-  margin-bottom: 8px;
-}
-
 .error {
   font-family: 'Poppins-Regular';
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--error-color);
   position: absolute;
-  top: 75%;
+  top: 100%;
   left: 0;
 }
 
@@ -97,54 +86,13 @@
   position: relative;
 }
 
-.text {
-  font-family: 'Poppins-Regular';
-  margin-top: 16px;
-  font-size: 14px;
-  line-height: 1.28571;
-  letter-spacing: -0.01em;
-  color: rgba(47, 47, 47, 0.5);
+.ul {
   display: flex;
-  justify-content: center;
-  gap: 4px;
-}
-
-.link {
-  font-family: 'Poppins-Bold';
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
-  color: var(--main-text-color);
-  transition: color 250ms ease-in-out;
-}
-
-.link:hover {
-  color: rgba(50, 63, 71, 0.4);
-}
-
-.eyeIcon {
-  stroke: var(--main-text-color);
-  stroke-width: 1.8px;
-  fill: transparent;
-}
-
-.eyeBtn {
-  display: block;
-  outline: none;
-  border: none;
-  background-color: transparent;
-  height: 36px;
-  width: 50px;
-  position: absolute;
-  top: 12px;
-  left: 85%;
+  flex-direction: column;
+  gap: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  .title {
-    font-size: 36px;
-    line-height: 1.05556;
-  }
-
   .button {
     font-size: 16px;
     line-height: 1.5;
@@ -162,34 +110,12 @@
     line-height: 1.5;
   }
 
-  .label {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
   .error {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .text {
     font-size: 16px;
     line-height: 1.5;
   }
 
   .divWrap {
     margin: 0 auto;
-  }
-
-  .eyeBtn {
-    display: block;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    height: 36px;
-    width: 50px;
-    position: absolute;
-    top: 12px;
-    left: 384px;
   }
 }

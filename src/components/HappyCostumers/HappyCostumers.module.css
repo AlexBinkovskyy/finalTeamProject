@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+}
+.wrapper {
+  position: relative;
+  width: 47px;
+  height: 47px;
+}
+
+.image {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px white solid;
+  position: absolute;
+}
+
+.image:nth-child(1) {
+  z-index: 30;
+}
+.image:nth-child(2) {
+  transform: translateX(28px);
+  z-index: 20;
+}
+.image:nth-child(3) {
+  transform: translateX(56px);
+  z-index: 10;
+}

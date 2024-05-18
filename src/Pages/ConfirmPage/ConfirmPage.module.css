@@ -11,12 +11,8 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  gap: 174px;
+  gap: 50px;
   padding: 24px 16px 218px;
-}
-
-.advantage {
-  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -28,27 +24,14 @@
     width: 704px;
     height: 960px;
     padding: 32px 32px 284px;
-    gap: 226px;
+    gap: 100px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .div {
-    margin: 0;
-    margin-right: 32px;
     width: 672px;
     height: 736px;
     gap: 114px;
-  }
-
-  .divMain {
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .advantage {
-    display: block;
   }
 }
