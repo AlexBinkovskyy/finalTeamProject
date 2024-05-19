@@ -4,8 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
-import { refreshUser, updateUserSettings } from '../../redux/auth/operations';
-import { toast, Toaster } from 'react-hot-toast';
+import { updateUserSettings } from '../../redux/auth/operations';
 import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
@@ -44,6 +43,8 @@ const UserSettingsForm = ({ closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [avatarError, setAvatarError] = useState('');
+  const [isFileValid, setIsFileValid] = useState(true);
   const avatarInputRef = useRef(null);
 
   const {
@@ -95,11 +96,19 @@ const UserSettingsForm = ({ closeModal }) => {
   const handleAvatarChange = event => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setAvatarUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
+      if (file.size > 7 * 1024 * 1024) {
+        setAvatarError('File size exceeds 7MB');
+        setAvatarUrl(userInfo.avatarUrl);
+        setIsFileValid(false);
+      } else {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setAvatarUrl(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setAvatarError('');
+        setIsFileValid(true);
+      }
     }
   };
 
@@ -107,9 +116,17 @@ const UserSettingsForm = ({ closeModal }) => {
     setLoading(true);
 
     const formData = new FormData();
-    if (avatarInputRef.current.files[0]) {
-      formData.append('avatar', avatarInputRef.current.files[0]);
+    const file = avatarInputRef.current.files[0];
+    if (file) {
+      if (file.size > 7 * 1024 * 1024) {
+        setAvatarError('File size exceeds 7MB');
+        setLoading(false);
+        return;
+      } else {
+        formData.append('avatar', file);
+      }
     }
+
     formData.append('gender', data.gender);
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -119,11 +136,8 @@ const UserSettingsForm = ({ closeModal }) => {
 
     try {
       await dispatch(updateUserSettings(formData));
-      dispatch(refreshUser());
-      toast.success('Settings updated');
       closeModal();
     } catch (error) {
-      toast.error('Failed to update settings. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -135,7 +149,6 @@ const UserSettingsForm = ({ closeModal }) => {
 
   return (
     <>
-      <Toaster />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={css.form}
@@ -166,6 +179,7 @@ const UserSettingsForm = ({ closeModal }) => {
               autoComplete="photo"
             />
           </label>
+          {avatarError && <span className={css.error}>{avatarError}</span>}
         </div>
         <div className={css.formWraper}>
           <div className={css.formWrap_1}>
@@ -316,7 +330,11 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
           </div>
         </div>
-        <button type="submit" className={css.submitBtn} disabled={loading}>
+        <button
+          type="submit"
+          className={css.submitBtn}
+          disabled={loading || !isFileValid}
+        >
           {loading ? 'Saving...' : 'Save'}
         </button>
         {loading && <Loader />}

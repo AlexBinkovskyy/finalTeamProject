@@ -4,6 +4,7 @@ import {
   signin,
   signout,
   refreshUser,
+  updateUserSettings,
   // verifyEmail,
 } from './operations';
 
@@ -49,6 +50,17 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
+      })
+      .addCase(updateUserSettings.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(updateUserSettings.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(updateUserSettings.rejected, state => {
         state.isRefreshing = false;
       });
   },

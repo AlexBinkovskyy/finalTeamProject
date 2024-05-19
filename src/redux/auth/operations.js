@@ -131,7 +131,7 @@ export const updateUserSettings = createAsyncThunk(
       toast.success('Settings updated successfully');
       return res.data;
     } catch (error) {
-      toast.error('Failed to update settings');
+      toast.error('Failed to update settings. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
