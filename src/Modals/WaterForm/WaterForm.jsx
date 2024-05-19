@@ -14,6 +14,13 @@ const schema = Yup.object().shape({
   time: Yup.string()
     .required('Time is required')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
+    .test('is-not-future-time', 'Record time cannot be in the future', function(value) {
+      const currentTime = new Date();
+      const [hours, minutes] = value.split(':');
+      const selectedTime = new Date();
+      selectedTime.setHours(hours, minutes, 0, 0);
+      return selectedTime <= currentTime;
+    }),
 });
 
 
@@ -24,39 +31,55 @@ const WaterForm = ({isClose, defaultValues}) => {
     formState: { errors },
     setValue,
     register,
+    // reset,
   } = useForm({
     resolver: yupResolver(schema),
+    // defaultValues,
+    defaultValues, 
   });
 
   const dispatch = useDispatch();
   const date = useSelector(selectChosenDate);
-  
-  const [waterAmount, setWaterAmount] = useState(250);
-  const [time, setTime] = useState('');
-  // const [dateError, setDateError] = useState('');
-  
-  // const [waterAmount, setWaterAmount] = useState(defaultValues?.amount || 250);
+
+  // const [waterAmount, setWaterAmount] = useState(250);
   // const [time, setTime] = useState('');
-
-
+  console.log('defaultValues:', defaultValues);
   
+  const [waterAmount, setWaterAmount] = useState(defaultValues?.waterAmount || 250);
+  const [time, setTime] = useState('');
 
+ 
   // useEffect(() => {
-  //   if (defaultValues?.amount !== undefined) {
-  //     setWaterAmount(defaultValues.amount);
-  //     setValue('waterAmount', defaultValues.amount);
+  //   if (defaultValues) {
+  //     setWaterAmount(defaultValues.waterAmount);
+  //     setTime(defaultValues.time);
+  //     reset({
+  //       waterAmount: defaultValues.waterAmount,
+  //       time: defaultValues.time,
+  //     });
   //   }
-  // }, [defaultValues?.amount, setValue]);
+  // }, [defaultValues, reset]);
 
   // useEffect(() => {
-  //   if (defaultValues?.time !== undefined) {
-  //     setValue('time', defaultValues.time);
-  //   } else {
+  //   setValue('waterAmount', waterAmount);
+  //   setValue('time', time);
+  // }, [waterAmount, time, setValue]);
+
+  // useEffect(() => {
+  //   if (!defaultValues) {
   //     const currentTime = new Date();
   //     const formattedTime = `${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
-  //     setValue('time', formattedTime);
+  //     setTime(formattedTime);
   //   }
-  // }, [defaultValues?.time,time, setValue]);
+  // }, [defaultValues]);
+
+  
+
+  
+
+  
+
+  
 
   useEffect(() => { 
     setValue('waterAmount', waterAmount);
@@ -85,26 +108,29 @@ const WaterForm = ({isClose, defaultValues}) => {
     }
   };
 
+ 
   const handleTimeChange = event => {
-    setTime(event.target.value);
+    const selectedTime = event.target.value;
+    const currentTime = new Date();
+    const [hours, minutes] = selectedTime.split(':');
+    const selectedDateTime = new Date();
+    selectedDateTime.setHours(hours, minutes, 0, 0);
+    if (selectedDateTime <= currentTime) {
+      setTime(selectedTime);
+    } else {
+      alert('Time cannot be in the future');
+    }
   };
 
   const onSubmit = async (data) => {
-    // const today = new Date();
-    // today.setHours(0, 0, 0, 0); // Сбросить время для сравнения только по дате
-
-    // if (date > today) {
-    //   setDateError('Chosen date can not be picked in the future');
-    // } 
+  
 
     const postData = {
       date: date,
       time: data.time,
       amount: data.waterAmount
     };
-    // console.log('Submitting data:', postData); // Лог для отладки
-    // const result = await dispatch(addConsumption(postData));
-    // console.log('Result:', result);
+    
     if (defaultValues?._id) {
       const result = await dispatch(updateConsumption({ _id: defaultValues._id, ...postData }));
       console.log('Update result:', result);
@@ -154,14 +180,13 @@ const WaterForm = ({isClose, defaultValues}) => {
       <div className={css.inputGroupWater}>
         <label htmlFor="waterAmount" className={css.labelWater}>Enter the value of water used:</label>
         <input
-          type="number"
+          type="text"
           className={css.waterInput}
           onChange={handleInputChange}
           value={waterAmount === 0 ? '' : waterAmount}
           min="0"
         />
       </div>
-      {/* {dateError && <p className={css.error}>{dateError}</p>} */}
       <div>
         <button type="submit" className={css.saveBtn} >
           Save

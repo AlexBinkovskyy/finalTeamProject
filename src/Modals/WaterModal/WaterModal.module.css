@@ -1,6 +1,8 @@
 .modalOverlay {
   background-color: var(--main-white);
   max-width: 343px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 .title {
   color: var(--main-color);
@@ -39,8 +41,7 @@
 @media only screen and (min-width: 768px) {
   .modalOverlay {
     max-width: 518px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
   }
   .title {
     font-size: 28px;
