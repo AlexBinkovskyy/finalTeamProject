@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://alexbinkovskyy.github.io/finalTeamProject/",
   "dependencies": {
-    "@atlaskit/progress-bar": "^2.1.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.3.4",
