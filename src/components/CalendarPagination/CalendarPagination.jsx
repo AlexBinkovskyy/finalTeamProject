@@ -19,9 +19,12 @@ export default function CalendarPagination({
     }
   };
   const buttonClass = isStatisticsOpen ? css.paginationDisabled : css.button;
+  const paginationClass = `${css.pagination} ${
+    isStatisticsOpen ? css['boxPaginationDisabled'] : ''
+  }`;
 
   return (
-    <div className={css.pagination}>
+    <div className={paginationClass}>
       <button
         className={buttonClass}
         onClick={handlePrevMonth}
