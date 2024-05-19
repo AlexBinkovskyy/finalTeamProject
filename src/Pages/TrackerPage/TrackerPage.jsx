@@ -12,19 +12,11 @@ import { tokenIsInvalid } from '../../redux/auth/slice';
 import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
+import tourStyles from 'components/Onboarding/StylesTour';
 
 const TrackerTour = () => {
   return (
-    <TourProvider
-      steps={steps}
-      styles={{
-        tooltip: base => ({
-          ...base,
-          backgroundColor: 'black',
-          color: 'white',
-        }),
-      }}
-    >
+    <TourProvider steps={steps} styles={tourStyles}>
       <TrackerPageContent />
     </TourProvider>
   );

@@ -47,6 +47,7 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
 
   return (
     <div
+      data-tut="reactour__buttoncalendar"
       className={`
     ${css.day}
     ${isCurrentDay ? css.currentDay : ''}`}

@@ -12,7 +12,7 @@ export default function CalendarPagination({ currentDate, setCurrentDate }) {
   };
 
   return (
-    <div className={css.pagination} data-tut="reactour__buttoncalendar">
+    <div className={css.pagination}>
       <button className={css.button} onClick={handlePrevMonth}>
         &lt;
       </button>
