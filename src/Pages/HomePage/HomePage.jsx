@@ -2,7 +2,7 @@ import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
 import WelcomeSection from 'Sections/WelcomeSection/WelcomeSection';
 import css from './HomePage.module.css';
 import { useDispatch } from 'react-redux';
-import { verifyEmailSuccess } from '../../redux/auth/slice';
+import { userIsLoggedIn } from '../../redux/auth/slice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -13,7 +13,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (storedData && storedData.token !== 'null') {
-      dispatch(verifyEmailSuccess());
+      dispatch(userIsLoggedIn());
       navigate('/tracker');
     }
   }, [dispatch, navigate, storedData]);

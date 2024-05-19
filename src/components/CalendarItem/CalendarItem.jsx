@@ -3,7 +3,7 @@ import React from 'react';
 import css from './CalendarItem.module.css';
 import { isSameDay, format } from 'date-fns';
 import { useSelector } from 'react-redux';
-import { selectDailyNorma } from '../../redux/auth/selectors';
+import { selectGoal } from '../../redux/auth/selectors';
 
 const handlePercentage = percentage => {
   if (!isNaN(percentage)) {
@@ -25,7 +25,7 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
 
   const formattedDate = format(day, 'dd.MM.yyyy');
 
-  const DailyNormal = useSelector(selectDailyNorma);
+  const DailyNormal = useSelector(selectGoal);
 
   const dataIsWater = dayWaterMonth.find(
     dayWithWater => dayWithWater.date === formattedDate
@@ -56,6 +56,7 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
         type="button"
         onClick={handleClick}
         className={`
+
         ${css.dayNumber}
         ${isCurrentDay ? css.selected : ''}
         ${isActive ? css.active : css.inactive}

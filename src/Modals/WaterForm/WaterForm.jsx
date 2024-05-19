@@ -16,7 +16,7 @@ const schema = Yup.object().shape({
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
 });
 
-const WaterForm = () => {
+const WaterForm = ({isClose}) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -29,10 +29,14 @@ const WaterForm = () => {
   const dispatch = useDispatch();
   const date = useSelector(selectChosenDate);
   
-
   const [waterAmount, setWaterAmount] = useState(50);
   const [time, setTime] = useState('');
   
+  useEffect(() => {
+    const currentTime = new Date();
+    const formattedTime = `${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+    setTime(formattedTime);
+  }, []);
 
   useEffect(() => { 
     setValue('waterAmount', waterAmount);
@@ -56,6 +60,7 @@ const WaterForm = () => {
     }
   };
 
+
   const handleTimeChange = event => {
     setTime(event.target.value);
   };
@@ -69,7 +74,7 @@ const WaterForm = () => {
     console.log('Submitting data:', postData); // Лог для отладки
     const result = await dispatch(addConsumption(postData));
     console.log('Result:', result);
-   
+    isClose();
   };
 
   return (
@@ -85,7 +90,7 @@ const WaterForm = () => {
           >
             -
           </button>
-          <span className={css.waterAmount}  onChange={handleInputChange}>{waterAmount} ml </span>
+          <span className={css.waterAmount}  >{waterAmount} ml </span>
           <button
             type="button"
             onClick={handleIncrement}
@@ -99,7 +104,7 @@ const WaterForm = () => {
       <div className={css.inputGroup}>
         <label htmlFor="time" className={css.labelWater}>Recording time:</label>
         <input
-          type="text"
+          type="time"
           name="time"
           className={css.waterInput}
           onChange={handleTimeChange}
@@ -111,11 +116,9 @@ const WaterForm = () => {
         <label htmlFor="waterAmount" className={css.labelWater}>Enter the value of water used:</label>
         <input
           type="number"
-          name="waterAmount"
           className={css.waterInput}
-          id="waterAmount"
           onChange={handleInputChange}
-          {...register('waterAmount')}
+          value={waterAmount === 0 ? '' : waterAmount}
           min="0"
         />
       </div>

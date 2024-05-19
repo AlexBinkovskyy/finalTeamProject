@@ -1,3 +1,7 @@
+.menuWrapper {
+  position: relative;
+}
+
 .username {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -7,6 +11,7 @@
   text-align: center;
   color: #fff;
   margin-right: 10px;
+  margin-left: 10px;
 }
 @media only screen and (min-width: 768px) {
   .username {
@@ -20,7 +25,7 @@
   height: 38px;
   border-radius: 50%;
   object-fit: contain;
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -42,10 +47,9 @@
   background-color: #323f47;
 }
 .iconInfo{
+  position: absolute;
   fill: none;
   width: 20px;
   height: 20px;
 }
-.menuWrapper {
-  position: relative;
-}
+

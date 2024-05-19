@@ -2,18 +2,31 @@ import React from 'react';
 import { format, addMonths, subMonths, isValid } from 'date-fns';
 import css from './CalendarPagination.module.css';
 
-export default function CalendarPagination({ currentDate, setCurrentDate }) {
+export default function CalendarPagination({
+  currentDate,
+  setCurrentDate,
+  isStatisticsOpen,
+}) {
   const handlePrevMonth = () => {
-    setCurrentDate(prevDate => subMonths(prevDate, 1));
+    if (!isStatisticsOpen) {
+      setCurrentDate(prevDate => subMonths(prevDate, 1));
+    }
   };
 
   const handleNextMonth = () => {
-    setCurrentDate(prevDate => addMonths(prevDate, 1));
+    if (!isStatisticsOpen) {
+      setCurrentDate(prevDate => addMonths(prevDate, 1));
+    }
   };
+  const buttonClass = isStatisticsOpen ? css.paginationDisabled : css.button;
 
   return (
     <div className={css.pagination}>
-      <button className={css.button} onClick={handlePrevMonth}>
+      <button
+        className={buttonClass}
+        onClick={handlePrevMonth}
+        disabled={isStatisticsOpen}
+      >
         &lt;
       </button>
       <span className={css.date}>
@@ -21,7 +34,11 @@ export default function CalendarPagination({ currentDate, setCurrentDate }) {
           isValid(currentDate) &&
           format(currentDate, 'MMMM, yyyy')}
       </span>
-      <button className={css.button} onClick={handleNextMonth}>
+      <button
+        className={buttonClass}
+        onClick={handleNextMonth}
+        disabled={isStatisticsOpen}
+      >
         &gt;
       </button>
     </div>

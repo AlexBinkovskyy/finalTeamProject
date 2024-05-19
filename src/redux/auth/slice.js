@@ -18,10 +18,13 @@ const authSlice = createSlice({
   reducers: {
     verifyEmailSuccess: (state, action) => {
       state.isLoggedIn = true;
-      // state.token = action.payload;
+      state.token = action.payload;
     },
     tokenIsInvalid: state => {
       state.isLoggedIn = false;
+    },
+    userIsLoggedIn: state => {
+      state.isLoggedIn = true;
     },
   },
 
@@ -54,5 +57,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { verifyEmailSuccess, tokenIsInvalid } = authSlice.actions;
+export const { verifyEmailSuccess, tokenIsInvalid, userIsLoggedIn } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;
