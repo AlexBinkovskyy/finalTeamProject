@@ -5,7 +5,7 @@ const tourStyles = {
     color: 'black',
     font: 'Poppins-Regular',
     borderRadius: '30px',
-    padding: '30px',
+    padding: '40px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',
   }),
   tooltip: base => ({
@@ -26,9 +26,9 @@ const tourStyles = {
     ...base,
     color: 'black',
   }),
-  currentDot: base => ({
+  disableDotsNavigation: base => ({
     ...base,
-    backgroundColor: 'green',
+    backgroundColor: '#87d28d',
   }),
   dot: base => ({
     ...base,
