@@ -7,6 +7,7 @@ import { refreshUser } from '../../redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
 import { tokenIsInvalid } from '../../redux/auth/slice';
 import css from './TrackerPage.module.css';
+import Loader from 'components/Loader/Loader';
 
 export default function TrackerPage() {
   const checkVerify = useSelector(selectVerified);
@@ -24,7 +25,7 @@ export default function TrackerPage() {
   }, [dispatch, navigate, checkVerify]);
 
   return !checkVerify ? (
-    <b>Refreshing user...</b>
+    <div>{!checkVerify && <Loader />}</div>
   ) : (
     <>
       <div className={css.TrackerPage}>

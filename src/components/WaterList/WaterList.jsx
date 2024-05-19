@@ -16,11 +16,11 @@ export default function WaterList({ selectedDate }) {
     dispatch(fetchDailyConsumption(initialDay));
   }, [dispatch, initialDay]);
 
-  const placeholderWater = { amount: '000', time: '00:00' };
+  const placeholderWater = { amount: '250', time: '12:00' };
 
   return (
     <>
-      {waterList.length < 1 ? (
+      {!waterList.length ? (
         <div className={`${css.placeholder} ${css.waterItem}`}>
           <WaterItem water={placeholderWater} />
         </div>
