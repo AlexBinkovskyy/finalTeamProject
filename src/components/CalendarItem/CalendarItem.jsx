@@ -4,6 +4,7 @@ import css from './CalendarItem.module.css';
 import { isSameDay, format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { selectGoal } from '../../redux/auth/selectors';
+import { selectTodayTotal } from '../../redux/water/selectors';
 
 const handlePercentage = percentage => {
   if (!isNaN(percentage)) {
@@ -21,25 +22,12 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
   const isCurrentDay = isSameDay(new Date(), day);
   const isActive = isSameDay(selectedDate, day);
 
-  const dayWaterMonth = useSelector(state => state.water.monthNotes);
+  const DailyGoal = useSelector(selectGoal);
+  const todayTotal = useSelector(selectTodayTotal);
 
-  const formattedDate = format(day, 'dd.MM.yyyy');
+  const percentage = (todayTotal / DailyGoal) * 100;
 
-  const DailyNormal = useSelector(selectGoal);
-
-  const dataIsWater = dayWaterMonth.find(
-    dayWithWater => dayWithWater.date === formattedDate
-  );
-
-  const totalAmount = dataIsWater?.dailyCount.reduce(
-    (accumulator, { amount }) => {
-      return accumulator + amount;
-    },
-    0
-  );
-  const percentage = (totalAmount / DailyNormal) * 100;
-
-  const isFullWater = totalAmount >= DailyNormal;
+  const isFullWater = todayTotal >= DailyGoal;
 
   const handleClick = () => {
     setSelectedDate(day);
