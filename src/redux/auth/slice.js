@@ -31,19 +31,40 @@ const authSlice = createSlice({
 
   extraReducers: builder => {
     builder
+      // signup
       .addCase(signup.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
+      .addCase(signup.rejected, state => {
+        state.isRefreshing = false;
+      })
+
+      // signin
       .addCase(signin.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      .addCase(signin.rejected, state => {
+        state.isRefreshing = false;
+      })
+
+      // signout
       .addCase(signout.fulfilled, state => {
         state.user = {};
         state.token = null;
         state.isLoggedIn = false;
       })
+      .addCase(signout.rejected, state => {
+        state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+
+      // refreshUser
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -54,7 +75,14 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
       })
+
+      // updateUserSettings
       .addCase(updateUserSettings.pending, state => {
         state.isRefreshing = true;
       })
@@ -65,6 +93,11 @@ const authSlice = createSlice({
       })
       .addCase(updateUserSettings.rejected, state => {
         state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
       });
   },
 });
