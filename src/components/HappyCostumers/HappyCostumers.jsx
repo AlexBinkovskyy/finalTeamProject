@@ -12,22 +12,8 @@ export default function HappyCostumers() {
     axios
       .get(fetchUrl)
       .then(res => {
-        const users = res.data.userAvatars;
-        const defaultUrl =
-          'https://finalteamproject-backend.onrender.com/icon/defaultAvatar.png';
-
-          const originalAvatars = users.filter(item => item.avatarUrl !== defaultUrl);
-          
-          const count = Math.min(3, originalAvatars.length);
-          const chosenAvatars = [];
-          while (chosenAvatars.length < count) {
-            const index = Math.floor(Math.random() * originalAvatars.length);
-            const avatar = originalAvatars[index];
-            if (!chosenAvatars.includes(avatar)) {
-              chosenAvatars.push(avatar);
-            }
-          }
-        setRandomAvatars(chosenAvatars);
+        setRandomAvatars( res.data.userAvatars);
+        console.log(randomAvatars);
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
