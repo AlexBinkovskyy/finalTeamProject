@@ -12,7 +12,9 @@ import { tokenIsInvalid } from '../../redux/auth/slice';
 import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
+import Loader from 'components/Loader/Loader';
 import tourStyles from 'components/Onboarding/StylesTour';
+
 
 const TrackerTour = () => {
   return (
@@ -45,7 +47,7 @@ const TrackerPageContent = () => {
   }, [dispatch, navigate, checkVerify, setIsOpen]);
 
   return !checkVerify ? (
-    <b>Refreshing user...</b>
+    <div>{!checkVerify && <Loader />}</div>
   ) : (
     <>
       <div className={css.TrackerPage} data-tut="reactour__fiststep">

@@ -1,10 +1,8 @@
 .wrapper {
   display: flex;
-}
-.wrapper {
   position: relative;
-  width: 47px;
-  height: 47px;
+  width: 50px;
+  height: 50px;
 }
 
 .image {

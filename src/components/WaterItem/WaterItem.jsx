@@ -28,6 +28,8 @@ export default function WaterItem({ water: { amount, time, _id } }) {
     document.body.style.overflow = '';
   };
 
+  const svgClass = !_id ? css.iconDisabled : css.icon;
+
   return (
     <>
       <div className={css.card}>
@@ -40,7 +42,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
           <p className={css.time}>{time}</p>
         </div>
         <div className={css.buttons}>
-          <svg className={css.icon} onClick={openEditModal}>
+          <svg className={svgClass} onClick={openEditModal}>
             <use href={`${icons}#IconEdit2`}></use>
           </svg>
           {modalIsOpen && (
@@ -52,7 +54,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
             />
           )}
 
-          <svg className={css.icon} onClick={openDeleteModal}>
+          <svg className={svgClass} onClick={openDeleteModal}>
             <use href={`${icons}#IconTrash04`}></use>
           </svg>
           {deleteModalIsOpen && (
