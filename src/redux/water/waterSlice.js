@@ -58,6 +58,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
+        state.todayTotal = action.payload.totalWater;
       })
       .addCase(addConsumption.rejected, handleRejected)
 
@@ -66,6 +67,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
+        state.todayTotal = action.payload.totalWater;
       })
       .addCase(deleteConsumption.rejected, handleRejected)
 
@@ -74,6 +76,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayNotes = action.payload.dailyCount;
+        state.todayTotal = action.payload.totalWater;
       })
       .addCase(updateConsumption.rejected, handleRejected),
 });

@@ -1,17 +1,32 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { TourProvider, useTour } from '@reactour/tour';
+
 import WaterDetailedInfo from 'components/WaterMainInfo/WaterMainInfo';
 import WaterMainInfo from 'components/WaterDetailedInfo/WaterDetailedInfo';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectVerified } from '../../redux/auth/selectors';
-import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/operations';
-import { useNavigate } from 'react-router-dom';
 import { tokenIsInvalid } from '../../redux/auth/slice';
-import css from './TrackerPage.module.css';
 
-export default function TrackerPage() {
+import steps from '../../components/Onboarding/steps.js';
+
+import css from './TrackerPage.module.css';
+import tourStyles from 'components/Onboarding/StylesTour';
+
+const TrackerTour = () => {
+  return (
+    <TourProvider steps={steps} styles={tourStyles}>
+      <TrackerPageContent />
+    </TourProvider>
+  );
+};
+
+const TrackerPageContent = () => {
   const checkVerify = useSelector(selectVerified);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { setIsOpen } = useTour();
 
   useEffect(() => {
     if (!checkVerify) {
@@ -20,17 +35,25 @@ export default function TrackerPage() {
           dispatch(tokenIsInvalid());
         navigate('/signin');
       });
+    } else {
+      const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
+      if (!isFirstVisit) {
+        setIsOpen(true);
+        localStorage.setItem('isFirstVisitTrackerPage', 'true');
+      }
     }
-  }, [dispatch, navigate, checkVerify]);
+  }, [dispatch, navigate, checkVerify, setIsOpen]);
 
   return !checkVerify ? (
     <b>Refreshing user...</b>
   ) : (
     <>
-      <div className={css.TrackerPage}>
+      <div className={css.TrackerPage} data-tut="reactour__fiststep">
         <WaterDetailedInfo />
         <WaterMainInfo />
       </div>
     </>
   );
-}
+};
+
+export default TrackerTour;

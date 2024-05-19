@@ -12,7 +12,11 @@ export default function UserBar({ name, avatarUrl }) {
 
   return (
     <div>
-      <button className={css.button} onClick={togglePopover}>
+      <button
+        className={css.button}
+        data-tut="reactour__btnuserbar"
+        onClick={togglePopover}
+      >
         <span className={css.username}>{name}</span>
         <img src={avatarUrl} className={css.avatar} alt="User Avatar" />
         <svg
@@ -26,7 +30,10 @@ export default function UserBar({ name, avatarUrl }) {
         </svg>
       </button>
       <div className={css.menuWrapper}>
-        <UserBarPopover popoverOpen={popoverOpen} setPopoverOpen={setPopoverOpen}/>
+        <UserBarPopover
+          popoverOpen={popoverOpen}
+          setPopoverOpen={setPopoverOpen}
+        />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import css from './WaterForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { addConsumption } from '../../redux/water/operations.js';
+import { addConsumption,updateConsumption } from '../../redux/water/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenDate } from '../../redux/water/selectors';
 
@@ -16,7 +16,9 @@ const schema = Yup.object().shape({
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
 });
 
-const WaterForm = ({isClose}) => {
+
+
+const WaterForm = ({isClose, defaultValues}) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -29,19 +31,42 @@ const WaterForm = ({isClose}) => {
   const dispatch = useDispatch();
   const date = useSelector(selectChosenDate);
   
-  const [waterAmount, setWaterAmount] = useState(50);
+  const [waterAmount, setWaterAmount] = useState(250);
   const [time, setTime] = useState('');
+  // const [dateError, setDateError] = useState('');
   
-  useEffect(() => {
-    const currentTime = new Date();
-    const formattedTime = `${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
-    setTime(formattedTime);
-  }, []);
+  // const [waterAmount, setWaterAmount] = useState(defaultValues?.amount || 250);
+  // const [time, setTime] = useState('');
+
+
+  
+
+  // useEffect(() => {
+  //   if (defaultValues?.amount !== undefined) {
+  //     setWaterAmount(defaultValues.amount);
+  //     setValue('waterAmount', defaultValues.amount);
+  //   }
+  // }, [defaultValues?.amount, setValue]);
+
+  // useEffect(() => {
+  //   if (defaultValues?.time !== undefined) {
+  //     setValue('time', defaultValues.time);
+  //   } else {
+  //     const currentTime = new Date();
+  //     const formattedTime = `${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+  //     setValue('time', formattedTime);
+  //   }
+  // }, [defaultValues?.time,time, setValue]);
 
   useEffect(() => { 
     setValue('waterAmount', waterAmount);
     setValue('time', time);
   }, [waterAmount, time, setValue]);
+  useEffect(() => {
+    const currentTime = new Date();
+    const formattedTime = `${String(currentTime.getHours()).padStart(2, '0')}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+    setTime(formattedTime);
+  }, []);
 
   
 
@@ -60,20 +85,34 @@ const WaterForm = ({isClose}) => {
     }
   };
 
-
   const handleTimeChange = event => {
     setTime(event.target.value);
   };
 
   const onSubmit = async (data) => {
+    // const today = new Date();
+    // today.setHours(0, 0, 0, 0); // Сбросить время для сравнения только по дате
+
+    // if (date > today) {
+    //   setDateError('Chosen date can not be picked in the future');
+    // } 
+
     const postData = {
       date: date,
       time: data.time,
       amount: data.waterAmount
     };
-    console.log('Submitting data:', postData); // Лог для отладки
-    const result = await dispatch(addConsumption(postData));
-    console.log('Result:', result);
+    // console.log('Submitting data:', postData); // Лог для отладки
+    // const result = await dispatch(addConsumption(postData));
+    // console.log('Result:', result);
+    if (defaultValues?._id) {
+      const result = await dispatch(updateConsumption({ _id: defaultValues._id, ...postData }));
+      console.log('Update result:', result);
+    } else {
+      const result = await dispatch(addConsumption(postData));
+      console.log('Add result:', result);
+    }
+
     isClose();
   };
 
@@ -122,6 +161,7 @@ const WaterForm = ({isClose}) => {
           min="0"
         />
       </div>
+      {/* {dateError && <p className={css.error}>{dateError}</p>} */}
       <div>
         <button type="submit" className={css.saveBtn} >
           Save
