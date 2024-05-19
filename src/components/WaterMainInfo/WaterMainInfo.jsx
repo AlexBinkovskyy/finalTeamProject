@@ -7,12 +7,10 @@ import AddWaterBtn from 'components/AddWaterBtn/AddWaterBtn';
 export default function WaterMainInfo() {
   return (
     <div className={css.MainInfo}>
-      <div className={css.WaterMainInfo}>
-        <Logo />
-        <WaterDailyNorma />
-        <WaterProgressBar />
-        <AddWaterBtn />
-      </div>
+      <Logo />
+      <WaterDailyNorma />
+      <WaterProgressBar />
+      <AddWaterBtn />
     </div>
   );
 }

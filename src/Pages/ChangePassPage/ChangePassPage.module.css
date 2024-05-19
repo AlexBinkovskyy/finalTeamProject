@@ -11,7 +11,7 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  gap: 174px;
+  gap: 126px;
   padding: 24px 16px 218px;
 }
 
@@ -28,7 +28,7 @@
     width: 704px;
     height: 960px;
     padding: 32px 32px 284px;
-    gap: 226px;
+    gap: 172px;
   }
 }
 
@@ -38,7 +38,7 @@
     margin-right: 32px;
     width: 672px;
     height: 736px;
-    gap: 114px;
+    gap: 74px;
   }
 
   .divMain {

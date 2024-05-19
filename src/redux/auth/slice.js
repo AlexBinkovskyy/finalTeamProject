@@ -4,6 +4,7 @@ import {
   signin,
   signout,
   refreshUser,
+  updateUserSettings,
   // verifyEmail,
 } from './operations';
 
@@ -18,28 +19,52 @@ const authSlice = createSlice({
   reducers: {
     verifyEmailSuccess: (state, action) => {
       state.isLoggedIn = true;
-      // state.token = action.payload;
+      state.token = action.payload;
     },
     tokenIsInvalid: state => {
       state.isLoggedIn = false;
+    },
+    userIsLoggedIn: state => {
+      state.isLoggedIn = true;
     },
   },
 
   extraReducers: builder => {
     builder
+      // signup
       .addCase(signup.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
+      .addCase(signup.rejected, state => {
+        state.isRefreshing = false;
+      })
+
+      // signin
       .addCase(signin.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      .addCase(signin.rejected, state => {
+        state.isRefreshing = false;
+      })
+
+      // signout
       .addCase(signout.fulfilled, state => {
         state.user = {};
         state.token = null;
         state.isLoggedIn = false;
       })
+      .addCase(signout.rejected, state => {
+        state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+
+      // refreshUser
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -50,9 +75,33 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+
+      // updateUserSettings
+      .addCase(updateUserSettings.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(updateUserSettings.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(updateUserSettings.rejected, state => {
+        state.isRefreshing = false;
+
+        // check
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
       });
   },
 });
 
-export const { verifyEmailSuccess, tokenIsInvalid } = authSlice.actions;
+export const { verifyEmailSuccess, tokenIsInvalid, userIsLoggedIn } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;

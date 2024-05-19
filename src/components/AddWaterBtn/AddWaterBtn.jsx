@@ -41,7 +41,11 @@ export default function AddWaterBtn({ selectedDay = new Date() }) {
 
   return (
     <>
-      <button className={css.AddWaterBtn} onClick={openWaterModal}>
+      <button
+        className={css.AddWaterBtn}
+        data-tut="reactour__waterbtn"
+        onClick={openWaterModal}
+      >
         <div className={css.GoPlus}>
           <GoPlus className={css.icon} strokeWidth={1} />
         </div>

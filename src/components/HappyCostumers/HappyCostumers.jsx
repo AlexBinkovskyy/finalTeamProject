@@ -12,19 +12,10 @@ export default function HappyCostumers() {
     axios
       .get(fetchUrl)
       .then(res => {
-        const users = res.data.userAvatars;
-        const count = users.length;
-        const chosenIndexes = new Set();
-        while (chosenIndexes.size < Math.min(3, count)) {
-          chosenIndexes.add(Math.floor(Math.random() * count));
-        }
-        const chosenAvatars = Array.from(chosenIndexes).map(
-          index => users[index]
-        );
-        setRandomAvatars(chosenAvatars);
+        setRandomAvatars( res.data.userAvatars);
       })
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  },[]);
 
   return (
     <div className={css.wrapper}>

@@ -1,0 +1,10 @@
+.dailyInfo {
+  padding: 40px 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 24px;
+}

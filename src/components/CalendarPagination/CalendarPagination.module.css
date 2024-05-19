@@ -31,3 +31,10 @@
     font-size: 20px;
   }
 }
+
+.paginationDisabled {
+  font-family: Poppins-Bold;
+  cursor: not-allowed;
+  background-color: transparent;
+  border: none;
+}

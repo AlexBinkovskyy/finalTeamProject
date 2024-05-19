@@ -1,23 +1,21 @@
 .TrackerPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 16px;
-  gap: 16px;
-}
-@media screen and (max-width: 767.9px) and (min-width: 320px) {
-  .TrackerPage {
-  }
+  padding: 16px;
 }
 
 @media only screen and (min-width: 768px) {
   .TrackerPage {
-    margin: 32px;
+    padding: 32px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .TrackerPage {
-    flex-direction: row;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
   }
 }

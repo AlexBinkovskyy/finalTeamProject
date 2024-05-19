@@ -1,15 +1,13 @@
 .wrapper {
   display: flex;
-}
-.wrapper {
   position: relative;
-  width: 47px;
-  height: 47px;
+  width: 50px;
+  height: 50px;
 }
 
 .image {
-  width: 47px;
-  height: 47px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: white;
   border: 2px white solid;
@@ -17,10 +15,11 @@
 }
 
 .image:nth-child(1) {
+  transform: translateX(-8px);
   z-index: 30;
 }
 .image:nth-child(2) {
-  transform: translateX(28px);
+  transform: translateX(24px);
   z-index: 20;
 }
 .image:nth-child(3) {

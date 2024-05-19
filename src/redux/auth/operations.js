@@ -47,7 +47,7 @@ export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
     clearAuthHeader();
     toast.success('Signout success');
   } catch (error) {
-    toast.error('Signout error');
+    toast.error(error.response.data.message);
 
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -57,10 +57,10 @@ export const resendMail = createAsyncThunk(
   'auth/resend',
   async (credentials, thunkAPI) => {
     try {
-      await axios.post('/users/verify', credentials);
-      toast.success('Mail resend');
+      const res = await axios.post('/users/verify', credentials);
+      toast.success(res.data.message);
     } catch (error) {
-      toast.error('Resend error');
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -68,13 +68,32 @@ export const resendMail = createAsyncThunk(
 );
 
 export const recoverMail = createAsyncThunk(
-  'auth/recover',
+  'auth/recoverMail',
   async (credentials, thunkAPI) => {
     try {
-      await axios.post('/users/passrecovery', credentials);
-      toast.success('Please check your mail');
+      const res = await axios.post('/users/passrecovery', credentials);
+      toast.success(res.data.message);
     } catch (error) {
-      toast.error('Wrong Mail');
+      toast.error(error.response.data.message);
+
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const recoverPass = createAsyncThunk(
+  'auth/recoverPass',
+  async (credentials, thunkAPI) => {
+    try {
+      console.log(credentials);
+      const res = await axios.patch('/users/passrecovery', credentials, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -131,7 +150,7 @@ export const updateUserSettings = createAsyncThunk(
       toast.success('Settings updated successfully');
       return res.data;
     } catch (error) {
-      toast.error('Failed to update settings');
+      toast.error('Failed to update settings. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

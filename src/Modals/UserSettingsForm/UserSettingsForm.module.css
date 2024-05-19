@@ -85,6 +85,15 @@
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: var(--main-text-color);
+  cursor: pointer;
+  transition-property: color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+.uploadText:hover,
+.uploadText:focus {
+  color: var(--accent-color);
 }
 
 .input {
@@ -103,6 +112,11 @@
   .input {
     width: 400px;
   }
+}
+
+.input:focus-within {
+  outline: none;
+  border: 1px solid var(--accent-color);
 }
 
 .formWraper {
@@ -198,6 +212,11 @@
     flex-direction: row;
   }
 }
+
+.listItem:not(:last-child) {
+  margin-bottom: 12px;
+}
+
 @media only screen and (min-width: 768px) {
   .listItem:not(:last-child) {
     margin-right: 28px;
@@ -248,7 +267,27 @@
   }
 }
 
-.waterValue {
+.dailyNorma {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+
+@media only screen and (min-width: 768px) {
+  .dailyNorma {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.dailyNormaValue {
+  margin-left: 5px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -299,7 +338,7 @@ input[type='radio'] + label:after {
   border-radius: 50%;
   position: absolute;
   left: 5px;
-  top: 4px;
+  top: 3px;
   display: none;
 }
 
@@ -316,10 +355,18 @@ input[type='radio']:checked + label:after {
 .icon {
   width: 24px;
   height: 24px;
-  stroke: #000;
+  stroke: #2f2f2f;
+  fill: white;
   margin-right: 8px;
+  transition-property: stroke;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
+.uploadText:hover .icon,
+.uploadText:focus .icon {
+  stroke: var(--accent-color);
+}
 .calcIcon {
   font-size: 14px;
   color: var(--accent-color);
@@ -346,7 +393,17 @@ input[type='radio']:checked + label:after {
   background-color: var(--accent-color);
 }
 
-.error{
+
+.submitBtn:focus {
+  outline: 1px solid #93d193;
+}
+
+.error {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
   color: red;
   max-width: 303px;
 }

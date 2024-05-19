@@ -1,11 +1,7 @@
 .card {
   display: flex;
-  gap: 10px;
-}
-@media only screen and (min-width: 768px) {
-  .card {
-    gap: 20px;
-  }
+  justify-content: space-between;
+  width: 180px;
 }
 
 .waterIcon {
@@ -21,27 +17,21 @@
 }
 
 .amount {
-  font-size: smaller;
-  font-weight: bold;
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .time {
+  font-family: 'Poppins-Regular';
   font-size: 12px;
+  line-height: 1.6;
   font-weight: normal;
-  color: rgba(47, 47, 47, 0.6);
-}
-
-.data :not(:last-of-type) {
-  margin-bottom: 6px;
-}
-@media only screen and (min-width: 768px) {
-  .data :not(:last-of-type) {
-    margin-bottom: 8px;
-  }
+  color: var(--main-text-color);
 }
 
 .buttons {
-  background-color: white;
+  background-color: var(--main-white);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -52,10 +42,11 @@
   }
 }
 
-.icon {
+.icon,
+.iconDisabled {
   width: 14px;
   height: 14px;
-  stroke: #323f47;
+  stroke: var(--main-color);
   transition: transform 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
@@ -66,6 +57,11 @@
 }
 
 .icon:hover {
-  stroke: var(--main-color, #323f47);
+  stroke: var(--main-color);
   transform: scale(1.2);
+  cursor: pointer;
+}
+
+.iconDisabled:hover {
+  pointer-events: none;
 }

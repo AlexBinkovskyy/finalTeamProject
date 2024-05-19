@@ -16,15 +16,26 @@ export default function WaterList({ selectedDate }) {
     dispatch(fetchDailyConsumption(initialDay));
   }, [dispatch, initialDay]);
 
+  const placeholderWater = { amount: '250', time: '12:00' };
+
   return (
     <>
-      <ul className={css.waterList}>
-        {waterList.map(water => (
-          <li key={water._id} className={css.waterItem}>
-            <WaterItem water={water} />
-          </li>
-        ))}
-      </ul>
+      {!waterList.length ? (
+        <div
+          className={`${css.placeholder} ${css.waterItem}`}
+          data-tut="reactour__waterlist"
+        >
+          <WaterItem water={placeholderWater} />
+        </div>
+      ) : (
+        <ul className={css.waterList}>
+          {waterList.map(water => (
+            <li key={water._id} className={css.waterItem}>
+              <WaterItem water={water} />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }
