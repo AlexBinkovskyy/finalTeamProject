@@ -338,7 +338,7 @@ input[type='radio'] + label:after {
   border-radius: 50%;
   position: absolute;
   left: 5px;
-  top: 4px;
+  top: 3px;
   display: none;
 }
 
@@ -399,6 +399,11 @@ input[type='radio']:checked + label:after {
 }
 
 .error {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
   color: red;
   max-width: 303px;
 }

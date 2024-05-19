@@ -1,4 +1,5 @@
 .settingModalWraper {
+  padding: 20px;
   max-height: 80vh;
   overflow: auto;
   scrollbar-color: var(--accent-color) #edfaf6;
