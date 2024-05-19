@@ -16,7 +16,7 @@ export default function HappyCostumers() {
         console.log(randomAvatars);
       })
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  });
 
   return (
     <div className={css.wrapper}>
