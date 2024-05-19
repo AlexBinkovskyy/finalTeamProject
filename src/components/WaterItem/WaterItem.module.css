@@ -42,12 +42,12 @@
   }
 }
 
-.icon {
+.icon,
+.iconDisabled {
   width: 14px;
   height: 14px;
   stroke: var(--main-color);
   transition: transform 0.3s ease;
-  cursor: pointer;
 }
 @media only screen and (min-width: 768px) {
   .icon {
@@ -59,4 +59,9 @@
 .icon:hover {
   stroke: var(--main-color);
   transform: scale(1.2);
+  cursor: pointer;
+}
+
+.iconDisabled:hover {
+  pointer-events: none;
 }

@@ -29,6 +29,7 @@ const waterSlice = createSlice({
 
   extraReducers: builder =>
     builder
+      // fetchDailyConsumption
       .addCase(fetchDailyConsumption.pending, handlePending)
       .addCase(fetchDailyConsumption.fulfilled, (state, action) => {
         state.loading = false;
@@ -45,6 +46,7 @@ const waterSlice = createSlice({
         state.todayTotal = null;
       })
 
+      // fetchMonthlyConsumption
       .addCase(fetchMonthlyConsumption.pending, handlePending)
       .addCase(fetchMonthlyConsumption.fulfilled, (state, action) => {
         state.loading = false;
@@ -53,6 +55,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchMonthlyConsumption.rejected, handleRejected)
 
+      // addConsumption
       .addCase(addConsumption.pending, handlePending)
       .addCase(addConsumption.fulfilled, (state, action) => {
         state.loading = false;
@@ -62,6 +65,7 @@ const waterSlice = createSlice({
       })
       .addCase(addConsumption.rejected, handleRejected)
 
+      // deleteConsumption
       .addCase(deleteConsumption.pending, handlePending)
       .addCase(deleteConsumption.fulfilled, (state, action) => {
         state.loading = false;
@@ -71,6 +75,7 @@ const waterSlice = createSlice({
       })
       .addCase(deleteConsumption.rejected, handleRejected)
 
+      // updateConsumption
       .addCase(updateConsumption.pending, handlePending)
       .addCase(updateConsumption.fulfilled, (state, action) => {
         state.loading = false;
