@@ -1,33 +1,13 @@
-import axios from 'axios';
+import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import { store } from '../store';
-import { tokenIsInvalid } from './slice';
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
-
-const api = axios.create({
-  baseURL: 'https://finalteamproject-backend.onrender.com/api',
-});
-
-api.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response && error.response.status === 401) {
-      store.dispatch(tokenIsInvalid());
-      history.push('/finalTeamProject/signin');
-    }
-    return Promise.reject(error);
-  }
-);
 
 const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  api.defaults.headers.common.Authorization = '';
 };
 
 export const signup = createAsyncThunk(
