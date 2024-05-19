@@ -21,7 +21,10 @@ export default function WaterList({ selectedDate }) {
   return (
     <>
       {waterList.length < 1 ? (
-        <div className={`${css.placeholder} ${css.waterItem}`}>
+        <div
+          className={`${css.placeholder} ${css.waterItem}`}
+          data-tut="reactour__waterlist"
+        >
           <WaterItem water={placeholderWater} />
         </div>
       ) : (

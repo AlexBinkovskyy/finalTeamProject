@@ -45,7 +45,11 @@ export default function MonthInfo() {
             setCurrentDate={setSelectedDate}
             isStatisticsOpen={!showCalendar}
           />
-          <button className={css.buttonIcon} onClick={handleButtonClick}>
+          <button
+            className={css.buttonIcon}
+            data-tut="reactour__statistic"
+            onClick={handleButtonClick}
+          >
             <svg className={css.icon}>
               <use href={`${IconPieChart}#IconPieChart02`}></use>
             </svg>
