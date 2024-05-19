@@ -1,8 +1,26 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
+import { store } from '../store';
+import { tokenIsInvalid } from './slice';
+import { createBrowserHistory } from 'history';
 
-axios.defaults.baseURL = 'https://finalteamproject-backend.onrender.com/api';
+const history = createBrowserHistory();
+
+const api = axios.create({
+  baseURL: 'https://finalteamproject-backend.onrender.com/api',
+});
+
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 401) {
+      store.dispatch(tokenIsInvalid());
+      history.push('/finalTeamProject/signin');
+    }
+    return Promise.reject(error);
+  }
+);
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,7 +34,7 @@ export const signup = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/register', credentials);
+      const res = await api.post('/users/register', credentials);
       toast.success(res.data.user.message);
       return res.data;
     } catch (error) {
@@ -30,7 +48,7 @@ export const signin = createAsyncThunk(
   'auth/signin',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/login', credentials);
+      const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.token);
       toast.success('Welcome to the App');
       return res.data;
@@ -43,7 +61,7 @@ export const signin = createAsyncThunk(
 
 export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await api.post('/users/logout');
     clearAuthHeader();
     toast.success('Signout success');
   } catch (error) {
@@ -57,7 +75,7 @@ export const resendMail = createAsyncThunk(
   'auth/resend',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/verify', credentials);
+      const res = await api.post('/users/verify', credentials);
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -71,7 +89,7 @@ export const recoverMail = createAsyncThunk(
   'auth/recoverMail',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/passrecovery', credentials);
+      const res = await api.post('/users/passrecovery', credentials);
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -86,7 +104,7 @@ export const recoverPass = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       console.log(credentials);
-      const res = await axios.patch('/users/passrecovery', credentials, {
+      const res = await api.patch('/users/passrecovery', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -112,7 +130,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/current');
+      const res = await api.get('/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -120,33 +138,11 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-// export const verifyEmail = createAsyncThunk(
-//   'auth/verifyEmail',
-//   async (_, thunkAPI) => {
-//     // const state = thunkAPI.getState();
-//     const urlParams = window.location.href.split('?');
-//     const verifyToken = urlParams[1];
-//     window.location.href = urlParams[0];
-
-//     if (!verifyToken) {
-//       return thunkAPI.rejectWithValue('Unable to verify users email');
-//     }
-
-//     try {
-//       setAuthHeader(verifyToken);
-//       const res = await axios.get('/users/current');
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const updateUserSettings = createAsyncThunk(
   'auth/updateSettings',
   async (formData, thunkAPI) => {
     try {
-      const res = await axios.put('/users/update', formData);
+      const res = await api.put('/users/update', formData);
       toast.success('Settings updated successfully');
       return res.data;
     } catch (error) {
