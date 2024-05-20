@@ -9,13 +9,13 @@ import { setAuthHeader } from '../redux/auth/operations';
 const history = createBrowserHistory();
 
 const setInterceptors = () => {
-  api.interceptors.request.use(config => {
-    
-    config.headers['Access-Control-Allow-Origin'] = '*'; // Дозволяє всі джерела
-    config.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'; // Дозволені методи
-    config.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'; // Дозволені заголовки
-    return config;
-  });
+  // api.interceptors.request.use(config => {
+
+  //   config.headers['Access-Control-Allow-Origin'] = '*'; // Дозволяє всі джерела
+  //   config.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'; // Дозволені методи
+  //   config.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'; // Дозволені заголовки
+  //   return config;
+  // });
 
   api.interceptors.response.use(
     response => response,
@@ -28,7 +28,9 @@ const setInterceptors = () => {
           try {
             const result = await api.post('/users/refreshtoken', {
               refreshToken,
-            }, {withCredentials: true});
+            }
+            , {withCredentials: true}
+          );
             const newAccessToken = result.data.accessToken;
             setAuthHeader(newAccessToken);
             originalRequest.headers[

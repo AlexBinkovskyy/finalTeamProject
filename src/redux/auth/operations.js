@@ -29,7 +29,7 @@ export const signin = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/login', credentials);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.accessToken);
       toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
