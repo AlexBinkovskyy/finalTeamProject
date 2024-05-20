@@ -35,7 +35,7 @@ export default function WaterProgressBar() {
 
   return (
     <div className={css.WaterProgressBar}>
-      <div className={css.ProgressBar}>
+      <div className={css.ProgressBar} data-tut="reactour__waterprogress">
         {chosen === today ? (
           <p className={css.text}>Today</p>
         ) : (
