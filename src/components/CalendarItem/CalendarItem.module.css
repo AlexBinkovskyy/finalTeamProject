@@ -68,7 +68,7 @@
 
 .waterPercentage {
   font-family: Poppins-Bold;
-  color: #2f2f2f99;
+  color: var(--main-text-color);
 
   font-size: 10px;
   position: absolute;

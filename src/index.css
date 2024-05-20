@@ -9,7 +9,7 @@
 
   --background-color-theme: #ffffff;
   --main-color-theme: #000000; /* додано */
-  --main-text-color-theme: #ffffff; /* додано */
+  --main-text-color-theme: #323f47; /* додано */
   --accent-color-theme: #009688; /* додано */
   --background-color-day: #323f4733;
 }
@@ -25,7 +25,7 @@
 
   --background-color-theme: #282828;
   --main-color-theme: #ffffff; /* додано */
-  --main-text-color-theme: #000000; /* додано */
+  --main-text-color-theme: #ffffff; /* додано */
   --accent-color-theme: #00ff00; /* додано */
   --background-color-day: #78ff74;
 }

@@ -10,7 +10,7 @@ import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
 
 import ThemeSwitcher from 'Theme/ThemeSwitcher/ThemeSwitcher';
-import { ThemeContext } from 'Theme/ThemeContext';
+import { ThemeContext } from '../../Theme/ThemeContext';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
