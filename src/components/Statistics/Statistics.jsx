@@ -6,6 +6,7 @@ import {
   Tooltip,
   Area,
   AreaChart,
+  ResponsiveContainer,
 } from 'recharts';
 import css from './Statistics.module.css';
 import { useSelector } from 'react-redux';
@@ -110,47 +111,49 @@ const Statistics = () => {
           <option value="30">30 days</option>
         </select>
       </div>
-      <AreaChart width={700} height={250} data={formattedChartData}>
-        <defs>
-          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#9BE1A0" stopOpacity={1} />
-            <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
-          </linearGradient>
-        </defs>
-        <CartesianGrid strokeDasharray="3" stroke="none" />
-        <XAxis
-          dataKey="date"
-          padding={{ left: 20, right: 20 }}
-          tickSize={false}
-          tickLine={false}
-          stroke=""
-        />
-        <YAxis
-          padding={{ top: 20, bottom: 20 }}
-          tickSize={false}
-          tickLine={false}
-          stroke=""
-          tickFormatter={formatYAxis}
-        />
-        <Area
-          dataKey="Water"
-          dot={{
-            stroke: '#87D28D',
-            strokeWidth: 3,
-            r: 9,
-            fill: '#fff',
-            fillOpacity: '1',
-          }}
-          stroke="#87D28D"
-          strokeWidth={3}
-          fill={`url(#${gradientId})`}
-        />
-        <Tooltip
-          content={<CustomTooltip />}
-          cursor={{ stroke: '' }}
-          position={{ y: 10 }}
-        />
-      </AreaChart>
+      <ResponsiveContainer width="100%" height={250}>
+        <AreaChart data={formattedChartData}>
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#9BE1A0" stopOpacity={1} />
+              <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3" stroke="none" />
+          <XAxis
+            dataKey="date"
+            padding={{ left: 20, right: 20 }}
+            tickSize={false}
+            tickLine={false}
+            stroke=""
+          />
+          <YAxis
+            padding={{ top: 20, bottom: 20 }}
+            tickSize={false}
+            tickLine={false}
+            stroke=""
+            tickFormatter={formatYAxis}
+          />
+          <Area
+            dataKey="Water"
+            dot={{
+              stroke: '#87D28D',
+              strokeWidth: 3,
+              r: 9,
+              fill: '#fff',
+              fillOpacity: '1',
+            }}
+            stroke="#87D28D"
+            strokeWidth={3}
+            fill={`url(#${gradientId})`}
+          />
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ stroke: '' }}
+            position={{ y: 10 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </div>
   );
 };

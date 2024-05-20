@@ -42,6 +42,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .thumb {
@@ -122,6 +123,14 @@
 .formWraper {
   display: flex;
   flex-direction: column;
+}
+
+.nameInput,
+.emailInput,
+.weightInput,
+.activeTimeInput,
+.goalInput {
+  position: relative;
 }
 
 @media only screen and (min-width: 1440px) {
@@ -338,7 +347,7 @@ input[type='radio'] + label:after {
   border-radius: 50%;
   position: absolute;
   left: 5px;
-  top: 3px;
+  top: 4px;
   display: none;
 }
 
@@ -393,7 +402,6 @@ input[type='radio']:checked + label:after {
   background-color: var(--accent-color);
 }
 
-
 .submitBtn:focus {
   outline: 1px solid #93d193;
 }
@@ -401,7 +409,7 @@ input[type='radio']:checked + label:after {
 .error {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: red;
@@ -416,5 +424,52 @@ input[type='radio']:checked + label:after {
 @media only screen and (min-width: 1440px) {
   .error {
     max-width: 400px;
+  }
+}
+
+.avatarError {
+  position: absolute;
+  top: 110px;
+  left: 105px;
+}
+
+@media only screen and (min-width: 768px) {
+  .avatarError {
+    max-width: 568px;
+    top: 135px;
+    left: 240px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .avatarError {
+    left: 376px;
+  }
+}
+
+.nameError,
+.emailError {
+  position: absolute;
+  top: 85px;
+  left: 15px;
+}
+
+.weightError,
+.activeTimeError {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+}
+
+.goalError {
+  position: absolute;
+  top: 105px;
+  left: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  .nameError,
+  .emailError,
+  .goalError {
+    top: 88px;
   }
 }

@@ -102,7 +102,11 @@ setInterceptors();
           }
         />
       </Routes>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+        }}
+      />
     </>
   );
 };

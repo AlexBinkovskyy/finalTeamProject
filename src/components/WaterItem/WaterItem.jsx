@@ -29,6 +29,8 @@ export default function WaterItem({ water }) {
   };
 
   const svgClass = !water._id ? css.iconDisabled : css.icon;
+  const svgOnclickEdit = !water._id ? undefined : openEditModal;
+  const svgOnclickDelete = !water._id ? undefined : openDeleteModal;
 
   return (
     <>
@@ -42,7 +44,7 @@ export default function WaterItem({ water }) {
           <p className={css.time}>{water.time}</p>
         </div>
         <div className={css.buttons}>
-          <svg className={svgClass} onClick={openEditModal}>
+          <svg className={svgClass} onClick={svgOnclickEdit}>
             <use href={`${icons}#IconEdit2`}></use>
           </svg>
           {modalIsOpen && (
@@ -54,7 +56,7 @@ export default function WaterItem({ water }) {
             />
           )}
 
-          <svg className={svgClass} onClick={openDeleteModal}>
+          <svg className={svgClass} onClick={svgOnclickDelete}>
             <use href={`${icons}#IconTrash04`}></use>
           </svg>
           {deleteModalIsOpen && (
