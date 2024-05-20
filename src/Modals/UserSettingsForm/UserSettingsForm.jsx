@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -8,6 +8,9 @@ import { updateUserSettings } from '../../redux/auth/operations';
 import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
+
+import ThemeSwitcher from 'Theme/ThemeSwitcher/ThemeSwitcher';
+import { ThemeContext } from 'Theme/ThemeContext';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -327,6 +330,12 @@ const UserSettingsForm = ({ closeModal }) => {
               {errors.goal && !watch('goal') && (
                 <span className={css.error}>Goal is required</span>
               )}
+            </div>
+            <div className={css.themeSwitcherBox}>
+              <ThemeSwitcher />
+              <p className={css.settingsTheme}>
+                The current theme is {useContext(ThemeContext).theme}
+              </p>
             </div>
           </div>
         </div>

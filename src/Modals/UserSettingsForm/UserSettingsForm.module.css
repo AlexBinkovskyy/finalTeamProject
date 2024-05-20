@@ -393,7 +393,6 @@ input[type='radio']:checked + label:after {
   background-color: var(--accent-color);
 }
 
-
 .submitBtn:focus {
   outline: 1px solid #93d193;
 }
@@ -417,4 +416,21 @@ input[type='radio']:checked + label:after {
   .error {
     max-width: 400px;
   }
+}
+
+.themeSwitcherBox {
+  display: flex;
+  width: 254px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.settingsTheme {
+  display: block;
+  margin-left: 8px;
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  color: var(--main-text-color);
+  opacity: 40%;
 }

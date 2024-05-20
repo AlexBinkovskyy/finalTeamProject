@@ -3,7 +3,7 @@
 
   width: 100%;
 
-  background-color: var(--background-color, #f0eff4);
+  background-color: var(--background-color);
 }
 @media only screen and (min-width: 768px) {
   .monthInfo {
@@ -34,7 +34,7 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  color: var(--main-color, #323f47);
+  color: var(--main-color);
 }
 
 @media only screen and (min-width: 768px) {
@@ -46,6 +46,7 @@
 
 .buttonIcon {
   border: none;
+  background-color: transparent;
 }
 
 .icon {
@@ -61,6 +62,6 @@
   }
 }
 .icon:hover {
-  stroke: var(--main-color, #323f47);
+  stroke: var(--main-color);
   transform: scale(1.2);
 }
