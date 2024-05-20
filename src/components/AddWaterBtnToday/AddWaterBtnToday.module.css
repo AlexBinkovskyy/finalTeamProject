@@ -1,0 +1,35 @@
+.AddWaterBtn {
+  border-radius: 30px;
+  font-family: 'Poppins-Bold';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.12;
+  color: var(--main-color);
+  text-align: center;
+  align-items: center;
+  border: none;
+  display: flex;
+  margin: 0 0 0 auto;
+}
+
+.GoPlus {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.GoPlus:hover,
+.GoPlus:focus {
+  background-color: var(--main-color);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.icon:hover,
+.icon:focus {
+    stroke: var(--main-white);
+}
+.icon {
+  width: 60%;
+  height: 100%;
+  border: 1.48px;
+}
