@@ -38,12 +38,12 @@ export default function WaterProgressBar() {
       <div className={css.ProgressBar} data-tut="reactour__waterprogress">
         {chosen === today ? (
           <p className={css.text}>
-            Today,{' '}
+            Today
             <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
           </p>
         ) : (
           <p className={css.text}>
-            {chosen},{' '}
+            {chosen}
             <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
           </p>
         )}

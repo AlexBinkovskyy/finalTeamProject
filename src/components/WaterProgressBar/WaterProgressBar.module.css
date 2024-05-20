@@ -34,7 +34,7 @@
   }
 }
 .todayTotalLitr {
-  color: var(--accent-color);
+  color: var(--hover-focus-color);
 }
 
 .text {
@@ -43,6 +43,10 @@
   font-size: 14px;
   margin-bottom: 8px;
   color: var(--main-color);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 768px) {
