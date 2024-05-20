@@ -19,7 +19,7 @@ const setInterceptors = () => {
           try {
             const result = await api.post('/users/refreshtoken', {
               refreshToken,
-            });
+            }, {withCredentials: true});
             const newAccessToken = result.data.accessToken;
             api.defaults.headers.common[
               'Authorization'
