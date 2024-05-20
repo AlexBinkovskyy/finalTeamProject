@@ -5,7 +5,7 @@ import { selectChosenDate } from '../../redux/water/selectors';
 import css from './AddWaterBtn.module.css';
 import { useSelector } from 'react-redux';
 
-export default function AddWaterBtn() {
+export default function AddWaterBtn({ color }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
 
   const chosenDate = useSelector(selectChosenDate);
@@ -37,15 +37,17 @@ export default function AddWaterBtn() {
     time: null,
   };
 
+  const svgClass = color === 'black' ? css.BlackBtn : css.WhiteBtn;
+
   return (
     <>
       <button
-        className={css.AddWaterBtn}
+        className={`${css.AddWaterBtn} ${svgClass}`}
         data-tut="reactour__waterbtn"
         onClick={openWaterModal}
       >
-        <div className={css.GoPlus}>
-          <GoPlus className={css.icon} strokeWidth={1} />
+        <div className={`${css.GoPlus} ${svgClass}`}>
+          <GoPlus className={`${css.icon} ${svgClass}`} strokeWidth={1} />
         </div>
         <div>Add water</div>
       </button>

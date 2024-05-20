@@ -30,7 +30,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.token);
-      toast.success('Welcome to the App');
+      toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
       toast.error(error.response.data.message);
