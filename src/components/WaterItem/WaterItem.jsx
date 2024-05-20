@@ -4,7 +4,7 @@ import icons from '../../image/sprite.svg';
 import { useState } from 'react';
 import WaterModal from 'Modals/WaterModal/WaterModal';
 
-export default function WaterItem({ water: { amount, time, _id } }) {
+export default function WaterItem({ water }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
@@ -28,7 +28,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
     document.body.style.overflow = '';
   };
 
-  const svgClass = !_id ? css.iconDisabled : css.icon;
+  const svgClass = !water._id ? css.iconDisabled : css.icon;
 
   return (
     <>
@@ -38,8 +38,8 @@ export default function WaterItem({ water: { amount, time, _id } }) {
         </svg>
 
         <div className={css.data}>
-          <p className={css.amount}>{amount} ml</p>
-          <p className={css.time}>{time}</p>
+          <p className={css.amount}>{water.amount} ml</p>
+          <p className={css.time}>{water.time}</p>
         </div>
         <div className={css.buttons}>
           <svg className={svgClass} onClick={openEditModal}>
@@ -48,7 +48,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
           {modalIsOpen && (
             <WaterModal
               operationType={'edit'}
-              defaultValues={(amount, time, _id)}
+              defaultValues={water}
               isOpen={modalIsOpen}
               isClose={closeLogOutModal}
             />
@@ -61,7 +61,7 @@ export default function WaterItem({ water: { amount, time, _id } }) {
             <DeleteWaterModal
               isOpen={deleteModalIsOpen}
               isClose={closeDeleteModal}
-              consumptionID={_id}
+              consumptionID={water._id}
             />
           )}
         </div>
