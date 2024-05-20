@@ -176,10 +176,6 @@
   display: flex;
   border-radius: 30px;
   position: relative;
-  cursor: help;
-  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -191,6 +187,9 @@
 .driveText {
   display: flex;
   padding: 9px 12px;
+  cursor: help;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -212,14 +211,13 @@
   background-color: var(--accent-color);
   border-radius: 30px;
   position: relative;
-  cursor: help;
-  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .statisticsText {
   padding: 9px 12px;
+  cursor: help;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -233,14 +231,13 @@
   background-color: var(--main-white);
   border-radius: 30px;
   position: relative;
-  cursor: help;
-  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
-    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .settingText {
+  cursor: help;
   padding: 9px 12px;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -307,15 +304,23 @@
   }
 }
 
-.drive:hover,
-.statistics:hover,
-.setting:hover {
+.driveText:hover,
+.statisticsText:hover,
+.settingText:hover {
   opacity: 1;
-  scale: 1.05;
 }
 
-.drive:hover .imageDrive,
-.statistics:hover .imageStatistics,
-.setting:hover .imageSetting {
+.driveText:hover,
+.settingText:hover {
+  color: var(--accent-color);
+}
+
+.statisticsText:hover {
+  color: var(--main-white);
+}
+
+.driveText:hover + .hoverImage,
+.statisticsText:hover + .hoverImage,
+.settingText:hover + .hoverImage {
   opacity: 1;
 }
