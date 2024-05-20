@@ -5,7 +5,7 @@ import {
   signout,
   refreshUser,
   updateUserSettings,
-  // verifyEmail,
+
 } from './operations';
 
 const authSlice = createSlice({

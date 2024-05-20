@@ -2,7 +2,7 @@ import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-const setAuthHeader = accessToken => {
+export const setAuthHeader = accessToken => {
   api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
@@ -30,8 +30,6 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       
-      console.log(res.data.accessToken);
-
       setAuthHeader(res.data.accessToken);
       toast.success('Welcome to the App');
       return res.data;

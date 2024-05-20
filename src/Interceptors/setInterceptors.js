@@ -1,6 +1,8 @@
 import { store } from '../redux/store';
 import { tokenIsInvalid } from '../redux/auth/slice';
 import { createBrowserHistory } from 'history';
+
+import Cookies from 'js-cookie';
 import api from './api';
 
 const history = createBrowserHistory();
@@ -8,13 +10,28 @@ const history = createBrowserHistory();
 const setInterceptors = () => {
   api.interceptors.response.use(
     response => response,
-    error => {
+    async error => {
       if (error.response) {
-        if (error.response.status === 401 
-          // || error.response.status === 500
-        ) {
-          console.log('Error');
-          console.log(error);
+        // eslint-disable-next-line
+        if (error.response.status == 401 || error.response.status === 500) {
+          const originalRequest = error.config;
+          const refreshToken = Cookies.get('refreshToken');
+          try {
+            const result = await api.post('/users/refreshtoken', {
+              refreshToken,
+            });
+            const newAccessToken = result.data.accessToken;
+            api.defaults.headers.common[
+              'Authorization'
+            ] = `Bearer ${newAccessToken}`;
+            originalRequest.headers[
+              'Authorization'
+            ] = `Bearer ${newAccessToken}`;
+            return api.request(originalRequest);
+          } catch (error) {
+            console.log(error);
+          }
+
           store.dispatch(tokenIsInvalid());
           history.push('/finalTeamProject/signin');
         }
