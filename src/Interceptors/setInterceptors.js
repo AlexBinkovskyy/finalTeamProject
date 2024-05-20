@@ -1,5 +1,5 @@
-import { store } from '../redux/store';
-import { tokenIsInvalid } from '../redux/auth/slice';
+// import { store } from '../redux/store';
+// import { tokenIsInvalid } from '../redux/auth/slice';
 import { createBrowserHistory } from 'history';
 
 import Cookies from 'js-cookie';
@@ -31,7 +31,7 @@ const setInterceptors = () => {
             console.log(error);
           }
 
-          store.dispatch(tokenIsInvalid());
+          // store.dispatch(tokenIsInvalid());
           history.push('/finalTeamProject/signin');
         }
       }
