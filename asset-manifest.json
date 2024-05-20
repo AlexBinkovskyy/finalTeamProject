@@ -1,26 +1,29 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.1cb57590.css",
-    "main.js": "/finalTeamProject/static/js/main.2a419db3.js",
+    "main.css": "/finalTeamProject/static/css/main.8ec6069d.css",
+    "main.js": "/finalTeamProject/static/js/main.403e0183.js",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
+    "static/media/imageSetting.png": "/finalTeamProject/static/media/imageSetting.415f28b9c922226e3b80.png",
     "static/media/Poppins-Regular.ttf": "/finalTeamProject/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/finalTeamProject/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/transparent_bottle_for_water_mob@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_mob@2x.64b32f16ec148dbc0fbd.png",
     "static/media/transparent_bottle_for_water_desk@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@1x.6cf5991eb65daf7a4333.png",
+    "static/media/imageStatistics.png": "/finalTeamProject/static/media/imageStatistics.ea237643cc6f3cf225ab.png",
     "static/media/rectangle_desk@2x.jpg": "/finalTeamProject/static/media/rectangle_desk@2x.f9c02a979b951fe97459.jpg",
     "static/media/transparent_bottle_for_water_tab@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@1x.be17d30cbed5674fcc18.png",
     "static/media/rectangle_tab@2x.jpg": "/finalTeamProject/static/media/rectangle_tab@2x.2f07c3fec9273ae85630.jpg",
+    "static/media/imageDrive.png": "/finalTeamProject/static/media/imageDrive.599fcb3b8260c28eeb7c.png",
     "static/media/transparent_bottle_for_water_mob@1x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_mob@1x.0421a9f1550560fe8bce.png",
     "static/media/rectangle_desk@1x.jpg": "/finalTeamProject/static/media/rectangle_desk@1x.b9fa2cc4a706fa06bc66.jpg",
     "static/media/rectangle_tab@1x.jpg": "/finalTeamProject/static/media/rectangle_tab@1x.997aee7c132d4df33b99.jpg",
     "static/media/sprite.svg": "/finalTeamProject/static/media/sprite.d3997ee2aee9b475d4e6b965de7cd07e.svg",
     "index.html": "/finalTeamProject/index.html",
-    "main.1cb57590.css.map": "/finalTeamProject/static/css/main.1cb57590.css.map",
-    "main.2a419db3.js.map": "/finalTeamProject/static/js/main.2a419db3.js.map"
+    "main.8ec6069d.css.map": "/finalTeamProject/static/css/main.8ec6069d.css.map",
+    "main.403e0183.js.map": "/finalTeamProject/static/js/main.403e0183.js.map"
   },
   "entrypoints": [
-    "static/css/main.1cb57590.css",
-    "static/js/main.2a419db3.js"
+    "static/css/main.8ec6069d.css",
+    "static/js/main.403e0183.js"
   ]
 }
