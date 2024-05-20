@@ -98,7 +98,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
       amount: data.waterAmount,
     };
 
-    if (!operationType === 'add') {
+    if (operationType === 'edit') {
       await dispatch(
         updateConsumption({ _id: defaultValues._id, ...postData })
       );

@@ -1,18 +1,5 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 157px;
-  height: 82px;
-  border-radius: 15px;
-  border-color: none;
-  background-color: white;
-  padding: 16px 40px 16px 20px;
-  margin-top: 14px;
-  right: 10px;
-  box-shadow: 0px 4px 50px 0px #0000001a;
-  justify-content: space-between;
-  max-height: 82px;
+  position: relative;
   opacity: 1;
   transform: scale(1);
   transition: max-height 0.5s ease-in-out, opacity 0.15s ease-in-out;
@@ -21,11 +8,53 @@
 
 .wrapper.closed {
   transform: scale(0.01);
-  height: 0;
-  width: 0;
   overflow: hidden;
   opacity: 0;
 }
+
+.list {
+  position: absolute;
+  top: 101%;
+  left: 0;
+  border-radius: 15px;
+  padding: 14px 40px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  box-shadow: 0px 4px 50px 0px #0000001a;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .list {
+    padding: 14px 57px 14px 20px;
+  }
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  font-family: Poppins-Bold;
+  font-size: 15px;
+  color: var(--main-text-color);
+  opacity: 40%;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+.listItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.listItem:hover,
+.listItem:focus {
+  opacity: 100%;
+}
+.settingsItem {
+  margin-left: 8px;
+}
+
 .iconSettings {
   fill: none;
   stroke: var(--main-color);
@@ -39,25 +68,4 @@
   stroke: var(--main-color);
   width: 16px;
   height: 16px;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.settingsItem {
-  font-family: Poppins-Bold;
-  font-size: 15px;
-  color: var(--main-text-color);
-  transition: opacity 0.5s ease-out, box-shadow 0.5s ease-out;
-  opacity: 40%;
-}
-.settingsItem:hover,
-.settingsItem:focus {
-  color: var(--main-text-color);
-  opacity: 100%;
-  box-shadow: 0px 4px 50px 0px #0000001a;
 }
