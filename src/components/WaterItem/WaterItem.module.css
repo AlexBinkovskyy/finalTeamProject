@@ -56,12 +56,14 @@
   }
 }
 
-.icon:hover {
+.icon:hover,
+.icon:focus {
   stroke: var(--main-color);
   transform: scale(1.2);
   cursor: pointer;
 }
 
-.iconDisabled:hover {
+.iconDisabled:hover,
+.iconDisabled:focus {
   pointer-events: none;
 }
