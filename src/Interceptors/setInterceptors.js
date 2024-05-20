@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 
 import Cookies from 'js-cookie';
 import api from './api';
+import { setAuthHeader } from '../redux/auth/operations';
 
 const history = createBrowserHistory();
 
@@ -21,9 +22,7 @@ const setInterceptors = () => {
               refreshToken,
             }, {withCredentials: true});
             const newAccessToken = result.data.accessToken;
-            api.defaults.headers.common[
-              'Authorization'
-            ] = `Bearer ${newAccessToken}`;
+            setAuthHeader(newAccessToken);
             originalRequest.headers[
               'Authorization'
             ] = `Bearer ${newAccessToken}`;
