@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { GoPlus } from 'react-icons/go';
 import { WaterModal } from '../../Modals/WaterModal/WaterModal';
 import { selectChosenDate } from '../../redux/water/selectors';
-import css from './AddWaterBtn.module.css';
+import css from './AddWaterBtnToday.module.css';
 import { useSelector } from 'react-redux';
 
-export default function AddWaterBtn() {
+export default function AddWaterBtn({ selectedDay = new Date() }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
+  const [operationType, setOperationType] = useState('');
 
   const chosenDate = useSelector(selectChosenDate);
 
@@ -23,18 +24,19 @@ export default function AddWaterBtn() {
   const openWaterModal = () => {
     if (chosenDate <= currentDateFormatted) {
       setwaterModalIsOpen(true);
+      setOperationType('add');
       document.body.style.overflow = 'hidden';
     }
   };
 
   const closeWaterModal = () => {
     setwaterModalIsOpen(false);
+    setOperationType('');
     document.body.style.overflow = '';
   };
 
-  const water = {
-    amount: null,
-    time: null,
+  const onSubmit = values => {
+    console.log(values);
   };
 
   return (
@@ -52,8 +54,8 @@ export default function AddWaterBtn() {
 
       {waterModalIsOpen && (
         <WaterModal
-          operationType="add"
-          defaultValues={water}
+          onSubmit={onSubmit}
+          operationType={operationType}
           isOpen={waterModalIsOpen}
           isClose={closeWaterModal}
         />
