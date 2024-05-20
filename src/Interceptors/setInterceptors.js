@@ -14,7 +14,7 @@ const setInterceptors = () => {
     async error => {
       if (error.response) {
         // eslint-disable-next-line
-        if (error.response.status == 401 || error.response.status === 500) {
+        if (error.response.status == 401 || error.response.status == 500) {
           const originalRequest = error.config;
           const refreshToken = Cookies.get('refreshToken');
           try {
