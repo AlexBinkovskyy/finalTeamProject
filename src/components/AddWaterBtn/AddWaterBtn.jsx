@@ -49,7 +49,6 @@ export default function AddWaterBtn() {
         </div>
         <div>Add water</div>
       </button>
-
       {waterModalIsOpen && (
         <WaterModal
           operationType="add"
