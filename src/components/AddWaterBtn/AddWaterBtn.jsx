@@ -5,9 +5,8 @@ import { selectChosenDate } from '../../redux/water/selectors';
 import css from './AddWaterBtn.module.css';
 import { useSelector } from 'react-redux';
 
-export default function AddWaterBtn({ selectedDay = new Date() }) {
+export default function AddWaterBtn({ color }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
-  const [operationType, setOperationType] = useState('');
 
   const chosenDate = useSelector(selectChosenDate);
 
@@ -24,38 +23,38 @@ export default function AddWaterBtn({ selectedDay = new Date() }) {
   const openWaterModal = () => {
     if (chosenDate <= currentDateFormatted) {
       setwaterModalIsOpen(true);
-      setOperationType('add');
       document.body.style.overflow = 'hidden';
     }
   };
 
   const closeWaterModal = () => {
     setwaterModalIsOpen(false);
-    setOperationType('');
     document.body.style.overflow = '';
   };
 
-  const onSubmit = values => {
-    console.log(values);
+  const water = {
+    amount: null,
+    time: null,
   };
+
+  const svgClass = color === 'black' ? css.BlackBtn : css.WhiteBtn;
 
   return (
     <>
       <button
-        className={css.AddWaterBtn}
+        className={`${css.AddWaterBtn} ${svgClass}`}
         data-tut="reactour__waterbtn"
         onClick={openWaterModal}
       >
-        <div className={css.GoPlus}>
-          <GoPlus className={css.icon} strokeWidth={1} />
+        <div className={`${css.GoPlus} ${svgClass}`}>
+          <GoPlus className={`${css.icon} ${svgClass}`} strokeWidth={1} />
         </div>
         <div>Add water</div>
       </button>
-
       {waterModalIsOpen && (
         <WaterModal
-          onSubmit={onSubmit}
-          operationType={operationType}
+          operationType="add"
+          defaultValues={water}
           isOpen={waterModalIsOpen}
           isClose={closeWaterModal}
         />

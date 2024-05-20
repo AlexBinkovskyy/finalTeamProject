@@ -138,7 +138,7 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('goal', data.goal * 1000);
 
     try {
-      await dispatch(updateUserSettings(formData));
+      dispatch(updateUserSettings(formData));
       closeModal();
     } catch (error) {
     } finally {
@@ -182,9 +182,9 @@ const UserSettingsForm = ({ closeModal }) => {
               autoComplete="photo"
             />
           </label>
-          {avatarError && <span className={css.error}>{avatarError}</span>}
+          {avatarError && <span className={`${css.error} ${css.avatarError} `}>{avatarError}</span>}
         </div>
-        <div className={css.formWraper}>
+        <div className={css.formWraper }>
           <div className={css.formWrap_1}>
             <div className={css.formGroup}>
               <label htmlFor="female" className={css.accentLabel}>
@@ -211,12 +211,12 @@ const UserSettingsForm = ({ closeModal }) => {
                 <label htmlFor="male" className={css.genderLabel}>
                   Man
                 </label>
-              </div>
               {errors.gender && (
                 <span className={css.error}>{errors.gender.message}</span>
               )}
+              </div>
             </div>
-            <div className={css.formGroup}>
+            <div className={`${css.formGroup} ${css.nameInput}`}>
               <label htmlFor="name" className={css.accentLabel}>
                 Your name
               </label>
@@ -228,10 +228,11 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="name"
               />
               {errors.name && (
-                <span className={css.error}>{errors.name.message}</span>
+                <span className={`${css.nameError} ${css.error}`}>{errors.name.message}
+                </span>
               )}
             </div>
-            <div className={css.formGroup}>
+            <div className={`${css.formGroup} ${css.emailInput}`}>
               <label htmlFor="email" className={css.accentLabel}>
                 Email
               </label>
@@ -243,7 +244,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="email"
               />
               {errors.email && (
-                <span className={css.error}>{errors.email.message}</span>
+                <span className={`${css.emailError} ${css.error}`}>{errors.email.message}</span>
               )}
             </div>
             <div className={css.formGroup}>
@@ -273,7 +274,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
           </div>
           <div className={css.formWrap_2}>
-            <div className={css.formGroup}>
+            <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
                 Your weight in kilograms:
               </label>
@@ -286,10 +287,10 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="weight"
               />
               {errors.weight && errors.weight.type === 'typeError' && (
-                <span className={css.error}>Weight is required</span>
+                <span className={`${css.weightError} ${css.error}`}>Weight is required</span>
               )}
             </div>
-            <div className={css.formGroup}>
+            <div className={`${css.formGroup} ${css.activeTimeInput}`}>
               <label htmlFor="activeTime" className={css.label}>
                 The time of active participation in sports:
               </label>
@@ -302,7 +303,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="active-time"
               />
               {errors.activeTime && errors.activeTime.type === 'typeError' && (
-                <span className={css.error}>ActiveTime is required</span>
+                <span className={`${css.activeTimeError} ${css.error}`}>ActiveTime is required</span>
               )}
             </div>
             <div className={css.formGroup}>
@@ -313,7 +314,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 </span>
               </p>
             </div>
-            <div className={css.formGroup}>
+            <div className={`${css.formGroup} ${css.goalInput}`}>
               <label htmlFor="goal" className={css.accentLabel}>
                 Write down how much water you will drink:
               </label>
@@ -328,7 +329,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="goal"
               />
               {errors.goal && !watch('goal') && (
-                <span className={css.error}>Goal is required</span>
+                <span className={`${css.goalError} ${css.error}`}>Goal is required</span>
               )}
             </div>
             <div className={css.themeSwitcherBox}>

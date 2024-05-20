@@ -1,34 +1,30 @@
 .monthInfo {
   margin: 0 auto;
-
   width: 100%;
-
   background-color: var(--background-color);
 }
-@media only screen and (min-width: 768px) {
-  .monthInfo {
-  }
-}
-@media (min-width: 1440px) {
-  .monthInfo {
-  }
-}
+
 .monthInfo__wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
 }
+
 .paginationIcon__wrapper {
   display: flex;
-  gap: 16px;
-  align-items: baseline;
+}
+@media only screen and (min-width: 375px) {
+  .paginationIcon__wrapper {
+    gap: 16px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .paginationIcon__wrapper {
     gap: 20px;
   }
 }
+
 .title {
   font-family: Poppins-Bold;
   font-size: 20px;
@@ -36,7 +32,6 @@
   letter-spacing: -0.01em;
   color: var(--main-color);
 }
-
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 28px;
@@ -52,7 +47,7 @@
 .icon {
   width: 20px;
   height: 20px;
-  stroke: rgb(50, 63, 71, 0.4);
+  stroke: var(--main-text-color);
   transition: transform 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
