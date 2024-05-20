@@ -98,7 +98,11 @@ export const App = () => {
           }
         />
       </Routes>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+        }}
+      />
     </>
   );
 };
