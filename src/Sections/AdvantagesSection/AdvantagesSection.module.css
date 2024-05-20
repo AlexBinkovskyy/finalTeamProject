@@ -136,12 +136,11 @@
   justify-content: flex-end;
   flex-direction: row-reverse;
   width: 168px;
-  margin-left: 142px;
-  font-family: 'Poppins-Regular';
+  margin-left: 144px;
+  font-family: 'Poppins-Bold';
   font-weight: 700;
   font-size: 8px;
   letter-spacing: -0.01em;
-  line-height: 1;
 }
 
 @media only screen and (min-width: 768px) {
@@ -173,32 +172,50 @@
 .drive {
   background-color: var(--main-color);
   color: var(--main-white);
-  width: 82px;
-  padding: 9px 12px;
+  margin-right: 4px;
   display: flex;
   border-radius: 30px;
+  position: relative;
+  cursor: help;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (min-width: 768px) {
   .drive {
-    padding: 11px 16px;
-    width: 112px;
     margin-right: 10px;
   }
 }
-.circle {
-  margin-right: 4px;
-}
-.statistics {
-  background-color: var(--accent-color);
-  width: 82px;
-  border-radius: 30px;
+
+.driveText {
+  display: flex;
+  padding: 9px 12px;
 }
 
 @media only screen and (min-width: 768px) {
-  .statistics {
-    width: 120px;
+  .driveText {
+    padding: 11px 16px;
   }
+}
+
+.circle {
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  margin-top: 2px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+}
+
+.statistics {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  position: relative;
+  cursor: help;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .statisticsText {
@@ -215,13 +232,11 @@
   text-align: center;
   background-color: var(--main-white);
   border-radius: 30px;
-  width: 108px;
-}
-
-@media only screen and (min-width: 768px) {
-  .setting {
-    width: 158px;
-  }
+  position: relative;
+  cursor: help;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .settingText {
@@ -232,4 +247,75 @@
   .settingText {
     padding: 11px 16px;
   }
+}
+.hoverImage {
+  position: absolute;
+  top: 100%;
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  border: 2px solid var(--accent-color);
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media only screen and (min-width: 768px) {
+  .hoverImage {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.imageDrive {
+  left: 0%;
+  transform: translateY(-125%);
+  background-image: url('../../image/imageDrive.png');
+}
+
+@media only screen and (min-width: 768px) {
+  .imageDrive {
+    left: -100%;
+  }
+}
+
+.imageStatistics {
+  left: -10%;
+  transform: translateX(-40%) translateY(-125%);
+  background-image: url('../../image/imageStatistics.png');
+}
+
+@media only screen and (min-width: 768px) {
+  .imageStatistics {
+    left: 0%;
+  }
+}
+
+.imageSetting {
+  right: -40%;
+  transform: translateY(-145%);
+  background-image: url('../../image/imageSetting.png');
+  border: 2px solid var(--main-white);
+}
+
+@media only screen and (min-width: 768px) {
+  .imageSetting {
+    right: 110%;
+    transform: translateY(-100%);
+  }
+}
+
+.drive:hover,
+.statistics:hover,
+.setting:hover {
+  opacity: 1;
+  scale: 1.05;
+}
+
+.drive:hover .imageDrive,
+.statistics:hover .imageStatistics,
+.setting:hover .imageSetting {
+  opacity: 1;
 }
