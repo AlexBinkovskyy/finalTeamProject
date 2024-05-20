@@ -12,14 +12,14 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: {},
-    token: null,
+    accessToken: null,
     isLoggedIn: false,
     isRefreshing: false,
   },
   reducers: {
     verifyEmailSuccess: (state, action) => {
       state.isLoggedIn = true;
-      state.token = action.payload;
+      state.accessToken = action.payload;
     },
     tokenIsInvalid: state => {
       state.isLoggedIn = false;
@@ -42,7 +42,7 @@ const authSlice = createSlice({
       // signin
       .addCase(signin.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
       })
       .addCase(signin.rejected, state => {
@@ -52,7 +52,7 @@ const authSlice = createSlice({
       // signout
       .addCase(signout.fulfilled, state => {
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
       .addCase(signout.rejected, state => {
@@ -60,7 +60,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
 
@@ -78,7 +78,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
 
@@ -96,7 +96,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       });
   },
