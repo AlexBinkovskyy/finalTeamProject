@@ -33,7 +33,7 @@ export const signin = createAsyncThunk(
       toast.success('Welcome to the App');
       return res.data;
     } catch (error) {
-      toast.error('Incorrect username or password');
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

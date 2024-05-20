@@ -24,7 +24,7 @@ export default function ConfirmInfo() {
           it.
         </p>
         <p>
-          Once your email address is confirmed, you'll be resend to our main
+          Once your email address is confirmed, you'll be redirected to our main
           page.
         </p>
       </div>
