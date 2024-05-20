@@ -13,10 +13,18 @@ import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const TrackerTour = () => {
+  const disableBody = target => disableBodyScroll(target);
+  const enableBody = target => enableBodyScroll(target);
   return (
-    <TourProvider steps={steps} accentColor="#000000" styles={tourStyles}>
+    <TourProvider
+      steps={steps}
+      styles={tourStyles}
+      afterOpen={disableBody}
+      beforeClose={enableBody}
+    >
       <TrackerPageContent />
     </TourProvider>
   );
@@ -35,35 +43,41 @@ const TrackerPageContent = () => {
   useEffect(() => {
     if (!checkVerify) {
       dispatch(refreshUser()).then(response => {
-        if (response.type === 'auth/refresh/rejected')
+        if (response.type === 'auth/refresh/rejected') {
           dispatch(tokenIsInvalid());
-        navigate('/signin');
+          navigate('/signin');
+        }
       });
     } else {
-      const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
-      if (!isFirstVisit) {
+      if (isFirstVisit) {
         setIsOpen(true);
         localStorage.setItem('isFirstVisitTrackerPage', 'true');
       }
-    }
-  }, [dispatch, navigate, checkVerify, setIsOpen, isFirstVisit]);
 
-  useEffect(() => {
-    if (isFirstVisit && currentStep !== null) {
-      const timer = setTimeout(() => {
-        setCurrentStep(prevStep => {
-          const nextStep = prevStep + 1;
-          if (nextStep >= steps.length) {
-            setIsOpen(false);
-            setIsFirstVisit(false);
-            return prevStep;
-          }
-          return nextStep;
-        });
-      }, 5000);
-      return () => clearTimeout(timer);
+      if (isFirstVisit && currentStep !== null) {
+        const timer = setTimeout(() => {
+          setCurrentStep(prevStep => {
+            const nextStep = prevStep + 1;
+            if (nextStep >= steps.length) {
+              setIsOpen(false);
+              setIsFirstVisit(false);
+              return prevStep;
+            }
+            return nextStep;
+          });
+        }, 5000);
+        return () => clearTimeout(timer);
+      }
     }
-  }, [currentStep, setCurrentStep, isFirstVisit, setIsOpen]);
+  }, [
+    checkVerify,
+    dispatch,
+    navigate,
+    isFirstVisit,
+    setIsOpen,
+    currentStep,
+    setCurrentStep,
+  ]);
 
   return !checkVerify ? (
     <b>Refreshing user...</b>
