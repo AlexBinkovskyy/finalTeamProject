@@ -29,11 +29,15 @@ export const signin = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/login', credentials);
+      
+      console.log(res.data.accessToken);
+
       setAuthHeader(res.data.accessToken);
       toast.success('Welcome to the App');
       return res.data;
     } catch (error) {
-      toast.error('Incorrect username or password');
+      console.log(error);
+      // toast.error(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

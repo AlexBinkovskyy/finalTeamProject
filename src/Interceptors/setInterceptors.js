@@ -10,9 +10,11 @@ const setInterceptors = () => {
     response => response,
     error => {
       if (error.response) {
-        if (error.response.status === 401 || error.response.status === 500) {
+        if (error.response.status === 401 
+          // || error.response.status === 500
+        ) {
           console.log('Error');
-
+          console.log(error);
           store.dispatch(tokenIsInvalid());
           history.push('/finalTeamProject/signin');
         }
