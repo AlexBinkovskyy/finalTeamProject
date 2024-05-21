@@ -3,11 +3,11 @@ import SignInForm from 'components/SignInForm/SignInForm';
 import css from './SignInPage.module.css';
 import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
 import { useSelector } from 'react-redux';
-import { selectLoading } from '../../redux/auth/selectors';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import Loader from 'components/Loader/Loader';
 
 export default function SignUpPage() {
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectIsRefreshing);
 
   return (
     <>

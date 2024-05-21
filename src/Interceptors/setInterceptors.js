@@ -1,22 +1,13 @@
-// import { store } from '../redux/store';
-// import { tokenIsInvalid } from '../redux/auth/slice';
+import { tokenIsInvalid } from '../redux/auth/slice';
 import { createBrowserHistory } from 'history';
-
-import Cookies from 'js-cookie';
 import api from './api';
-import { setAuthHeader } from '../redux/auth/operations';
+import { refreshUserTokens, setAuthHeader } from '../redux/auth/operations';
+import { jwtDecode } from 'jwt-decode';
+import { store } from '../redux/store';
 
 const history = createBrowserHistory();
 
 const setInterceptors = () => {
-  // api.interceptors.request.use(config => {
-
-  //   config.headers['Access-Control-Allow-Origin'] = '*'; // Дозволяє всі джерела
-  //   config.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'; // Дозволені методи
-  //   config.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'; // Дозволені заголовки
-  //   return config;
-  // });
-
   api.interceptors.response.use(
     response => response,
     async error => {
@@ -24,26 +15,29 @@ const setInterceptors = () => {
         // eslint-disable-next-line
         if (error.response.status == 401 || error.response.status == 500) {
           const originalRequest = error.config;
-          const refreshToken = Cookies.get('refreshToken');
-          try {
-            const result = await api.post('/users/refreshtoken', {
-              refreshToken,
-            }
-            , {withCredentials: true}
-          );
-            const newAccessToken = result.data.accessToken;
-            setAuthHeader(newAccessToken);
-            originalRequest.headers[
-              'Authorization'
-            ] = `Bearer ${newAccessToken}`;
-            return api.request(originalRequest);
-          } catch (error) {
-            console.log(error);
-          }
 
-          // store.dispatch(tokenIsInvalid());
-          history.push('/finalTeamProject/signin');
+          const token = originalRequest.headers.Authorization.split(' ')[1];
+
+          const id = jwtDecode(token);
+          const refreshToken = localStorage.getItem(`userId_${id.id}`);
+          const result = await store
+            .dispatch(refreshUserTokens({ refreshToken }))
+            .unwrap()
+            .then(item => {
+              const newAccessToken = item.data.accessToken;
+              const newRefreshToken = item.data.refreshToken;
+              localStorage.setItem(`userId_${id.id}`, newRefreshToken);
+
+              setAuthHeader(newAccessToken);
+              originalRequest.headers[
+                'Authorization'
+              ] = `Bearer ${newAccessToken}`;
+
+              return api.request(result);
+            });
         }
+        store.dispatch(tokenIsInvalid());
+        history.push('/finalTeamProject/signin');
       }
       return Promise.reject(error);
     }

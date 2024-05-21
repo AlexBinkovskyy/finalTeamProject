@@ -30,6 +30,12 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
+
+      localStorage.setItem(
+        `userId_${res.data.user._id}`,
+        res.data.refreshToken
+      );
+
       toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
@@ -129,5 +135,22 @@ export const updateUserSettings = createAsyncThunk(
       toast.error('Failed to update settings. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const refreshUserTokens = createAsyncThunk(
+  'auth/refreshTokens',
+  async (credentials, thunkAPI) => {
+
+    try {
+      const res = await api.post('users/refreshtoken/', credentials, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+            
+      return res
+    } catch (error) {}
   }
 );

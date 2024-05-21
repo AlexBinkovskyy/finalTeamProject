@@ -3,16 +3,16 @@ import css from './ChangePassPage.module.css';
 import ChangePassForm from 'components/ChangePassForm/ChangePassForm';
 import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
 import { useSelector } from 'react-redux';
-import { selectLoading } from '../../redux/auth/selectors';
+import { selectIsRefreshing} from '../../redux/auth/selectors';
 import Loader from 'components/Loader/Loader';
 
 export default function ChangePassPage() {
   console.log('Page');
-  const loading = useSelector(selectLoading);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   return (
     <>
-      {loading && <Loader />}
+      {isRefreshing && <Loader />}
       <div className={css.divMain}>
         <div className={css.div}>
           <Logo />

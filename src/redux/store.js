@@ -18,7 +18,7 @@ import { createBrowserHistory } from 'history';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken'],
+  whitelist: ['accessToken', 'refreshToken'],
 };
 
 const history = createBrowserHistory();
