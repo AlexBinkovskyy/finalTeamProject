@@ -7,9 +7,9 @@ export default function NotFoundPage() {
       <div className={css.textWrapper}>
         <p className={css.title}>404</p>
         <p className={css.subtitle}>
-          Схоже, що за цією адресою нічого немає або вона вже застаріла.
+          It's seems, that is forbidden rout for request you are trying to reach, or maybe page didn't exist anymore... <br/>
           <Link to={'/'} className={css.link}>
-            Повернутися на головний екран?
+            Safely back to home page
           </Link>
         </p>
       </div>
