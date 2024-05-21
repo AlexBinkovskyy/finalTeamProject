@@ -102,7 +102,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Language</p>
+          <p className={css.settingsItem}>Languages</p>
         </li>
       </ul>
       {settingModalIsOpen && (

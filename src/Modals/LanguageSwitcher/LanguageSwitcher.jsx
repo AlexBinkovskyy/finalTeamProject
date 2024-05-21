@@ -14,7 +14,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
       <ComponentWithModal isOpen={isOpen} isClose={isClose}>
         <div className={css.modalOverlay}>
           <div className={css.buttonsContainer}>
-            <button className={css.langBtn} onClick={() => changeLanguage('en')}>English</button>
+            <button className={css.langBtn} onClick={() => changeLanguage('en')} >English</button>
             <button className={css.langBtn} onClick={() => changeLanguage('uk')}>Українська</button>
           </div>
         </div>
