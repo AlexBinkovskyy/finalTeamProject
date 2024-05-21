@@ -14,7 +14,7 @@ export default function BmiModal({ isOpen, isClose }) {
               <use href={`${IconX}#IconX`}></use>
             </svg>
           </button>
-          <h3 className={css.title}>BMI calculator</h3>
+          <h3 className={css.title}>Body mass index (BMI)</h3>
           <BodyMassIndex closeModal={isClose} />
         </div>
       </ComponentWithModal>

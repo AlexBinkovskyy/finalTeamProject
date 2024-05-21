@@ -4,6 +4,7 @@ import BmiModal from '../../components/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
+import { IoMdCalculator } from 'react-icons/io';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
@@ -74,9 +75,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-        <svg className={css.iconSettings}>
+          {/* <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
-          </svg>
+          </svg> */}
+          <div className={css.iconCalc}>
+            <IoMdCalculator className={css.iconCalcItem} />
+          </div>
           <p className={css.settingsItem}>BMI calculator</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
