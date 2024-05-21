@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --main-color: #323f47;
   --main-text-color: #2f2f2f;
   --accent-color: #9be1a0;
@@ -7,32 +7,82 @@
   --hover-focus-color: #87d28d;
   --error-color: #ef5050;
 
+  --icon-color: #2f2f2f;
+
   --background-color-theme: #ffffff;
-  --main-color-theme: #000000; /* додано */
-  --main-text-color-theme: #323f47; /* додано */
-  --accent-color-theme: #009688; /* додано */
+  --main-color-theme: #000000;
+  --main-text-color-theme: #323f47;
+  --accent-color-theme: #87d28d;
+  --text-color-transparent: #323f4733;
   --background-color-day: #323f4733;
+  --background-color-box-container: #323f47;
+  --box-shadow-color: #323f4733;
 }
 
 [data-theme='dark'] {
   --main-color: #f0eff4;
   --main-text-color: #ffffffcc;
   --accent-color: #87d28d;
-  --background-color: #282828;
+  --background-color: #3d3d3d;
   --main-white: #2f2f2f;
   --hover-focus-color: #9be1a0;
   --error-color: #ef5050;
 
+  --icon-color: #2f2f2f;
   --background-color-theme: #282828;
-  --main-color-theme: #ffffff; /* додано */
-  --main-text-color-theme: #ffffff; /* додано */
-  --accent-color-theme: #00ff00; /* додано */
-  --background-color-day: #78ff74;
+  --main-color-theme: #ffffff;
+  --text-color-transparent: #ffffff77;
+  --main-text-color-theme: #ffffff;
+  --accent-color-theme: #9be1a0;
+  --background-color-day: #87d28d;
+  --background-color-box-container: #323f47;
+  --box-shadow-color: #87d28d;
+} */
+
+:root {
+  --main-color: #f0eff4;
+  --main-text-color: #ffffffcc;
+  --accent-color: #87d28d;
+  --background-color: #3d3d3d;
+  --main-white: #2f2f2f;
+  --hover-focus-color: #9be1a0;
+  --error-color: #ef5050;
+
+  --icon-color: #2f2f2f;
+  --background-color-theme: #282828;
+  --main-color-theme: #ffffff;
+  --text-color-transparent: #ffffff77;
+  --main-text-color-theme: #ffffff;
+  --accent-color-theme: #9be1a0;
+  --background-color-day: #87d28d;
+  --background-color-box-container: #323f47;
+  --box-shadow-color: #87d28d;
+}
+
+[data-theme='dark'] {
+  --main-color: #323f47;
+  --main-text-color: #2f2f2f;
+  --accent-color: #9be1a0;
+  --background-color: #f0eff4;
+  --main-white: #ffffff;
+  --hover-focus-color: #87d28d;
+  --error-color: #ef5050;
+
+  --icon-color: #2f2f2f;
+
+  --background-color-theme: #ffffff;
+  --main-color-theme: #000000;
+  --main-text-color-theme: #323f47;
+  --accent-color-theme: #87d28d;
+  --text-color-transparent: #323f4733;
+  --background-color-day: #323f4733;
+  --background-color-box-container: #323f47;
+  --box-shadow-color: #323f4733;
 }
 
 body {
   background-color: var(--background-color-theme);
-  color: var(--main-text-color-theme);
+  /* color: var(--main-text-color-theme); */
 }
 
 @import './reset.css';

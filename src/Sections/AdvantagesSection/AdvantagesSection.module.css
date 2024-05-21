@@ -30,6 +30,7 @@
   display: flex;
   align-items: flex-end;
   padding: 208px 16px 32px;
+  box-shadow: 0 6px 8px 0px var(--box-shadow-color);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
