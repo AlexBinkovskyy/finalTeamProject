@@ -21,6 +21,7 @@ import RecoverPage from 'Pages/RecoverPage/RecoverPage';
 import ChangePassPage from 'Pages/ChangePassPage/ChangePassPage';
 import Loader from './Loader/Loader';
 import setInterceptors from 'Interceptors/setInterceptors';
+import NotFoundPage from 'Pages/NotFoundPage/NotFoundPage';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -100,6 +101,7 @@ export const App = () => {
             <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Toaster
         toastOptions={{
