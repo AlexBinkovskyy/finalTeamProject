@@ -294,6 +294,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <input
                 type="number"
                 min="0"
+                max="24"
                 id="activeTime"
                 {...register('activeTime')}
                 className={css.input}

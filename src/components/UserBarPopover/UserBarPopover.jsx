@@ -75,9 +75,6 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-          {/* <svg className={css.iconSettings}>
-            <use href={`${IconSprite}#IconSettings`}></use>
-          </svg> */}
           <div className={css.iconCalc}>
             <IoMdCalculator className={css.iconCalcItem} />
           </div>
