@@ -4,11 +4,13 @@ import BmiModal from '../../components/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
+import {LanguageSwitcher} from 'Modals/LanguageSwitcher/LanguageSwitcher';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
   const [bMIModalIsOpen, setBMIModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
+  const [languageSwitcherIsOpen, setlanguagesSwitcherModalIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -57,6 +59,17 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     document.body.style.overflow = '';
   };
 
+  const openLanguageSwitcher = () => {
+    setPopoverOpen(false);
+    setlanguagesSwitcherModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLanguageSwitcher = () => {
+    setlanguagesSwitcherModalIsOpen(false);
+    document.body.style.overflow = '';
+  };
+
   return (
     <div
       className={
@@ -85,17 +98,23 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           </svg>
           <p className={css.settingsItem}>Log out</p>
         </li>
-        <li className={css.listItem} onClick={openLogOutModal}>
+        <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#IconLogOut`}></use>
+            <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Log out</p>
+          <p className={css.settingsItem}>Language</p>
         </li>
       </ul>
       {settingModalIsOpen && (
         <UserSettingsModal
           isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
+        />
+      )}
+      {languageSwitcherIsOpen && (
+        <LanguageSwitcher
+          isOpen={languageSwitcherIsOpen}
+          isClose={closeLanguageSwitcher}
         />
       )}
       {bMIModalIsOpen && (
