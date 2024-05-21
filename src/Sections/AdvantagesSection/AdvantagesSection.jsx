@@ -18,26 +18,21 @@ export default function AdvantagesSection() {
           </div>
           <div className={css.staticElements}>
             <div className={css.list}>
-              <p className={css.drive}>
-                <span className={css.circle}>
-                  <svg
-                    width="8"
-                    height="8"
-                    viewBox="0 0 8 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="#9BE1A0" />
-                  </svg>
-                </span>
-                Habit drive
-              </p>
-              <div className={css.statistics}>
+              <div className={`${css.drive} ${css.hoverEffect}`}>
+                <div className={css.driveText}>
+                  <div className={css.circle}></div>
+                  <p>Habit drive</p>
+                </div>
+                <div className={`${css.hoverImage} ${css.imageDrive}`} />
+              </div>
+              <div className={`${css.statistics} ${css.hoverEffect}`}>
                 <p className={css.statisticsText}>View statistics</p>
+                <div className={`${css.hoverImage} ${css.imageStatistics}`} />
               </div>
             </div>
-            <div className={css.setting}>
+            <div className={`${css.setting} ${css.hoverEffect}`}>
               <p className={css.settingText}>Personal rate setting</p>
+              <div className={`${css.hoverImage} ${css.imageSetting}`} />
             </div>
           </div>
         </div>

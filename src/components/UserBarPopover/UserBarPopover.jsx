@@ -1,26 +1,28 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
+import BmiModal from '../../components/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
-  // const [setIsOpen] = useState(false);
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
+  const [bMIModalIsOpen, setBMIModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
-  // const ref = useRef();
+  const wrapperRef = useRef(null);
 
-  // useEffect(() => {
-  //   const handleClickOutside = event => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       setIsOpenPop(false);
-  //     }
-  //   };
-  //   document.addEventListener('click', handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, [setIsOpenPop]);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setPopoverOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [wrapperRef, setPopoverOpen]);
 
   const openSettingModal = () => {
     setPopoverOpen(false);
@@ -33,13 +35,24 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     document.body.style.overflow = '';
   };
 
+  const openBMIModal = () => {
+    setPopoverOpen(false);
+    setBMIModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeBMIModal = () => {
+    setBMIModalIsOpen(false);
+    document.body.style.overflow = '';
+  };
+
   const openLogOutModal = () => {
+    setPopoverOpen(false);
     setlogOutModalIsOpen(true);
     document.body.style.overflow = 'hidden';
   };
 
   const closeLogOutModal = () => {
-    setPopoverOpen(false);
     setlogOutModalIsOpen(false);
     document.body.style.overflow = '';
   };
@@ -47,30 +60,44 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   return (
     <div
       className={
-        popoverOpen ? `${css.wrapper} ${css.open}` : `${css.wrapper} ${css.closed}`
+        popoverOpen
+          ? `${css.wrapper} ${css.open}`
+          : `${css.wrapper} ${css.closed}`
       }
+      ref={wrapperRef}
     >
-      <div className={css.button} onClick={openSettingModal}>
+      <ul className={css.list}>
+        <li className={css.listItem} onClick={openSettingModal}>
+          <svg className={css.iconSettings}>
+            <use href={`${IconSprite}#IconSettings`}></use>
+          </svg>
+          <p className={css.settingsItem}>Settings</p>
+        </li>
+        <li className={css.listItem} onClick={openBMIModal}>
         <svg className={css.iconSettings}>
-          <use href={`${IconSprite}#IconSettings`}></use>
-        </svg>
-        <span className={css.settingsItem}>Settings</span>
-      </div>
-      {logOutlIsOpen && (
-        <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
-      )}
+            <use href={`${IconSprite}#IconSettings`}></use>
+          </svg>
+          <p className={css.settingsItem}>BMI calculator</p>
+        </li>
+        <li className={css.listItem} onClick={openLogOutModal}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#IconLogOut`}></use>
+          </svg>
+          <p className={css.settingsItem}>Log out</p>
+        </li>
+      </ul>
       {settingModalIsOpen && (
         <UserSettingsModal
           isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
         />
       )}
-      <div className={css.button} onClick={openLogOutModal}>
-        <svg className={css.iconLogout}>
-          <use href={`${IconSprite}#IconLogOut`}></use>
-        </svg>
-        <span className={css.settingsItem}>Log out</span>
-      </div>
+      {bMIModalIsOpen && (
+        <BmiModal isOpen={bMIModalIsOpen} isClose={closeBMIModal} />
+      )}
+      {logOutlIsOpen && (
+        <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
+      )}
     </div>
   );
 }

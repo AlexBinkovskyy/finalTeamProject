@@ -18,7 +18,7 @@ import { createBrowserHistory } from 'history';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken'],
 };
 
 const history = createBrowserHistory();
@@ -37,14 +37,13 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
+
 const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;
-  const token = urlParams.substring(1);
-  if (token) {
-    store.dispatch(verifyEmailSuccess(token));
+  const accessToken = urlParams.substring(1);
+  if (accessToken) {
+    store.dispatch(verifyEmailSuccess(accessToken));
     history.push('/finalTeamProject/tracker');
   }
 });
 export { persistor };
-
-// export const persistor = persistStore(store);

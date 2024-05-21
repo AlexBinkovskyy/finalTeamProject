@@ -1,7 +1,7 @@
 import css from './DailyInfo.module.css';
-import AddWaterBtnToday from 'components/AddWaterBtnToday/AddWaterBtnToday';
 import WaterList from 'components/WaterList/WaterList';
 import ChooseDate from 'components/ChooseDate/ChooseDate';
+import AddWaterBtn from 'components/AddWaterBtn/AddWaterBtn';
 
 export default function DailyInfo({ selectedDate }) {
   if (!selectedDate) {
@@ -13,7 +13,7 @@ export default function DailyInfo({ selectedDate }) {
       <div className={css.dailyInfo}>
         <div className={css.header}>
           <ChooseDate selectedDate={selectedDate} />
-          <AddWaterBtnToday/>
+          <AddWaterBtn color="white" />
         </div>
         <WaterList selectedDate={selectedDate} />
       </div>

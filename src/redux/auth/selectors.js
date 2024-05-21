@@ -13,3 +13,5 @@ export const selectDailyNorma = state => state.auth.user.dailyNorma;
 export const selectVerified = state => state.auth.user.isVerified;
 
 export const selectGoal = state => state.auth.user.goal;
+
+export const selectLoading = state => state.auth.loading;

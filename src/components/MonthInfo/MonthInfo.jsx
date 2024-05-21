@@ -11,18 +11,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMonthlyConsumption } from '../../redux/water/operations';
 
 import Statistics from 'components/Statistics/Statistics';
-import { selectMonth } from '../../redux/water/selectors';
+import { selectDayState, selectMonth } from '../../redux/water/selectors';
 
 export default function MonthInfo() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const initialMonth = format(selectedDate, 'MM.yyyy');
   const [showCalendar, setShowCalendar] = useState(true);
+
+  const initialiasation = useSelector(selectDayState);
+
+  const initialMonth = format(selectedDate, 'MM.yyyy');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchMonthlyConsumption(initialMonth));
-  }, [dispatch, initialMonth]);
+  }, [dispatch, initialMonth, initialiasation]);
 
   const handleDateChange = date => {
     setSelectedDate(date);

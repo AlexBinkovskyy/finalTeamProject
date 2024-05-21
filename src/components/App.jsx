@@ -21,6 +21,7 @@ import ResendPage from 'Pages/ResendPage/ResendPage';
 import RecoverPage from 'Pages/RecoverPage/RecoverPage';
 import ChangePassPage from 'Pages/ChangePassPage/ChangePassPage';
 import Loader from './Loader/Loader';
+import setInterceptors from 'Interceptors/setInterceptors';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -28,6 +29,9 @@ import Loader from './Loader/Loader';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
+
+setInterceptors();
+
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
@@ -99,7 +103,11 @@ export const App = () => {
           }
         />
       </Routes>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+        }}
+      />
     </>
   );
 };
