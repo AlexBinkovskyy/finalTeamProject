@@ -11,12 +11,12 @@ import { format, parse } from 'date-fns';
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
   const todayTotal = useSelector(selectTodayTotal);
+  const todayTotalLitr = Math.round((todayTotal / 1000) * 10) / 10;
   const goal = useSelector(selectGoal);
 
   if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
   }
-
   const chosenDate = parse(chosenDateStr, 'dd.MM.yyyy', new Date());
   const today = format(new Date(), 'd MMMM');
   const chosen = format(chosenDate, 'd MMMM');
@@ -37,9 +37,15 @@ export default function WaterProgressBar() {
     <div className={css.WaterProgressBar}>
       <div className={css.ProgressBar} data-tut="reactour__waterprogress">
         {chosen === today ? (
-          <p className={css.text}>Today</p>
+          <p className={css.text}>
+            Today
+            <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
+          </p>
         ) : (
-          <p className={css.text}>{chosen}</p>
+          <p className={css.text}>
+            {chosen}
+            <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
+          </p>
         )}
         <div className={css.Progress}>
           <div className={css.ProgressAll}>

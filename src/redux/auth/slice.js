@@ -8,33 +8,34 @@ import {
   recoverMail,
   recoverPass,
   resendMail,
+  refreshUserTokens,
+
 } from './operations';
 
 const handlePending = state => {
-  state.loading = true;
+  state.isRefreshing = true;
 };
 
 const handleFullfilled = state => {
-  state.loading = false;
+  state.isRefreshing = false;
 };
 
 const handleReject = state => {
-  state.loading = false;
+  state.isRefreshing = false;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: {},
-    token: null,
+    accessToken: null,
     isLoggedIn: false,
     isRefreshing: false,
-    loading: false,
   },
   reducers: {
     verifyEmailSuccess: (state, action) => {
       state.isLoggedIn = true;
-      state.token = action.payload;
+      state.accessToken = action.payload;
     },
     tokenIsInvalid: state => {
       state.isLoggedIn = false;
@@ -50,30 +51,28 @@ const authSlice = createSlice({
       .addCase(signup.pending, handlePending)
       .addCase(signup.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.loading = false;
+        state.isRefreshing = false;
       })
       .addCase(signup.rejected, state => {
         state.isRefreshing = false;
-        state.loading = false;
       })
 
       // signin
       .addCase(signin.pending, handlePending)
       .addCase(signin.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.loading = false;
+        state.isRefreshing = false;
       })
       .addCase(signin.rejected, state => {
         state.isRefreshing = false;
-        state.loading = false;
       })
 
       // signout
       .addCase(signout.fulfilled, state => {
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
       .addCase(signout.rejected, state => {
@@ -81,7 +80,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
 
@@ -99,7 +98,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
 
@@ -117,7 +116,7 @@ const authSlice = createSlice({
 
         // check
         state.user = {};
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
       })
 
@@ -134,7 +133,18 @@ const authSlice = createSlice({
       // resendMail
       .addCase(resendMail.pending, handlePending)
       .addCase(resendMail.fulfilled, handleFullfilled)
-      .addCase(resendMail.rejected, handleReject);
+      .addCase(resendMail.rejected, handleReject)
+
+      // refreshToken
+      .addCase(refreshUserTokens.fulfilled, (state, action) => {
+        state.accessToken = action.payload.data.accessToken;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUserTokens.rejected,(state, action) =>{
+        state.isLoggedIn = false;
+        state.accessToken = null
+      });
   },
 });
 

@@ -2,8 +2,8 @@ import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-const setAuthHeader = token => {
-  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+export const setAuthHeader = accessToken => {
+  api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
 const clearAuthHeader = () => {
@@ -29,7 +29,13 @@ export const signin = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/login', credentials);
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.accessToken);
+
+      localStorage.setItem(
+        `userId_${res.data.user._id}`,
+        res.data.refreshToken
+      );
+
       toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
@@ -102,7 +108,7 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.auth.accessToken;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -129,5 +135,22 @@ export const updateUserSettings = createAsyncThunk(
       toast.error('Failed to update settings. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const refreshUserTokens = createAsyncThunk(
+  'auth/refreshTokens',
+  async (credentials, thunkAPI) => {
+
+    try {
+      const res = await api.post('users/refreshtoken/', credentials, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+            
+      return res
+    } catch (error) {}
   }
 );

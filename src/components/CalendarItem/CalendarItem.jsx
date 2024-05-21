@@ -1,4 +1,3 @@
-// CalendarItem.js
 import React from 'react';
 import css from './CalendarItem.module.css';
 import { isSameDay, format } from 'date-fns';

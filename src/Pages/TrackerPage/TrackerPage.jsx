@@ -86,16 +86,9 @@ const TrackerPageContent = () => {
       <div className={css.TrackerPage} data-tut="reactour__fiststep">
         <WaterDetailedInfo />
         <WaterMainInfo />
-        <TourButton />
       </div>
     </>
   );
-};
-
-const TourButton = () => {
-  const { setIsOpen } = useTour();
-
-  return <button onClick={() => setIsOpen(true)}>Почати Тур</button>;
 };
 
 export default TrackerTour;

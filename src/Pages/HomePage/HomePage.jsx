@@ -12,7 +12,7 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (storedData && storedData.token !== 'null') {
+    if (storedData && storedData.accessToken !== 'null') {
       dispatch(userIsLoggedIn());
       navigate('/tracker');
     }

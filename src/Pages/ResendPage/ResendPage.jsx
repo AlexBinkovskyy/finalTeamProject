@@ -4,12 +4,12 @@ import PutMailForm from 'components/PutMailForm/PutMailForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { resendMail } from '../../redux/auth/operations';
 import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
-import { selectLoading } from '../../redux/auth/selectors';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import Loader from 'components/Loader/Loader';
 
 export default function ResendPage() {
   const dispatch = useDispatch();
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectIsRefreshing);
 
   const resendMailFunction = data => {
     return dispatch(resendMail(data));

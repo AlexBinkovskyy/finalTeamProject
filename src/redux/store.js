@@ -14,12 +14,11 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer, verifyEmailSuccess } from './auth/slice';
 import { waterReducer } from './water/waterSlice';
 import { createBrowserHistory } from 'history';
-import setInterceptors from '../Interceptors/setInterceptors';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken', 'refreshToken'],
 };
 
 const history = createBrowserHistory();
@@ -38,13 +37,12 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-setInterceptors();
 
 const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;
-  const token = urlParams.substring(1);
-  if (token) {
-    store.dispatch(verifyEmailSuccess(token));
+  const accessToken = urlParams.substring(1);
+  if (accessToken) {
+    store.dispatch(verifyEmailSuccess(accessToken));
     history.push('/finalTeamProject/tracker');
   }
 });

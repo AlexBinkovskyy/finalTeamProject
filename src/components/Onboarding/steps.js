@@ -7,7 +7,7 @@ const steps = [
   {
     selector: '[data-tut="reactour__waterbtn"]',
     content: 'Easy to add amount of water', //Слідкуйте за кількістю випитої води
-    position: 'left',
+    position: 'top',
   },
   {
     selector: '[data-tut="reactour__waterprogress"]',
@@ -15,7 +15,8 @@ const steps = [
   },
   {
     selector: '[data-tut="reactour__btnuserbar"]',
-    content: `Calculate daily intake`, //розрахувати добове споживання
+    content: `Calculate daily intake in settings`,
+    position: 'left', //розрахувати добове споживання
   },
   {
     selector: '[data-tut="reactour__waterlist"]',
