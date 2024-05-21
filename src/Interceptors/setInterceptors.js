@@ -16,7 +16,7 @@ const setInterceptors = () => {
   //   config.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'; // Дозволені заголовки
   //   return config;
   // });
-
+  
   api.interceptors.response.use(
     response => response,
     async error => {

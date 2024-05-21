@@ -85,6 +85,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           </svg>
           <p className={css.settingsItem}>Log out</p>
         </li>
+        <li className={css.listItem} onClick={openLogOutModal}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#IconLogOut`}></use>
+          </svg>
+          <p className={css.settingsItem}>Log out</p>
+        </li>
       </ul>
       {settingModalIsOpen && (
         <UserSettingsModal

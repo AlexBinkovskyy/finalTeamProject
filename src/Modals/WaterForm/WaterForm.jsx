@@ -9,10 +9,12 @@ import {
 } from '../../redux/water/operations.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenDate } from '../../redux/water/selectors';
+import { useTranslation } from 'react-i18next';
+
 
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
-    .required('Water amount is required')
+    .required('Water amount is required') 
     .positive('Water amount must be positive'),
   time: Yup.string()
     .required('Time is required')
@@ -26,11 +28,12 @@ const schema = Yup.object().shape({
         const selectedTime = new Date();
         selectedTime.setHours(hours, minutes, 0, 0);
         return selectedTime <= currentTime;
-      }
+      } 
     ),
 });
 
 const WaterForm = ({ isClose, defaultValues, operationType }) => {
+  const { t } = useTranslation();
   const {
     handleSubmit,
     formState: { errors },
@@ -113,12 +116,12 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
         <label htmlFor="waterAmount" className={css.inputParagraph}>
-          Amount of water:
-        </label>
+         {t('waterAmount')}
+        </label> 
         <div className={css.buttonsContainer}>
           <button
             type="button"
-            onClick={handleDecrement}
+            onClick={handleDecrement}  
             className={css.buttonIncrement}
           >
             -
