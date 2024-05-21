@@ -28,8 +28,7 @@ import setInterceptors from 'Interceptors/setInterceptors';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
-
-setInterceptors();
+  setInterceptors();
 
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
