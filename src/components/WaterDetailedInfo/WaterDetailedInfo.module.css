@@ -6,6 +6,7 @@
 
   border-radius: 30px;
   background-color: var(--background-color);
+  animation: var(--animation-shadow);
 }
 
 @media only screen and (min-width: 768px) {

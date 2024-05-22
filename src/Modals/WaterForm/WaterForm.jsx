@@ -138,6 +138,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
         <label htmlFor="time" className={css.labelWater}>
           Recording time:
         </label>
+
         <input
           type="time"
           name="time"

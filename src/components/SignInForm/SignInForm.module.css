@@ -32,7 +32,7 @@
 
 .input {
   font-family: 'Poppins-Regular';
-  border: 1px solid rgba(47, 47, 47, 0.2);
+  border: 1px solid var(--text-color-transparent);
   outline: none;
   border-radius: 15px;
   background-color: transparent;
@@ -52,7 +52,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: rgba(47, 47, 47, 0.6);
+  color: var(--text-color-transparent);
 }
 
 .input:is(:hover, :focus) {
@@ -101,7 +101,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: rgba(47, 47, 47, 0.5);
+  color: var(--text-color-transparent);
   display: flex;
   justify-content: center;
   gap: 4px;
@@ -123,13 +123,17 @@
 }
 
 .link:hover {
-  color: rgba(50, 63, 71, 0.4);
+  color: var(--hover-focus-color);
 }
 
 .eyeIcon {
-  stroke: var(--main-text-color);
+  stroke: var(--icon-color);
   stroke-width: 1.8px;
   fill: transparent;
+  transition: stroke 250ms ease-in-out;
+}
+.eyeIcon:hover {
+  stroke: var(--hover-focus-color);
 }
 
 .eyeBtn {

@@ -7,13 +7,16 @@ import 'modern-normalize';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from './Theme/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
    <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/finalTeamProject">
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>
