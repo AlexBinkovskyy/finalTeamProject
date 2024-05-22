@@ -2,7 +2,7 @@
   padding: 20px;
   max-height: 80vh;
   overflow: auto;
-  scrollbar-color: var(--accent-color) #edfaf6;
+  scrollbar-color: var(--accent-color) transparent;
   scrollbar-width: thin;
 }
 
@@ -43,5 +43,9 @@
 .closeBtn svg {
   width: 24px;
   height: 24px;
-  stroke: #000;
+  stroke: var(--main-text-color);
+  transition: stroke 0.3s ease;
+}
+.closeBtn svg:hover {
+  stroke: var(--accent-color);
 }

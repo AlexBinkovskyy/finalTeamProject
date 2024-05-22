@@ -7,10 +7,11 @@
   border-radius: 30px;
 
   background-image: url(../../image/transparent_bottle_for_water_mob@1x.png);
-  background-color: var(--accent-color);
+  background-color: var(--background-main-info);
   background-size: 262px 336px;
   background-repeat: no-repeat;
   background-position: center;
+  box-shadow: 0 4px 8px 0px var(--box-shadow-color);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),

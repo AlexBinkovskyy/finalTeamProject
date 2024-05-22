@@ -20,6 +20,7 @@
   cursor: pointer;
   font-family: Poppins-Bold;
   transition: transform 0.3s ease;
+  color: var(--main-color);
 }
 .button:hover {
   transform: scale(1.6);
@@ -28,6 +29,7 @@
   font-family: Poppins-Bold;
   letter-spacing: -0.01em;
   font-size: 14px;
+  color: var(--main-color);
 }
 @media screen and (min-width: 768px) {
   .date {

@@ -1,5 +1,5 @@
 .modalOverlay {
-  background-color: var(--main-white);
+  background-color: var(--background-color-modal);
   max-width: 343px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -55,4 +55,3 @@
     height: 28px;
   }
 }
-

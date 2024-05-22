@@ -20,6 +20,7 @@
   font-family: Poppins-Bold;
   font-size: 15px;
   line-height: 1.6;
+  color: var(--main-color);
 }
 
 .time {
@@ -46,7 +47,7 @@
 .iconDisabled {
   width: 14px;
   height: 14px;
-  stroke: var(--main-color);
+  stroke: var(--main-text-color);
   transition: transform 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
@@ -58,7 +59,7 @@
 
 .icon:hover,
 .icon:focus {
-  stroke: var(--main-color);
+  stroke: var(--hover-focus-color);
   transform: scale(1.2);
   cursor: pointer;
 }

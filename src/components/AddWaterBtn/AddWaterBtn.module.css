@@ -6,6 +6,7 @@
   margin-left: auto;
   border: none;
   display: flex;
+  background-color: var(--background-color);
 }
 .AddWaterBtn.BlackBtn {
   font-size: 14px;

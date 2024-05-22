@@ -183,7 +183,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: #2f2f2f;
+  color: var(--main-text-color);
 }
 @media only screen and (min-width: 768px) {
   .info {
@@ -257,7 +257,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: rgba(47, 47, 47, 0.6);
+  color: var(--main-text-color);
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   padding: 16px;
@@ -285,7 +285,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: #2f2f2f;
+  color: var(--main-text-color);
 }
 
 @media only screen and (min-width: 768px) {
@@ -364,8 +364,8 @@ input[type='radio']:checked + label:after {
 .icon {
   width: 24px;
   height: 24px;
-  stroke: #2f2f2f;
-  fill: white;
+  stroke: var(--main-text-color);
+  fill: var(--background-color-modal);
   margin-right: 8px;
   transition-property: stroke;
   transition-duration: 300ms;
