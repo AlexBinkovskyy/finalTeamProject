@@ -1,20 +1,18 @@
 .sectionAdvantages {
-  padding: 0 16px 16px;
   width: 375px;
   margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
   .sectionAdvantages {
-    padding: 0 32px 32px;
     width: 768px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .sectionAdvantages {
-    padding: 32px 32px 32px 0;
-    width: 704px;
+    padding: 0;
+    width: 672px;
     margin-right: auto;
     margin-left: 0;
   }

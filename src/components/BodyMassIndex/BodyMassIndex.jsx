@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
-// import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import BMIImage from '../../image/BMI.png';
 import Loader from '../../components/Loader/Loader';
+import getBmiResult from 'components/utils/getBmiResult ';
+import getColorClass from 'components/utils/getColorClassForBmi';
 import css from './BodyMassIndex.module.css';
 
 const schema = yup.object().shape({
@@ -20,9 +21,9 @@ const schema = yup.object().shape({
     .min(0, 'Height must be a positive number'),
 });
 
-export default function BodyMassIndex({ closeModal }) {
+export default function BodyMassIndex() {
   const userInfo = useSelector(selectUser);
-  const [bmiValue, setBmiValue] = useState(null);
+  const [bmiData, setBmiData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
 
@@ -36,44 +37,41 @@ export default function BodyMassIndex({ closeModal }) {
   });
 
   useEffect(() => {
-    if (userInfo) {
+    const storedData = JSON.parse(localStorage.getItem('bmiData'));
+    if (storedData) {
+      setBmiData(storedData);
+      setValue('weight', storedData.weight);
+      setValue('height', storedData.height);
+    } else if (userInfo) {
       setValue('weight', userInfo.weight || 0);
-      setValue('height', userInfo.height || 0);
+      setValue('height', 0);
     }
   }, [userInfo, setValue]);
 
-  const onSubmit = async data => {
+  function onSubmit(data) {
     setLoading(true);
     try {
       const { weight, height } = data;
+
       if (!weight || !height) {
         setDataError('Please enter both weight and height.');
-        setBmiValue(null);
         setLoading(false);
         return;
       }
+
       const heightInMeters = height / 100;
       const bmi = weight / (heightInMeters * heightInMeters);
-      setBmiValue(bmi.toFixed(2));
+      const newBmiData = { weight, height, bmiValue: bmi.toFixed(1) };
+      localStorage.setItem('bmiData', JSON.stringify(newBmiData));
+      setBmiData(newBmiData);
+      setDataError('');
     } catch (error) {
-      console.error('Error:', error);
     } finally {
-    //   setBmiValue(0);
       setLoading(false);
     }
-  };
+  }
 
-  const getColorClass = bmi => {
-    if (bmi >= 16 && bmi < 18.5) {
-      return css.blueText;
-    } else if (bmi >= 18.5 && bmi < 25) {
-      return css.greenText;
-    } else if (bmi >= 25) {
-      return css.redText;
-    } else {
-      return ''; 
-    }
-  };
+  const bmiColorClass = getColorClass(parseFloat(bmiData?.bmiValue));
 
   return (
     <div className={css.wrapper}>
@@ -87,52 +85,64 @@ export default function BodyMassIndex({ closeModal }) {
           risk of developing obesity and related diseases. Enter your data below
           to calculate your BMI.
         </p>
-        <div className={css.formGroup}>
-          <label htmlFor="weight" className={css.label}>
-            Weight (kg):
-          </label>
-          <input
-            type="number"
-            min="0"
-            id="weight"
-            {...register('weight')}
-            className={css.input}
-            autoComplete="weight"
-          />
-          {errors.weight && (
-            <span className={`${css.weight} ${css.error}`}>
-              Weight is required
-            </span>
-          )}
+        <div className={css.formElements}>
+          <div className={css.labels}>
+            <div className={`${css.formGroup} ${css.weightInput}`}>
+              <label htmlFor="weight" className={css.label}>
+                Weight (kg):
+              </label>
+              <input
+                type="number"
+                min="0"
+                id="weight"
+                {...register('weight')}
+                className={css.input}
+                autoComplete="weight"
+              />
+              {errors.weight && (
+                <span className={`${css.weightError} ${css.error}`}>
+                  Weight is required
+                </span>
+              )}
+            </div>
+            <div className={`${css.formGroup} ${css.heightInput}`}>
+              <label htmlFor="height" className={css.label}>
+                Height (cm):
+              </label>
+              <input
+                type="number"
+                min="40"
+                max="300"
+                id="height"
+                {...register('height', { value: bmiData?.height })}
+                className={css.input}
+                autoComplete="height"
+              />
+              {errors.height && (
+                <span className={`${css.heightError} ${css.error}`}>
+                  Height is required
+                </span>
+              )}
+            </div>
+          </div>
+          <button type="submit" className={css.btn} disabled={loading}>
+            {loading ? 'Calculating...' : 'Calculate BMI'}
+          </button>
         </div>
-        <div className={css.formGroup}>
-          <label htmlFor="height" className={css.label}>
-            Height (cm):
-          </label>
-          <input
-            type="number"
-            min="0"
-            id="height"
-            {...register('height')}
-            className={css.input}
-            autoComplete="height"
-          />
-          {errors.height && (
-            <span className={`${css.height} ${css.error}`}>
-              Height is required
-            </span>
-          )}
-        </div>
-        <button type="submit" className={css.btn} disabled={loading}>
-          {loading ? 'Calculating...' : 'Calculate your BMI'}
-        </button>
         {dataError && <span className={css.error}>{dataError}</span>}
-        {bmiValue !== null && (
+        {bmiData && (
           <div className={css.result}>
             <div className={css.thumb}>
               <img src={BMIImage} alt="Body mass index" className={css.image} />
             </div>
-            <p className={`${css.value} ${getColorClass(bmiValue)}`}>{bmiValue}</p>
+            <p className={`${css.value} ${css[bmiColorClass]}`}>
+              {bmiData.bmiValue}
+            </p>
+            {bmiData !== null && (
+              <p className={`${css.indexMessage} ${css[bmiColorClass]}`}>
+                {bmiData.bmiValue} - {getBmiResult(bmiData.bmiValue)}
+              </p>
+            )}
           </div>
         )}
         {loading && <Loader />}

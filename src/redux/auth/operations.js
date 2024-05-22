@@ -15,10 +15,15 @@ export const signup = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/register', credentials);
-      toast.success(res.data.user.message);
+      console.log(res);
+      const text = res.data.user.message;
+      toast.success(text);
+      console.log(res.data.user.message);
+      console.log(res.data);
       return res.data;
     } catch (error) {
       toast.error(`${error.response.data.message}`);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -31,12 +36,13 @@ export const signin = createAsyncThunk(
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
 
+      toast.success('Welcome to the AquaTrack');
+
       localStorage.setItem(
         `userId_${res.data.user._id}`,
         res.data.refreshToken
       );
 
-      toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
       toast.error(error.response.data.message);
@@ -141,7 +147,6 @@ export const updateUserSettings = createAsyncThunk(
 export const refreshUserTokens = createAsyncThunk(
   'auth/refreshTokens',
   async (credentials, thunkAPI) => {
-
     try {
       const res = await api.post('users/refreshtoken/', credentials, {
         headers: {
@@ -149,8 +154,7 @@ export const refreshUserTokens = createAsyncThunk(
         },
       });
 
-            
-      return res
+      return res;
     } catch (error) {}
   }
 );

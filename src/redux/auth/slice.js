@@ -9,7 +9,6 @@ import {
   recoverPass,
   resendMail,
   refreshUserTokens,
-
 } from './operations';
 
 const handlePending = state => {
@@ -141,9 +140,9 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUserTokens.rejected,(state, action) =>{
+      .addCase(refreshUserTokens.rejected, (state, action) => {
         state.isLoggedIn = false;
-        state.accessToken = null
+        state.accessToken = null;
       });
   },
 });

@@ -1,5 +1,5 @@
 import css from './SignUpForm.module.css';
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -25,7 +25,6 @@ const validationSchema = Yup.object().shape({
 export default function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
@@ -46,20 +45,14 @@ export default function SignUpForm() {
     mode: 'onChange',
   });
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = async ({ email, password }) => {
     dispatch(signup({ email, password }))
       .unwrap()
       .then(() => {
         reset();
-        setSubmitted(true);
+        navigate('/confirm-page');
       });
   };
-
-  useEffect(() => {
-    if (submitted) {
-      navigate('/confirm-page');
-    }
-  }, [submitted, navigate]);
 
   return (
     <div className={css.divWrap}>

@@ -4,7 +4,7 @@ import PutMailForm from 'components/PutMailForm/PutMailForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { recoverMail } from '../../redux/auth/operations';
 import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
-import { selectIsRefreshing} from '../../redux/auth/selectors';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import Loader from 'components/Loader/Loader';
 
 export default function RecoverPage() {
@@ -28,7 +28,7 @@ export default function RecoverPage() {
           />
         </div>
         <div className={css.advantage}>
-          {window.innerWidth > 1440 && <AdvantagesSection />}
+          {window.innerWidth >= 1440 && <AdvantagesSection />}
         </div>
       </div>
     </>

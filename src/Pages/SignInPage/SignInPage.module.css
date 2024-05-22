@@ -36,17 +36,16 @@
 @media screen and (min-width: 1440px) {
   .div {
     margin: 0;
-    margin-right: 32px;
     width: 672px;
     height: 736px;
     gap: 114px;
   }
 
   .divMain {
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 32px;
   }
 
   .advantage {

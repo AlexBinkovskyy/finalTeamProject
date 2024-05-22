@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { TourProvider, useTour } from '@reactour/tour';
@@ -34,50 +34,23 @@ const TrackerPageContent = () => {
   const checkVerify = useSelector(selectVerified);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { setIsOpen, currentStep, setCurrentStep } = useTour();
-
-  const [isFirstVisit, setIsFirstVisit] = useState(
-    !localStorage.getItem('isFirstVisitTrackerPage')
-  );
+  const { setIsOpen } = useTour();
 
   useEffect(() => {
     if (!checkVerify) {
       dispatch(refreshUser()).then(response => {
-        if (response.type === 'auth/refresh/rejected') {
+        if (response.type === 'auth/refresh/rejected')
           dispatch(tokenIsInvalid());
-          navigate('/signin');
-        }
+        navigate('/signin');
       });
     } else {
-      if (isFirstVisit) {
+      const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
+      if (!isFirstVisit) {
         setIsOpen(true);
         localStorage.setItem('isFirstVisitTrackerPage', 'true');
       }
-
-      if (isFirstVisit && currentStep !== null) {
-        const timer = setTimeout(() => {
-          setCurrentStep(prevStep => {
-            const nextStep = prevStep + 1;
-            if (nextStep >= steps.length) {
-              setIsOpen(false);
-              setIsFirstVisit(false);
-              return prevStep;
-            }
-            return nextStep;
-          });
-        }, 5000);
-        return () => clearTimeout(timer);
-      }
     }
-  }, [
-    checkVerify,
-    dispatch,
-    navigate,
-    isFirstVisit,
-    setIsOpen,
-    currentStep,
-    setCurrentStep,
-  ]);
+  }, [dispatch, navigate, checkVerify, setIsOpen]);
 
   return !checkVerify ? (
     <b>Refreshing user...</b>
