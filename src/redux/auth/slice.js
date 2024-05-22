@@ -136,7 +136,7 @@ const authSlice = createSlice({
 
       // refreshToken
       .addCase(refreshUserTokens.fulfilled, (state, action) => {
-        state.accessToken = action.payload.data.accessToken;
+        state.accessToken = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
