@@ -43,7 +43,7 @@ export default function BodyMassIndex() {
       setValue('weight', storedData.weight);
       setValue('height', storedData.height);
     } else if (userInfo) {
-      setValue('weight', userInfo.weight);
+      setValue('weight', userInfo.weight || 0);
       setValue('height', 0);
     }
   }, [userInfo, setValue]);

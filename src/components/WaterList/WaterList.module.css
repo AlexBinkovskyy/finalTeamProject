@@ -11,7 +11,7 @@
   border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+  background-color: var(--scrollbar-color);
   border-radius: 9px;
   max-width: 150px;
 }

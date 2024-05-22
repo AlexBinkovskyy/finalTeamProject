@@ -18,7 +18,7 @@
 }
 
 .currentDay {
-  color: var(--accent-color, #9be1a0);
+  color: var(--accent-color);
 }
 
 .waterLevel {
@@ -51,14 +51,13 @@
 }
 
 .dayNumber.selected {
-  border: 2px solid var(--accent-color, #9be1a0);
+  border: 2px solid var(--accent-color);
 }
 
 .dayNumber.fullWater {
-  background-color: white;
+  background-color: var(--color-white);
 }
 
-/* Додано стилі для збільшення кнопки та бордера при наведенні */
 .dayNumber:hover,
 .dayNumber:focus,
 .dayNumber.active {
@@ -70,7 +69,7 @@
 
 .waterPercentage {
   font-family: Poppins-Bold;
-  color: #2f2f2f99;
+  color: var(--main-text-color);
 
   font-size: 10px;
   position: absolute;

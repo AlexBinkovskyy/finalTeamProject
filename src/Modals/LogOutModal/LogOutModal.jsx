@@ -2,14 +2,13 @@ import React from 'react';
 import ComponentWithModal from '../Modal/Modal';
 import IconX from '../../image/sprite.svg';
 import css from './LogOutModal.module.css';
-import {signout} from '../../redux/auth/operations.js'
+import { signout } from '../../redux/auth/operations.js';
 import { useDispatch } from 'react-redux';
 
 export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
 
   const logOut = () => dispatch(signout());
-  
 
   return (
     <>

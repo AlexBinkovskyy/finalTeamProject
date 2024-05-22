@@ -88,6 +88,7 @@
 .text {
   max-width: 303px;
   font-family: 'Poppins', sans-serif;
+  color: var(--main-text-color);
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;

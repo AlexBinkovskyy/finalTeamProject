@@ -13,6 +13,7 @@
   flex-direction: column;
   gap: 126px;
   padding: 24px 16px 218px;
+  animation: var(--animation-shadow);
 }
 
 .advantage {
@@ -35,17 +36,16 @@
 @media screen and (min-width: 1440px) {
   .div {
     margin: 0;
-    margin-right: 32px;
     width: 672px;
     height: 736px;
     gap: 74px;
   }
 
   .divMain {
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 32px;
   }
 
   .advantage {

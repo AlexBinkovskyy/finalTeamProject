@@ -12,34 +12,39 @@ const setInterceptors = () => {
     response => response,
     async error => {
       if (error.response) {
-        // eslint-disable-next-line
-        if (error.response.status == 401 || error.response.status == 500) {
+        if (error.response.status === 401 || error.response.status === 500) {
           const originalRequest = error.config;
 
           const token = originalRequest.headers.Authorization.split(' ')[1];
 
           const id = jwtDecode(token);
           const refreshToken = localStorage.getItem(`userId_${id.id}`);
-          const result = await store
+
+          await store
             .dispatch(refreshUserTokens({ refreshToken }))
             .unwrap()
             .then(item => {
-              const newAccessToken = item.data.accessToken;
-              const newRefreshToken = item.data.refreshToken;
+              console.log('item', item);
+
+              const newAccessToken = item.accessToken;
+              const newRefreshToken = item.refreshToken;
               localStorage.setItem(`userId_${id.id}`, newRefreshToken);
 
               setAuthHeader(newAccessToken);
-              originalRequest.headers[
-                'Authorization'
-              ] = `Bearer ${newAccessToken}`;
 
-              return api.request(result);
+              console.log('req', originalRequest.headers.Authorization);
+              originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+              console.log('req2', originalRequest.headers.Authorization);
+
+              return api.request(originalRequest);
             });
         }
-        store.dispatch(tokenIsInvalid());
-        history.push('/finalTeamProject/signin');
+        if (error.response.status === 403) {
+          store.dispatch(tokenIsInvalid());
+          history.push('/finalTeamProject/signin');
+        }
       }
-      return Promise.reject(error);
+      // return (error);
     }
   );
 };

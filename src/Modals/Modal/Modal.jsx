@@ -11,8 +11,14 @@ export const modalWrapper = WrappedComponent => {
         bottom: 'auto',
         marginRight: '-50%',
         borderRadius: '15px',
+        border: '1px solid var(--modal-border-color)',
         padding: '20px 20px',
         transform: 'translate(-50%, -50%)',
+        backgroundColor: 'var(--background-color-modal)',
+        animation: 'var(--animation-shadow)',
+      },
+      overlay: {
+        backgroundColor: 'var(--modal-overlay)',
       },
     };
 
