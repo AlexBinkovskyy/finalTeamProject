@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.421fd439.css",
-    "main.js": "/static/js/main.a5597122.js",
+    "main.css": "/static/css/main.5ec9b8f9.css",
+    "main.js": "/static/js/main.eaa8ca81.js",
     "static/media/Water404Bg.jpg": "/static/media/Water404Bg.00f0904527198097a016.jpg",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
@@ -21,11 +21,11 @@
     "static/media/BMI.png": "/static/media/BMI.98d03c050875b518e98c.png",
     "static/media/sprite.svg": "/static/media/sprite.8653574d036a10682ea87f2476a05e6c.svg",
     "index.html": "/index.html",
-    "main.421fd439.css.map": "/static/css/main.421fd439.css.map",
-    "main.a5597122.js.map": "/static/js/main.a5597122.js.map"
+    "main.5ec9b8f9.css.map": "/static/css/main.5ec9b8f9.css.map",
+    "main.eaa8ca81.js.map": "/static/js/main.eaa8ca81.js.map"
   },
   "entrypoints": [
-    "static/css/main.421fd439.css",
-    "static/js/main.a5597122.js"
+    "static/css/main.5ec9b8f9.css",
+    "static/js/main.eaa8ca81.js"
   ]
 }
