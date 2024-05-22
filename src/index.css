@@ -35,30 +35,29 @@
   --main-text-color: #ffffffcc;
   --main-placeholder-color: #323f47;
 
+  --color-white: #ffffff;
+
   --accent-color: #87d28d;
-  --background-color: #3d3d3d;
   --main-white: #2f2f2f;
   --hover-focus-color: #9be1a0;
   --error-color: #ef5050;
 
   --icon-color: #2f2f2f;
 
-  --color-white: #ffffff;
-
-  --scrollbar-color: #87d28d;
+  --background-color: #3d3d3d;
+  --background-color-box-container: #323f47;
   --background-color-theme: #282828;
-  --main-color-theme: #ffffff;
-  --text-color-transparent: #ffffff77;
-  --accent-color-theme: #9be1a0;
-
   --background-color-day: #87d28d;
   --background-color-day-hover: #323f47;
-
-  --background-color-box-container: #323f47;
-  --box-shadow-color: #87d28d;
   --background-color-modal: #3d3d3d;
   --background-main-info: #3d3d3d;
-  /* --background-main-info: #293a2a; */
+
+  --scrollbar-color: #87d28d;
+  --main-color-theme: #ffffff;
+  --accent-color-theme: #9be1a0;
+  --text-color-transparent: #ffffff77;
+
+  --box-shadow-color: #87d28d;
   --modal-overlay: #9be1a033;
   --animation-shadow: blink 3s infinite;
 }
@@ -74,7 +73,6 @@
 
 body {
   background-color: var(--background-color-theme);
-  /* color: var(--main-text-color-theme); */
 }
 
 @import './reset.css';

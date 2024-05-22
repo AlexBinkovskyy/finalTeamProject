@@ -81,9 +81,13 @@
   border: none;
   font-weight: bold;
   margin-top: 24px;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .saveBtn:hover,
 .saveBtn:focus {
+  color: var(--background-color-theme);
   background-color: var(--hover-focus-color);
 }
 

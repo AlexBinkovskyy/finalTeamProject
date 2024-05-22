@@ -83,6 +83,7 @@
 }
 .cancelButton:hover,
 .cancelButton:focus {
+  color: var(--background-color-theme);
   opacity: 1;
 }
 @media only screen and (min-width: 768px) {
