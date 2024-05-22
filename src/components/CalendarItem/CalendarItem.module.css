@@ -31,7 +31,8 @@
   font-size: 14px;
   width: 28px;
   height: 28px;
-  background-color: var(--background-color-day);
+  color: var(--main-color);
+  background-color: #323f4733;
   border-radius: 50%;
   border: none;
   display: flex;
@@ -39,6 +40,7 @@
   align-items: center;
   margin-bottom: 4px;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -58,10 +60,10 @@
 
 .dayNumber:hover,
 .dayNumber:focus,
-.dayNumber:active {
-  color: var(--accent-color);
-  background-color: var(--background-color-day-hover);
-  border: 2px solid var(--accent-color);
+.dayNumber.active {
+  color: var(--accent-color, #9be1a0);
+  background-color: var(--main-color, #323f47);
+  border: 2px solid var(--accent-color, #9be1a0);
   transform: scale(1.1);
 }
 
