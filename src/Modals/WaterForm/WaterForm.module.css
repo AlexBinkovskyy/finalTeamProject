@@ -34,7 +34,7 @@
   width: 303px;
   border-radius: 15px;
   padding: 14px 16px;
-  color: var(--main-color);
+  color: var(--main-placeholder-color);
   font-family: 'Poppins', sans-serif;
   border: 1px solid rgba(46, 46, 46, 0.15);
   text-align: left;
@@ -65,7 +65,7 @@
   border-color: var(--main-color);
   align-items: flex-end;
   display: flex;
-  background-color: var(--main-white);
+  background-color: var(--color-white);
   font-size: 34px;
   justify-content: center;
 }

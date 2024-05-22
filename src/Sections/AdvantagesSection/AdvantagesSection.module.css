@@ -30,7 +30,7 @@
   display: flex;
   align-items: flex-end;
   padding: 208px 16px 32px;
-  box-shadow: 0 6px 8px 0px var(--box-shadow-color);
+  animation: var(--animation-shadow);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -79,7 +79,7 @@
 
 .customers {
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background-color: var(--main-white);
+  background-color: var(--color-white);
   width: 160px;
   height: 48px;
   border-radius: 30px;
@@ -229,7 +229,7 @@
 
 .setting {
   text-align: center;
-  background-color: var(--main-white);
+  background-color: var(--color-white);
   border-radius: 30px;
   position: relative;
 }

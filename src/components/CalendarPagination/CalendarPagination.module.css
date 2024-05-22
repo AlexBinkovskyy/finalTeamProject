@@ -15,14 +15,15 @@
 }
 
 .button {
+  color: var(--main-color);
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-family: Poppins-Bold;
-  transition: transform 0.3s ease;
-  color: var(--main-color);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 .button:hover {
+  color: var(--accent-color);
   transform: scale(1.6);
 }
 .date {
@@ -38,8 +39,8 @@
 }
 
 .paginationDisabled {
-  font-family: Poppins-Bold;
-  cursor: not-allowed;
-  background-color: transparent;
-  border: none;
+  display: none;
+}
+.pagination.boxPaginationDisabled {
+  justify-content: center;
 }

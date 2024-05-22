@@ -22,10 +22,11 @@
 }
 
 .container {
-  background-color: #f0eff4;
+  background-color: var(--background-color);
   border-radius: 30px;
   padding: 24px 16px 68px;
   height: 412px;
+  animation: var(--animation-shadow);
 }
 
 @media only screen and (min-width: 768px) {
@@ -120,8 +121,10 @@
 .try {
   border-radius: 30px;
   padding: 14px 18px;
+
   background-color: var(--accent-color);
   margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 .try:hover {
   background-color: var(--hover-focus-color);
@@ -136,9 +139,12 @@
 }
 
 .sign {
+  color: var(--main-color);
   border: 1px solid var(--main-color);
   border-radius: 30px;
   padding: 14px 28px;
+  transform: scale(1);
+  transition: border 0.3s ease, color 0.3s ease;
 }
 
 .sign:hover {

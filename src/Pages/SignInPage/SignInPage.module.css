@@ -13,7 +13,7 @@
   flex-direction: column;
   gap: 174px;
   padding: 24px 16px 218px;
-  box-shadow: 0 4px 8px 0px var(--box-shadow-color);
+  animation: var(--animation-shadow);
 }
 
 .advantage {

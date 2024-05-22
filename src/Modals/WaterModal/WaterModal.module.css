@@ -26,7 +26,7 @@
 .iconClose {
   width: 24px;
   height: 24px;
-  stroke: var(--main-color);
+  stroke: var(--main-text-color);
 }
 .closeButton {
   position: absolute;
@@ -36,6 +36,16 @@
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+.closeButton svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-text-color);
+  transition: stroke 0.3s ease;
+}
+.closeButton svg:hover {
+  stroke: var(--accent-color);
 }
 
 @media only screen and (min-width: 768px) {
