@@ -28,10 +28,16 @@ const schema = yup.object().shape({
     .number()
     .required('Weight is required')
     .min(0, 'Weight must be a positive number'),
+  height: yup
+    .number()
+    .required('Height is required')
+    .min(50, 'Height must be greater than or equal to 50')
+    .max(300, 'Height must be a realistic number'),
   activeTime: yup
     .number()
     .required('Sport time is required')
     .min(0, 'Active time must be a positive number')
+    .max(24, 'Active time must be a realistic number')
     .positive('Active time must be a positive number'),
   goal: yup
     .number()
@@ -43,11 +49,13 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
+
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [avatarError, setAvatarError] = useState('');
   const [isFileValid, setIsFileValid] = useState(true);
+  const [emailChanged, setEmailChanged] = useState(false);
   const avatarInputRef = useRef(null);
 
   const {
@@ -64,6 +72,7 @@ const UserSettingsForm = ({ closeModal }) => {
       name: '',
       email: '',
       weight: 0,
+      height: 0,
       activeTime: 0,
       goal: 0,
     },
@@ -71,11 +80,13 @@ const UserSettingsForm = ({ closeModal }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.email && !userInfoUpdated) {
-      const { email, name, gender, weight, activeTime, goal } = userInfo;
+      const { email, name, gender, weight, height, activeTime, goal } =
+        userInfo;
       setValue('email', email);
       setValue('name', name || email.split('@')[0]);
       setValue('gender', gender || '');
       setValue('weight', weight || 0);
+      setValue('height', height || 0);
       setValue('activeTime', activeTime || 0);
       setValue('goal', goal ? goal / 1000 : 0);
       setUserInfoUpdated(true);
@@ -85,16 +96,25 @@ const UserSettingsForm = ({ closeModal }) => {
   const gender = watch('gender');
   const weight = watch('weight');
   const activeTime = watch('activeTime');
+  const email = watch('email');
 
   useEffect(() => {
-    if (gender && weight && activeTime) {
+    if (gender && weight && activeTime && !userInfo.goal) {
       const setDailyNorma =
         gender === 'female'
           ? weight * 0.03 + activeTime * 0.4
           : weight * 0.04 + activeTime * 0.6;
       setValue('goal', parseFloat(setDailyNorma.toFixed(1)));
     }
-  }, [gender, weight, activeTime, setValue]);
+  }, [gender, weight, activeTime, userInfo.goal, setValue]);
+
+  useEffect(() => {
+    if (email !== userInfo.email) {
+      setEmailChanged(true);
+    } else {
+      setEmailChanged(false);
+    }
+  }, [email, userInfo.email]);
 
   const handleAvatarChange = event => {
     const file = event.target.files[0];
@@ -117,7 +137,7 @@ const UserSettingsForm = ({ closeModal }) => {
 
   const onSubmit = async data => {
     setLoading(true);
-
+console.log(data);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
     if (file) {
@@ -134,10 +154,12 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('name', data.name);
     formData.append('email', data.email);
     formData.append('weight', data.weight);
+    formData.append('height', data.height);
     formData.append('activeTime', data.activeTime);
     formData.append('goal', data.goal * 1000);
 
     try {
+      console.log(data);
       dispatch(updateUserSettings(formData));
       closeModal();
     } catch (error) {
@@ -182,9 +204,13 @@ const UserSettingsForm = ({ closeModal }) => {
               autoComplete="photo"
             />
           </label>
-          {avatarError && <span className={`${css.error} ${css.avatarError} `}>{avatarError}</span>}
+          {avatarError && (
+            <span className={`${css.error} ${css.avatarError} `}>
+              {avatarError}
+            </span>
+          )}
         </div>
-        <div className={css.formWraper }>
+        <div className={css.formWraper}>
           <div className={css.formWrap_1}>
             <div className={css.formGroup}>
               <label htmlFor="female" className={css.accentLabel}>
@@ -211,9 +237,9 @@ const UserSettingsForm = ({ closeModal }) => {
                 <label htmlFor="male" className={css.genderLabel}>
                   Man
                 </label>
-              {errors.gender && (
-                <span className={css.error}>{errors.gender.message}</span>
-              )}
+                {errors.gender && (
+                  <span className={css.error}>{errors.gender.message}</span>
+                )}
               </div>
             </div>
             <div className={`${css.formGroup} ${css.nameInput}`}>
@@ -228,7 +254,8 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="name"
               />
               {errors.name && (
-                <span className={`${css.nameError} ${css.error}`}>{errors.name.message}
+                <span className={`${css.nameError} ${css.error}`}>
+                  {errors.name.message}
                 </span>
               )}
             </div>
@@ -244,7 +271,16 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="email"
               />
               {errors.email && (
-                <span className={`${css.emailError} ${css.error}`}>{errors.email.message}</span>
+                <span className={`${css.emailError} ${css.error}`}>
+                  {errors.email.message}
+                </span>
+              )}
+              {emailChanged && (
+                <span className={css.emailChanged}>
+                  If you fill in an incorrect or non-existent email, you may
+                  lose access to your AquaTrack account during the password
+                  recovery procedure.
+                </span>
               )}
             </div>
             <div className={css.formGroup}>
@@ -286,8 +322,37 @@ const UserSettingsForm = ({ closeModal }) => {
                 className={css.input}
                 autoComplete="weight"
               />
-              {errors.weight && errors.weight.type === 'typeError' && (
-                <span className={`${css.weightError} ${css.error}`}>Weight is required</span>
+              {errors.weight && errors.weight.type === 'typeError' ? (
+                <span className={`${css.weightError} ${css.error}`}>
+                  Weight is required
+                </span>
+              ) : (
+                <span className={`${css.weightError} ${css.error}`}>
+                  {errors.weight?.message}
+                </span>
+              )}
+            </div>
+            <div className={`${css.formGroup} ${css.heightInput}`}>
+              <label htmlFor="height" className={css.label}>
+                Your height in cm:
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="300"
+                id="height"
+                {...register('height')}
+                className={css.input}
+                autoComplete="height"
+              />
+              {errors.height && errors.height.type === 'typeError' ? (
+                <span className={`${css.heightError} ${css.error}`}>
+                  Height is required
+                </span>
+              ) : (
+                <span className={`${css.heightError} ${css.error}`}>
+                  {errors.height?.message}
+                </span>
               )}
             </div>
             <div className={`${css.formGroup} ${css.activeTimeInput}`}>
@@ -297,14 +362,20 @@ const UserSettingsForm = ({ closeModal }) => {
               <input
                 type="number"
                 min="0"
-                max="24"
+                // max="24"
                 id="activeTime"
                 {...register('activeTime')}
                 className={css.input}
                 autoComplete="active-time"
               />
-              {errors.activeTime && errors.activeTime.type === 'typeError' && (
-                <span className={`${css.activeTimeError} ${css.error}`}>ActiveTime is required</span>
+              {errors.activeTime && errors.activeTime.type === 'typeError' ? (
+                <span className={`${css.activeTimeError} ${css.error}`}>
+                  activeTime is required
+                </span>
+              ) : (
+                <span className={`${css.activeTimeError} ${css.error}`}>
+                  {errors.activeTime?.message}
+                </span>
               )}
             </div>
             <div className={css.formGroup}>
@@ -330,7 +401,9 @@ const UserSettingsForm = ({ closeModal }) => {
                 autoComplete="goal"
               />
               {errors.goal && !watch('goal') && (
-                <span className={`${css.goalError} ${css.error}`}>Goal is required</span>
+                <span className={`${css.goalError} ${css.error}`}>
+                  Goal is required
+                </span>
               )}
             </div>
             <div className={css.themeSwitcherBox}>

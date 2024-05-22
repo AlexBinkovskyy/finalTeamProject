@@ -1,6 +1,6 @@
 import React from 'react';
-import ComponentWithModal from '../../Modals/Modal/Modal';
-import BodyMassIndex from 'components/BodyMassIndex/BodyMassIndex';
+import ComponentWithModal from '../Modal/Modal';
+import BodyMassIndex from '../../components/BodyMassIndex/BodyMassIndex';
 import css from './BmiModal.module.css';
 import IconX from '../../image/sprite.svg';
 

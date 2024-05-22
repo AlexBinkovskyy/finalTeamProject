@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
-import BmiModal from '../../components/BmiModal/BmiModal';
+import BmiModal from '../../Modals/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';

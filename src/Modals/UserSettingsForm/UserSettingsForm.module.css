@@ -330,7 +330,6 @@ input[type='radio'] + label:before {
   display: inline-block;
   width: 20px;
   height: 20px;
-  /* margin-right: 10px; */
   border: 1px solid var(--accent-color);
   border-radius: 50%;
   position: absolute;
@@ -394,17 +393,49 @@ input[type='radio']:checked + label:after {
 }
 
 .submitBtn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--main-text-color);
   border: none;
   border-radius: 30px;
   padding: 16px 50px;
   width: 141px;
   height: 56px;
   background-color: var(--accent-color);
+  transition-property: color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
 }
 
+.submitBtn:hover,
 .submitBtn:focus {
-  outline: 1px solid #93d193;
+  color: var(--main-white);
 }
+
+.emailChanged{
+  position: absolute;
+  top: -10px;
+  left: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: rgba(250, 48, 48, 0.6);
+  width: 245px;
+}
+@media only screen and (min-width: 768px) {
+  .emailChanged {
+    top: -2px;
+    left: 60px;
+    width: 315px;
+  }
+}
+
 
 .error {
   font-family: 'Poppins', sans-serif;
