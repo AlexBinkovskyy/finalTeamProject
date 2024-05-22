@@ -1,4 +1,39 @@
 {
+    "signin_page": {
+      "signin": "Логін",
+      "signup": "Зареєструватися",
+      "forgotPassword": "Забули пароль?",
+      "forgot": "Забули",
+      "account": "Не зареєструвалися?"
+    },
+    "signup_page": {
+      "signup": "Зареєструватися",
+      "signin": "Логін"
+    },
+    "auth_form": {
+      "email": "Пошта",
+      "password": "Пароль",
+      "passwordEnter": "Введіть пароль",
+      "emailEnter": "Введіть пошту",
+      "verfpassword": "лист підтвердження",
+      "send": "Відправити",
+      "resend": "Надіслати повторно", 
+      "changePassword": "Змінити пароль",
+      "repeatPassword": "Повторіть пароль"
+    },
+    "forgot_page": {
+      "recoverPassword": "Відновлення паролю:"
+    },
+    "modals":{
     "waterAmount": "Кількість води"
+    },
+    "advantagesSection":{
+        "our": "Наші",
+        "happy":"щасливі",
+        "customers":"клієнти",
+        "HabitDrive":"Керування звичкою",
+        "ViewStatistics":"Переглянути статистику",
+        "PersonalRateSetting":"Індивідуальне встановлення норми"
+      }
 }
   

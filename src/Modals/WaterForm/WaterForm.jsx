@@ -116,7 +116,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
         <label htmlFor="waterAmount" className={css.inputParagraph}>
-         {t('waterAmount')}
+         {t('modals.waterAmount')}
         </label> 
         <div className={css.buttonsContainer}>
           <button

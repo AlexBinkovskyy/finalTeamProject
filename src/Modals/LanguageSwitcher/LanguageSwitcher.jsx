@@ -22,3 +22,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
     </>
   );
 };
+
+// {t('signin_page.signin')}
+// import { useTranslation } from 'react-i18next';
+// const { t } = useTranslation();  
