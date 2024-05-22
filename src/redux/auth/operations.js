@@ -154,7 +154,7 @@ export const refreshUserTokens = createAsyncThunk(
         },
       });
 
-      return res;
+      return res.data;
     } catch (error) {}
   }
 );

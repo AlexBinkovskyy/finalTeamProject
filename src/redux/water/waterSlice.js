@@ -70,7 +70,7 @@ const waterSlice = createSlice({
       .addCase(deleteConsumption.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.dayNotes = action.payload.dailyCount;
+        state.dayNotes = action.payload?.dailyCount;
         state.todayTotal = action.payload.totalWater;
       })
       .addCase(deleteConsumption.rejected, handleRejected)
