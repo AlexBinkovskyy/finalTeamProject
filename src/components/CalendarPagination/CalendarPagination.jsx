@@ -3,19 +3,19 @@ import { format, addMonths, subMonths, isValid } from 'date-fns';
 import css from './CalendarPagination.module.css';
 
 export default function CalendarPagination({
-  currentDate,
-  setCurrentDate,
+  selectedDate,
+  setSelectedDate,
   isStatisticsOpen,
 }) {
   const handlePrevMonth = () => {
     if (!isStatisticsOpen) {
-      setCurrentDate(prevDate => subMonths(prevDate, 1));
+      setSelectedDate(prevDate => subMonths(prevDate, 1));
     }
   };
 
   const handleNextMonth = () => {
     if (!isStatisticsOpen) {
-      setCurrentDate(prevDate => addMonths(prevDate, 1));
+      setSelectedDate(prevDate => addMonths(prevDate, 1));
     }
   };
   const buttonClass = isStatisticsOpen ? css.paginationDisabled : css.button;
@@ -30,9 +30,9 @@ export default function CalendarPagination({
         &lt;
       </button>
       <span className={css.date}>
-        {currentDate &&
-          isValid(currentDate) &&
-          format(currentDate, 'MMMM, yyyy')}
+        {selectedDate &&
+          isValid(selectedDate) &&
+          format(selectedDate, 'MMMM, yyyy')}
       </span>
       <button
         className={buttonClass}
