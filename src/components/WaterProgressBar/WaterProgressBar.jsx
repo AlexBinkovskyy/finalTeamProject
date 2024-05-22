@@ -7,6 +7,7 @@ import {
 import { selectGoal } from '../../redux/auth/selectors.js';
 import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
+import Animation from './Animation';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
@@ -73,6 +74,9 @@ export default function WaterProgressBar() {
             {progressProc}%
           </p>
         )}
+        <div className={css.animationContainer}>
+          {progressProc === 100 && <Animation />}
+        </div>
       </div>
     </div>
   );
