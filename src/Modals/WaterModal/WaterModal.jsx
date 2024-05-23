@@ -1,14 +1,17 @@
 import WaterForm from '../WaterForm/WaterForm';
 import ComponentWithModal from '../Modal/Modal';
 import IconX from '../../image/sprite.svg';
+import { useTranslation } from 'react-i18next';
 import css from './WaterModal.module.css';
 
 export const WaterModal = ({
   operationType,
   defaultValues,
-  isOpen,
+  isOpen, 
   isClose,
 }) => {
+  const { t } = useTranslation();
+  
   return (
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
       <div className={css.modalOverlay}>
@@ -20,13 +23,13 @@ export const WaterModal = ({
           </button>
           {operationType === 'add' ? (
             <div>
-              <h2 className={css.title}>Add Water</h2>
-              <h3 className={css.paragraph}>Choose a value</h3>
+              <h2 className={css.title}> {t('modals.addWater')}</h2>
+              <h3 className={css.paragraph}> {t('modals.chooseValue')}</h3>
             </div>
           ) : (
             <div>
-              <h2 className={css.title}>Edit the entered amount of water</h2>
-              <h3 className={css.paragraph}>Correct entered data:</h3>
+              <h2 className={css.title}> {t('modals.editWater')}</h2>
+              <h3 className={css.paragraph}> {t('modals.correctData')}</h3>
             </div>
           )}
           <WaterForm

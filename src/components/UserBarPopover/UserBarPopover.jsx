@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
-import BmiModal from '../../Modals/BmiModal/BmiModal';
+import BmiModal from 'Modals/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
-import { IoMdCalculator } from 'react-icons/io';
+import {LanguageSwitcher} from 'Modals/LanguageSwitcher/LanguageSwitcher';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
   const [bMIModalIsOpen, setBMIModalIsOpen] = useState(false);
   const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
+  const [languageSwitcherIsOpen, setlanguagesSwitcherModalIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -58,6 +59,17 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     document.body.style.overflow = '';
   };
 
+  const openLanguageSwitcher = () => {
+    setPopoverOpen(false);
+    setlanguagesSwitcherModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLanguageSwitcher = () => {
+    setlanguagesSwitcherModalIsOpen(false);
+    document.body.style.overflow = '';
+  };
+
   return (
     <div
       className={
@@ -75,10 +87,16 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-          <div className={css.iconCalc}>
-            <IoMdCalculator className={css.iconCalcItem} />
-          </div>
-          <p className={css.settingsItem}>BMI calculator</p>
+        <svg className={css.iconSettings}>
+            <use href={`${IconSprite}#IconSettings`}></use>
+          </svg>
+          <p className={css.settingsItem}>BMI calc</p>
+        </li>
+        <li className={css.listItem} onClick={openLanguageSwitcher}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#IconSettings`}></use>
+          </svg>
+          <p className={css.settingsItem}>Languages</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
@@ -91,6 +109,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
         <UserSettingsModal
           isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
+        />
+      )}
+      {languageSwitcherIsOpen && (
+        <LanguageSwitcher
+          isOpen={languageSwitcherIsOpen}
+          isClose={closeLanguageSwitcher}
         />
       )}
       {bMIModalIsOpen && (

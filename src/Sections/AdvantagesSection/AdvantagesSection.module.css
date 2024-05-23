@@ -28,6 +28,14 @@
   animation: var(--animation-shadow);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .container {
+    background-image: url(../../image//rectangle_mob@2x.jpg);
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -62,6 +70,12 @@
   display: flex;
   padding: 10px 14px;
   margin: 0 auto 8px 0;
+}
+
+@media only screen and (max-width: 767.99px) {
+  .customers {
+    position: relative;
+  }
 }
 
 @media only screen and (min-width: 768px) {

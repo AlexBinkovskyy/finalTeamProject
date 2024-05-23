@@ -6,7 +6,7 @@
 }
 
 .label {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins-Regular';
   font-size: 14px;
   color: var(--main-text-color);
 }
@@ -15,13 +15,18 @@
   position: relative;
   width: 100px;
 }
+.water {
+  font-family: 'Poppins-Regular';
+  font-size: 14px;
+  color: var(--main-text-color);
+}
 
 .customSelect {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins-Regular';
   font-size: 14px;
   color: var(--main-text-color);
   border: 1px solid var(--text-color-transparent);
@@ -52,7 +57,7 @@
   border-color: var(--accent-color);
 }
 .arrowOpen {
-  transform: rotate(225deg); /* Перевертання на 180 градусів */
+  transform: rotate(225deg);
 }
 
 .customOptions {
@@ -61,7 +66,7 @@
   left: 0;
   width: 100%;
   color: var(--main-text-color);
-  /* border: 1px solid var(--main-text-color); */
+
   border-top: none;
   background-color: var(--background-color);
   z-index: 1;

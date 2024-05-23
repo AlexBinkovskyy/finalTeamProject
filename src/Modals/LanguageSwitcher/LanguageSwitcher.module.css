@@ -1,0 +1,43 @@
+.modalOverlay {
+  max-width: 344px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.langBtn {
+  background-color: var(--accent-color);
+  color: var(--main-color);
+  border-radius: 30px;
+  padding: 14px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.langBtn:hover,
+.langBtn:focus {
+  background-color: var(--hover-focus-color);
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+@media only screen and (min-width: 768px) {
+  .modalOverlay {
+    max-width: 516px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .langBtn {
+    font-size: 16px;
+    padding: 20px 20px;
+  }
+  .buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

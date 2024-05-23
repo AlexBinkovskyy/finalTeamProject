@@ -6,8 +6,6 @@ import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import { useState } from 'react';
 
 export default function MonthInfo({ selectedDate, setSelectedDate }) {
-  console.log('MonthInfo - Test');
-
   const [showCalendar, setShowCalendar] = useState(true);
   const handleButtonClick = () => {
     setShowCalendar(!showCalendar);

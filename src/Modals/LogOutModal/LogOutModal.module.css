@@ -38,6 +38,15 @@
   cursor: pointer;
   padding: 0;
 }
+.closeButton svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-text-color);
+  transition: stroke 0.3s ease;
+}
+.closeButton svg:hover {
+  stroke: var(--accent-color);
+}
 .deleteButton {
   background-color: var(--accent-color);
   color: var(--main-color);

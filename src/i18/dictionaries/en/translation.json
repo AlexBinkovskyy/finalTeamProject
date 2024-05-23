@@ -1,0 +1,49 @@
+{
+  "signin_page": {
+    "signin": "Sign in", 
+    "signup": "Sign up",
+    "forgot": "Forgot",
+    "account": "Don't have any account?" 
+  },
+  "signup_page": {
+    "signup": "Sign up",
+    "signin": "Sign in"
+  },
+  "auth_form": {
+    "email": "Email",
+    "password": "Password",
+    "verfpassword": "verification mail",
+    "passwordEnter": "Enter your password",
+    "emailEnter": "Enter your email",
+    "send": "Send",
+    "resend": "Resend", 
+    "changePassword": "Change password",
+    "repeatPassword": "Repeat password"
+  },
+  "forgot_page": {
+    "recoverPassword": "Recover password:"
+  },
+  "modals": {
+    "waterAmount": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterWater": "Enter the value of water used:",
+    "saveBtn": "Save",
+    "addWater": "Add Water",
+    "chooseValue": "Choose a value",
+    "editWater": "Edit the entered amount of water",
+    "correctData": "Correct entered data:"
+  },
+  "advantagesSection":{
+    "our": "Our",
+    "happy":"happy",
+    "customers":"customers",
+    "habitDrive":"Habit drive",
+    "viewStatistics":"View statistics",
+    "personalRateSetting":"Personal rate setting"
+  },
+  "waterDailyNorma":{
+    "dailyNorma":"My daily norma",
+    "today":"Today"
+  }
+}
+
