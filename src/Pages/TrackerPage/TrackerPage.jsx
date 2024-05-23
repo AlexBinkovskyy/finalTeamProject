@@ -15,7 +15,7 @@ import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-const TrackerTour = () => {
+const TrackerPage = () => {
   const disableBody = target => disableBodyScroll(target);
   const enableBody = target => enableBodyScroll(target);
   return (
@@ -64,4 +64,4 @@ const TrackerPageContent = () => {
   );
 };
 
-export default TrackerTour;
+export default TrackerPage;

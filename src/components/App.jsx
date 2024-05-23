@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 
 import { PrivateRoute } from '../Routs/PrivateRoute';
 import { RestrictedRoute } from '../Routs/RestrictedRoute';
 
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
+import '../i18/i18n';
 
 import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';
@@ -21,6 +21,7 @@ import RecoverPage from 'Pages/RecoverPage/RecoverPage';
 import ChangePassPage from 'Pages/ChangePassPage/ChangePassPage';
 import Loader from './Loader/Loader';
 import setInterceptors from 'Interceptors/setInterceptors';
+import NotFoundPage from 'Pages/NotFoundPage/NotFoundPage';
 
 // const HomePage = lazy(() => import('../Pages/HomePage/HomePage'));
 // const SignInPage = lazy(() => import('../Pages/SignInPage/SignInPage'));
@@ -28,8 +29,7 @@ import setInterceptors from 'Interceptors/setInterceptors';
 // const TrackerPage = lazy(() => import('../Pages/TrackerPage/TrackerPage'));
 
 export const App = () => {
-
-setInterceptors();
+  setInterceptors();
 
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
@@ -101,12 +101,8 @@ setInterceptors();
             <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster
-        toastOptions={{
-          duration: 5000,
-        }}
-      />
     </>
   );
 };

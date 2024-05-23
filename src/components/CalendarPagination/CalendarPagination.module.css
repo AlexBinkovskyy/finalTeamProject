@@ -15,19 +15,22 @@
 }
 
 .button {
+  color: var(--main-color);
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-family: Poppins-Bold;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 .button:hover {
+  color: var(--accent-color);
   transform: scale(1.6);
 }
 .date {
   font-family: Poppins-Bold;
   letter-spacing: -0.01em;
   font-size: 14px;
+  color: var(--main-color);
 }
 @media screen and (min-width: 768px) {
   .date {
@@ -36,8 +39,8 @@
 }
 
 .paginationDisabled {
-  font-family: Poppins-Bold;
-  cursor: not-allowed;
-  background-color: transparent;
-  border: none;
+  display: none;
+}
+.pagination.boxPaginationDisabled {
+  justify-content: center;
 }

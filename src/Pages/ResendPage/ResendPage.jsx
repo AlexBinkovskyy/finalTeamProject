@@ -28,7 +28,7 @@ export default function ResendPage() {
           />
         </div>
         <div className={css.advantage}>
-          {window.innerWidth > 1440 && <AdvantagesSection />}
+          {window.innerWidth >= 1440 && <AdvantagesSection />}
         </div>
       </div>
     </>

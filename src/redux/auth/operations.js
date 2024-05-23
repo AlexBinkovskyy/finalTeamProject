@@ -1,6 +1,6 @@
 import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export const setAuthHeader = accessToken => {
   api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -15,10 +15,12 @@ export const signup = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/register', credentials);
-      toast.success(res.data.user.message);
+      const text = res.data.user.message;
+      toast.success(text);
       return res.data;
     } catch (error) {
-      toast.error(`${error.response.data.message}`);
+      toast.error(error.response.data.message);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -30,16 +32,16 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
-
+      console.log(res);
+      toast.success('Welcome to the AquaTrack');
       localStorage.setItem(
         `userId_${res.data.user._id}`,
         res.data.refreshToken
       );
 
-      toast.success('Welcome to the AquaTrack');
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error('Email or password is wrong or not verified');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -52,7 +54,6 @@ export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
     toast.success('Signout success');
   } catch (error) {
     toast.error(error.response.data.message);
-
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -65,7 +66,6 @@ export const resendMail = createAsyncThunk(
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
-
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -89,7 +89,6 @@ export const recoverPass = createAsyncThunk(
   'auth/recoverPass',
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       const res = await api.patch('/users/passrecovery', credentials, {
         headers: {
           'Content-Type': 'application/json',
@@ -141,16 +140,15 @@ export const updateUserSettings = createAsyncThunk(
 export const refreshUserTokens = createAsyncThunk(
   'auth/refreshTokens',
   async (credentials, thunkAPI) => {
-
     try {
       const res = await api.post('users/refreshtoken/', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-            
-      return res
-    } catch (error) {}
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );

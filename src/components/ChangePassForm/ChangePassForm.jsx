@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import css from './ChangePassForm.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
@@ -25,7 +25,6 @@ const validationSchema = Yup.object().shape({
 export default function ChangePassForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const codeFieldId = useId();
@@ -52,15 +51,9 @@ export default function ChangePassForm() {
       .unwrap()
       .then(() => {
         reset();
-        setSubmitted(true);
+        navigate('/signin');
       });
   };
-
-  useEffect(() => {
-    if (submitted) {
-      navigate('/signin');
-    }
-  }, [submitted, navigate]);
 
   const onClickHandler = () => {
     navigate('/recover-page');

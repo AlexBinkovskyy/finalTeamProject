@@ -1,0 +1,58 @@
+.mainWrapper {
+  min-height: 100vh;
+  max-height: 100vh;
+  min-width: 100vw;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative; /* Додано для коректного позиціонування псевдоелемента */
+
+  /* background: url('../../image/Water404Bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+
+.mainWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../image/Water404Bg.jpg') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1; /* Прозорість фону */
+  z-index: -1; /* Розміщення псевдоелемента позаду вмісту */
+}
+
+.textWrapper {
+  text-align: center;
+  max-width: 625px;
+}
+
+.title {
+  font-size: 160px;
+  font-weight: bold;
+  color: transparent; /* Робимо текст прозорим */
+  -webkit-text-stroke: 5px #9be1a0e7; /* Обводка для WebKit-браузерів */
+  text-stroke: 5px #9be1a085; /* Стандартна обводка */
+}
+
+.subtitle {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #0000005e;
+}
+
+.link {
+  margin: 4px;
+  color: #8bcc8f;
+  transition: all linear 0.2s;
+}
+
+.link:hover {
+  color: #87b68a;
+}
