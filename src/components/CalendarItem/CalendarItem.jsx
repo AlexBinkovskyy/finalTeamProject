@@ -61,11 +61,11 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
     setSelectedDate(day);
   };
 
-  const buttonClass = `
-        ${css.dayNumber}
-        ${isCurrentDay ? css.selected : ''}
-        ${isActive ? css.active : css.inactive}
-        ${isFullWater ? css.fullWater : ''}`;
+  // const buttonClass = `
+  //       ${css.dayNumber}
+  //       ${isCurrentDay ? css.selected : ''}
+  //       ${isActive ? css.active : css.inactive}
+  //       ${isFullWater ? css.fullWater : ''}`;
 
   return (
     <div

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useSelector } from 'react-redux';
+import { GrPowerReset } from 'react-icons/gr';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
+import { updateUserSettings } from '../../redux/auth/operations';
 import BMIImage from '../../image/BMI.png';
 import Loader from '../../components/Loader/Loader';
 import getBmiResult from 'components/utils/getBmiResult ';
@@ -18,12 +20,14 @@ const schema = yup.object().shape({
   height: yup
     .number()
     .required('Height is required')
-    .min(0, 'Height must be a positive number'),
+    .min(0, 'Height must be a positive number')
+    .max(300, 'Height must be a realistic number'),
 });
 
 export default function BodyMassIndex() {
+  const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const [bmiData, setBmiData] = useState(null);
+  const [bmiValue, setBmiValue] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
 
@@ -32,46 +36,65 @@ export default function BodyMassIndex() {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      weight: 0,
+      height: 0,
+    },
   });
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('bmiData'));
-    if (storedData) {
-      setBmiData(storedData);
-      setValue('weight', storedData.weight);
-      setValue('height', storedData.height);
-    } else if (userInfo) {
-      setValue('weight', userInfo.weight || 0);
-      setValue('height', 0);
+    if (userInfo) {
+      const { weight, height } = userInfo;
+      setValue('weight', weight || 0);
+      setValue('height', height || 0);
     }
   }, [userInfo, setValue]);
 
-  function onSubmit(data) {
+  const onSubmit = async data => {
     setLoading(true);
+    const { weight, height } = data;
+
+    if (!weight || !height) {
+      setDataError('Please enter both weight and height.');
+      setLoading(false);
+      return;
+    }
+
+    const heightInMeters = height / 100;
+    const bmi = weight / (heightInMeters * heightInMeters);
+
+    setBmiValue(bmi.toFixed(1));
+    setDataError('');
+
+    const formData = new FormData();
+    formData.append('bmi', bmi.toFixed(1));
+
     try {
-      const { weight, height } = data;
-
-      if (!weight || !height) {
-        setDataError('Please enter both weight and height.');
-        setLoading(false);
-        return;
-      }
-
-      const heightInMeters = height / 100;
-      const bmi = weight / (heightInMeters * heightInMeters);
-      const newBmiData = { weight, height, bmiValue: bmi.toFixed(1) };
-      localStorage.setItem('bmiData', JSON.stringify(newBmiData));
-      setBmiData(newBmiData);
-      setDataError('');
+      // console.log(bmi.toFixed(1));
+      dispatch(updateUserSettings(formData));
     } catch (error) {
+      console.error('Failed to update user settings', error);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  const bmiColorClass = getColorClass(parseFloat(bmiData?.bmiValue));
+  const onReset = () => {
+    reset();
+    setBmiValue(null);
+    setDataError('');
+  };
+
+  const handleInputChange = () => {
+    if (dataError) {
+      setDataError('');
+    }
+  };
+
+  const bmiColorClass = getColorClass(parseFloat(bmiValue));
 
   return (
     <div className={css.wrapper}>
@@ -98,10 +121,15 @@ export default function BodyMassIndex() {
                 {...register('weight')}
                 className={css.input}
                 autoComplete="weight"
+                onInput={handleInputChange}
               />
-              {errors.weight && (
+              {errors.weight && errors.weight.type === 'typeError' ? (
                 <span className={`${css.weightError} ${css.error}`}>
                   Weight is required
+                </span>
+              ) : (
+                <span className={`${css.weightError} ${css.error}`}>
+                  {errors.weight?.message}
                 </span>
               )}
             </div>
@@ -111,36 +139,51 @@ export default function BodyMassIndex() {
               </label>
               <input
                 type="number"
-                min="40"
+                min="0"
                 max="300"
                 id="height"
-                {...register('height', { value: bmiData?.height })}
+                {...register('height')}
                 className={css.input}
                 autoComplete="height"
+                onInput={handleInputChange}
               />
-              {errors.height && (
+              {errors.height && errors.height.type === 'typeError' ? (
                 <span className={`${css.heightError} ${css.error}`}>
                   Height is required
+                </span>
+              ) : (
+                <span className={`${css.heightError} ${css.error}`}>
+                  {errors.height?.message}
                 </span>
               )}
             </div>
           </div>
-          <button type="submit" className={css.btn} disabled={loading}>
-            {loading ? 'Calculating...' : 'Calculate BMI'}
-          </button>
+          <div className={css.buttons}>
+            <button type="submit" className={css.btn} disabled={loading}>
+              {loading ? 'Calculating...' : 'Calculate BMI'}
+            </button>
+            <button
+              type="button"
+              className={`${css.btn} ${css.resetBtn}`}
+              onClick={onReset}
+              disabled={loading}
+            >
+              <GrPowerReset className={css.resetIcon} />
+            </button>
+          </div>
+          {dataError && (
+            <span className={`${css.error} ${css.errorData}`}>{dataError}</span>
+          )}
         </div>
-        {dataError && <span className={css.error}>{dataError}</span>}
-        {bmiData && (
+        {bmiValue && (
           <div className={css.result}>
             <div className={css.thumb}>
               <img src={BMIImage} alt="Body mass index" className={css.image} />
             </div>
-            <p className={`${css.value} ${css[bmiColorClass]}`}>
-              {bmiData.bmiValue}
-            </p>
-            {bmiData !== null && (
+            <p className={`${css.value} ${css[bmiColorClass]}`}>{bmiValue}</p>
+            {bmiValue !== null && (
               <p className={`${css.indexMessage} ${css[bmiColorClass]}`}>
-                {bmiData.bmiValue} - {getBmiResult(bmiData.bmiValue)}
+                {bmiValue} - {getBmiResult(bmiValue)}
               </p>
             )}
           </div>
