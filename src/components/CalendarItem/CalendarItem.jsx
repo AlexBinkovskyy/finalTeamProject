@@ -3,7 +3,7 @@ import css from './CalendarItem.module.css';
 import { isSameDay, format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { selectGoal } from '../../redux/auth/selectors';
-import { selectMonth } from '../../redux/water/selectors';
+// import { selectMonth } from '../../redux/water/selectors';
 
 // From Polina
 // const todayTotal = useSelector(selectTodayTotal);
@@ -32,14 +32,17 @@ const handlePercentage = percentage => {
   }
 };
 
-const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
+const CalendarItem = ({
+  day,
+  setSelectedDate,
+  selectedDate,
+  dayWaterMonth,
+}) => {
   // console.log('CalendarItem - Test');
 
   const isCurrentDay = isSameDay(new Date(), day);
   const isActive = isSameDay(selectedDate, day);
   const DailyGoal = useSelector(selectGoal);
-
-  const dayWaterMonth = useSelector(selectMonth);
 
   const formattedDate = format(day, 'dd.MM.yyyy');
 
@@ -47,40 +50,43 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
     dayWithWater => dayWithWater.date === formattedDate
   );
 
-  const totalAmount = dataIsWater?.dailyCount.reduce(
-    (accumulator, { amount }) => {
-      return accumulator + amount;
-    },
-    0
-  );
+  // const emptyDay = {
+  //   date: null,
+  //   dailyCount: Array(0),
+  //   totalWater: 0,
+  //   waterRecordsAmount: 0,
+  //   _id: null,
+  // };
 
-  const percentage = (totalAmount / DailyGoal) * 100;
-  const isFullWater = totalAmount >= DailyGoal;
+  const totalAmount = () => {
+    if (dataIsWater?.totalWater >= 0) {
+      return dataIsWater?.totalWater;
+    } else {
+      return 0;
+    }
+  };
+
+  // console.log(totalAmount());
+
+  const percentage = (totalAmount() / DailyGoal) * 100;
+  const isFullWater = handlePercentage(percentage) === 100;
 
   const handleClick = () => {
     setSelectedDate(day);
   };
 
-  // const buttonClass = `
-  //       ${css.dayNumber}
-  //       ${isCurrentDay ? css.selected : ''}
-  //       ${isActive ? css.active : css.inactive}
-  //       ${isFullWater ? css.fullWater : ''}`;
+  const buttonClass = `
+        ${css.dayNumber}
+        ${isCurrentDay ? css.selected : ''}
+        ${isActive ? css.active : css.inactive}
+        ${isFullWater ? css.fullWater : ''}`;
 
   return (
     <div
       className={`${css.day}
     ${isCurrentDay ? css.currentDay : ''}`}
     >
-      <div
-        onClick={handleClick}
-        className={`
-        ${css.dayNumber}
-        ${isCurrentDay ? css.selected : ''}
-        ${isActive ? css.active : css.inactive}
-        ${isFullWater ? css.fullWater : ''}
-        `}
-      >
+      <div onClick={handleClick} className={buttonClass}>
         {format(day, 'd')}
       </div>
       <div className={css.waterPercentage}>{handlePercentage(percentage)}%</div>

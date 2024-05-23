@@ -9,12 +9,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import css from './Statistics.module.css';
-import { useSelector } from 'react-redux';
-import { selectMonth } from '../../redux/water/selectors';
 import { format, subDays, isAfter } from 'date-fns';
 
-const Statistics = () => {
-  const data = useSelector(selectMonth);
+const Statistics = ({ data }) => {
+  console.log('Statistics - Test');
+
   const [daysRange, setDaysRange] = useState(7);
   const today = new Date();
 
