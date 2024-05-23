@@ -1,21 +1,21 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
 import { startOfMonth, endOfMonth, eachDayOfInterval, format } from 'date-fns';
 import { useEffect } from 'react';
 import { fetchMonthlyConsumption } from '../../redux/water/operations';
 import Statistics from 'components/Statistics/Statistics';
-// import { selectMonth } from '../../redux/water/selectors';
-// import { useSelector } from 'react-redux';
+import { selectMonth, selectTodayTotal } from '../../redux/water/selectors';
 
 export const Calendar = ({ selectedDate, setSelectedDate, showCalendar }) => {
-  console.log('Calendar - Test');
-
+  const init = useSelector(selectTodayTotal);
   const initialMonth = format(selectedDate, 'MM.yyyy');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMonthlyConsumption(initialMonth));
-  }, [dispatch, initialMonth]);
+  }, [dispatch, initialMonth, init]);
+
+  const monthData = useSelector(selectMonth);
 
   const getDaysInMonth = () => {
     const start = startOfMonth(selectedDate);
@@ -23,39 +23,24 @@ export const Calendar = ({ selectedDate, setSelectedDate, showCalendar }) => {
     const days = eachDayOfInterval({ start, end });
     return days;
   };
-  // const testDays = eachDayOfInterval(
-  //   startOfMonth(selectedDate),
-  //   endOfMonth(selectedDate)
-  // );
-
-  // const incommingMonthConsumption = useSelector(selectMonth);
-  // const monthConsumption = incommingMonthConsumption.map(el => {
-  //   return {
-  //     date: el.date,
-  //     totalWater: el.totalWater,
-  //   };
-  // });
-  // console.log(monthConsumption);
-  // console.log(
-  //   getDaysInMonth().map(el => {
-  //     return el.toISOString();
-  //   })
-  // );
 
   return (
     <>
       {showCalendar ? (
         <ul className={css.calendar}>
           {getDaysInMonth().map(day => (
-            <CalendarItem
-              key={day.toISOString()}
-              day={day}
-              setSelectedDate={setSelectedDate}
-            />
+            <li key={day.toISOString()}>
+              <CalendarItem
+                day={day}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                dayWaterMonth={monthData}
+              />
+            </li>
           ))}
         </ul>
       ) : (
-        <Statistics />
+        <Statistics data={monthData} />
       )}
     </>
   );

@@ -5,6 +5,8 @@ import UserBar from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
 
 export default function UserPanel() {
+  console.log('UserPanel - Test');
+
   const userInfo = useSelector(selectUser);
   const username = userInfo.name?.split(' ')[0] || userInfo.email.split('@')[0];
 

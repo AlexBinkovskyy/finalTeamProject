@@ -6,6 +6,8 @@
   justify-content: center;
   align-items: flex-start;
   margin: 5px;
+
+  border: none;
 }
 
 @media only screen and (min-width: 768px) {
