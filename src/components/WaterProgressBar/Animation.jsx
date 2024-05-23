@@ -1,4 +1,4 @@
-import css from './Anivation.module.css';
+import css from './Animation.module.css';
 import { IoWaterOutline } from 'react-icons/io5';
 import { IoWater } from 'react-icons/io5';
 

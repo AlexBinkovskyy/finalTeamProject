@@ -8,6 +8,7 @@ import { selectGoal } from '../../redux/auth/selectors.js';
 import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import Animation from './Animation';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
@@ -24,13 +25,9 @@ export default function WaterProgressBar() {
   const chosen = format(chosenDate, 'd MMMM');
 
   const progress = Math.min(todayTotal / goal, 1);
-
   const progressProcAll = progress * 100;
-
   const progressProc = Math.round(progressProcAll / 10) * 10;
-
   const procStyle = WaterProgressBarStyle({ progressProc });
-
   const progressProcStyle = {
     left: `calc(${progressProc}% + ${procStyle}%)`,
   };
@@ -75,6 +72,9 @@ export default function WaterProgressBar() {
             {progressProc}%
           </p>
         )}
+        <div className={css.animationContainer}>
+          {progressProc === 100 && <Animation />}
+        </div>
       </div>
     </div>
   );

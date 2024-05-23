@@ -7,8 +7,6 @@ import { useState } from 'react';
 export default function WaterDetailedInfo() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  console.log('WaterDetailedInfo - Test');
-
   return (
     <>
       <div className={css.WaterDetailedInfo}>

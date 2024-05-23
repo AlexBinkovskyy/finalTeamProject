@@ -33,7 +33,6 @@ const tourStyles = {
   dot: (base, state) => ({
     ...base,
     background: state.current ? '#9BE1A0' : '#87d28d',
-    backgroundColor: '#87d28d',
   }),
   maskWrapper: base => ({
     ...base,
