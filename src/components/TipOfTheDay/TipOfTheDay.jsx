@@ -1,17 +1,16 @@
 import { tipsUkrainian } from 'components/utils/tips';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import css from './TipOfTheDay.module.css';
 
-export const TipOfTheDay = () => {
+export const TipOfTheDay = ({ time = 7000 }) => {
   const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
-  
-  
-  useEffect(() => {
-    setTimeout(() => {
-      notify(randomTip);
-    }, 7000);
-  },[]);
-  
+  console.log(time);
+
+  setTimeout(() => {
+    notify(randomTip);
+  }, time);
+
   if (!isFirstVisit) return;
 
   const currentTheme = localStorage.getItem('theme');
@@ -19,11 +18,10 @@ export const TipOfTheDay = () => {
   const randomTip =
     tipsUkrainian[Math.floor(Math.random() * tipsUkrainian.length)];
 
-  const notify = tip =>
+  function notify(tip) {
     toast.info(tip, {
-      className: 'custom-toast',
+      className: `${css.customToast}`,
       theme: currentTheme,
     });
-
-
+  }
 };

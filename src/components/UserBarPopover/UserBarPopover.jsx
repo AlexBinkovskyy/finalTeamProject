@@ -7,6 +7,7 @@ import IconSprite from '../../image/sprite.svg';
 import { IoMdCalculator } from 'react-icons/io';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
+import { TipOfTheDay } from 'components/TipOfTheDay/TipOfTheDay';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -32,6 +33,10 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [wrapperRef, setPopoverOpen]);
+
+  
+  const time = 100
+  const handleTips = () => TipOfTheDay(time)
 
   return (
     <div
@@ -60,6 +65,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
           <p className={css.settingsItem}>Languages</p>
+        </li>
+        <li className={css.listItem} onClick={handleTips}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#IconSettings`}></use>
+          </svg>
+          <p className={css.settingsItem}>Get me tip</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
