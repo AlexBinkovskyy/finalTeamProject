@@ -36,14 +36,17 @@
   },
   "advantagesSection": {
     "our": "Наші",
-    "happy": "щасливі",
-    "customers": "клієнти",
+    "happy": "",
+    "customers": "користувачі",
     "HabitDrive": "Керування звичкою",
     "ViewStatistics": "Переглянути статистику",
     "PersonalRateSetting": "Індивідуальне встановлення норми"
   },
-  "waterDailyNorma": {
-    "dailyNorma": "Моя денна норма",
-    "Today": "Сьогодні"
+ 
+  "welcomeSection": {
+    "recordDaily": "Записуйте та відстежуйте щоденне споживання води ",
+    "waterTracker": "Трекер споживання води",
+    "tryTracker":"Спробувати!"
   }
+  
 }

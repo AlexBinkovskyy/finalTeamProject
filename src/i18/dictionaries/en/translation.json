@@ -44,6 +44,11 @@
   "waterDailyNorma":{
     "dailyNorma":"My daily norma",
     "today":"Today"
+  },
+  "welcomeSection": {
+    "recordDaily": "Record daily water intake and track",
+    "waterTracker": "Water consumption tracker",
+    "tryTracker":"Try tracker"
   }
 }
 
