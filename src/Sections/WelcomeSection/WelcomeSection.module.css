@@ -1,12 +1,12 @@
 .section {
-  width: 375px;
+  width: 343px;
   margin: 0 auto;
   margin-bottom: 16px;
 }
 
 @media only screen and (min-width: 768px) {
   .section {
-    width: 768px;
+    width: 704px;
   }
 }
 
