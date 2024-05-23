@@ -44,7 +44,8 @@
   stroke: var(--main-text-color);
   transition: stroke 0.3s ease;
 }
-.closeButton svg:hover {
+.closeButton:hover svg,
+.closeButton:focus svg {
   stroke: var(--accent-color);
 }
 
