@@ -53,8 +53,7 @@ export default function WaterProgressBar() {
               style={{
                 width: `${progressProc}%`,
               }}
-            ></div>{progressProc === 50 && <Animation />}
-           {progressProc === 100 && <Animation />}
+            ></div>
           </div>
         </div>
         <div className={css.number}>
@@ -68,9 +67,14 @@ export default function WaterProgressBar() {
             <p>100%</p>
           </div>
         </div>
-        <p className={css.progressProc} style={progressProcStyle}>
-          {progressProc}%
-        </p>
+        {progressProc !== 0 && progressProc !== 50 && progressProc !== 100 && (
+          <p className={css.progressProc} style={progressProcStyle}>
+            {progressProc}%
+          </p>
+        )}
+        <div className={css.animationContainer}>
+          {progressProc === 100 && <Animation />}
+        </div>
       </div>
     </div>
   );
