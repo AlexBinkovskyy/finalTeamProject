@@ -5,6 +5,8 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUserSettings } from '../../redux/auth/operations';
+import getBmiResult from '../../components/utils/getBmiResult ';
+import getColorClass from '../../components/utils/getColorClassForBmi';
 import Loader from '../../components/Loader/Loader';
 import IconSprite from '../../image/sprite.svg';
 import css from './UserSettingsForm.module.css';
@@ -73,6 +75,7 @@ const UserSettingsForm = ({ closeModal }) => {
       email: '',
       weight: 0,
       height: 0,
+      bmi: 0,
       activeTime: 0,
       goal: 0,
     },
@@ -80,13 +83,14 @@ const UserSettingsForm = ({ closeModal }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.email && !userInfoUpdated) {
-      const { email, name, gender, weight, height, activeTime, goal } =
+      const { email, name, gender, weight, height, bmi, activeTime, goal } =
         userInfo;
       setValue('email', email);
       setValue('name', name || email.split('@')[0]);
       setValue('gender', gender || '');
       setValue('weight', weight || 0);
       setValue('height', height || 0);
+      setValue('bmi', bmi || 0);
       setValue('activeTime', activeTime || 0);
       setValue('goal', goal ? goal / 1000 : 0);
       setUserInfoUpdated(true);
@@ -97,6 +101,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const weight = watch('weight');
   const activeTime = watch('activeTime');
   const email = watch('email');
+  const bmi = watch('bmi');
 
   useEffect(() => {
     if (gender && weight && activeTime && !userInfo.goal) {
@@ -135,9 +140,22 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   };
 
+  const recalculateGoal = () => {
+    const genderValue = watch('gender');
+    const weightValue = watch('weight');
+    const activeTimeValue = watch('activeTime');
+    if (genderValue && weightValue && activeTimeValue) {
+      const setDailyNorma =
+        genderValue === 'female'
+          ? weightValue * 0.03 + activeTimeValue * 0.4
+          : weightValue * 0.04 + activeTimeValue * 0.6;
+      setValue('goal', parseFloat(setDailyNorma.toFixed(1)));
+    }
+  };
+
   const onSubmit = async data => {
     setLoading(true);
-console.log(data);
+    console.log(data);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
     if (file) {
@@ -172,6 +190,8 @@ console.log(data);
     setAvatarUrl(userInfo.avatarUrl);
   }, [userInfo.avatarUrl]);
 
+  const bmiColorClass = getColorClass(parseFloat(bmi));
+
   return (
     <>
       <form
@@ -188,6 +208,7 @@ console.log(data);
           <label
             htmlFor="uploadInput"
             className={`${css.uploadLabel} ${css.uploadText}`}
+            tabIndex={0}
           >
             <svg className={css.icon}>
               <use href={`${IconSprite}#IconUpload`}></use>
@@ -223,8 +244,13 @@ console.log(data);
                   value="female"
                   {...register('gender')}
                   autoComplete="gender"
+                  onChange={recalculateGoal}
                 />
-                <label htmlFor="female" className={css.genderLabel}>
+                <label
+                  htmlFor="female"
+                  className={css.genderLabel}
+                  tabIndex="0"
+                >
                   Woman
                 </label>
                 <input
@@ -233,8 +259,9 @@ console.log(data);
                   value="male"
                   {...register('gender')}
                   autoComplete="gender"
+                  onChange={recalculateGoal}
                 />
-                <label htmlFor="male" className={css.genderLabel}>
+                <label htmlFor="male" className={css.genderLabel} tabIndex="0">
                   Man
                 </label>
                 {errors.gender && (
@@ -321,6 +348,7 @@ console.log(data);
                 {...register('weight')}
                 className={css.input}
                 autoComplete="weight"
+                onChange={recalculateGoal}
               />
               {errors.weight && errors.weight.type === 'typeError' ? (
                 <span className={`${css.weightError} ${css.error}`}>
@@ -367,6 +395,7 @@ console.log(data);
                 {...register('activeTime')}
                 className={css.input}
                 autoComplete="active-time"
+                onChange={recalculateGoal}
               />
               {errors.activeTime && errors.activeTime.type === 'typeError' ? (
                 <span className={`${css.activeTimeError} ${css.error}`}>
@@ -405,6 +434,16 @@ console.log(data);
                   Goal is required
                 </span>
               )}
+            </div>
+            <div className={css.formGroup}>
+              <p className={css.bmiIndex}>
+                Your body mass index:
+                <span className={`${css.bmiIndexValue} ${css[bmiColorClass]}`}>
+                  {watch('bmi')
+                    ? `${watch('bmi')} (${getBmiResult(watch('bmi'))})`
+                    : ''}
+                </span>
+              </p>
             </div>
             <div className={css.themeSwitcherBox}>
               <ThemeSwitcher />

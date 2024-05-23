@@ -10,11 +10,11 @@
 .rain1,
 .rain2,
 .rain3 {
-  stroke: rgb(162, 194, 231);
+  stroke: var(--main-white);
   stroke-width: 1px;
   opacity: 0;
   animation-fill-mode: both;
-  fill: rgb(147, 192, 235);
+  fill: var(--main-white);
 }
 
 @keyframes waterAnimation {

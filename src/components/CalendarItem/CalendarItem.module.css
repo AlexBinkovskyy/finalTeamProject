@@ -21,6 +21,7 @@
 
 .currentDay {
   color: var(--accent-color);
+  transform: scale(1.1);
 }
 
 .waterLevel {
@@ -68,6 +69,7 @@
   background-color: var(--background-color-day-hover);
   border: 2px solid var(--accent-color);
   transform: scale(1.1);
+  box-shadow: var(--box-shadow);
 }
 
 .waterPercentage {

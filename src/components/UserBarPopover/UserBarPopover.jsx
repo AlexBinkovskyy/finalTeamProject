@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import UserSettingsModal from '../../Modals/UserSettingsModal/UserSettingsModal';
 import BmiModal from 'Modals/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
-import {LanguageSwitcher} from 'Modals/LanguageSwitcher/LanguageSwitcher';
+import { IoMdCalculator } from 'react-icons/io';
+import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
+import { useModal } from '../../hooks/useModal';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
-  const [settingModalIsOpen, setSettingModalIsOpen] = useState(false);
-  const [bMIModalIsOpen, setBMIModalIsOpen] = useState(false);
-  const [logOutlIsOpen, setlogOutModalIsOpen] = useState(false);
-  const [languageSwitcherIsOpen, setlanguagesSwitcherModalIsOpen] = useState(false);
+  const [settingModalIsOpen, openSettingModal, closeSettingModal] =
+    useModal(setPopoverOpen);
+  const [bMIModalIsOpen, openBMIModal, closeBMIModal] =
+    useModal(setPopoverOpen);
+  const [logOutlIsOpen, openLogOutModal, closeLogOutModal] =
+    useModal(setPopoverOpen);
+  const [languageSwitcherIsOpen, openLanguageSwitcher, closeLanguageSwitcher] =
+    useModal(setPopoverOpen);
+
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -25,50 +32,6 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [wrapperRef, setPopoverOpen]);
-
-  const openSettingModal = () => {
-    setPopoverOpen(false);
-    setSettingModalIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeSettingModal = () => {
-    setSettingModalIsOpen(false);
-    document.body.style.overflow = '';
-  };
-
-  const openBMIModal = () => {
-    setPopoverOpen(false);
-    setBMIModalIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeBMIModal = () => {
-    setBMIModalIsOpen(false);
-    document.body.style.overflow = '';
-  };
-
-  const openLogOutModal = () => {
-    setPopoverOpen(false);
-    setlogOutModalIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeLogOutModal = () => {
-    setlogOutModalIsOpen(false);
-    document.body.style.overflow = '';
-  };
-
-  const openLanguageSwitcher = () => {
-    setPopoverOpen(false);
-    setlanguagesSwitcherModalIsOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeLanguageSwitcher = () => {
-    setlanguagesSwitcherModalIsOpen(false);
-    document.body.style.overflow = '';
-  };
 
   return (
     <div
@@ -87,9 +50,9 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-        <svg className={css.iconSettings}>
-            <use href={`${IconSprite}#IconSettings`}></use>
-          </svg>
+          <div className={css.iconCalc}>
+            <IoMdCalculator className={css.iconCalcItem} />
+          </div>
           <p className={css.settingsItem}>BMI calc</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
@@ -105,16 +68,18 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Log out</p>
         </li>
       </ul>
+      <div>
+
       {settingModalIsOpen && (
         <UserSettingsModal
           isOpen={settingModalIsOpen}
           isClose={closeSettingModal}
-        />
-      )}
+          />
+        )}
       {languageSwitcherIsOpen && (
         <LanguageSwitcher
-          isOpen={languageSwitcherIsOpen}
-          isClose={closeLanguageSwitcher}
+        isOpen={languageSwitcherIsOpen}
+        isClose={closeLanguageSwitcher}
         />
       )}
       {bMIModalIsOpen && (
@@ -123,6 +88,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
       {logOutlIsOpen && (
         <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
       )}
+      </div>
     </div>
   );
 }
