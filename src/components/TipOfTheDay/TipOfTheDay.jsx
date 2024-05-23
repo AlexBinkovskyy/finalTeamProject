@@ -5,9 +5,13 @@ export const TipOfTheDay = () => {
   const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
   if (!isFirstVisit) return;
 
-  setTimeout(() => {
-    toast.info('kajsdhkjadhskasd'< {
-        
+  const notify = () =>
+    toast.info(
+      , {
+      className: 'custom-toast',
     });
+
+  setTimeout(() => {
+    notify()
   }, 7000);
 };
