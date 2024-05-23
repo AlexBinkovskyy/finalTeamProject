@@ -11,7 +11,7 @@
   background-size: 262px 336px;
   background-repeat: no-repeat;
   background-position: center;
-  animation: var(--animation-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),

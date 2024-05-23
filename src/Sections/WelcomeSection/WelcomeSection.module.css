@@ -23,7 +23,7 @@
   border-radius: 30px;
   padding: 24px 16px 68px;
   height: 412px;
-  animation: var(--animation-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 @media only screen and (min-width: 768px) {
