@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 
 import { PrivateRoute } from '../Routs/PrivateRoute';
 import { RestrictedRoute } from '../Routs/RestrictedRoute';
@@ -104,11 +103,6 @@ export const App = () => {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster
-        toastOptions={{
-          duration: 5000,
-        }}
-      />
     </>
   );
 };
