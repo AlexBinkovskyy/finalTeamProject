@@ -90,19 +90,19 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
         <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>BMI calculator</p>
-        </li>
-        <li className={css.listItem} onClick={openLogOutModal}>
-          <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#IconLogOut`}></use>
-          </svg>
-          <p className={css.settingsItem}>Log out</p>
+          <p className={css.settingsItem}>BMI calc</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
           <p className={css.settingsItem}>Languages</p>
+        </li>
+        <li className={css.listItem} onClick={openLogOutModal}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#IconLogOut`}></use>
+          </svg>
+          <p className={css.settingsItem}>Log out</p>
         </li>
       </ul>
       {settingModalIsOpen && (
