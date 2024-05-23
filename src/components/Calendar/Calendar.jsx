@@ -5,16 +5,15 @@ import { startOfMonth, endOfMonth, eachDayOfInterval, format } from 'date-fns';
 import { useEffect } from 'react';
 import { fetchMonthlyConsumption } from '../../redux/water/operations';
 import Statistics from 'components/Statistics/Statistics';
-import { selectMonth } from '../../redux/water/selectors';
+import { selectMonth, selectTodayTotal } from '../../redux/water/selectors';
 
 export const Calendar = ({ selectedDate, setSelectedDate, showCalendar }) => {
-  console.log('Calendar - Test');
-
+  const init = useSelector(selectTodayTotal);
   const initialMonth = format(selectedDate, 'MM.yyyy');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMonthlyConsumption(initialMonth));
-  }, [dispatch, initialMonth]);
+  }, [dispatch, initialMonth, init]);
 
   const monthData = useSelector(selectMonth);
 

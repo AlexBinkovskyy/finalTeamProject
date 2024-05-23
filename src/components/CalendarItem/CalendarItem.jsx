@@ -3,22 +3,6 @@ import css from './CalendarItem.module.css';
 import { isSameDay, format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { selectGoal } from '../../redux/auth/selectors';
-// import { selectMonth } from '../../redux/water/selectors';
-
-// From Polina
-// const todayTotal = useSelector(selectTodayTotal);
-// const progress = Math.min(todayTotal / goal, 1);
-// const progressProcAll = progress * 100;
-// const progressProc = Math.round(progressProcAll / 10) * 10;
-// console.log(progressProc);
-
-// Formula for percentages from array
-// const goal = useSelector(selectGoal);
-// const todayTotal2 = [250, 3350, 450, 1550, 250, 350];
-// const progress2 = todayTotal2.map(el => {
-//   return Math.round(Math.min(el / goal, 1) * 10) * 10;
-// });
-// console.log(progress2);
 
 const handlePercentage = percentage => {
   if (!isNaN(percentage)) {
@@ -38,8 +22,6 @@ const CalendarItem = ({
   selectedDate,
   dayWaterMonth,
 }) => {
-  // console.log('CalendarItem - Test');
-
   const isCurrentDay = isSameDay(new Date(), day);
   const isActive = isSameDay(selectedDate, day);
   const DailyGoal = useSelector(selectGoal);
@@ -50,14 +32,6 @@ const CalendarItem = ({
     dayWithWater => dayWithWater.date === formattedDate
   );
 
-  // const emptyDay = {
-  //   date: null,
-  //   dailyCount: Array(0),
-  //   totalWater: 0,
-  //   waterRecordsAmount: 0,
-  //   _id: null,
-  // };
-
   const totalAmount = () => {
     if (dataIsWater?.totalWater >= 0) {
       return dataIsWater?.totalWater;
@@ -65,8 +39,6 @@ const CalendarItem = ({
       return 0;
     }
   };
-
-  // console.log(totalAmount());
 
   const percentage = (totalAmount() / DailyGoal) * 100;
   const isFullWater = handlePercentage(percentage) === 100;
@@ -86,9 +58,9 @@ const CalendarItem = ({
       className={`${css.day}
     ${isCurrentDay ? css.currentDay : ''}`}
     >
-      <div onClick={handleClick} className={buttonClass}>
+      <button onClick={handleClick} className={buttonClass}>
         {format(day, 'd')}
-      </div>
+      </button>
       <div className={css.waterPercentage}>{handlePercentage(percentage)}%</div>
     </div>
   );

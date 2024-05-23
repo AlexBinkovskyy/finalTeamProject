@@ -47,25 +47,27 @@ export default function WaterItem({ water }) {
           <svg className={svgClass} onClick={svgOnclickEdit}>
             <use href={`${icons}#IconEdit2`}></use>
           </svg>
-          {modalIsOpen && (
-            <WaterModal
-              operationType={'edit'}
-              defaultValues={water}
-              isOpen={modalIsOpen}
-              isClose={closeLogOutModal}
-            />
-          )}
+          <div>
+            {modalIsOpen && (
+              <WaterModal
+                operationType={'edit'}
+                defaultValues={water}
+                isOpen={modalIsOpen}
+                isClose={closeLogOutModal}
+              />
+            )}
 
-          <svg className={svgClass} onClick={svgOnclickDelete}>
-            <use href={`${icons}#IconTrash04`}></use>
-          </svg>
-          {deleteModalIsOpen && (
-            <DeleteWaterModal
-              isOpen={deleteModalIsOpen}
-              isClose={closeDeleteModal}
-              consumptionID={water._id}
-            />
-          )}
+            <svg className={svgClass} onClick={svgOnclickDelete}>
+              <use href={`${icons}#IconTrash04`}></use>
+            </svg>
+            {deleteModalIsOpen && (
+              <DeleteWaterModal
+                isOpen={deleteModalIsOpen}
+                isClose={closeDeleteModal}
+                consumptionID={water._id}
+              />
+            )}
+          </div>
         </div>
       </div>
     </>

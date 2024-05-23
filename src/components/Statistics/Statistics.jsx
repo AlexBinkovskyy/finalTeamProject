@@ -12,8 +12,6 @@ import css from './Statistics.module.css';
 import { format, subDays, isAfter } from 'date-fns';
 
 const Statistics = ({ data }) => {
-  console.log('Statistics - Test');
-
   const [daysRange, setDaysRange] = useState(7);
   const today = new Date();
 
