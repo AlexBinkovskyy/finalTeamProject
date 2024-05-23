@@ -30,7 +30,7 @@ export default function AdvantagesSection() {
 
   const handleMouseLeave = () => {
     set({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02)',
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.0)',
     });
   };
 
