@@ -90,3 +90,10 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('./fonts/Montserrat-Regular.ttf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
