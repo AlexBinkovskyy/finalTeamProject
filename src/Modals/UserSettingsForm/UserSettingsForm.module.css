@@ -276,7 +276,8 @@
   }
 }
 
-.dailyNorma {
+.dailyNorma,
+.bmiIndex {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -289,13 +290,15 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .dailyNorma {
+  .dailyNorma,
+  .bmiIndex {
     flex-direction: row;
     align-items: center;
   }
 }
 
-.dailyNormaValue {
+.dailyNormaValue,
+.bmiIndexValue {
   margin-left: 5px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -415,7 +418,7 @@ input[type='radio']:checked + label:after {
   color: var(--main-white);
 }
 
-.emailChanged{
+.emailChanged {
   position: absolute;
   top: -10px;
   left: 50px;
@@ -430,12 +433,11 @@ input[type='radio']:checked + label:after {
 }
 @media only screen and (min-width: 768px) {
   .emailChanged {
-    top: -2px;
+    top: 3px;
     left: 60px;
     width: 315px;
   }
 }
-
 
 .error {
   font-family: 'Poppins', sans-serif;
@@ -519,4 +521,16 @@ input[type='radio']:checked + label:after {
   font-size: 15px;
   color: var(--main-text-color);
   opacity: 40%;
+}
+
+.blueText {
+  color: rgb(45, 117, 210);
+}
+
+.greenText {
+  color: rgb(109, 201, 109);
+}
+
+.redText {
+  color: rgb(215, 77, 77);
 }

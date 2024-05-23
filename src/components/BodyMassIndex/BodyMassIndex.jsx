@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { GrPowerReset } from 'react-icons/gr';
+import { FaRegSave } from 'react-icons/fa';
+import { FaCalculator } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUserSettings } from '../../redux/auth/operations';
@@ -20,8 +22,8 @@ const schema = yup.object().shape({
   height: yup
     .number()
     .required('Height is required')
-    .min(0, 'Height must be a positive number')
-    .max(300, 'Height must be a realistic number'),
+    .min(40, 'Height must be greater than or equal to 40')
+    .max(260, 'Height must be a realistic number'),
 });
 
 export default function BodyMassIndex() {
@@ -53,13 +55,11 @@ export default function BodyMassIndex() {
     }
   }, [userInfo, setValue]);
 
-  const onSubmit = async data => {
-    setLoading(true);
+  const calculateBMI = data => {
     const { weight, height } = data;
 
     if (!weight || !height) {
       setDataError('Please enter both weight and height.');
-      setLoading(false);
       return;
     }
 
@@ -68,17 +68,31 @@ export default function BodyMassIndex() {
 
     setBmiValue(bmi.toFixed(1));
     setDataError('');
+  };
+
+  const saveBMI = async () => {
+    if (bmiValue === null) {
+      setDataError('Please calculate your BMI first.');
+      return;
+    }
+
+    setLoading(true);
 
     const formData = new FormData();
-    formData.append('bmi', bmi.toFixed(1));
+    formData.append('bmi', bmiValue);
 
     try {
-      // console.log(bmi.toFixed(1));
       dispatch(updateUserSettings(formData));
     } catch (error) {
       console.error('Failed to update user settings', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleInputChange = () => {
+    if (dataError) {
+      setDataError('');
     }
   };
 
@@ -88,17 +102,11 @@ export default function BodyMassIndex() {
     setDataError('');
   };
 
-  const handleInputChange = () => {
-    if (dataError) {
-      setDataError('');
-    }
-  };
-
   const bmiColorClass = getColorClass(parseFloat(bmiValue));
 
   return (
     <div className={css.wrapper}>
-      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <form onSubmit={handleSubmit(calculateBMI)} className={css.form}>
         <p className={css.text}>
           Body mass index (BMI) is a calculated value that allows you to assess
           the degree of correspondence between a person's body weight and
@@ -139,8 +147,8 @@ export default function BodyMassIndex() {
               </label>
               <input
                 type="number"
-                min="0"
-                max="300"
+                min="40"
+                max="260"
                 id="height"
                 {...register('height')}
                 className={css.input}
@@ -158,19 +166,33 @@ export default function BodyMassIndex() {
               )}
             </div>
           </div>
-          <div className={css.buttons}>
-            <button type="submit" className={css.btn} disabled={loading}>
-              {loading ? 'Calculating...' : 'Calculate BMI'}
-            </button>
-            <button
-              type="button"
-              className={`${css.btn} ${css.resetBtn}`}
-              onClick={onReset}
-              disabled={loading}
-            >
-              <GrPowerReset className={css.resetIcon} />
-            </button>
-          </div>
+          <ul className={css.buttons}>
+            <li className={css.buttonsItem}>
+              <button type="submit" className={css.btn} disabled={loading}>
+                {loading ? 'Calculating...' : <FaCalculator className={css.resetIcon} />}
+              </button>
+            </li>
+            <li className={css.buttonsItem}>
+              <button
+                type="button"
+                className={`${css.btn} ${css.resetBtn}`}
+                onClick={onReset}
+                disabled={loading}
+              >
+                <GrPowerReset className={css.resetIcon} />
+              </button>
+            </li>
+            <li className={css.buttonsItem}>
+              <button
+                type="button"
+                className={css.btn}
+                onClick={saveBMI}
+                disabled={loading || bmiValue === null}
+              >
+                <FaRegSave className={css.resetIcon} />
+              </button>
+            </li>
+          </ul>
           {dataError && (
             <span className={`${css.error} ${css.errorData}`}>{dataError}</span>
           )}
