@@ -1,6 +1,6 @@
 import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export const setAuthHeader = accessToken => {
   api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -19,7 +19,7 @@ export const signup = createAsyncThunk(
       toast.success(text);
       return res.data;
     } catch (error) {
-      toast.error(`${error.response.data.message}`);
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -32,6 +32,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
+      console.log(res);
       toast.success('Welcome to the AquaTrack');
       localStorage.setItem(
         `userId_${res.data.user._id}`,
@@ -40,7 +41,7 @@ export const signin = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error('Email or password is wrong or not verified');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -89,7 +90,6 @@ export const recoverPass = createAsyncThunk(
   'auth/recoverPass',
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       const res = await api.patch('/users/passrecovery', credentials, {
         headers: {
           'Content-Type': 'application/json',
