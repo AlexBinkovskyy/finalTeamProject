@@ -19,7 +19,7 @@ export const signup = createAsyncThunk(
       toast.success(text);
       return res.data;
     } catch (error) {
-      toast.error(`${error.response.data.message}`);
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -41,8 +41,7 @@ export const signin = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      console.log(error);
-      // toast.error(error.response.message);
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -78,11 +77,9 @@ export const recoverMail = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/passrecovery', credentials);
-      console.log(res);
-      // toast.success(res.data.message, { progress: undefined });
+      toast.success(res.data.message);
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -93,16 +90,14 @@ export const recoverPass = createAsyncThunk(
   'auth/recoverPass',
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       const res = await api.patch('/users/passrecovery', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(res);
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response.data.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -22,7 +22,6 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
 
   const onSubmitHandler = data => {
     onSubmit(data).then(response => {
-      console.log(response);
       if (
         operationType === 'resend' &&
         response.type !== `auth/${operationType}/rejected`

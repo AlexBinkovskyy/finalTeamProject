@@ -18,7 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter basename="/finalTeamProject">
         <ThemeProvider>
           <App />
-          <ToastContainer />
+          <ToastContainer
+            hideProgressBar={true}
+            // transition="Flip"
+            position="top-center"
+          />
         </ThemeProvider>
       </BrowserRouter>
     </PersistGate>
