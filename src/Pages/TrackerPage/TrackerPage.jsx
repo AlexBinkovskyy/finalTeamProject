@@ -13,6 +13,7 @@ import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
+import { TipOfTheDay } from 'components/TipOfTheDay/TipOfTheDay';
 
 const TrackerPage = () => {
   return (
@@ -52,6 +53,7 @@ const TrackerPageContent = () => {
         <WaterDetailedInfo />
         <WaterMainInfo />
       </div>
+      <TipOfTheDay/>
     </>
   );
 };
