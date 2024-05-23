@@ -41,7 +41,7 @@ export const signin = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error('Email or password is wrong or not verified');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

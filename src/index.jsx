@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from './Theme/ThemeContext';
-import { ToastContainer } from 'react-toastify';
+import { Flip, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -20,8 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <App />
           <ToastContainer
             hideProgressBar={true}
-            // transition="Flip"
             position="top-center"
+            transition={Flip}
           />
         </ThemeProvider>
       </BrowserRouter>
