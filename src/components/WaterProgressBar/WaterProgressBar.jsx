@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import Animation from './Animation';
-import { useEffect, useState } from 'react';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
@@ -17,21 +16,6 @@ export default function WaterProgressBar() {
   const todayTotalLitr = Math.round((todayTotal / 1000) * 10) / 10;
   const goal = useSelector(selectGoal);
   const { t } = useTranslation();
-
-  // const [progressProc, setProgressProc] = useState(0);
-  const [showAnimation, setShowAnimation] = useState(false);
-  let progressProc;
-  useEffect(() => {
-    if (!progressProc || progressProc === 0) return
-    const timeoutId = setTimeout(() => {
-      setShowAnimation(true);
-    }, 500);
-
-    setShowAnimation(false);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [progressProc]);
 
   if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
@@ -42,7 +26,7 @@ export default function WaterProgressBar() {
 
   const progress = Math.min(todayTotal / goal, 1);
   const progressProcAll = progress * 100;
-  progressProc = Math.round(progressProcAll / 10) * 10;
+  const progressProc = Math.round(progressProcAll / 10) * 10;
   const procStyle = WaterProgressBarStyle({ progressProc });
   const progressProcStyle = {
     left: `calc(${progressProc}% + ${procStyle}%)`,
@@ -69,7 +53,8 @@ export default function WaterProgressBar() {
               style={{
                 width: `${progressProc}%`,
               }}
-            ></div>{showAnimation && <Animation />}
+            ></div>{progressProc === 50 && <Animation />}
+           {progressProc === 100 && <Animation />}
           </div>
         </div>
         <div className={css.number}>

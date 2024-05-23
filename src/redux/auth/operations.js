@@ -66,7 +66,6 @@ export const resendMail = createAsyncThunk(
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
-      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
