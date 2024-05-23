@@ -58,7 +58,6 @@ export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
     toast.success('Signout success');
   } catch (error) {
     toast.error(error.response.data.message);
-
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -148,13 +147,16 @@ export const refreshUserTokens = createAsyncThunk(
   'auth/refreshTokens',
   async (credentials, thunkAPI) => {
     try {
+      console.log("refresh");
       const res = await api.post('users/refreshtoken/', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
+      
       return res.data;
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
   }
 );
