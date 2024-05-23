@@ -61,26 +61,18 @@ const CalendarItem = ({ day, setSelectedDate, selectedDate }) => {
     setSelectedDate(day);
   };
 
-  // const buttonClass = `
-  //       ${css.dayNumber}
-  //       ${isCurrentDay ? css.selected : ''}
-  //       ${isActive ? css.active : css.inactive}
-  //       ${isFullWater ? css.fullWater : ''}`;
+  const buttonClass = `
+        ${css.dayNumber}
+        ${isCurrentDay ? css.selected : ''}
+        ${isActive ? css.active : css.inactive}
+        ${isFullWater ? css.fullWater : ''}`;
 
   return (
     <div
       className={`${css.day}
     ${isCurrentDay ? css.currentDay : ''}`}
     >
-      <div
-        onClick={handleClick}
-        className={`
-        ${css.dayNumber}
-        ${isCurrentDay ? css.selected : ''}
-        ${isActive ? css.active : css.inactive}
-        ${isFullWater ? css.fullWater : ''}
-        `}
-      >
+      <div onClick={handleClick} className={buttonClass}>
         {format(day, 'd')}
       </div>
       <div className={css.waterPercentage}>{handlePercentage(percentage)}%</div>

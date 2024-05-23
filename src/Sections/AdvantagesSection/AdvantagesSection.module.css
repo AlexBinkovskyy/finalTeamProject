@@ -28,7 +28,7 @@
   display: flex;
   align-items: flex-end;
   padding: 208px 16px 32px;
-  animation: var(--animation-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),

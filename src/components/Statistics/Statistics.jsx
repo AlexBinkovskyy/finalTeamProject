@@ -154,12 +154,14 @@ const Statistics = () => {
             padding={{ left: 20, right: 20 }}
             tickSize={false}
             tickLine={false}
+            tick={{ fill: 'var(--main-text-color)' }}
             stroke=""
           />
           <YAxis
             padding={{ top: 20, bottom: 20 }}
             tickSize={false}
             tickLine={false}
+            tick={{ fill: 'var(--main-text-color)' }}
             stroke=""
             tickFormatter={formatYAxis}
           />
