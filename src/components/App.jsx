@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 
 import { PrivateRoute } from '../Routs/PrivateRoute';
 import { RestrictedRoute } from '../Routs/RestrictedRoute';
 
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
+import '../i18/i18n';
 
 import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';
@@ -103,11 +103,6 @@ export const App = () => {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster
-        toastOptions={{
-          duration: 5000,
-        }}
-      />
     </>
   );
 };
