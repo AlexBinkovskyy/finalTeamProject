@@ -30,6 +30,9 @@
   --modal-overlay: #00000033;
 
   --animation-shadow: blink 3s infinite;
+
+  --font-bold: 'Poppins-Bold';
+  --font-regular: 'Poppins-Regular';
 }
 
 [data-theme='dark'] {
@@ -99,6 +102,6 @@ body {
 @font-face {
   font-family: 'Montserrat-Regular';
   src: url('./fonts/Montserrat-Regular.ttf') format('opentype');
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
 }

@@ -1,7 +1,7 @@
 .AddWaterBtn {
   border-radius: 30px;
   line-height: 1.12;
-  font-family: 'Poppins-Bold';
+  font-family: var(--font-bold);
   font-weight: 700;
   margin-left: auto;
   border: none;

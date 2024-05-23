@@ -98,7 +98,7 @@
 }
 
 .elements {
-  font-family: 'Poppins-Bold';
+  font-family: var(--font-bold);
   font-weight: 700;
   font-size: 12px;
   line-height: 1.16;
@@ -128,7 +128,7 @@
   flex-direction: row-reverse;
   width: 168px;
   margin-left: 144px;
-  font-family: 'Poppins-Bold';
+  font-family: var(--font-bold);
   font-weight: 700;
   font-size: 8px;
   letter-spacing: -0.01em;

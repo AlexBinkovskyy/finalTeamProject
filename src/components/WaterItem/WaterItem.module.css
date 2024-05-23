@@ -17,14 +17,14 @@
 }
 
 .amount {
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   font-size: 15px;
   line-height: 1.6;
   color: var(--main-color);
 }
 
 .time {
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   font-size: 12px;
   line-height: 1.6;
   font-weight: normal;

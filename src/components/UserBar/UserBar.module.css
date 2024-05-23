@@ -3,7 +3,7 @@
 }
 
 .username {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-bold);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
@@ -46,10 +46,9 @@
   height: 50px;
   background-color: #323f47;
 }
-.iconInfo{
+.iconInfo {
   position: absolute;
   fill: none;
   width: 20px;
   height: 20px;
 }
-
