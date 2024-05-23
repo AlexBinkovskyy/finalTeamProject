@@ -10,6 +10,7 @@ import { RestrictedRoute } from '../Routs/RestrictedRoute';
 
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
+import '../i18/i18n';
 
 import HomePage from '../Pages/HomePage/HomePage';
 import SignInPage from '../Pages/SignInPage/SignInPage';

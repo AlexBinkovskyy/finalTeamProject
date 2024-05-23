@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { signin } from '../../redux/auth/operations';
 import { Link } from 'react-router-dom';
 import Image from '../../image/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -15,6 +16,7 @@ const validationSchema = Yup.object().shape({
 
 export default function SignInForm() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();  
   const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
@@ -41,17 +43,17 @@ export default function SignInForm() {
 
   return (
     <div className={css.divWrap}>
-      <h1 className={css.title}>Sign In</h1>
+      <h1 className={css.title}>{t('signin_page.signin')}</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label htmlFor={emailFieldId} className={css.label}>
-          Email
+        {t('auth_form.email')}
         </label>
         <div className={css.errorContainer}>
           <input
             {...register('email')}
             className={`${css.input} ${errors.email && css.errorInput}`}
             id={emailFieldId}
-            placeholder="Enter your email"
+            placeholder={t('auth_form.emailEnter')}
           />
           {errors.email && (
             <span className={css.error}>{errors.email.message}</span>
@@ -59,7 +61,7 @@ export default function SignInForm() {
         </div>
 
         <label htmlFor={passwordFieldId} className={css.label}>
-          Password
+        {t('auth_form.password')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -67,7 +69,7 @@ export default function SignInForm() {
             autoComplete="off"
             className={`${css.input} ${errors.password && css.errorInput}`}
             id={passwordFieldId}
-            placeholder="Enter your password"
+            placeholder={t('auth_form.password')}
             type={showPassword ? 'text' : 'password'}
           />
           {errors.password && (
@@ -92,15 +94,15 @@ export default function SignInForm() {
         </div>
 
         <button type="submit" className={css.button}>
-          Sign In
+        {t('signin_page.signin')} 
         </button>
       </form>
       <ul className={css.ul}>
         <li>
           <p className={css.text}>
-            Don't have any account?{' '}
+          {t('signin_page.account')}{' '}
             <Link to="/signup" className={css.link}>
-              Sign Up
+            {t('signin_page.signup')} 
             </Link>
           </p>
         </li>
@@ -108,18 +110,18 @@ export default function SignInForm() {
         <li>
           <p className={css.text}>
             <Link to="/resend-page" className={css.link}>
-              Resend
+            {t('auth_form.resend')}
             </Link>{' '}
-            verification mail
+            {t('auth_form.verfpassword')}
           </p>
         </li>
 
         <li>
           <p className={css.text}>
             <Link to="/recover-page" className={css.link}>
-              Forgot
+            {t('signin_page.forgot')} 
             </Link>{' '}
-            password
+            {t('auth_form.password')}
           </p>
         </li>
       </ul>
