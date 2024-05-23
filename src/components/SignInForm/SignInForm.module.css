@@ -55,8 +55,14 @@
   color: var(--text-color-transparent);
 }
 
-.input:is(:hover, :focus) {
-  border: 1px solid rgba(47, 47, 47, 0.4);
+.input:-webkit-autofill {
+  box-shadow: inset 0 0 0 32px var(--background-color) !important;
+  -webkit-text-fill-color: var(--main-text-color) !important;
+}
+.input:is(:hover, :focus, :active),
+textarea:is(:hover, :focus, :active) {
+  border: 1px solid var(--accent-color);
+  background-color: transparent !important;
 }
 
 .errorInput {
