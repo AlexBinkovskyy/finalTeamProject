@@ -2,6 +2,7 @@
   --main-color: #323f47;
   --main-text-color: #2f2f2f;
   --main-placeholder-color: #323f47;
+  --color-text-day: #323f47;
 
   --color-white: #ffffff;
 
@@ -9,11 +10,12 @@
   --main-white: #ffffff;
   --hover-focus-color: #87d28d;
   --error-color: #ef5050;
-
   --background-color: #f0eff4;
   --background-color-box-container: #323f47;
   --background-color-theme: #ffffff;
   --background-color-day: #323f4733;
+  --main-color-theme: #000000;
+
   --background-color-day-hover: #323f47;
   --background-color-modal: #ffffff;
   --background-main-info: #9be1a0;
@@ -21,7 +23,6 @@
   --icon-color: #2f2f2f;
 
   --scrollbar-color: #323f47;
-  --main-color-theme: #000000;
   --accent-color-theme: #87d28d;
   --text-color-transparent: #323f4733;
 
@@ -34,6 +35,7 @@
   --main-color: #f0eff4;
   --main-text-color: #ffffffcc;
   --main-placeholder-color: #323f47;
+  --color-text-day: #323f47;
 
   --color-white: #ffffff;
 
@@ -51,14 +53,14 @@
   --background-color-day-hover: #323f47;
   --background-color-modal: #3d3d3d;
   --background-main-info: #3d3d3d;
+  --main-color-theme: #ffffff;
 
   --scrollbar-color: #87d28d;
-  --main-color-theme: #ffffff;
   --accent-color-theme: #9be1a0;
   --text-color-transparent: #ffffff77;
 
   --box-shadow-color: #87d28d;
-  --modal-overlay: #9be1a033;
+  --modal-overlay: #9be1a011;
   --animation-shadow: blink 3s infinite;
 }
 @keyframes blink {
