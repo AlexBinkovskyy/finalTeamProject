@@ -24,24 +24,40 @@ const setInterceptors = () => {
         // eslint-disable-next-line
         if (error.response.status == 401 || error.response.status == 500) {
           const originalRequest = error.config;
-          const refreshToken = Cookies.get('refreshToken');
-          try {
-            const result = await api.post('/users/refreshtoken', {
-              refreshToken,
-            }
-            , {withCredentials: true}
-          );
-            const newAccessToken = result.data.accessToken;
-            setAuthHeader(newAccessToken);
-            originalRequest.headers[
-              'Authorization'
-            ] = `Bearer ${newAccessToken}`;
-            return api.request(originalRequest);
-          } catch (error) {
-            console.log(error);
+          if (originalRequest._retry) {
+            return Promise.reject(error);
           }
+          originalRequest._retry = true;
 
-          // store.dispatch(tokenIsInvalid());
+          console.log(originalRequest);
+
+          const token = originalRequest.headers.Authorization.split(' ')[1];
+          const id = jwtDecode(token);
+          const refreshToken = localStorage.getItem(`userId_${id.id}`);
+
+          try {
+            const { payload } = await store.dispatch(
+              refreshUserTokens({ refreshToken })
+            );
+            console.log('item', payload);
+
+            const newAccessToken = payload.accessToken;
+            const newRefreshToken = payload.refreshToken;
+            localStorage.setItem(`userId_${id.id}`, newRefreshToken);
+
+            setAuthHeader(newAccessToken);
+
+            console.log('req', originalRequest.headers.Authorization);
+            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+            console.log('req2', originalRequest.headers.Authorization);
+
+            return api(originalRequest);
+          } catch (refreshError) {
+            return Promise.reject(refreshError);
+          }
+        }
+        if (error.response.status === 403) {
+          store.dispatch(tokenIsInvalid());
           history.push('/finalTeamProject/signin');
         }
       }
