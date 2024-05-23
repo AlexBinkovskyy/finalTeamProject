@@ -139,7 +139,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
       </div>
       <div className={css.inputGroup}>
         <label htmlFor="time" className={css.labelWater}>
-          Recording time:
+        {t('modals.recordingTime')}
         </label>
         <input
           type="time"
@@ -152,7 +152,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
       </div>
       <div className={css.inputGroupWater}>
         <label htmlFor="waterAmount" className={css.labelWater}>
-          Enter the value of water used:
+        {t('modals.enterWater')}
         </label>
         <input
           type="text"
@@ -163,8 +163,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
         />
       </div>
       <div>
-        <button type="submit" className={css.saveBtn}>
-          Save
+        <button type="submit" className={css.saveBtn}>{t('modals.saveBtn')}
         </button>
       </div>
     </form>

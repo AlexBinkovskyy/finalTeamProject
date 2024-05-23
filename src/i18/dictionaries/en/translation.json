@@ -24,7 +24,14 @@
     "recoverPassword": "Recover password:"
   },
   "modals": {
-    "waterAmount": "Amount of water:"
+    "waterAmount": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterWater": "Enter the value of water used:",
+    "saveBtn": "Save",
+    "addWater": "Add Water",
+    "chooseValue": "Choose a value",
+    "editWater": "Edit the entered amount of water",
+    "correctData": "Correct entered data:"
   },
   "advantagesSection":{
     "our": "Our",
@@ -33,6 +40,10 @@
     "habitDrive":"Habit drive",
     "viewStatistics":"View statistics",
     "personalRateSetting":"Personal rate setting"
+  },
+  "waterDailyNorma":{
+    "dailyNorma":"My daily norma",
+    "today":"Today"
   }
 }
 

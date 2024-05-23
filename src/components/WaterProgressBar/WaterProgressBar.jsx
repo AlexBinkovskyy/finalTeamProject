@@ -7,12 +7,14 @@ import {
 import { selectGoal } from '../../redux/auth/selectors.js';
 import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
   const todayTotal = useSelector(selectTodayTotal);
   const todayTotalLitr = Math.round((todayTotal / 1000) * 10) / 10;
   const goal = useSelector(selectGoal);
+  const { t } = useTranslation();
 
   if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
@@ -38,7 +40,7 @@ export default function WaterProgressBar() {
       <div className={css.ProgressBar} data-tut="reactour__waterprogress">
         {chosen === today ? (
           <p className={css.text}>
-            Today
+            {t('waterDailyNorma.today')}
             <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
           </p>
         ) : (
