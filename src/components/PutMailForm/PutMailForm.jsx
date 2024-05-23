@@ -21,7 +21,6 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
   });
 
   const onSubmitHandler = data => {
-    console.log(data);
     onSubmit(data).then(response => {
       console.log(response);
       if (

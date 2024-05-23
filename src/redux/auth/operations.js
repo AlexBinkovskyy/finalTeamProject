@@ -1,6 +1,6 @@
 import api from '../../Interceptors/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export const setAuthHeader = accessToken => {
   api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -35,6 +35,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
+      console.log(res);
 
       toast.success('Welcome to the AquaTrack');
 
@@ -45,7 +46,8 @@ export const signin = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error);
+      // toast.error(error.response.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -82,9 +84,11 @@ export const recoverMail = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post('/users/passrecovery', credentials);
-      toast.success(res.data.message);
+      console.log(res);
+      // toast.success(res.data.message, { progress: undefined });
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error);
+      toast.error(error.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -101,9 +105,10 @@ export const recoverPass = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
+      console.log(res);
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.message);
 
       return thunkAPI.rejectWithValue(error.message);
     }
