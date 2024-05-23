@@ -1,7 +1,18 @@
+.sections_home {
+  padding: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .sections_home {
+    padding: 32px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .sections_home {
+    max-width: 1440px;
+    margin: 0 auto;
     display: flex;
-    /* width: 1440px;
-    margin: 0 auto; */
+    gap: 32px;
   }
 }

@@ -18,7 +18,7 @@ import { createBrowserHistory } from 'history';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken'],
+  whitelist: ['accessToken', 'refreshToken'],
 };
 
 const history = createBrowserHistory();
@@ -36,7 +36,6 @@ export const store = configureStore({
     }),
   devTools: process.env.NODE_ENV === 'development',
 });
-
 
 const persistor = persistStore(store, null, () => {
   const urlParams = window.location.search;

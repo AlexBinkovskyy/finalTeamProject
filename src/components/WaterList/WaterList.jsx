@@ -16,7 +16,7 @@ export default function WaterList({ selectedDate }) {
     dispatch(fetchDailyConsumption(initialDay));
   }, [dispatch, initialDay]);
 
-  const placeholderWater = { amount: '250', time: '12:00' };
+  const placeholderWater = { amount: '250', time: '12:00', _id: '' };
 
   return (
     <>

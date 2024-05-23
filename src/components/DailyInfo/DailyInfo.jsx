@@ -7,7 +7,7 @@ export default function DailyInfo({ selectedDate }) {
   if (!selectedDate) {
     return null;
   }
-
+  console.log('DailyInfo - Test');
   return (
     <>
       <div className={css.dailyInfo}>

@@ -11,7 +11,7 @@
   border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+  background-color: var(--scrollbar-color);
   border-radius: 9px;
   max-width: 150px;
 }
@@ -43,5 +43,10 @@
 .placeholder {
   width: 222px;
   opacity: 0.4;
-  margin-bottom: 34px;
+  margin-bottom: 32px;
+}
+@media only screen and (min-width: 768px) {
+  .placeholder {
+    margin-bottom: 34px;
+  }
 }

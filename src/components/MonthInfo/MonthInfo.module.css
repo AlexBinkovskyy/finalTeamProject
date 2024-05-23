@@ -41,13 +41,14 @@
 
 .buttonIcon {
   border: none;
+  background-color: transparent;
 }
 
 .icon {
   width: 20px;
   height: 20px;
-  stroke: var(--main-text-color);
-  transition: transform 0.3s ease;
+  stroke: var(--text-color-transparent);
+  transition: transform 0.3s ease, stroke 0.3s ease;
 }
 @media only screen and (min-width: 768px) {
   .icon {
@@ -56,6 +57,6 @@
   }
 }
 .icon:hover {
-  stroke: var(--main-color);
+  stroke: var(--accent-color);
   transform: scale(1.2);
 }

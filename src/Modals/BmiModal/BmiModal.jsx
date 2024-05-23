@@ -1,6 +1,6 @@
 import React from 'react';
-import ComponentWithModal from '../../Modals/Modal/Modal';
-import BodyMassIndex from 'components/BodyMassIndex/BodyMassIndex';
+import ComponentWithModal from '../Modal/Modal';
+import BodyMassIndex from '../../components/BodyMassIndex/BodyMassIndex';
 import css from './BmiModal.module.css';
 import IconX from '../../image/sprite.svg';
 
@@ -14,7 +14,7 @@ export default function BmiModal({ isOpen, isClose }) {
               <use href={`${IconX}#IconX`}></use>
             </svg>
           </button>
-          <h3 className={css.title}>BMI calculator</h3>
+          <h3 className={css.title}>Body mass index (BMI)</h3>
           <BodyMassIndex closeModal={isClose} />
         </div>
       </ComponentWithModal>

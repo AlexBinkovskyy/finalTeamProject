@@ -3,11 +3,11 @@ import SignUpForm from 'components/SignUpForm/SignUpForm';
 import css from './SignUpPage.module.css';
 import AdvantagesSection from 'Sections/AdvantagesSection/AdvantagesSection';
 import { useSelector } from 'react-redux';
-import { selectLoading } from '../../redux/auth/selectors';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import Loader from 'components/Loader/Loader';
 
 export default function SignUpPage() {
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectIsRefreshing);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function SignUpPage() {
           <SignUpForm />
         </div>
         <div className={css.advantage}>
-          {window.innerWidth > 1440 && <AdvantagesSection />}
+          {window.innerWidth >= 1440 && <AdvantagesSection />}
         </div>
       </div>
     </>

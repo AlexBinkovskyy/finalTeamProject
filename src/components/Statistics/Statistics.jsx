@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   XAxis,
   YAxis,
@@ -93,23 +93,52 @@ const Statistics = () => {
     return `${valueInLiters}L`;
   };
 
-  const handleDaysRangeChange = event => {
-    setDaysRange(Number(event.target.value));
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('7 days');
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const selectOption = value => {
+    setSelectedOption(`${value} days`);
+    setDaysRange(value);
+    setIsOpen(false);
   };
 
   return (
     <div className={css.statistics}>
       <div className={css.controls}>
-        <label htmlFor="daysRange">Select days range:</label>
-        <select
-          id="daysRange"
-          value={daysRange}
-          onChange={handleDaysRangeChange}
-        >
-          <option value="7">7 days</option>
-          <option value="14">14 days</option>
-          <option value="30">30 days</option>
-        </select>
+        <label className={css.label} htmlFor="daysRange">
+          Select days range:
+        </label>
+        <div className={css.customSelectWrapper}>
+          <div className={css.customSelect} onClick={toggleDropdown}>
+            <span>{selectedOption}</span>
+            <div
+              className={`${css.arrow} ${isOpen ? css.arrowOpen : ''}`}
+            ></div>
+          </div>
+          {isOpen && (
+            <div className={css.customOptions}>
+              <div className={css.customOption} onClick={() => selectOption(7)}>
+                7 days
+              </div>
+              <div
+                className={css.customOption}
+                onClick={() => selectOption(14)}
+              >
+                14 days
+              </div>
+              <div
+                className={css.customOption}
+                onClick={() => selectOption(30)}
+              >
+                30 days
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={formattedChartData}>
