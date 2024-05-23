@@ -1,8 +1,10 @@
 import React from 'react';
 import css from './AdvantagesSection.module.css';
 import HappyCostumers from 'components/HappyCostumers/HappyCostumers';
+import { useTranslation } from 'react-i18next';
 
 export default function AdvantagesSection() {
+  const { t } = useTranslation(); 
   return (
     <section className={css.sectionAdvantages}>
       <div className={css.container}>
@@ -11,9 +13,9 @@ export default function AdvantagesSection() {
             <HappyCostumers />
             <p className={css.elements}>
               <span className={css.line}>
-                Our <span className={css.happy}>happy</span>
+              {t('advantagesSection.our')} <span className={css.happy}>{t('advantagesSection.happy')}</span>
               </span>
-              <span className={css.line}>customers</span>
+              <span className={css.line}>{t('advantagesSection.customers')}</span>
             </p>
           </div>
           <div className={css.staticElements}>
@@ -21,17 +23,17 @@ export default function AdvantagesSection() {
               <div className={`${css.drive} ${css.hoverEffect}`}>
                 <div className={css.driveText}>
                   <div className={css.circle}></div>
-                  <p>Habit drive</p>
+                  <p>{t('advantagesSection.habitDrive')}</p>
                 </div>
                 <div className={`${css.hoverImage} ${css.imageDrive}`} />
               </div>
               <div className={`${css.statistics} ${css.hoverEffect}`}>
-                <p className={css.statisticsText}>View statistics</p>
+                <p className={css.statisticsText}>{t('advantagesSection.viewStatistics')}</p>
                 <div className={`${css.hoverImage} ${css.imageStatistics}`} />
               </div>
             </div>
             <div className={`${css.setting} ${css.hoverEffect}`}>
-              <p className={css.settingText}>Personal rate setting</p>
+              <p className={css.settingText}>{t('advantagesSection.personalRateSetting')}</p>
               <div className={`${css.hoverImage} ${css.imageSetting}`} />
             </div>
           </div>
