@@ -58,7 +58,7 @@ const CalendarItem = ({
       className={`${css.day}
     ${isCurrentDay ? css.currentDay : ''}`}
     >
-      <button onClick={handleClick} className={buttonClass}>
+     <button onClick={handleClick} className={buttonClass}>
         {format(day, 'd')}
       </button>
       <div className={css.waterPercentage}>{handlePercentage(percentage)}%</div>
