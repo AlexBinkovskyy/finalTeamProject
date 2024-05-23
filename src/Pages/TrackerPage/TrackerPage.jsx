@@ -13,18 +13,10 @@ import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const TrackerPage = () => {
-  const disableBody = target => disableBodyScroll(target);
-  const enableBody = target => enableBodyScroll(target);
   return (
-    <TourProvider
-      steps={steps}
-      styles={tourStyles}
-      afterOpen={disableBody}
-      beforeClose={enableBody}
-    >
+    <TourProvider steps={steps} styles={tourStyles}>
       <TrackerPageContent />
     </TourProvider>
   );
