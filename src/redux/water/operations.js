@@ -28,18 +28,35 @@ export const fetchMonthlyConsumption = createAsyncThunk(
 export const addConsumption = createAsyncThunk(
   'consumption/addConsumption',
   async (values, thunkAPI) => {
-    try {
-      const response = await api.post('/water/add', values);
-      return response.data;
-    } catch (er) {
-      return thunkAPI.rejectWithValue(er.message);
-    }
+    // console.log("add before return");
+    // return await api
+    // .post('/water/add', values)
+    // .then(item => {
+    //   console.log("add in then");
+    //   return item.data})
+
+    //   .catch(err => thunkAPI.rejectWithValue(err.message));
+
+      try {
+        const response = await api.post('/water/add', values);
+        return response.data;
+      } catch (er) {
+        return thunkAPI.rejectWithValue(er.message);
+      }
   }
 );
 
 export const deleteConsumption = createAsyncThunk(
   'consumption/deleteConsumption',
   async (consumptionID, thunkAPI) => {
+    // console.log("delete before return");
+    // return await api
+    //   .delete(`/water/delete/${consumptionID}`)
+    //   .then(item => {
+    //     console.log("delete in then");
+    //     return item.data})
+    //   .catch(err => thunkAPI.rejectWithValue(err.message));
+
     try {
       const response = await api.delete(`/water/delete/${consumptionID}`);
       return response.data;
