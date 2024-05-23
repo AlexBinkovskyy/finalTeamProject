@@ -1,28 +1,19 @@
-// import { store } from '../redux/store';
-// import { tokenIsInvalid } from '../redux/auth/slice';
+import { tokenIsInvalid } from '../redux/auth/slice';
 import { createBrowserHistory } from 'history';
-
-import Cookies from 'js-cookie';
 import api from './api';
-import { setAuthHeader } from '../redux/auth/operations';
+import { refreshUserTokens, setAuthHeader } from '../redux/auth/operations';
+import { jwtDecode } from 'jwt-decode';
+import { store } from '../redux/store';
 
 const history = createBrowserHistory();
 
 const setInterceptors = () => {
-  // api.interceptors.request.use(config => {
-
-  //   config.headers['Access-Control-Allow-Origin'] = '*'; // Дозволяє всі джерела
-  //   config.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'; // Дозволені методи
-  //   config.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'; // Дозволені заголовки
-  //   return config;
-  // });
-  
   api.interceptors.response.use(
     response => response,
     async error => {
       if (error.response) {
-        // eslint-disable-next-line
-        if (error.response.status == 401 || error.response.status == 500) {
+        eslint-disable-next-line
+        if (error.response.status === 401 || error.response.status === 500) {
           const originalRequest = error.config;
           if (originalRequest._retry) {
             return Promise.reject(error);
