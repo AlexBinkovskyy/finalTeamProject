@@ -52,6 +52,7 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
+  const { i18n } = useTranslation();
 
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
@@ -160,7 +161,7 @@ const UserSettingsForm = ({ closeModal }) => {
   };
 
   const onSubmit = async (data, e) => {
-    e.preventDefault()
+    e.preventDefault();
     setLoading(true);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
@@ -183,7 +184,7 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('goal', data.goal * 1000);
 
     try {
-      dispatch(updateUserSettings(formData));
+      dispatch(updateUserSettings({ formData, i18n }));
       closeModal();
     } catch (error) {
     } finally {

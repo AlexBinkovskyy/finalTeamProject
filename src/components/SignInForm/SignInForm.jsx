@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-  const { t } = useTranslation();  
+  const { t, i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
@@ -37,7 +37,7 @@ export default function SignInForm() {
   });
 
   const onSubmit = data => {
-    dispatch(signin(data));
+    dispatch(signin({ credentials: data, i18n }));
     reset();
   };
 
@@ -46,7 +46,7 @@ export default function SignInForm() {
       <h1 className={css.title}>{t('signin_page.signin')}</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label htmlFor={emailFieldId} className={css.label}>
-        {t('auth_form.email')}
+          {t('auth_form.email')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -61,7 +61,7 @@ export default function SignInForm() {
         </div>
 
         <label htmlFor={passwordFieldId} className={css.label}>
-        {t('auth_form.password')}
+          {t('auth_form.password')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -94,15 +94,15 @@ export default function SignInForm() {
         </div>
 
         <button type="submit" className={css.button}>
-        {t('signin_page.signin')} 
+          {t('signin_page.signin')}
         </button>
       </form>
       <ul className={css.ul}>
         <li>
           <p className={css.text}>
-          {t('signin_page.account')}{' '}
+            {t('signin_page.account')}{' '}
             <Link to="/signup" className={css.link}>
-            {t('signin_page.signup')} 
+              {t('signin_page.signup')}
             </Link>
           </p>
         </li>
@@ -110,7 +110,7 @@ export default function SignInForm() {
         <li>
           <p className={css.text}>
             <Link to="/resend-page" className={css.link}>
-            {t('auth_form.resend')}
+              {t('auth_form.resend')}
             </Link>{' '}
             {t('auth_form.verfpassword')}
           </p>
@@ -119,7 +119,7 @@ export default function SignInForm() {
         <li>
           <p className={css.text}>
             <Link to="/recover-page" className={css.link}>
-            {t('signin_page.forgot')} 
+              {t('signin_page.forgot')}
             </Link>{' '}
             {t('auth_form.password')}
           </p>

@@ -12,14 +12,13 @@ const clearAuthHeader = () => {
 
 export const signup = createAsyncThunk(
   'auth/signup',
-  async (credentials, thunkAPI) => {
+  async ({ credentials, i18n }, thunkAPI) => {
     try {
       const res = await api.post('/users/register', credentials);
-      const text = res.data.user.message;
-      toast.success(text);
+      toast.success(i18n.t('toast.registerEmailSuccess'));
       return res.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(i18n.t('toast.registerEmailError'));
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -28,12 +27,11 @@ export const signup = createAsyncThunk(
 
 export const signin = createAsyncThunk(
   'auth/signin',
-  async (credentials, thunkAPI) => {
+  async ({ credentials, i18n }, thunkAPI) => {
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
-      console.log(res);
-      toast.success('Welcome to the AquaTrack');
+      toast.success(i18n.t('toast.loginSuccess'));
       localStorage.setItem(
         `userId_${res.data.user._id}`,
         res.data.refreshToken
@@ -41,31 +39,42 @@ export const signin = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      toast.error('Email or password is wrong or not verified');
+      toast.error(i18n.t('toast.loginError'));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const signout = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
-  try {
-    await api.post('/users/logout');
-    clearAuthHeader();
-    toast.success('Signout success');
-  } catch (error) {
-    toast.error(error.response.data.message);
-    return thunkAPI.rejectWithValue(error.message);
+export const signout = createAsyncThunk(
+  'auth/signout',
+  async (i18n, thunkAPI) => {
+    try {
+      await api.post('/users/logout');
+      clearAuthHeader();
+      toast.success(i18n.t('toast.logoutSuccess'));
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const resendMail = createAsyncThunk(
   'auth/resend',
-  async (credentials, thunkAPI) => {
+  async ({ credentials, i18n }, thunkAPI) => {
     try {
-      const res = await api.post('/users/verify', credentials);
-      toast.success(res.data.message);
+      await api.post('/users/verify', credentials);
+      toast.success(i18n.t('toast.verificationEmailSuccess'));
     } catch (error) {
-      toast.error(error.response.data.message);
+      switch (error.response?.status) {
+        case 404:
+          toast.error(i18n.t('toast.email404'));
+          break;
+        case 418:
+          toast.error(i18n.t('toast.verificationEmail418'));
+          break;
+        default:
+          toast.error(i18n.t('toast.defualtError'));
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -73,12 +82,12 @@ export const resendMail = createAsyncThunk(
 
 export const recoverMail = createAsyncThunk(
   'auth/recoverMail',
-  async (credentials, thunkAPI) => {
+  async ({ credentials, i18n }, thunkAPI) => {
     try {
-      const res = await api.post('/users/passrecovery', credentials);
-      toast.success(res.data.message);
+      await api.post('/users/passrecovery', credentials);
+      toast.success(i18n.t('toast.recoverMailSuccess'));
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(i18n.t('toast.email404'));
 
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -87,14 +96,15 @@ export const recoverMail = createAsyncThunk(
 
 export const recoverPass = createAsyncThunk(
   'auth/recoverPass',
-  async (credentials, thunkAPI) => {
+  async ({ credentials, i18n }, thunkAPI) => {
+    console.log(credentials);
     try {
-      const res = await api.patch('/users/passrecovery', credentials, {
+      await api.patch('/users/passrecovery', credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      toast.success(res.data.message);
+      toast.success(i18n.t('toast.recoverPassSuccess'));
     } catch (error) {
       toast.error(error.response.data.message);
 
@@ -125,13 +135,13 @@ export const refreshUser = createAsyncThunk(
 
 export const updateUserSettings = createAsyncThunk(
   'auth/updateSettings',
-  async (formData, thunkAPI) => {
+  async ({ formData, i18n }, thunkAPI) => {
     try {
       const res = await api.put('/users/update', formData);
-      toast.success('Settings updated successfully');
+      toast.success(i18n.t('toast.updateSettingSuccess'));
       return res.data;
     } catch (error) {
-      toast.error('Failed to update settings. Please try again.');
+      toast.error(i18n.t('toast.updateSettingError'));
       return thunkAPI.rejectWithValue(error.message);
     }
   }

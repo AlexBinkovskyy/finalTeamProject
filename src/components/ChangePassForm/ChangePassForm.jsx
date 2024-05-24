@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import Image from '../../image/sprite.svg';
 import { recoverPass } from '../../redux/auth/operations';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   resetToken: Yup.string().required('Required'),
@@ -25,6 +26,7 @@ const validationSchema = Yup.object().shape({
 export default function ChangePassForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const codeFieldId = useId();
@@ -47,7 +49,7 @@ export default function ChangePassForm() {
 
   const onSubmit = ({ resetToken, password }) => {
     resetToken = resetToken.split(' ').join('').trim();
-    dispatch(recoverPass({ resetToken, password }))
+    dispatch(recoverPass({ credentials: { resetToken, password }, i18n }))
       .unwrap()
       .then(() => {
         reset();
