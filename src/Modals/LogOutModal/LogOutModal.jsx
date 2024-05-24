@@ -4,10 +4,11 @@ import IconX from '../../image/sprite.svg';
 import css from './LogOutModal.module.css';
 import { signout } from '../../redux/auth/operations.js';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
-
+  const {t} = useTranslation();
   const logOut = () => dispatch(signout());
 
   return (
@@ -20,14 +21,14 @@ export const LogOutModal = ({ isOpen, isClose }) => {
                 <use href={`${IconX}#IconX`}></use>
               </svg>
             </button>
-            <h2 className={css.modalTitle}>Log out</h2>
-            <p className={css.modalQuestion}>Do you really want to leave?</p>
+            <h2 className={css.modalTitle}>{t('modals.logOut')} </h2>
+            <p className={css.modalQuestion}>{t('modals.wantLeave')}</p>
             <div className={css.buttonContainer}>
               <button className={css.deleteButton} onClick={logOut}>
-                Log out
+              {t('modals.logOut')} 
               </button>
               <button className={css.cancelButton} onClick={isClose}>
-                Cancel
+              {t('modals.cancel')} 
               </button>
             </div>
           </div>

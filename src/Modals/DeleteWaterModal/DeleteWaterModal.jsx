@@ -3,9 +3,12 @@ import { deleteConsumption } from '../../redux/water/operations';
 import css from './DeleteWaterModal.module.css';
 import IconX from '../../image/sprite.svg';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const DeleteWaterModal = ({ isOpen, isClose, consumptionID }) => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
+
   const handleDelete = () => {
     dispatch(deleteConsumption(consumptionID));
     isClose();
@@ -20,16 +23,16 @@ export const DeleteWaterModal = ({ isOpen, isClose, consumptionID }) => {
               <use href={`${IconX}#IconX`}></use>
             </svg>
           </button>
-          <h2 className={css.modalTitle}>Delete entry</h2>
+          <h2 className={css.modalTitle}> {t('modals.deleteEntry')} </h2>
           <p className={css.modalQuestion}>
-            Are you sure you want to delete the entry?
+            {t('modals.sureDelete')} 
           </p>
           <div className={css.buttonContainer}>
             <button className={css.deleteButton} onClick={handleDelete}>
-              Delete
+            {t('modals.delete')} 
             </button>
             <button className={css.cancelButton} onClick={isClose}>
-              Cancel
+            {t('modals.cancel')} 
             </button>
           </div>
         </div>

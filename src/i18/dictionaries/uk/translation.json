@@ -30,9 +30,16 @@
     "enterWater": "Введіть кількість випитої води:",
     "saveBtn": "Зберегти",
     "addWater": "Додати води",
+    "addWaterBtn": "Додати води",
     "chooseValue": "Виберіть значення",
     "editWater": "Відредагуйте введену кількість води",
-    "correctData": "Правильно введені дані:"
+    "correctData": "Правильно введені дані:",
+    "sureDelete": "Ви впевнені, що хочете видалити запис?",
+    "delete": "Видалити",
+    "cancel":"Cкасувати",
+    "deleteEntry": "Видалити запис",
+    "logOut": "Вийти",
+    "wantLeave":"Ви точно хочете вийти?"
   },
   "advantagesSection": {
     "our": "Наші",
@@ -42,11 +49,20 @@
     "ViewStatistics": "Переглянути статистику",
     "PersonalRateSetting": "Індивідуальне встановлення норми"
   },
+  
+  "waterDailyNorma":{
+    "dailyNorma":"Моя денна норма",
+    "today":"Сьогодні"
+  },
  
   "welcomeSection": {
     "recordDaily": "Записуйте та відстежуйте щоденне споживання води ",
     "waterTracker": "Трекер споживання води",
     "tryTracker":"Спробувати!"
+  },
+  "monthInfo":{
+    "Month":"Місяць",
+    "Statistics": "Статистика"
   }
   
 }
