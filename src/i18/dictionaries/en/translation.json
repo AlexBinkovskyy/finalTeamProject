@@ -137,5 +137,8 @@
   "calendar": {
     "month": "Month",
     "statistics": "Statistics"
+  },
+  "switcher": {
+    "choose": "Choose your preferred language:"
   }
 }

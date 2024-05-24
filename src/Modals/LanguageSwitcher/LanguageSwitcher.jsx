@@ -8,7 +8,7 @@ import iconKingdom from '../../image/flag/flag-kingdom.svg';
 import { toast } from 'react-toastify';
 
 export const LanguageSwitcher = ({ isOpen, isClose }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [activeLanguage, setActiveLanguage] = useState(i18n.language);
 
   const handleLanguageChange = lng => {
@@ -57,7 +57,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
       <div className={css.modalOverlay}>
         <div className={css.buttonsContainer}>
-          <h3 className={css.title}>Choose your preferred language:</h3>
+          <h3 className={css.title}>{t('switcher.choose')}</h3>
 
           <div className={css.flagContainer}>
             <img

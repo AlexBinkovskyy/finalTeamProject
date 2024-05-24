@@ -140,5 +140,8 @@
   "calendar": {
     "month": "Місяць",
     "statistics": "Статистика"
+  },
+  "switcher": {
+    "choose": "Виберіть переважну мову:"
   }
 }
