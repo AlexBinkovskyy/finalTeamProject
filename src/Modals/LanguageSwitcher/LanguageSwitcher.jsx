@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import ComponentWithModal from '../Modal/Modal';
 import css from './LanguageSwitcher.module.css';
 
@@ -8,6 +9,10 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
 
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
+    isClose();
+    toast.success(
+      `Language changed to ${lng === 'en' ? 'English' : 'Українська'}`
+    );
   };
 
   useEffect(() => {

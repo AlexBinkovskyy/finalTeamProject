@@ -30,9 +30,6 @@
   --modal-overlay: #00000033;
 
   --animation-shadow: blink 3s infinite;
-
-  --font-bold: 'Poppins-Bold';
-  --font-regular: 'Poppins-Regular';
 }
 
 [data-theme='dark'] {
