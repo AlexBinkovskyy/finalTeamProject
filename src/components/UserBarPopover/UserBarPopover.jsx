@@ -35,9 +35,6 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   }, [wrapperRef, setPopoverOpen]);
 
   
-  const time = 100
-  const handleTips = () => TipOfTheDay(time)
-
   return (
     <div
       className={
@@ -66,11 +63,11 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           </svg>
           <p className={css.settingsItem}>Languages</p>
         </li>
-        <li className={css.listItem} onClick={handleTips}>
+        <li className={css.listItem} onClick={()=>TipOfTheDay(100)}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Get me tip</p>
+          <p className={css.settingsItem}>Give me a tip</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
