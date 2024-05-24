@@ -73,7 +73,7 @@ export default function WaterProgressBar() {
           </p>
         )}
         <div className={css.animationContainer}>
-          {progressProc === 100 && <Animation />}
+          {progressProc === 100 && <Animation /> }
         </div>
       </div>
     </div>

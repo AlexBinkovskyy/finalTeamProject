@@ -47,8 +47,14 @@
   gap: 8px;
   margin-top: 8px;
 }
+.divError {
+  height: 14px;
+  width: 303px;
+  color: var(--error-color);
+}
 .waterAmount {
   text-align: center;
+  min-width: 104px;
   padding: 11px 20px;
   background-color: var(--main-color);
   border-radius: 30px;

@@ -1,10 +1,10 @@
 {
   "signin_page": {
-    "signin": "Sign in", 
+    "signin": "Sign in",
     "signup": "Sign up",
     "forgot": "Forgot",
-    "account": "Don't have any account?" ,
-    "alreadyHave":"Already have account?"
+    "account": "Don't have any account?",
+    "alreadyHave": "Already have account?"
   },
   "auth_form": {
     "email": "Email",
@@ -13,9 +13,11 @@
     "passwordEnter": "Enter your password",
     "emailEnter": "Enter your email",
     "send": "Send",
-    "resend": "Resend", 
+    "resend": "Resend",
     "changePassword": "Change password",
-    "repeatPassword": "Repeat password"
+    "repeatPassword": "Repeat password",
+    "provideEmail": "Provide your e-mail",
+    "back": "Back"
   },
   "forgot_page": {
     "recoverPassword": "Recover password:"
@@ -32,33 +34,48 @@
     "correctData": "Correct entered data:",
     "sureDelete": "Are you sure you want to delete the entry?",
     "delete": "Delete",
-    "cancel":"Cancel",
+    "cancel": "Cancel",
     "deleteEntry": "Delete entry",
     "logOut": "Log out",
-    "wantLeave":"Do you really want to leave?"
+    "wantLeave": "Do you really want to leave?",
+    "BMI": "Body mass index (BMI)",
+    "settings": "Settings",
+    "BMICalc": "BMI calc",
+    "languages": "Languages",
+    "weight": "Weight (kg):",
+    "height": "Height (cm):",
+    "ml":"ml"
   },
-  "advantagesSection":{ 
+  "advantagesSection": {
     "our": "Our",
-    "happy":"happy",
-    "customers":"customers",
-    "habitDrive":"Habit drive",
-    "viewStatistics":"View statistics",
-    "personalRateSetting":"Personal rate setting"
+    "happy": "happy",
+    "customers": "customers",
+    "habitDrive": "Habit drive",
+    "viewStatistics": "View statistics",
+    "personalRateSetting": "Personal rate setting"
   },
-  "waterDailyNorma":{
-    "dailyNorma":"My daily norma",
-    "today":"Today"
+  "waterDailyNorma": {
+    "dailyNorma": "My daily norma",
+    "today": "Today"
   },
   "welcomeSection": {
     "recordDaily": "Record daily water intake and track",
     "waterTracker": "Water consumption tracker",
-    "tryTracker":"Try tracker"
+    "tryTracker": "Try tracker"
   },
-  "monthInfo":{
-    "month":"Month",
+  "monthInfo": {
+    "month": "Month",
     "statistics": "Statistics"
+  },
+  "BMI": {
+    "BMIpar": [
+      "Body mass index (BMI) is a calculated value that allows you to assess",
+      "the degree of correspondence between a person's body weight and",
+      "height. Such a ratio gives us information about whether the weight is",
+      "normal, insufficient or excessive. The BMI indicator reflects the fat",
+      "reserves in the human body, which can timely signal its excess, the",
+      "risk of developing obesity and related diseases. Enter your data below",
+      "to calculate your BMI."
+    ]
   }
 }
-
-
-
