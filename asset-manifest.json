@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.5cb41dfc.css",
-    "main.js": "/finalTeamProject/static/js/main.36facee3.js",
+    "main.css": "/finalTeamProject/static/css/main.aa7b967e.css",
+    "main.js": "/finalTeamProject/static/js/main.87001949.js",
     "static/media/Water404Bg.jpg": "/finalTeamProject/static/media/Water404Bg.00f0904527198097a016.jpg",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
@@ -21,12 +21,14 @@
     "static/media/sprite.svg": "/finalTeamProject/static/media/sprite.69f812c56ba83d0d6b24638c1d1d9044.svg",
     "static/media/rectangle_desk@1x.jpg": "/finalTeamProject/static/media/rectangle_desk@1x.b9fa2cc4a706fa06bc66.jpg",
     "static/media/rectangle_tab@1x.jpg": "/finalTeamProject/static/media/rectangle_tab@1x.997aee7c132d4df33b99.jpg",
+    "static/media/flag-kingdom.svg": "/finalTeamProject/static/media/flag-kingdom.b0dfd1b28c2885d778c60362b1e1f20a.svg",
     "index.html": "/finalTeamProject/index.html",
-    "main.5cb41dfc.css.map": "/finalTeamProject/static/css/main.5cb41dfc.css.map",
-    "main.36facee3.js.map": "/finalTeamProject/static/js/main.36facee3.js.map"
+    "static/media/flag-ukraine.svg": "/finalTeamProject/static/media/flag-ukraine.67cac0d9d9ebcfc2abec26b5231fa910.svg",
+    "main.aa7b967e.css.map": "/finalTeamProject/static/css/main.aa7b967e.css.map",
+    "main.87001949.js.map": "/finalTeamProject/static/js/main.87001949.js.map"
   },
   "entrypoints": [
-    "static/css/main.5cb41dfc.css",
-    "static/js/main.36facee3.js"
+    "static/css/main.aa7b967e.css",
+    "static/js/main.87001949.js"
   ]
 }
