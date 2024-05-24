@@ -29,7 +29,7 @@ export const Calendar = ({ selectedDate, setSelectedDate, showCalendar }) => {
       {showCalendar ? (
         <ul className={css.calendar}>
           {getDaysInMonth().map(day => (
-            <li key={day.toISOString()}>
+            <li key={day.toISOString()} className={css.days}>
               <CalendarItem
                 day={day}
                 selectedDate={selectedDate}
