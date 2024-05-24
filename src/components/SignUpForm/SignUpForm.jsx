@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/auth/operations';
 import { Link, useNavigate } from 'react-router-dom';
 import Image from '../../image/sprite.svg';
+import { useTranslation } from 'react-i18next'; 
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -25,6 +26,7 @@ const validationSchema = Yup.object().shape({
 export default function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const emailFieldId = useId();
@@ -56,10 +58,10 @@ export default function SignUpForm() {
 
   return (
     <div className={css.divWrap}>
-      <h1 className={css.title}>Sign Up</h1>
+      <h1 className={css.title}>{t('signin_page.signup')}</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label htmlFor={emailFieldId} className={css.label}>
-          Email
+        {t('auth_form.email')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -74,7 +76,7 @@ export default function SignUpForm() {
         </div>
 
         <label htmlFor={passwordFieldId} className={css.label}>
-          Password
+        {t('auth_form.password')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -107,7 +109,7 @@ export default function SignUpForm() {
         </div>
 
         <label htmlFor={repeatPassword} className={css.label}>
-          Repeat Password
+        {t('auth_form.repeatPassword')}
         </label>
         <div className={css.errorContainer}>
           <input
@@ -142,13 +144,13 @@ export default function SignUpForm() {
         </div>
 
         <button type="submit" className={css.button}>
-          Sign Up
+        {t('signin_page.signup')}
         </button>
       </form>
       <p className={css.text}>
-        Already have account?{' '}
+      {t('signin_page.alreadyHave')}{' '}
         <Link to="/signin" className={css.link}>
-          Sign In
+        {t('signin_page.signin')}
         </Link>
       </p>
     </div>
