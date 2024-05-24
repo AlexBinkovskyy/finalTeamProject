@@ -4,7 +4,6 @@ import BmiModal from 'Modals/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
-import { IoMdCalculator } from 'react-icons/io';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
 import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
