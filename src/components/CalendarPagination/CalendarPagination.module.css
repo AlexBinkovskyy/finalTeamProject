@@ -19,7 +19,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-family: var(--font-bold);
+  font-family: 'Poppins-Bold', sans-serif;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .button:hover {
