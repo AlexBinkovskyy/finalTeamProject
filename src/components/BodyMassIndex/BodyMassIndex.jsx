@@ -49,9 +49,10 @@ export default function BodyMassIndex() {
 
   useEffect(() => {
     if (userInfo) {
-      const { weight, height } = userInfo;
+      const { weight, height, bmi } = userInfo;
       setValue('weight', weight || 0);
       setValue('height', height || 0);
+      setBmiValue(bmi || '');
     }
   }, [userInfo, setValue]);
 
@@ -70,7 +71,8 @@ export default function BodyMassIndex() {
     setDataError('');
   };
 
-  const saveBMI = async () => {
+  const saveBMI = async e => {
+    e.preventDefault();
     if (bmiValue === null) {
       setDataError('Please calculate your BMI first.');
       return;
@@ -169,7 +171,11 @@ export default function BodyMassIndex() {
           <ul className={css.buttons}>
             <li className={css.buttonsItem}>
               <button type="submit" className={css.btn} disabled={loading}>
-                {loading ? 'Calculating...' : <FaCalculator className={css.resetIcon} />}
+                {loading ? (
+                  'Calculating...'
+                ) : (
+                  <FaCalculator className={css.resetIcon} />
+                )}
               </button>
             </li>
             <li className={css.buttonsItem}>

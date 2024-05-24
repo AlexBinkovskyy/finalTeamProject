@@ -4,10 +4,11 @@ import { WaterModal } from '../../Modals/WaterModal/WaterModal';
 import { selectChosenDate } from '../../redux/water/selectors';
 import css from './AddWaterBtn.module.css';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export default function AddWaterBtn({ color }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
-
+  const {t} = useTranslation();
   const chosenDate = useSelector(selectChosenDate);
 
   function getCurrentDateFormatted() {
@@ -49,7 +50,7 @@ export default function AddWaterBtn({ color }) {
         <div className={`${css.GoPlus} ${svgClass}`}>
           <GoPlus className={`${css.icon} ${svgClass}`} strokeWidth={1} />
         </div>
-        <div>Add water</div>
+        <div>{t('modals.addWaterBtn')} </div>
       </button>
       {waterModalIsOpen && (
         <WaterModal

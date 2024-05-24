@@ -3,11 +3,8 @@
     "signin": "Sign in", 
     "signup": "Sign up",
     "forgot": "Forgot",
-    "account": "Don't have any account?" 
-  },
-  "signup_page": {
-    "signup": "Sign up",
-    "signin": "Sign in"
+    "account": "Don't have any account?" ,
+    "alreadyHave":"Already have account?"
   },
   "auth_form": {
     "email": "Email",
@@ -29,11 +26,18 @@
     "enterWater": "Enter the value of water used:",
     "saveBtn": "Save",
     "addWater": "Add Water",
+    "addWaterBtn": "Add water",
     "chooseValue": "Choose a value",
     "editWater": "Edit the entered amount of water",
-    "correctData": "Correct entered data:"
+    "correctData": "Correct entered data:",
+    "sureDelete": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel":"Cancel",
+    "deleteEntry": "Delete entry",
+    "logOut": "Log out",
+    "wantLeave":"Do you really want to leave?"
   },
-  "advantagesSection":{
+  "advantagesSection":{ 
     "our": "Our",
     "happy":"happy",
     "customers":"customers",
@@ -44,6 +48,17 @@
   "waterDailyNorma":{
     "dailyNorma":"My daily norma",
     "today":"Today"
+  },
+  "welcomeSection": {
+    "recordDaily": "Record daily water intake and track",
+    "waterTracker": "Water consumption tracker",
+    "tryTracker":"Try tracker"
+  },
+  "monthInfo":{
+    "month":"Month",
+    "statistics": "Statistics"
   }
 }
+
+
 
