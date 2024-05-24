@@ -157,7 +157,8 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async (data, e) => {
+    e.preventDefault()
     setLoading(true);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
