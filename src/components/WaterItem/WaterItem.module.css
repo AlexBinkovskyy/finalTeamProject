@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
 }
 
 .waterIcon {
@@ -52,6 +52,7 @@
   background-color: var(--main-white);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 8px;
 }
 @media only screen and (min-width: 768px) {
