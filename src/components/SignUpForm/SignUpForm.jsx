@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
       ' Must contain: capital, uppercase letter, number'
-    )
+    ) 
     .required('Required'),
   repeatPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -68,7 +68,7 @@ export default function SignUpForm() {
             {...register('email')}
             className={`${css.input} ${errors.email && css.errorInput}`}
             id={emailFieldId}
-            placeholder="Enter your email"
+            placeholder={t('auth_form.emailEnter')}
           />
           {errors.email && (
             <span className={css.error}>{errors.email.message}</span>
@@ -84,7 +84,7 @@ export default function SignUpForm() {
             autoComplete="off"
             className={`${css.input} ${errors.password && css.errorInput}`}
             id={passwordFieldId}
-            placeholder="Enter your password"
+            placeholder={t('auth_form.passwordEnter')}
             type={showPassword ? 'text' : 'password'}
           />
           {errors.password && (
@@ -119,12 +119,12 @@ export default function SignUpForm() {
               errors.repeatPassword && css.errorInput
             }`}
             id={repeatPassword}
-            placeholder="Repeat password"
+            placeholder= {t('auth_form.repeatPassword')}
             type={showPassword ? 'text' : 'password'}
           />
           {errors.repeatPassword && (
             <span className={css.error}>{errors.repeatPassword.message}</span>
-          )}
+          )} 
 
           <button
             type="button"

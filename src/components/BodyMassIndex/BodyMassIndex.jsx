@@ -13,6 +13,7 @@ import Loader from '../../components/Loader/Loader';
 import getBmiResult from 'components/utils/getBmiResult ';
 import getColorClass from 'components/utils/getColorClassForBmi';
 import css from './BodyMassIndex.module.css';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   weight: yup
@@ -32,6 +33,7 @@ export default function BodyMassIndex() {
   const [bmiValue, setBmiValue] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
+  const { t } = useTranslation();
 
   const {
     register,
@@ -110,19 +112,13 @@ export default function BodyMassIndex() {
     <div className={css.wrapper}>
       <form onSubmit={handleSubmit(calculateBMI)} className={css.form}>
         <p className={css.text}>
-          Body mass index (BMI) is a calculated value that allows you to assess
-          the degree of correspondence between a person's body weight and
-          height. Such a ratio gives us information about whether the weight is
-          normal, insufficient or excessive. The BMI indicator reflects the fat
-          reserves in the human body, which can timely signal its excess, the
-          risk of developing obesity and related diseases. Enter your data below
-          to calculate your BMI.
+        {t('BMI.BMIpar')}
         </p>
         <div className={css.formElements}>
           <div className={css.labels}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-                Weight (kg):
+                {t('modals.weight')}
               </label>
               <input
                 type="number"
@@ -145,7 +141,7 @@ export default function BodyMassIndex() {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-                Height (cm):
+              {t('modals.height')}
               </label>
               <input
                 type="number"

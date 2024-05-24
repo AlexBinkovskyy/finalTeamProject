@@ -6,6 +6,7 @@ import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
+import { useTranslation } from 'react-i18next';
 import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
@@ -21,6 +22,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     useModal(setPopoverOpen);
 
   const wrapperRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -50,7 +52,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Settings</p>
+          <p className={css.settingsItem}>{t('modals.settings')}</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
         <svg className={css.iconSettings}>
@@ -60,27 +62,15 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#iconEarth`}></use>
+            <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
           <p className={css.settingsItem}>Languages</p>
-        </li>
-        <li className={css.listItem} onClick={()=>TipOfTheDay(100)}>
-          <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#iconTip`}></use>
-          </svg>
-          <p className={css.settingsItem}>Give me a tip</p>
-        </li>
-        <li className={css.listItem} onClick={openLinksIsOpen}>
-          <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#iconLink`}></use>
-          </svg>
-          <p className={css.settingsItem}>Usefull links</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconLogOut`}></use>
           </svg>
-          <p className={css.settingsItem}>Log out</p>
+          <p className={css.settingsItem}>{t('modals.logOut')}</p>
         </li>
       </ul>
       <div>
