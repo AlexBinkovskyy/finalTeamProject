@@ -4,10 +4,10 @@ import IconPieChart from '../../image/sprite.svg';
 import Calendar from '../Calendar/Calendar';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function MonthInfo({ selectedDate, setSelectedDate }) {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const [showCalendar, setShowCalendar] = useState(true);
   const handleButtonClick = () => {
     setShowCalendar(!showCalendar);
@@ -16,9 +16,9 @@ export default function MonthInfo({ selectedDate, setSelectedDate }) {
   return (
     <div className={css.monthInfo}>
       <div className={css.monthInfo__wrapper}>
-        <h1 className={css.title}>{showCalendar ? 'Month' : 'Statistics'}</h1>
-        {/* {t('monthInfo.month')}
-       {t('monthInfo.statistics')} */}
+        <h1 className={css.title}>
+          {showCalendar ? t('calendar.month') : t('calendar.statistics')}
+        </h1>
         <div className={css.paginationIcon__wrapper}>
           <CalendarPagination
             selectedDate={selectedDate}

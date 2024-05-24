@@ -136,5 +136,9 @@
   },
   "chooseDate": {
     "today": "Сьогодні"
+  },
+  "calendar": {
+    "month": "Місяць",
+    "statistics": "Статистика"
   }
 }
