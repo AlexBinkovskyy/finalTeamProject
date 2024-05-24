@@ -97,7 +97,6 @@ export const recoverMail = createAsyncThunk(
 export const recoverPass = createAsyncThunk(
   'auth/recoverPass',
   async ({ credentials, i18n }, thunkAPI) => {
-    console.log(credentials);
     try {
       await api.patch('/users/passrecovery', credentials, {
         headers: {
