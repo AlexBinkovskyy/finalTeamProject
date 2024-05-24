@@ -7,6 +7,7 @@ import IconSprite from '../../image/sprite.svg';
 import { IoMdCalculator } from 'react-icons/io';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
+import { useTranslation } from 'react-i18next';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -19,6 +20,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     useModal(setPopoverOpen);
 
   const wrapperRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -47,25 +49,25 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Settings</p>
+          <p className={css.settingsItem}>{t('modals.settings')}</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
           <div className={css.iconCalc}>
             <IoMdCalculator className={css.iconCalcItem} />
           </div>
-          <p className={css.settingsItem}>BMI calc</p>
+          <p className={css.settingsItem}>{t('modals.BMICalc')}</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Languages</p>
+          <p className={css.settingsItem}>{t('modals.languages')}</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconLogOut`}></use>
           </svg>
-          <p className={css.settingsItem}>Log out</p>
+          <p className={css.settingsItem}>{t('modals.logOut')}</p>
         </li>
       </ul>
       <div>
