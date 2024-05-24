@@ -9,6 +9,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
 
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('i18nextLng', lng);
     isClose();
     toast.success(
       `Language changed to ${lng === 'en' ? 'English' : 'Українська'}`
