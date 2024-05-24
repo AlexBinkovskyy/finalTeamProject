@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/finalTeamProject/static/css/main.5cb41dfc.css",
-    "main.js": "/finalTeamProject/static/js/main.0f2411d1.js",
+    "main.js": "/finalTeamProject/static/js/main.36facee3.js",
     "static/media/Water404Bg.jpg": "/finalTeamProject/static/media/Water404Bg.00f0904527198097a016.jpg",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
     "static/media/transparent_bottle_for_water_tab@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_tab@2x.c9adc67d5ff2b07dff94.png",
@@ -23,10 +23,10 @@
     "static/media/rectangle_tab@1x.jpg": "/finalTeamProject/static/media/rectangle_tab@1x.997aee7c132d4df33b99.jpg",
     "index.html": "/finalTeamProject/index.html",
     "main.5cb41dfc.css.map": "/finalTeamProject/static/css/main.5cb41dfc.css.map",
-    "main.0f2411d1.js.map": "/finalTeamProject/static/js/main.0f2411d1.js.map"
+    "main.36facee3.js.map": "/finalTeamProject/static/js/main.36facee3.js.map"
   },
   "entrypoints": [
     "static/css/main.5cb41dfc.css",
-    "static/js/main.0f2411d1.js"
+    "static/js/main.36facee3.js"
   ]
 }
