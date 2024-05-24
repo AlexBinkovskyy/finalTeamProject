@@ -11,9 +11,6 @@
   text-align: center;
 }
 
-.wrapper{
-    
-}
 
 .iconClose {
   width: 24px;
@@ -89,6 +86,7 @@
 
 .linksList{
     padding-left: 40px;
+    color: var(--main-text-color);
 }
 
 .listItem {
@@ -98,7 +96,7 @@
 }
 
 .listItem:hover{
-    color: #0a550f;
+    color: var(--accent-color);
 }
 .listItem::after {
   z-index: 30;
