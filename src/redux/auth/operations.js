@@ -31,7 +31,9 @@ export const signin = createAsyncThunk(
     try {
       const res = await api.post('/users/login', credentials);
       setAuthHeader(res.data.accessToken);
-      toast.success(i18n.t('toast.loginSuccess'));
+      toast.success(i18n.t('toast.loginSuccess'),{
+        autoClose: 800
+      });
       localStorage.setItem(
         `userId_${res.data.user._id}`,
         res.data.refreshToken
@@ -51,7 +53,9 @@ export const signout = createAsyncThunk(
     try {
       await api.post('/users/logout');
       clearAuthHeader();
-      toast.success(i18n.t('toast.logoutSuccess'));
+      toast.success(i18n.t('toast.logoutSuccess'),{
+        autoClose: 800
+      });
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

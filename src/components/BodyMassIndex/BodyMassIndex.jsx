@@ -83,6 +83,7 @@ export default function BodyMassIndex() {
     setLoading(true);
 
     const formData = new FormData();
+    console.log(bmiValue);
     formData.append('bmi', bmiValue);
 
     try {
