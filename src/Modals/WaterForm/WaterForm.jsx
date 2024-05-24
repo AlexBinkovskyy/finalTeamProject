@@ -11,11 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenDate } from '../../redux/water/selectors';
 import { useTranslation } from 'react-i18next';
 
-
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
-    .required('Water amount is required') 
-    .positive('Water amount must be positive'),
+    .typeError('Water amount must be a number')
+    .required('Water amount is required')
+    .positive('Water amount must be positive')
+    .max(99999, 'Water amount cannot exceed 5 digits'),
   time: Yup.string()
     .required('Time is required')
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
@@ -28,7 +29,7 @@ const schema = Yup.object().shape({
         const selectedTime = new Date();
         selectedTime.setHours(hours, minutes, 0, 0);
         return selectedTime <= currentTime;
-      } 
+      }
     ),
 });
 
@@ -51,9 +52,13 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
   const [time, setTime] = useState('');
 
   useEffect(() => {
-    setValue('waterAmount', waterAmount);
+    setValue(
+      'waterAmount',
+      waterAmount === '' ? '' : parseInt(waterAmount, 10)
+    );
     setValue('time', time);
   }, [waterAmount, time, setValue]);
+
   useEffect(() => {
     const currentTime = new Date();
     const formattedTime =
@@ -66,18 +71,21 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
   }, [defaultValues.time]);
 
   const handleIncrement = () => {
-    setWaterAmount(prevAmount => prevAmount + 50);
+    setWaterAmount(prevAmount => {
+      const incrementedAmount = parseInt(prevAmount, 10) + 50;
+      return Math.min(incrementedAmount, 99999);
+    });
   };
 
   const handleDecrement = () => {
-    setWaterAmount(prevAmount => Math.max(0, prevAmount - 50));
+    setWaterAmount(prevAmount => Math.max(0, parseInt(prevAmount, 10) - 50));
   };
 
   const handleInputChange = event => {
     const { value } = event.target;
 
-    if (parseInt(value) >= 0) {
-      setWaterAmount(parseInt(value));
+    if (value === '' || /^\d{1,5}$/.test(value)) {
+      setWaterAmount(value);
     }
   };
 
@@ -116,12 +124,12 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
         <label htmlFor="waterAmount" className={css.inputParagraph}>
-         {t('modals.waterAmount')}
-        </label> 
+          {t('modals.waterAmount')}
+        </label>
         <div className={css.buttonsContainer}>
           <button
             type="button"
-            onClick={handleDecrement}  
+            onClick={handleDecrement}
             className={css.buttonIncrement}
           >
             -
@@ -135,13 +143,14 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
             +
           </button>
         </div>
-        {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
+        <div className={css.divError}>
+          {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
+        </div>
       </div>
       <div className={css.inputGroup}>
         <label htmlFor="time" className={css.labelWater}>
-        {t('modals.recordingTime')}
+          {t('modals.recordingTime')}
         </label>
-
         <input
           type="time"
           name="time"
@@ -149,11 +158,13 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
           onChange={handleTimeChange}
           {...register('time')}
         />
-        {errors.time && <p>{errors.time.message}</p>}
+        <div className={css.divError}>
+          {errors.time && <p>{errors.time.message}</p>}
+        </div>
       </div>
       <div className={css.inputGroupWater}>
         <label htmlFor="waterAmount" className={css.labelWater}>
-        {t('modals.enterWater')}
+          {t('modals.enterWater')}
         </label>
         <input
           type="text"
@@ -161,10 +172,12 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
           onChange={handleInputChange}
           value={waterAmount === 0 ? '0' : waterAmount}
           min="0"
+          maxLength="5"
         />
       </div>
       <div>
-        <button type="submit" className={css.saveBtn}>{t('modals.saveBtn')}
+        <button type="submit" className={css.saveBtn}>
+          {t('modals.saveBtn')}
         </button>
       </div>
     </form>

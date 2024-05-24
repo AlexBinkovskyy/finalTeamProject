@@ -13,6 +13,7 @@ import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
+import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 
 const TrackerPage = () => {
   return (
@@ -27,6 +28,8 @@ const TrackerPageContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setIsOpen } = useTour();
+
+if (checkVerify) TipOfTheDay()
 
   useEffect(() => {
     if (!checkVerify) {

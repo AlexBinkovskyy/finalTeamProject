@@ -3,10 +3,12 @@ import { DeleteWaterModal } from '../../Modals/DeleteWaterModal/DeleteWaterModal
 import icons from '../../image/sprite.svg';
 import { useState } from 'react';
 import WaterModal from 'Modals/WaterModal/WaterModal';
+import { useTranslation } from 'react-i18next';
 
 export default function WaterItem({ water }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const openEditModal = () => {
     setModalIsOpen(true);
@@ -40,7 +42,7 @@ export default function WaterItem({ water }) {
         </svg>
 
         <div className={css.data}>
-          <p className={css.amount}>{water.amount} ml</p>
+          <p className={css.amount}>{water.amount}  {t('modals.ml')}</p>
           <p className={css.time}>{water.time}</p>
         </div>
         <div className={css.buttons}>

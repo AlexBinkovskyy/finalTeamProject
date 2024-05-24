@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; 
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Must be valid email!').required('Required'),
@@ -10,7 +11,7 @@ const validationSchema = Yup.object().shape({
 
 export default function PutMailForm({ onSubmit, btnText, operationType }) {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -42,13 +43,13 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
 
   return (
     <div className={css.divWrap}>
-      <p className={css.text}>Provide your e-mail </p>
+      <p className={css.text}>{t('auth_form.provideEmail')} </p>
       <form onSubmit={handleSubmit(onSubmitHandler)} className={css.form}>
         <div className={css.errorContainer}>
           <input
             {...register('email')}
             className={`${css.input} ${errors.email && css.errorInput}`}
-            placeholder="Enter your email"
+            placeholder= {t('auth_form.emailEnter')}
           />
           {errors.email && (
             <span className={css.error}>{errors.email.message}</span>
@@ -58,7 +59,7 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
         <ul className={css.ul}>
           <li>
             <button type="submit" className={css.button}>
-              {btnText}
+               {t('auth_form.resend')}
             </button>
           </li>
 
@@ -68,7 +69,7 @@ export default function PutMailForm({ onSubmit, btnText, operationType }) {
               className={css.button}
               onClick={onClickHandler}
             >
-              Back
+              {t('auth_form.back')}
             </button>
           </li>
         </ul>
