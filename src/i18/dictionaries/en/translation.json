@@ -3,11 +3,8 @@
     "signin": "Sign in", 
     "signup": "Sign up",
     "forgot": "Forgot",
-    "account": "Don't have any account?" 
-  },
-  "signup_page": {
-    "signup": "Sign up",
-    "signin": "Sign in"
+    "account": "Don't have any account?" ,
+    "alreadyHave":"Already have account?"
   },
   "auth_form": {
     "email": "Email",
@@ -40,7 +37,7 @@
     "logOut": "Log out",
     "wantLeave":"Do you really want to leave?"
   },
-  "advantagesSection":{
+  "advantagesSection":{ 
     "our": "Our",
     "happy":"happy",
     "customers":"customers",

@@ -4,11 +4,8 @@
     "signup": "Зареєструватися",
     "forgotPassword": "Забули пароль?",
     "forgot": "Забули",
-    "account": "Не зареєструвалися?"
-  },
-  "signup_page": {
-    "signup": "Зареєструватися",
-    "signin": "Логін"
+    "account": "Не зареєструвалися?",
+    "alreadyHave":"Вже є аккаунт?"
   },
   "auth_form": {
     "email": "Пошта",
