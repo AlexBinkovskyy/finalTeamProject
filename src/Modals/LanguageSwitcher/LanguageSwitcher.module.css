@@ -41,6 +41,7 @@
 }
 .flag {
   transition: opacity 0.3s;
+  cursor: pointer;
 }
 
 .flag.active {

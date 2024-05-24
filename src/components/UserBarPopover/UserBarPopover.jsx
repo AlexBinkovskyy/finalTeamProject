@@ -8,6 +8,7 @@ import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
 import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 import { UsefullLinks } from 'Modals/UsefullLinks/UsefullLinks';
+import { useTranslation } from 'react-i18next';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -23,6 +24,8 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
 
   const wrapperRef = useRef(null);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -36,7 +39,6 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     };
   }, [wrapperRef, setPopoverOpen]);
 
-  
   return (
     <div
       className={
@@ -51,64 +53,60 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>Settings</p>
+          <p className={css.settingsItem}>{t('popover.settings')}</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-        <svg className={css.iconSettings}>
+          <svg className={css.iconSettings}>
             <use href={`${IconSprite}#iconMeter`}></use>
           </svg>
-          <p className={css.settingsItem}>BMI calc</p>
+          <p className={css.settingsItem}>{t('popover.bmiCalc')}</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#iconEarth`}></use>
           </svg>
-          <p className={css.settingsItem}>Languages</p>
+          <p className={css.settingsItem}>{t('popover.languages')}</p>
         </li>
-        <li className={css.listItem} onClick={()=>TipOfTheDay(100)}>
+        <li className={css.listItem} onClick={() => TipOfTheDay(100)}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#iconTip`}></use>
           </svg>
-          <p className={css.settingsItem}>Give me a tip</p>
+          <p className={css.settingsItem}>{t('popover.tip')}</p>
         </li>
         <li className={css.listItem} onClick={openLinksModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#iconLink`}></use>
           </svg>
-          <p className={css.settingsItem}>Usefull links</p>
+          <p className={css.settingsItem}>{t('popover.links')}</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconLogOut`}></use>
           </svg>
-          <p className={css.settingsItem}>Log out</p>
+          <p className={css.settingsItem}>{t('popover.logout')}</p>
         </li>
       </ul>
       <div>
-
-      {settingModalIsOpen && (
-        <UserSettingsModal
-          isOpen={settingModalIsOpen}
-          isClose={closeSettingModal}
+        {settingModalIsOpen && (
+          <UserSettingsModal
+            isOpen={settingModalIsOpen}
+            isClose={closeSettingModal}
           />
         )}
-      {languageSwitcherIsOpen && (
-        <LanguageSwitcher
-        isOpen={languageSwitcherIsOpen}
-        isClose={closeLanguageSwitcher}
-        />
-      )}
-      {bMIModalIsOpen && (
-        <BmiModal isOpen={bMIModalIsOpen} isClose={closeBMIModal} />
-      )}
-      {logOutlIsOpen && (
-        <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
-      )}
-      {openLinksIsOpen && (
-        <UsefullLinks
-          isOpen={openLinksIsOpen}
-          isClose={closeLinksModal}
+        {languageSwitcherIsOpen && (
+          <LanguageSwitcher
+            isOpen={languageSwitcherIsOpen}
+            isClose={closeLanguageSwitcher}
           />
+        )}
+        {bMIModalIsOpen && (
+          <BmiModal isOpen={bMIModalIsOpen} isClose={closeBMIModal} />
+        )}
+        {logOutlIsOpen && (
+          <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
+        )}
+        {openLinksIsOpen && (
+          <UsefullLinks isOpen={openLinksIsOpen} isClose={closeLinksModal} />
         )}
       </div>
     </div>

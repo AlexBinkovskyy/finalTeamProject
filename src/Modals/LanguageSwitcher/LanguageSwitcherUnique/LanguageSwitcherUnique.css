@@ -15,7 +15,6 @@
 .switch__icon,
 .switch__input {
   display: block;
-  cursor: pointer;
 }
 .switch__icon {
   position: absolute;
