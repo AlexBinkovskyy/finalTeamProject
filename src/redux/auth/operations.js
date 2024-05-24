@@ -133,15 +133,29 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
+// export const updateUserSettings = createAsyncThunk(
+//   'auth/updateSettings',
+//   async ({ formData, i18n }, thunkAPI) => {
+//     try {
+//       const res = await api.put('/users/update', formData);
+//       // toast.success(i18n.t('toast.updateSettingSuccess'));
+//       return res.data;
+//     } catch (error) {
+//       // toast.error(i18n.t('toast.updateSettingError'));
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const updateUserSettings = createAsyncThunk(
   'auth/updateSettings',
-  async ({ formData, i18n }, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
       const res = await api.put('/users/update', formData);
-      toast.success(i18n.t('toast.updateSettingSuccess'));
+      toast.success('Settings updated successfully');
       return res.data;
     } catch (error) {
-      toast.error(i18n.t('toast.updateSettingError'));
+      toast.error('Failed to update settings. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
