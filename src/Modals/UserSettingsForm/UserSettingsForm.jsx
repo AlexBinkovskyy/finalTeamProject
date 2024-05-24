@@ -140,10 +140,14 @@ const UserSettingsForm = ({ closeModal }) => {
     }
   };
 
-  const recalculateGoal = () => {
+  const recalculateGoal = e => {
     const genderValue = watch('gender');
-    const weightValue = watch('weight');
-    const activeTimeValue = watch('activeTime');
+    const weightValue =
+      e.target.name === 'weight' ? parseFloat(e.target.value) : watch('weight');
+    const activeTimeValue =
+      e.target.name === 'activeTime'
+        ? parseFloat(e.target.value)
+        : watch('activeTime');
     if (genderValue && weightValue && activeTimeValue) {
       const setDailyNorma =
         genderValue === 'female'
@@ -155,7 +159,6 @@ const UserSettingsForm = ({ closeModal }) => {
 
   const onSubmit = async data => {
     setLoading(true);
-    console.log(data);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
     if (file) {
@@ -177,7 +180,6 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('goal', data.goal * 1000);
 
     try {
-      console.log(data);
       dispatch(updateUserSettings(formData));
       closeModal();
     } catch (error) {
@@ -244,7 +246,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   value="female"
                   {...register('gender')}
                   autoComplete="gender"
-                  onChange={recalculateGoal}
+                  onInput={recalculateGoal}
                 />
                 <label
                   htmlFor="female"
@@ -259,7 +261,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   value="male"
                   {...register('gender')}
                   autoComplete="gender"
-                  onChange={recalculateGoal}
+                  onInput={recalculateGoal}
                 />
                 <label htmlFor="male" className={css.genderLabel} tabIndex="0">
                   Man
@@ -348,7 +350,7 @@ const UserSettingsForm = ({ closeModal }) => {
                 {...register('weight')}
                 className={css.input}
                 autoComplete="weight"
-                onChange={recalculateGoal}
+                onInput={recalculateGoal}
               />
               {errors.weight && errors.weight.type === 'typeError' ? (
                 <span className={`${css.weightError} ${css.error}`}>
@@ -390,12 +392,11 @@ const UserSettingsForm = ({ closeModal }) => {
               <input
                 type="number"
                 min="0"
-                // max="24"
                 id="activeTime"
                 {...register('activeTime')}
                 className={css.input}
                 autoComplete="active-time"
-                onChange={recalculateGoal}
+                onInput={recalculateGoal}
               />
               {errors.activeTime && errors.activeTime.type === 'typeError' ? (
                 <span className={`${css.activeTimeError} ${css.error}`}>

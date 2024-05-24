@@ -4,11 +4,8 @@
     "signup": "Зареєструватися",
     "forgotPassword": "Забули пароль?",
     "forgot": "Забули",
-    "account": "Не зареєструвалися?"
-  },
-  "signup_page": {
-    "signup": "Зареєструватися",
-    "signin": "Логін"
+    "account": "Не зареєструвалися?",
+    "alreadyHave":"Вже є аккаунт?"
   },
   "auth_form": {
     "email": "Пошта",
@@ -30,20 +27,39 @@
     "enterWater": "Введіть кількість випитої води:",
     "saveBtn": "Зберегти",
     "addWater": "Додати води",
+    "addWaterBtn": "Додати води",
     "chooseValue": "Виберіть значення",
     "editWater": "Відредагуйте введену кількість води",
-    "correctData": "Правильно введені дані:"
+    "correctData": "Правильно введені дані:",
+    "sureDelete": "Ви впевнені, що хочете видалити запис?",
+    "delete": "Видалити",
+    "cancel":"Cкасувати",
+    "deleteEntry": "Видалити запис",
+    "logOut": "Вийти",
+    "wantLeave":"Ви точно хочете вийти?"
   },
   "advantagesSection": {
     "our": "Наші",
-    "happy": "щасливі",
-    "customers": "клієнти",
+    "happy": "",
+    "customers": "користувачі",
     "HabitDrive": "Керування звичкою",
     "ViewStatistics": "Переглянути статистику",
     "PersonalRateSetting": "Індивідуальне встановлення норми"
   },
-  "waterDailyNorma": {
-    "dailyNorma": "Моя денна норма",
-    "Today": "Сьогодні"
+  
+  "waterDailyNorma":{
+    "dailyNorma":"Моя денна норма",
+    "today":"Сьогодні"
+  },
+ 
+  "welcomeSection": {
+    "recordDaily": "Записуйте та відстежуйте щоденне споживання води ",
+    "waterTracker": "Трекер споживання води",
+    "tryTracker":"Спробувати!"
+  },
+  "monthInfo":{
+    "Month":"Місяць",
+    "Statistics": "Статистика"
   }
+  
 }
