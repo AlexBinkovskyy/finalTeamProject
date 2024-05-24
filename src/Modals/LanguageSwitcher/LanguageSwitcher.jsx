@@ -12,7 +12,11 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
     localStorage.setItem('i18nextLng', lng);
     isClose();
     toast.success(
-      `Language changed to ${lng === 'en' ? 'English' : 'Українська'}`
+      ` ${
+        lng === 'en'
+          ? 'Language changed to English'
+          : 'Мова змінена на Українську'
+      }`
     );
   };
 

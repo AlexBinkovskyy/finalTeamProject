@@ -13,6 +13,7 @@ import css from './UserSettingsForm.module.css';
 
 import ThemeSwitcher from 'Theme/ThemeSwitcher/ThemeSwitcher';
 import { ThemeContext } from '../../Theme/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -51,6 +52,7 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
+  const { i18n } = useTranslation();
 
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
@@ -158,7 +160,7 @@ const UserSettingsForm = ({ closeModal }) => {
   };
 
   const onSubmit = async (data, e) => {
-    e.preventDefault()
+    e.preventDefault();
     setLoading(true);
     const formData = new FormData();
     const file = avatarInputRef.current.files[0];
@@ -181,7 +183,7 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('goal', data.goal * 1000);
 
     try {
-      dispatch(updateUserSettings(formData));
+      dispatch(updateUserSettings({ formData, i18n }));
       closeModal();
     } catch (error) {
     } finally {

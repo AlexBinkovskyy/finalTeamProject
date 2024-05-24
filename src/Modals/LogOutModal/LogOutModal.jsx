@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const logOut = () => dispatch(signout());
+  const { t, i18n } = useTranslation();
+  const logOut = () => dispatch(signout(i18n));
 
   return (
     <>
