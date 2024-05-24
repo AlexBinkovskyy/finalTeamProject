@@ -13,7 +13,7 @@ import { useSpring, animated } from 'react-spring';
 export default function AdvantagesSection() {
   const { t } = useTranslation();
   const [props, set] = useSpring(() => ({
-    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.025)',
     config: { mass: 5, tension: 350, friction: 40 },
   }));
 
@@ -32,7 +32,7 @@ export default function AdvantagesSection() {
 
   const handleMouseLeave = () => {
     set({
-      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.0)',
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.025)',
     });
   };
 
