@@ -35,7 +35,7 @@ const schema = yup.object().shape({
     .number()
     .required('Height is required')
     .min(50, 'Height must be greater than or equal to 50')
-    .max(300, 'Height must be a realistic number'),
+    .max(260, 'Height must be a realistic number'),
   activeTime: yup
     .number()
     .required('Sport time is required')
@@ -60,6 +60,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const [avatarError, setAvatarError] = useState('');
   const [isFileValid, setIsFileValid] = useState(true);
   const [emailChanged, setEmailChanged] = useState(false);
+  const [dailyNorma, setDailyNorma] = useState('');
   const avatarInputRef = useRef(null);
   const { t } = useTranslation();
 
@@ -107,14 +108,14 @@ const UserSettingsForm = ({ closeModal }) => {
   const bmi = watch('bmi');
 
   useEffect(() => {
-    if (gender && weight && activeTime && !userInfo.goal) {
-      const setDailyNorma =
+    if (gender && weight && activeTime) {
+      const calculatedDailyNorma =
         gender === 'female'
           ? weight * 0.03 + activeTime * 0.4
           : weight * 0.04 + activeTime * 0.6;
-      setValue('goal', parseFloat(setDailyNorma.toFixed(1)));
+      setDailyNorma(parseFloat(calculatedDailyNorma.toFixed(1)));
     }
-  }, [gender, weight, activeTime, userInfo.goal, setValue]);
+  }, [gender, weight, activeTime]);
 
   useEffect(() => {
     if (email !== userInfo.email) {
@@ -156,7 +157,7 @@ const UserSettingsForm = ({ closeModal }) => {
         genderValue === 'female'
           ? weightValue * 0.03 + activeTimeValue * 0.4
           : weightValue * 0.04 + activeTimeValue * 0.6;
-      setValue('goal', parseFloat(setDailyNorma.toFixed(1)));
+      setDailyNorma(parseFloat(setDailyNorma.toFixed(1)));
     }
   };
 
@@ -241,7 +242,7 @@ const UserSettingsForm = ({ closeModal }) => {
           <div className={css.formWrap_1}>
             <div className={css.formGroup}>
               <label htmlFor="female" className={css.accentLabel}>
-              {t('settingsForm.yourGender')}
+                {t('settingsForm.yourGender')}
               </label>
               <div className={css.genderInput}>
                 <input
@@ -268,7 +269,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   onInput={recalculateGoal}
                 />
                 <label htmlFor="male" className={css.genderLabel} tabIndex="0">
-                {t('settingsForm.man')}
+                  {t('settingsForm.man')}
                 </label>
                 {errors.gender && (
                   <span className={css.error}>{errors.gender.message}</span>
@@ -277,7 +278,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.nameInput}`}>
               <label htmlFor="name" className={css.accentLabel}>
-              {t('settingsForm.yourName')}
+                {t('settingsForm.yourName')}
               </label>
               <input
                 type="text"
@@ -294,7 +295,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.emailInput}`}>
               <label htmlFor="email" className={css.accentLabel}>
-              {t('auth_form.email')}
+                {t('auth_form.email')}
               </label>
               <input
                 type="text"
@@ -317,10 +318,15 @@ const UserSettingsForm = ({ closeModal }) => {
               )}
             </div>
             <div className={css.formGroup}>
-              <p className={css.infoTitle}> {t('waterDailyNorma.dailyNorma')}</p>
+              <p className={css.infoTitle}>
+                {' '}
+                {t('waterDailyNorma.dailyNorma')}
+              </p>
               <ul className={css.list}>
                 <li className={css.listItem}>
-                  <p className={css.listItemText}>{t('settingsForm.forWoman')}</p>
+                  <p className={css.listItemText}>
+                    {t('settingsForm.forWoman')}
+                  </p>
                   <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
                 </li>
                 <li className={css.listItem}>
@@ -329,7 +335,8 @@ const UserSettingsForm = ({ closeModal }) => {
                 </li>
               </ul>
               <p className={css.calculation}>
-                <span className={css.calcIcon}>*</span>{t('settingsForm.calc')}
+                <span className={css.calcIcon}>*</span>
+                {t('settingsForm.calc')}
               </p>
               <p className={css.info}>
                 <svg className={css.iconInfo}>
@@ -342,7 +349,7 @@ const UserSettingsForm = ({ closeModal }) => {
           <div className={css.formWrap_2}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-              {t('settingsForm.yourWeight')}
+                {t('settingsForm.yourWeight')}
               </label>
               <input
                 type="number"
@@ -355,7 +362,7 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.weight && errors.weight.type === 'typeError' ? (
                 <span className={`${css.weightError} ${css.error}`}>
-                 {t('settingsForm.weightRequired')}
+                  {t('settingsForm.weightRequired')}
                 </span>
               ) : (
                 <span className={`${css.weightError} ${css.error}`}>
@@ -365,12 +372,12 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-              {t('settingsForm.yourHeight')}
+                {t('settingsForm.yourHeight')}
               </label>
               <input
                 type="number"
-                min="0"
-                max="300"
+                min="50"
+                max="260"
                 id="height"
                 {...register('height')}
                 className={css.input}
@@ -388,7 +395,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.activeTimeInput}`}>
               <label htmlFor="activeTime" className={css.label}>
-              {t('settingsForm.activeParticipation')}
+                {t('settingsForm.activeParticipation')}
               </label>
               <input
                 type="number"
@@ -401,7 +408,7 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.activeTime && errors.activeTime.type === 'typeError' ? (
                 <span className={`${css.activeTimeError} ${css.error}`}>
-                   {t('settingsForm.activeTimeRequired')}
+                  {t('settingsForm.activeTimeRequired')}
                 </span>
               ) : (
                 <span className={`${css.activeTimeError} ${css.error}`}>
@@ -411,15 +418,15 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={css.formGroup}>
               <p className={css.dailyNorma}>
-              {t('settingsForm.requiredAmount')}
+                {t('settingsForm.requiredAmount')}
                 <span className={css.dailyNormaValue}>
-                  {watch('goal') ? `${watch('goal')} L` : ''}
+                  {dailyNorma ? `${dailyNorma} L` : ''}
                 </span>
               </p>
             </div>
             <div className={`${css.formGroup} ${css.goalInput}`}>
               <label htmlFor="goal" className={css.accentLabel}>
-              {t('settingsForm.writeWateDrink')}
+                {t('settingsForm.writeWateDrink')}
               </label>
               <input
                 type="number"
@@ -433,13 +440,13 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.goal && !watch('goal') && (
                 <span className={`${css.goalError} ${css.error}`}>
-                   {t('settingsForm.goalRequired')}
+                  {t('settingsForm.goalRequired')}
                 </span>
               )}
             </div>
             <div className={css.formGroup}>
               <p className={css.bmiIndex}>
-              {t('settingsForm.yourBodyMassIndex')}
+                {t('settingsForm.yourBodyMassIndex')}
                 <span className={`${css.bmiIndexValue} ${css[bmiColorClass]}`}>
                   {watch('bmi')
                     ? `${watch('bmi')} (${getBmiResult(watch('bmi'))})`

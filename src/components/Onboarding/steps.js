@@ -6,21 +6,21 @@ const steps = [
   },
   {
     selector: '[data-tut="reactour__waterbtn"]',
-    content: 'Easy to add amount of water', //Слідкуйте за кількістю випитої води
+    content: 'Easy to add amount of water', 
     position: 'top',
   },
   {
     selector: '[data-tut="reactour__waterprogress"]',
-    content: `Achieve daily goal`, //досягнення щоденної мети
+    content: `Achieve daily goal`, 
   },
   {
     selector: '[data-tut="reactour__btnuserbar"]',
     content: `Calculate daily intake in settings`,
-    position: 'left', //розрахувати добове споживання
+    position: 'left',
   },
   {
     selector: '[data-tut="reactour__waterlist"]',
-    content: `Adjust with one slide`, //налаштувати за допомогою одного слайда
+    content: `Adjust with one slide`, 
   },
   {
     selector: '[data-tut="reactour__statistic"]',
