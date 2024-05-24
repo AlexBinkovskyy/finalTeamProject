@@ -107,7 +107,7 @@ textarea:is(:hover, :focus, :active) {
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: var(--text-color-transparent);
+  color: var(--main-text-color);
   display: flex;
   justify-content: center;
   gap: 4px;
