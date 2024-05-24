@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { GrPowerReset } from 'react-icons/gr';
-// import { FaRegSave } from 'react-icons/fa';
+import { FaRegSave } from 'react-icons/fa';
 import { FaCalculator } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
-// import { updateUserSettings } from '../../redux/auth/operations';
+import { updateUserSettings } from '../../redux/auth/operations';
 import BMIImage from '../../image/BMI.png';
 import Loader from '../../components/Loader/Loader';
 import getBmiResult from 'components/utils/getBmiResult ';
@@ -28,7 +28,7 @@ const schema = yup.object().shape({
 });
 
 export default function BodyMassIndex() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   const [bmiValue, setBmiValue] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -73,27 +73,27 @@ export default function BodyMassIndex() {
     setDataError('');
   };
 
-  // const saveBMI = async e => {
-  //   e.preventDefault();
-  //   if (bmiValue === null) {
-  //     setDataError('Please calculate your BMI first.');
-  //     return;
-  //   }
+  const saveBMI = async e => {
+    e.preventDefault();
+    if (bmiValue === null) {
+      setDataError('Please calculate your BMI first.');
+      return;
+    }
 
-  //   setLoading(true);
+    setLoading(true);
 
-  //   const formData = new FormData();
-  //   console.log(bmiValue);
-  //   formData.append('bmi', bmiValue);
+    const formData = new FormData();
+    console.log(bmiValue);
+    formData.append('bmi', bmiValue);
 
-  //   try {
-  //     dispatch(updateUserSettings(formData));
-  //   } catch (error) {
-  //     console.error('Failed to update user settings', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+    try {
+      dispatch(updateUserSettings(formData));
+    } catch (error) {
+      console.error('Failed to update user settings', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleInputChange = () => {
     if (dataError) {
@@ -185,7 +185,7 @@ export default function BodyMassIndex() {
                 <GrPowerReset className={css.resetIcon} />
               </button>
             </li>
-            {/* <li className={css.buttonsItem}>
+            <li className={css.buttonsItem}>
               <button
                 type="button"
                 className={css.btn}
@@ -194,7 +194,7 @@ export default function BodyMassIndex() {
               >
                 <FaRegSave className={css.resetIcon} />
               </button>
-            </li> */}
+            </li>
           </ul>
           {dataError && (
             <span className={`${css.error} ${css.errorData}`}>{dataError}</span>
