@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { GrPowerReset } from 'react-icons/gr';
 import { FaRegSave } from 'react-icons/fa';
 import { FaCalculator } from 'react-icons/fa6';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUserSettings } from '../../redux/auth/operations';
 import BMIImage from '../../image/BMI.png';
