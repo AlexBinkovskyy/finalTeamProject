@@ -7,6 +7,7 @@ import IconSprite from '../../image/sprite.svg';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
 import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
+import { UsefullLinks } from 'Modals/UsefullLinks/UsefullLinks';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -70,7 +71,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           </svg>
           <p className={css.settingsItem}>Give me a tip</p>
         </li>
-        <li className={css.listItem} onClick={openLinksIsOpen}>
+        <li className={css.listItem} onClick={openLinksModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#iconLink`}></use>
           </svg>
@@ -104,8 +105,8 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
         <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
       )}
       {openLinksIsOpen && (
-        <UserSettingsModal
-          isOpen={openLinksModal}
+        <UsefullLinks
+          isOpen={openLinksIsOpen}
           isClose={closeLinksModal}
           />
         )}

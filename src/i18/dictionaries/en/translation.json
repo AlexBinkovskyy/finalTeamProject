@@ -44,7 +44,7 @@
     "languages": "Languages",
     "weight": "Weight (kg):",
     "height": "Height (cm):",
-    "ml":"ml"
+    "ml": "ml"
   },
   "advantagesSection": {
     "our": "Our",
@@ -67,6 +67,33 @@
     "month": "Month",
     "statistics": "Statistics"
   },
+  "settingsForm": {
+    "settings": "Settings",
+    "uploadPhoto": "Upload a photo",
+    "yourGender": " Your gender identity",
+    "woman": "Woman",
+    "man": "Man",
+    "yourName": "Your name",
+    "forWoman": "For woman:",
+    "forMan": "For man:",
+    "activeTime": "Active time in hours",
+    "yourWeight": "Your weight in kilograms:",
+    "weightRequired": "Weight is required",
+    "yourHeight": "Your height in cm:",
+    "heightRequired": "Height is required",
+    "activeParticipation": "The time of active participation in sports:",
+    "activeTimeRequired": "Active time is required",
+    "requiredAmount": "The required amount of water in liters per day:",
+    "writeWateDrink": "Write down how much water you will drink:",
+    "goalRequired": "Goal is required",
+    "yourBodyMassIndex": "Your body mass index:",
+    "calc": [
+      "V is the volume of the ",
+      "water norm in liters per day, M is your body weight, T is the ",
+      "time of active sports, or another type of activity commensurate ",
+      "in terms of loads (in the absence of these, you must set 0)"
+    ]
+  },
   "BMI": {
     "BMIpar": [
       "Body mass index (BMI) is a calculated value that allows you to assess",
@@ -77,5 +104,20 @@
       "risk of developing obesity and related diseases. Enter your data below",
       "to calculate your BMI."
     ]
+  },
+  "toast": {
+    "loginSuccess": "Welcome to the AquaTrack",
+    "loginError": "Email or password is wrong or not verified",
+    "logoutSuccess": "Signout success",
+    "verificationEmailSuccess": "Verification email sent",
+    "email404": "User not found",
+    "verificationEmail418": "Current email is already verified",
+    "defaultError": "Error",
+    "recoverMailSuccess": "Recovery instructions was sent to provided email",
+    "recoverPassSuccess": "Password changed successfuly",
+    "registerEmailSuccess": "Verification email sent",
+    "registerEmailError": "Current email already in use",
+    "updateSettingSuccess": "Settings updated successfully",
+    "updateSettingError": "Failed to update settings. Please try again"
   }
 }

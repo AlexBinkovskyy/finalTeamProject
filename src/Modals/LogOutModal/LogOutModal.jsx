@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 export const LogOutModal = ({ isOpen, isClose }) => {
   const dispatch = useDispatch();
-  const {t} = useTranslation();
-  const logOut = () => dispatch(signout());
+  const { t, i18n } = useTranslation();
+  const logOut = () => dispatch(signout(i18n));
 
   return (
     <>
@@ -25,10 +25,10 @@ export const LogOutModal = ({ isOpen, isClose }) => {
             <p className={css.modalQuestion}>{t('modals.wantLeave')}</p>
             <div className={css.buttonContainer}>
               <button className={css.deleteButton} onClick={logOut}>
-              {t('modals.logOut')} 
+                {t('modals.logOut')}
               </button>
               <button className={css.cancelButton} onClick={isClose}>
-              {t('modals.cancel')} 
+                {t('modals.cancel')}
               </button>
             </div>
           </div>

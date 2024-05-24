@@ -15,7 +15,7 @@
 }
 
 .title {
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   font-weight: 100;
   font-size: 32px;
   /* line-height: 1; */

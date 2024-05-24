@@ -30,7 +30,7 @@
 
 .dayNumber {
   position: absolute;
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   font-size: 14px;
   width: 28px;
   height: 28px;
@@ -73,7 +73,7 @@
 }
 
 .waterPercentage {
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   color: var(--main-text-color);
 
   font-size: 10px;
