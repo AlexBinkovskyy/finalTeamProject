@@ -25,7 +25,6 @@
   display: flex;
   align-items: flex-end;
   padding: 16px 16px 32px;
-  animation: var(--animation-shadow);
   position: relative;
   overflow: hidden;
   box-shadow: var(--box-shadow);
