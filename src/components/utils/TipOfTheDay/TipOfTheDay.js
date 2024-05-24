@@ -6,18 +6,18 @@ export const TipOfTheDay = (time = 5000) => {
   const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
   const customId = 'customID';
 
-  setTimeout(() => {
-    notify(randomTip);
-  }, time);
-
-  if (!isFirstVisit) return;
-
   const currentTheme = localStorage.getItem('theme');
   const tipsLanguage =
     localStorage.getItem('i18nextLng') === 'en' ? tipsEnglish : tipsUkrainian;
 
   const randomTip =
     tipsLanguage[Math.floor(Math.random() * tipsEnglish.length)];
+
+  setTimeout(() => {
+    notify(randomTip);
+  }, time);
+
+  if (!isFirstVisit) return;
 
   function notify(tip) {
     toast.info(tip, {
