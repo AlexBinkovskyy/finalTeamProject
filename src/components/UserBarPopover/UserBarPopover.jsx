@@ -17,6 +17,8 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     useModal(setPopoverOpen);
   const [languageSwitcherIsOpen, openLanguageSwitcher, closeLanguageSwitcher] =
     useModal(setPopoverOpen);
+  const [openLinksIsOpen, openLinksModal, closeLinksModal] =
+    useModal(setPopoverOpen);
 
   const wrapperRef = useRef(null);
 
@@ -68,6 +70,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           </svg>
           <p className={css.settingsItem}>Give me a tip</p>
         </li>
+        <li className={css.listItem} onClick={openLinksIsOpen}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#iconLink`}></use>
+          </svg>
+          <p className={css.settingsItem}>Usefull links</p>
+        </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconLogOut`}></use>
@@ -95,6 +103,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
       {logOutlIsOpen && (
         <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
       )}
+      {openLinksIsOpen && (
+        <UserSettingsModal
+          isOpen={openLinksModal}
+          isClose={closeLinksModal}
+          />
+        )}
       </div>
     </div>
   );
