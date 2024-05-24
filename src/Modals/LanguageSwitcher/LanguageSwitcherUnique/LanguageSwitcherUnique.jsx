@@ -1,12 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './LanguageSwitcherUnique.css';
+import { toast } from 'react-toastify';
 
-const LanguageSwitcherUnique = () => {
+const LanguageSwitcherUnique = ({ isClose }) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('i18nextLng', lng);
+    isClose();
+    toast.success(
+      lng === 'en'
+        ? 'Language changed to English'
+        : 'Мова змінена на Українську'
+    );
   };
 
   const handleCheckboxChange = () => {
