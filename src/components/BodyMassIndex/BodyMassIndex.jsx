@@ -54,7 +54,7 @@ export default function BodyMassIndex() {
       const { weight, height, bmi } = userInfo;
       setValue('weight', weight || 0);
       setValue('height', height || 0);
-      setBmiValue(bmi || '');
+      setBmiValue(bmi || 0);
     }
   }, [userInfo, setValue]);
 
@@ -83,6 +83,7 @@ export default function BodyMassIndex() {
     setLoading(true);
 
     const formData = new FormData();
+    console.log(bmiValue);
     formData.append('bmi', bmiValue);
 
     try {
@@ -184,7 +185,7 @@ export default function BodyMassIndex() {
                 <GrPowerReset className={css.resetIcon} />
               </button>
             </li>
-            <li className={css.buttonsItem}>
+            {/* <li className={css.buttonsItem}>
               <button
                 type="button"
                 className={css.btn}
@@ -193,7 +194,7 @@ export default function BodyMassIndex() {
               >
                 <FaRegSave className={css.resetIcon} />
               </button>
-            </li>
+            </li> */}
           </ul>
           {dataError && (
             <span className={`${css.error} ${css.errorData}`}>{dataError}</span>
