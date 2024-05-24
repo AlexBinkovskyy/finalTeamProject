@@ -1,7 +1,11 @@
+.waterListWrapper {
+  height: 98px;
+}
+
 .waterList {
   display: flex;
   gap: 8px;
-  overflow: scroll;
+  overflow: auto;
   overflow-y: hidden;
 }
 
@@ -33,20 +37,23 @@
   border: 1px solid var(--main-white);
   border-radius: 15px;
   margin-bottom: 24px;
+  min-width: 148px;
 }
 @media only screen and (min-width: 768px) {
   .waterItem {
     padding: 20px;
+    min-width: 192px;
   }
 }
 
 .placeholder {
-  width: 222px;
+  width: 150px;
   opacity: 0.4;
   margin-bottom: 32px;
 }
 @media only screen and (min-width: 768px) {
   .placeholder {
+    width: 222px;
     margin-bottom: 34px;
   }
 }

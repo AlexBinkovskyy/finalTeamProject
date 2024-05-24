@@ -34,7 +34,7 @@
 .listItem {
   display: flex;
   align-items: center;
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   font-size: 15px;
   color: var(--main-text-color);
   opacity: 40%;
