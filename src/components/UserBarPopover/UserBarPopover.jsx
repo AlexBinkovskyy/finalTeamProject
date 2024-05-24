@@ -7,7 +7,7 @@ import IconSprite from '../../image/sprite.svg';
 import { IoMdCalculator } from 'react-icons/io';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
-import { TipOfTheDay } from 'components/TipOfTheDay/TipOfTheDay';
+import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -52,20 +52,20 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-          <div className={css.iconCalc}>
-            <IoMdCalculator className={css.iconCalcItem} />
-          </div>
+        <svg className={css.iconSettings}>
+            <use href={`${IconSprite}#iconMeter`}></use>
+          </svg>
           <p className={css.settingsItem}>BMI calc</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#IconSettings`}></use>
+            <use href={`${IconSprite}#iconEarth`}></use>
           </svg>
           <p className={css.settingsItem}>Languages</p>
         </li>
         <li className={css.listItem} onClick={()=>TipOfTheDay(100)}>
           <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#IconSettings`}></use>
+            <use href={`${IconSprite}#iconTip`}></use>
           </svg>
           <p className={css.settingsItem}>Give me a tip</p>
         </li>

@@ -13,6 +13,7 @@ import steps from '../../components/Onboarding/steps.js';
 
 import css from './TrackerPage.module.css';
 import tourStyles from 'components/Onboarding/StylesTour';
+import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 // import { TipOfTheDay } from 'components/TipOfTheDay/TipOfTheDay';
 
 const TrackerPage = () => {
@@ -22,6 +23,8 @@ const TrackerPage = () => {
     </TourProvider>
   );
 };
+
+TipOfTheDay()
 
 const TrackerPageContent = () => {
   const checkVerify = useSelector(selectVerified);

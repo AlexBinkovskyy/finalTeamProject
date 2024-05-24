@@ -2,7 +2,7 @@ import { tipsEnglish } from 'components/utils/tips';
 import { toast } from 'react-toastify';
 import css from './TipOfTheDay.module.css';
 
-export const TipOfTheDay = ( time = 7000 ) => {
+export const TipOfTheDay = ( time = 5000 ) => {
   const isFirstVisit = localStorage.getItem('isFirstVisitTrackerPage');
   console.log(time);
 
