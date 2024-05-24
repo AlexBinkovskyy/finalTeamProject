@@ -119,5 +119,19 @@
     "registerEmailError": "Current email already in use",
     "updateSettingSuccess": "Settings updated successfully",
     "updateSettingError": "Failed to update settings. Please try again"
+  },
+  "popover": {
+    "settings": "Settings",
+    "bmiCalc": "BMI calc",
+    "languages": "Languages",
+    "tip": "Give me a tip",
+    "links": "Usefull links",
+    "logout": "Log out"
+  },
+  "userPanel": {
+    "welcome": "Hello"
+  },
+  "chooseDate": {
+    "today": "Today"
   }
 }
