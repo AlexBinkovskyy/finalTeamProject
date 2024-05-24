@@ -1,14 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import ComponentWithModal from '../Modal/Modal';
 import css from './LanguageSwitcher.module.css';
+import LanguageSwitcherUnique from './LanguageSwitcherUnique/LanguageSwitcherUnique';
+import iconUkraine from '../../image/flag/flag-ukraine.svg';
+import iconKingdom from '../../image/flag/flag-kingdom.svg';
 
 export const LanguageSwitcher = ({ isOpen, isClose }) => {
   const { i18n } = useTranslation();
-
-  const changeLanguage = lng => {
-    i18n.changeLanguage(lng);
+  const [activeLanguage, setActiveLanguage] = useState(i18n.language);
     localStorage.setItem('i18nextLng', lng);
     isClose();
     toast.success(
@@ -18,9 +19,9 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
           : 'Мова змінена на Українську'
       }`
     );
-  };
 
   useEffect(() => {
+    const changeFont = lng => {
     const changeFont = lng => {
       const root = document.documentElement;
 
@@ -33,6 +34,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
         root.style.setProperty('--font-bold', 'Poppins-Bold');
         root.style.setProperty('--font-regular', 'Poppins-Regular');
       }
+      setActiveLanguage(lng);
     };
 
     changeFont(i18n.language);
