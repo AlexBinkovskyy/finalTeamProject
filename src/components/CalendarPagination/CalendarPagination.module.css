@@ -19,7 +19,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .button:hover {
@@ -27,7 +27,7 @@
   transform: scale(1.6);
 }
 .date {
-  font-family: Poppins-Bold;
+  font-family: var(--font-bold);
   letter-spacing: -0.01em;
   font-size: 14px;
   color: var(--main-color);
