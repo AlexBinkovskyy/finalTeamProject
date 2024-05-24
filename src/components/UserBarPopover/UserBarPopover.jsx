@@ -4,10 +4,9 @@ import BmiModal from 'Modals/BmiModal/BmiModal';
 import { LogOutModal } from '../../Modals/LogOutModal/LogOutModal';
 import css from './UserBarPopover.module.css';
 import IconSprite from '../../image/sprite.svg';
-import { IoMdCalculator } from 'react-icons/io';
 import { LanguageSwitcher } from 'Modals/LanguageSwitcher/LanguageSwitcher';
 import { useModal } from '../../hooks/useModal';
-import { useTranslation } from 'react-i18next';
+import { TipOfTheDay } from 'components/utils/TipOfTheDay/TipOfTheDay';
 
 export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
   const [settingModalIsOpen, openSettingModal, closeSettingModal] =
@@ -18,9 +17,10 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     useModal(setPopoverOpen);
   const [languageSwitcherIsOpen, openLanguageSwitcher, closeLanguageSwitcher] =
     useModal(setPopoverOpen);
+  const [openLinksIsOpen, openLinksModal, closeLinksModal] =
+    useModal(setPopoverOpen);
 
   const wrapperRef = useRef(null);
-  const { t } = useTranslation();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -35,6 +35,7 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
     };
   }, [wrapperRef, setPopoverOpen]);
 
+  
   return (
     <div
       className={
@@ -49,25 +50,37 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
           <svg className={css.iconSettings}>
             <use href={`${IconSprite}#IconSettings`}></use>
           </svg>
-          <p className={css.settingsItem}>{t('modals.settings')}</p>
+          <p className={css.settingsItem}>Settings</p>
         </li>
         <li className={css.listItem} onClick={openBMIModal}>
-          <div className={css.iconCalc}>
-            <IoMdCalculator className={css.iconCalcItem} />
-          </div>
-          <p className={css.settingsItem}>{t('modals.BMICalc')}</p>
+        <svg className={css.iconSettings}>
+            <use href={`${IconSprite}#iconMeter`}></use>
+          </svg>
+          <p className={css.settingsItem}>BMI calc</p>
         </li>
         <li className={css.listItem} onClick={openLanguageSwitcher}>
           <svg className={css.iconLogout}>
-            <use href={`${IconSprite}#IconSettings`}></use>
+            <use href={`${IconSprite}#iconEarth`}></use>
           </svg>
-          <p className={css.settingsItem}>{t('modals.languages')}</p>
+          <p className={css.settingsItem}>Languages</p>
+        </li>
+        <li className={css.listItem} onClick={()=>TipOfTheDay(100)}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#iconTip`}></use>
+          </svg>
+          <p className={css.settingsItem}>Give me a tip</p>
+        </li>
+        <li className={css.listItem} onClick={openLinksIsOpen}>
+          <svg className={css.iconLogout}>
+            <use href={`${IconSprite}#iconLink`}></use>
+          </svg>
+          <p className={css.settingsItem}>Usefull links</p>
         </li>
         <li className={css.listItem} onClick={openLogOutModal}>
           <svg className={css.iconLogout}>
             <use href={`${IconSprite}#IconLogOut`}></use>
           </svg>
-          <p className={css.settingsItem}>{t('modals.logOut')}</p>
+          <p className={css.settingsItem}>Log out</p>
         </li>
       </ul>
       <div>
@@ -90,6 +103,12 @@ export default function UserBarPopover({ popoverOpen, setPopoverOpen }) {
       {logOutlIsOpen && (
         <LogOutModal isOpen={logOutlIsOpen} isClose={closeLogOutModal} />
       )}
+      {openLinksIsOpen && (
+        <UserSettingsModal
+          isOpen={openLinksModal}
+          isClose={closeLinksModal}
+          />
+        )}
       </div>
     </div>
   );
