@@ -25,6 +25,31 @@
   flex-direction: column;
   gap: 15px;
 }
+.title {
+  color: var(--main-color);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.flagContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+.flag {
+  transition: opacity 0.3s;
+}
+
+.flag.active {
+  opacity: 1;
+}
+
+.flag.inactive {
+  opacity: 0.3;
+}
 @media only screen and (min-width: 768px) {
   .modalOverlay {
     max-width: 516px;
