@@ -1,4 +1,3 @@
-/* CalendarItem.module.css */
 .day {
   position: relative;
   min-width: 28px;
@@ -30,7 +29,9 @@
 
 .dayNumber {
   position: absolute;
-  font-family: var(--font-bold);
+
+  font-family: 'Poppins-Bold';
+
   font-size: 14px;
   width: 28px;
   height: 28px;

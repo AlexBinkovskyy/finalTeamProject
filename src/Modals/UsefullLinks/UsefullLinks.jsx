@@ -23,7 +23,6 @@ export const UsefullLinks = ({ isOpen, isClose }) => {
             <div className={css.wrapper}>
               <ul className={css.linksList}>
                 {usefulLinks.map(link => {
-                    console.log(link);
                   return <li key={(nanoid())}>
                     <a href={link.url} target='_blank' rel='noreferrer' className={css.listItem} dataText={link.description} >{link.url.split('/')[2]}</a>
                   </li>;
