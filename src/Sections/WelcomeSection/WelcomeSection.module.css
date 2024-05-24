@@ -62,7 +62,7 @@
 .subtitle {
   font-weight: 400;
   font-size: 14px;
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   letter-spacing: 0.06em;
   line-height: 1.28;
   color: var(--main-text-color);
@@ -100,7 +100,7 @@
 }
 
 .link {
-  font-family: 'Poppins-Bold';
+  font-family: var(--font-bold);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28;

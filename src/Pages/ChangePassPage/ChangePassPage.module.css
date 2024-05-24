@@ -4,7 +4,7 @@
 
 .div {
   margin: 0 auto;
-  font-family: 'Poppins-Bold';
+  font-family: var(--font-bold);
   width: 344px;
   height: 780px;
   background-color: var(--background-color);

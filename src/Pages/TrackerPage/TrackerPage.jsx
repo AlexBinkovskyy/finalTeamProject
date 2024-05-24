@@ -29,9 +29,13 @@ const TrackerPageContent = () => {
   const navigate = useNavigate();
   const { setIsOpen } = useTour();
 
-if (checkVerify) TipOfTheDay()
+  if (checkVerify) TipOfTheDay();
 
   useEffect(() => {
+    if (!localStorage.getItem('i18nextLng')) {
+      localStorage.setItem('i18nextLng', 'en');
+    }
+
     if (!checkVerify) {
       dispatch(refreshUser()).then(response => {
         if (response.type === 'auth/refresh/rejected')

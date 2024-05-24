@@ -1,5 +1,5 @@
 .text {
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   font-size: 28px;
   color: var(--main-color);
   line-height: 1;
@@ -26,8 +26,8 @@
 }
 
 .input {
-  font-family: 'Poppins-Regular';
-  border: 1px solid var(--text-color-transparent);
+  font-family: var(--font-regular);
+  border: 1px solid rgba(47, 47, 47, 0.2);
   outline: none;
   border-radius: 15px;
   background-color: transparent;
@@ -43,7 +43,7 @@
 }
 
 .input::placeholder {
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
@@ -74,7 +74,7 @@ textarea:is(:hover, :focus, :active) {
 }
 
 .error {
-  font-family: 'Poppins-Regular';
+  font-family: var(--font-regular);
   font-size: 12px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
