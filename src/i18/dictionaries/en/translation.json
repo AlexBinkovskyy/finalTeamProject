@@ -43,7 +43,8 @@
     "BMICalc": "BMI calc",
     "languages": "Languages",
     "weight": "Weight (kg):",
-    "height": "Height (cm):"
+    "height": "Height (cm):",
+    "ml":"ml"
   },
   "advantagesSection": {
     "our": "Our",
