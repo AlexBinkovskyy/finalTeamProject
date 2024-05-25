@@ -13,7 +13,7 @@ import Loader from '../../components/Loader/Loader';
 import getBmiResult from 'components/utils/getBmiResult ';
 import getColorClass from 'components/utils/getColorClassForBmi';
 import css from './BodyMassIndex.module.css';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   weight: yup
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   height: yup
     .number()
     .required('Height is required')
-    .min(40, 'Height must be greater than or equal to 40')
+    .min(50, 'Height must be greater than or equal to 50')
     .max(260, 'Height must be a realistic number'),
 });
 
@@ -33,7 +33,7 @@ export default function BodyMassIndex() {
   const [bmiValue, setBmiValue] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
-  const { t } = useTranslation();
+  //   const { t } = useTranslation();
 
   const {
     register,
@@ -86,18 +86,17 @@ export default function BodyMassIndex() {
     console.log(bmiValue);
     formData.append('bmi', bmiValue);
 
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
+
     try {
+      console.log(bmiValue);
       dispatch(updateUserSettings(formData));
     } catch (error) {
       console.error('Failed to update user settings', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleInputChange = () => {
-    if (dataError) {
-      setDataError('');
     }
   };
 
@@ -107,19 +106,33 @@ export default function BodyMassIndex() {
     setDataError('');
   };
 
+  const handleInputChange = () => {
+    if (dataError) {
+      setDataError('');
+    }
+  };
+
   const bmiColorClass = getColorClass(parseFloat(bmiValue));
 
   return (
     <div className={css.wrapper}>
       <form onSubmit={handleSubmit(calculateBMI)} className={css.form}>
+        {/* //         <p className={css.text}>{t('BMI.BMIpar')}</p> */}
         <p className={css.text}>
-        {t('BMI.BMIpar')}
+          Body mass index (BMI) is a calculated value that allows you to assess
+          the degree of correspondence between a person's body weight and
+          height. Such a ratio gives us information about whether the weight is
+          normal, insufficient or excessive. The BMI indicator reflects the fat
+          reserves in the human body, which can timely signal its excess, the
+          risk of developing obesity and related diseases. Enter your data below
+          to calculate your BMI.
         </p>
         <div className={css.formElements}>
           <div className={css.labels}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-                {t('modals.weight')}
+                Weight (kg):
+                {/* {t('modals.weight')} */}
               </label>
               <input
                 type="number"
@@ -142,12 +155,13 @@ export default function BodyMassIndex() {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-              {t('modals.height')}
+                Height (cm):
+                {/* {t('modals.height')} */}
               </label>
               <input
                 type="number"
-                min="40"
-                max="260"
+                min="0"
+                max="300"
                 id="height"
                 {...register('height')}
                 className={css.input}
