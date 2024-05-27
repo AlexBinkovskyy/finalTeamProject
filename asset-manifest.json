@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/finalTeamProject/static/css/main.e16fa208.css",
+    "main.css": "/finalTeamProject/static/css/main.ca5068af.css",
     "main.js": "/finalTeamProject/static/js/main.1a483096.js",
     "static/media/Water404Bg.jpg": "/finalTeamProject/static/media/Water404Bg.00f0904527198097a016.jpg",
     "static/media/transparent_bottle_for_water_desk@2x.png": "/finalTeamProject/static/media/transparent_bottle_for_water_desk@2x.fc8b8b636a301d5a13cb.png",
@@ -24,11 +24,11 @@
     "static/media/flag-kingdom.svg": "/finalTeamProject/static/media/flag-kingdom.b0dfd1b28c2885d778c60362b1e1f20a.svg",
     "index.html": "/finalTeamProject/index.html",
     "static/media/flag-ukraine.svg": "/finalTeamProject/static/media/flag-ukraine.67cac0d9d9ebcfc2abec26b5231fa910.svg",
-    "main.e16fa208.css.map": "/finalTeamProject/static/css/main.e16fa208.css.map",
+    "main.ca5068af.css.map": "/finalTeamProject/static/css/main.ca5068af.css.map",
     "main.1a483096.js.map": "/finalTeamProject/static/js/main.1a483096.js.map"
   },
   "entrypoints": [
-    "static/css/main.e16fa208.css",
+    "static/css/main.ca5068af.css",
     "static/js/main.1a483096.js"
   ]
 }
