@@ -1,7 +1,13 @@
 .section {
-  width: 343px;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 16px;
+}
+
+@media only screen and (min-width: 375px) {
+  .section {
+    width: 343px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
