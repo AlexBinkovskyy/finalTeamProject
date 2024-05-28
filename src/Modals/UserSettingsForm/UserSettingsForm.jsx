@@ -13,7 +13,7 @@ import css from './UserSettingsForm.module.css';
 
 import ThemeSwitcher from 'Theme/ThemeSwitcher/ThemeSwitcher';
 import { ThemeContext } from '../../Theme/ThemeContext';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -52,7 +52,7 @@ const schema = yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
 
   const [avatarUrl, setAvatarUrl] = useState(userInfo.avatarUrl);
   const [userInfoUpdated, setUserInfoUpdated] = useState(false);
@@ -62,7 +62,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const [emailChanged, setEmailChanged] = useState(false);
   const [dailyNorma, setDailyNorma] = useState('');
   const avatarInputRef = useRef(null);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const {
     register,
@@ -162,6 +162,7 @@ const UserSettingsForm = ({ closeModal }) => {
   };
 
   const onSubmit = async (data, e) => {
+    console.log(data);
     e.preventDefault();
     setLoading(true);
     const formData = new FormData();
@@ -185,7 +186,8 @@ const UserSettingsForm = ({ closeModal }) => {
     formData.append('goal', data.goal * 1000);
 
     try {
-      dispatch(updateUserSettings({ formData, i18n }));
+      dispatch(updateUserSettings(formData));
+      // dispatch(updateUserSettings({ formData, i18n }));
       closeModal();
     } catch (error) {
     } finally {
@@ -220,7 +222,8 @@ const UserSettingsForm = ({ closeModal }) => {
             <svg className={css.icon}>
               <use href={`${IconSprite}#IconUpload`}></use>
             </svg>
-            {t('settingsForm.uploadPhoto')}
+            {/* {t('settingsForm.uploadPhoto')} */}
+            Upload a photo
             <input
               id="uploadInput"
               type="file"
@@ -242,7 +245,8 @@ const UserSettingsForm = ({ closeModal }) => {
           <div className={css.formWrap_1}>
             <div className={css.formGroup}>
               <label htmlFor="female" className={css.accentLabel}>
-                {t('settingsForm.yourGender')}
+                {/* {t('settingsForm.yourGender')} */}
+                Your gender identity
               </label>
               <div className={css.genderInput}>
                 <input
@@ -258,7 +262,8 @@ const UserSettingsForm = ({ closeModal }) => {
                   className={css.genderLabel}
                   tabIndex="0"
                 >
-                  {t('settingsForm.woman')}
+                  {/* {t('settingsForm.woman')} */}
+                  Woman
                 </label>
                 <input
                   type="radio"
@@ -267,9 +272,10 @@ const UserSettingsForm = ({ closeModal }) => {
                   {...register('gender')}
                   autoComplete="gender"
                   onInput={recalculateGoal}
-                />
+                  />
                 <label htmlFor="male" className={css.genderLabel} tabIndex="0">
-                  {t('settingsForm.man')}
+                  {/* {t('settingsForm.man')} */}
+                  Man
                 </label>
                 {errors.gender && (
                   <span className={css.error}>{errors.gender.message}</span>
@@ -278,7 +284,9 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.nameInput}`}>
               <label htmlFor="name" className={css.accentLabel}>
-                {t('settingsForm.yourName')}
+                {/* {t('settingsForm.yourName')}
+                 */}
+                  Your name
               </label>
               <input
                 type="text"
@@ -295,7 +303,8 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.emailInput}`}>
               <label htmlFor="email" className={css.accentLabel}>
-                {t('auth_form.email')}
+                {/* {t('auth_form.email')} */}
+                Email
               </label>
               <input
                 type="text"
@@ -319,37 +328,49 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={css.formGroup}>
               <p className={css.infoTitle}>
-                {' '}
-                {t('waterDailyNorma.dailyNorma')}
+                {/* {' '} */}
+                {/* {t('waterDailyNorma.dailyNorma')} */}
+                My daily norma
               </p>
               <ul className={css.list}>
                 <li className={css.listItem}>
                   <p className={css.listItemText}>
-                    {t('settingsForm.forWoman')}
+                    {/* {t('settingsForm.forWoman')}
+                     */}
+                     For woman:
                   </p>
                   <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
                 </li>
                 <li className={css.listItem}>
-                  <p className={css.listItemText}>{t('settingsForm.forMan')}</p>
+                  <p className={css.listItemText}>
+                    {/* {t('settingsForm.forMan')}*/}
+                    For man:
+                    </p>
                   <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
                 </li>
               </ul>
               <p className={css.calculation}>
                 <span className={css.calcIcon}>*</span>
-                {t('settingsForm.calc')}
+                {/* {t('settingsForm.calc')} */}
+                V is the volume of the
+                water norm in liters per day, M is your body weight, T is the
+                time of active sports, or another type of activity commensurate
+                in terms of loads (in the absence of these, you must set 0)
               </p>
               <p className={css.info}>
                 <svg className={css.iconInfo}>
                   <use href={`${IconSprite}#Attention`}></use>
                 </svg>
-                {t('settingsForm.activeTime')}
+                {/* {t('settingsForm.activeTime')} */}
+                Active time in hours
               </p>
             </div>
           </div>
           <div className={css.formWrap_2}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-                {t('settingsForm.yourWeight')}
+                {/* {t('settingsForm.yourWeight')} */}
+              Your weight in kilograms:
               </label>
               <input
                 type="number"
@@ -362,7 +383,8 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.weight && errors.weight.type === 'typeError' ? (
                 <span className={`${css.weightError} ${css.error}`}>
-                  {t('settingsForm.weightRequired')}
+                  {/* {t('settingsForm.weightRequired')} */}
+                  Weight is required
                 </span>
               ) : (
                 <span className={`${css.weightError} ${css.error}`}>
@@ -372,7 +394,8 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-                {t('settingsForm.yourHeight')}
+                {/* {t('settingsForm.yourHeight')} */}
+                Your height in cm:
               </label>
               <input
                 type="number"
@@ -385,7 +408,8 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.height && errors.height.type === 'typeError' ? (
                 <span className={`${css.heightError} ${css.error}`}>
-                  {t('settingsForm.heightRequired')}
+                  {/* {t('settingsForm.heightRequired')} */}
+                  Height is required
                 </span>
               ) : (
                 <span className={`${css.heightError} ${css.error}`}>
@@ -395,7 +419,8 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.activeTimeInput}`}>
               <label htmlFor="activeTime" className={css.label}>
-                {t('settingsForm.activeParticipation')}
+                {/* {t('settingsForm.activeParticipation')} */}
+                The time of active participation in sports:
               </label>
               <input
                 type="number"
@@ -408,7 +433,8 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.activeTime && errors.activeTime.type === 'typeError' ? (
                 <span className={`${css.activeTimeError} ${css.error}`}>
-                  {t('settingsForm.activeTimeRequired')}
+                  {/* {t('settingsForm.activeTimeRequired')} */}
+                  activeTime is required
                 </span>
               ) : (
                 <span className={`${css.activeTimeError} ${css.error}`}>
@@ -418,7 +444,8 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={css.formGroup}>
               <p className={css.dailyNorma}>
-                {t('settingsForm.requiredAmount')}
+                {/* {t('settingsForm.requiredAmount')} */}
+                The required amount of water in liters per day:
                 <span className={css.dailyNormaValue}>
                   {dailyNorma ? `${dailyNorma} L` : ''}
                 </span>
@@ -426,7 +453,8 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.goalInput}`}>
               <label htmlFor="goal" className={css.accentLabel}>
-                {t('settingsForm.writeWateDrink')}
+                {/* {t('settingsForm.writeWateDrink')} */}
+                Write down how much water you will drink:
               </label>
               <input
                 type="number"
@@ -440,13 +468,15 @@ const UserSettingsForm = ({ closeModal }) => {
               />
               {errors.goal && !watch('goal') && (
                 <span className={`${css.goalError} ${css.error}`}>
-                  {t('settingsForm.goalRequired')}
+                  {/* {t('settingsForm.goalRequired')} */}
+                  Goal is required
                 </span>
               )}
             </div>
             <div className={css.formGroup}>
               <p className={css.bmiIndex}>
-                {t('settingsForm.yourBodyMassIndex')}
+                {/* {t('settingsForm.yourBodyMassIndex')} */}
+                Your body mass index:
                 <span className={`${css.bmiIndexValue} ${css[bmiColorClass]}`}>
                   {watch('bmi')
                     ? `${watch('bmi')} (${getBmiResult(watch('bmi'))})`
