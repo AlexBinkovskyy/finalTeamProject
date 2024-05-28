@@ -12,7 +12,7 @@
 .waterList::-webkit-scrollbar {
   height: 8px;
   background-color: var(--main-white);
-  border-radius: 15px;
+  border-radius: 16px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-color);
@@ -35,7 +35,7 @@
   padding: 18px 14px;
   background-color: var(--main-white);
   border: 1px solid var(--main-white);
-  border-radius: 15px;
+  border-radius: 16px;
   margin-bottom: 24px;
   min-width: 148px;
 }
@@ -47,7 +47,7 @@
 }
 
 .placeholder {
-  width: 150px;
+  width: 148px;
   opacity: 0.4;
 }
 @media only screen and (min-width: 768px) {
