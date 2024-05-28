@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
 }
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 320px) {
   .pagination {
     gap: 16px;
   }
@@ -19,7 +19,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-family: 'Poppins-Bold', sans-serif;
+  font-family: var(--font-bold);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .button:hover {
@@ -28,13 +28,16 @@
 }
 .date {
   font-family: var(--font-bold);
+  font-weight: 700;
   letter-spacing: -0.01em;
   font-size: 14px;
+  line-height: 18px;
   color: var(--main-color);
 }
 @media screen and (min-width: 768px) {
   .date {
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 

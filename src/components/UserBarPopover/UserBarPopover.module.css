@@ -82,8 +82,8 @@
   width: 16px;
   height: 16px;
 }
-.settingsItem{
-  font-family: Poppins-Regular;
+.settingsItem {
+  font-family: var(--font-regular);
   font-size: 15px;
   font-weight: 600;
 }

@@ -1,25 +1,15 @@
-.userPanelContainer {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center; */
-}
-
 @media only screen and (min-width: 768px) {
   .userPanelContainer {
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-between;
-    /* align-items: center; */
   }
 }
 
 .title {
   font-family: var(--font-regular);
-  font-weight: 100;
+  font-weight: 400;
   font-size: 32px;
-  /* line-height: 1; */
-  /* letter-spacing: -0.01em; */
+  letter-spacing: -0.01em;
   color: var(--main-color);
   margin-bottom: 20px;
 }
@@ -27,8 +17,7 @@
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 36px;
-    /* line-height: 1.05556; */
-
+    line-height: 38px;
     margin-bottom: 0;
   }
 }
