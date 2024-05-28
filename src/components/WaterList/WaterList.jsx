@@ -20,14 +20,14 @@ export default function WaterList({ selectedDate }) {
   const placeholderWater = {
     amount: '250',
     time: '12:00',
-    _id: 'placeholderWater',
+    // _id: 'placeholderWater',
   };
 
   return (
     <div className={css.waterListWrapper}>
       {!waterList.length ? (
         <div
-          key={placeholderWater._id}
+          key={'placeholderWater'}
           className={`${css.placeholder} ${css.waterItem}`}
           data-tut="reactour__waterlist"
         >
