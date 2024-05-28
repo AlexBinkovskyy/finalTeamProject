@@ -27,21 +27,21 @@
 
 .title {
   font-family: var(--font-bold);
+  font-weight: 700;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--main-color);
 }
 @media only screen and (min-width: 768px) {
   .title {
     font-size: 28px;
-    line-height: 32px;
+    line-height: 1.14286;
   }
 }
 
 .buttonIcon {
   border: none;
-  background-color: transparent;
 }
 
 .icon {

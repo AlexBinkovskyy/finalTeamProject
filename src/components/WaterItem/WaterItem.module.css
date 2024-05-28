@@ -22,29 +22,29 @@
 }
 
 .amount {
-  font-family: Poppins-Bold;
-  font-size: 12px;
-  line-height: 12px;
+  font-family: var(--font-bold);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
   color: var(--main-color);
 }
 @media only screen and (min-width: 768px) {
   .amount {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.49333;
   }
 }
 
 .time {
-  font-family: 'Poppins-Regular';
-  font-size: 10px;
-  line-height: 10px;
-  font-weight: normal;
+  font-family: var(--font-regular);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
   color: var(--main-text-color);
 }
 @media only screen and (min-width: 768px) {
   .time {
-    font-size: 12px;
-    line-height: 1.6;
+    line-height: 1.86667;
   }
 }
 
