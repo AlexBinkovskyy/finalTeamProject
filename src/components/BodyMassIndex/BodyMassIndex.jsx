@@ -31,6 +31,8 @@ export default function BodyMassIndex() {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
   const [bmiValue, setBmiValue] = useState(null);
+  const [weight, setWeight] = useState(null);
+  const [height, setHeight] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
   //   const { t } = useTranslation();
@@ -70,6 +72,8 @@ export default function BodyMassIndex() {
     const bmi = weight / (heightInMeters * heightInMeters);
 
     setBmiValue(bmi.toFixed(1));
+    setWeight(weight)
+    setHeight(height)
     setDataError('');
   };
 
@@ -85,13 +89,15 @@ export default function BodyMassIndex() {
     const formData = new FormData();
     console.log(bmiValue);
     formData.append('bmi', bmiValue);
+    formData.append('weight', weight);
+    formData.append('height', height);
 
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
 
     try {
-      console.log(bmiValue);
+      // console.log(bmiValue);
       dispatch(updateUserSettings(formData));
     } catch (error) {
       console.error('Failed to update user settings', error);

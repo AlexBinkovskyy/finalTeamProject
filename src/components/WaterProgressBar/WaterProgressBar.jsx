@@ -9,20 +9,22 @@ import { useSelector } from 'react-redux';
 import { format, parse } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import Animation from './Animation';
+import { enUS, uk } from 'date-fns/locale';
 
 export default function WaterProgressBar() {
   const chosenDateStr = useSelector(selectChosenDate);
   const todayTotal = useSelector(selectTodayTotal);
   const todayTotalLitr = Math.round((todayTotal / 1000) * 10) / 10;
   const goal = useSelector(selectGoal);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = i18n.language === 'uk' ? uk : enUS;
 
   if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
   }
   const chosenDate = parse(chosenDateStr, 'dd.MM.yyyy', new Date());
-  const today = format(new Date(), 'd MMMM');
-  const chosen = format(chosenDate, 'd MMMM');
+  const today = format(new Date(), 'd MMMM', { locale });
+  const chosen = format(chosenDate, 'd MMMM', { locale });
 
   const progress = Math.min(todayTotal / goal, 1);
   const progressProcAll = progress * 100;
@@ -73,7 +75,7 @@ export default function WaterProgressBar() {
           </p>
         )}
         <div className={css.animationContainer}>
-          {progressProc === 100 && <Animation /> }
+          {progressProc === 100 && <Animation />}
         </div>
       </div>
     </div>
