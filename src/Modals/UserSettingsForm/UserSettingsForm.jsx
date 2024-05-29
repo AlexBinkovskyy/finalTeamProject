@@ -13,7 +13,7 @@ import css from './UserSettingsForm.module.css';
 
 import ThemeSwitcher from 'Theme/ThemeSwitcher/ThemeSwitcher';
 import { ThemeContext } from '../../Theme/ThemeContext';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -62,7 +62,7 @@ const UserSettingsForm = ({ closeModal }) => {
   const [emailChanged, setEmailChanged] = useState(false);
   const [dailyNorma, setDailyNorma] = useState('');
   const avatarInputRef = useRef(null);
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -272,7 +272,7 @@ const UserSettingsForm = ({ closeModal }) => {
                   {...register('gender')}
                   autoComplete="gender"
                   onInput={recalculateGoal}
-                  />
+                />
                 <label htmlFor="male" className={css.genderLabel} tabIndex="0">
                   {/* {t('settingsForm.man')} */}
                   Man
@@ -286,7 +286,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <label htmlFor="name" className={css.accentLabel}>
                 {/* {t('settingsForm.yourName')}
                  */}
-                  Your name
+                Your name
               </label>
               <input
                 type="text"
@@ -336,9 +336,8 @@ const UserSettingsForm = ({ closeModal }) => {
                 <li className={css.listItem}>
                   <p className={css.listItemText}>
                     {t('settingsForm.forWoman')}:
-                    {/* {t('settingsForm.forWoman')}
-                     */}
-                     For woman:
+                    {/* {t('settingsForm.forWoman')}*/}
+                    {/* For woman: */}
                   </p>
                   <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
                 </li>
@@ -346,20 +345,19 @@ const UserSettingsForm = ({ closeModal }) => {
                   <p className={css.listItemText}>
                     {t('settingsForm.forMan')}:
                   </p>
-                  <p className={css.listItemText}>
-                    {/* {t('settingsForm.forMan')}*/}
+                  {/* <p className={css.listItemText}>
+                    {t('settingsForm.forMan')}
                     For man:
-                    </p>
+                  </p> */}
                   <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
                 </li>
               </ul>
               <p className={css.calculation}>
                 <span className={css.calcIcon}>*</span>
-                {/* {t('settingsForm.calc')} */}
-                V is the volume of the
-                water norm in liters per day, M is your body weight, T is the
-                time of active sports, or another type of activity commensurate
-                in terms of loads (in the absence of these, you must set 0)
+                {/* {t('settingsForm.calc')} */}V is the volume of the water
+                norm in liters per day, M is your body weight, T is the time of
+                active sports, or another type of activity commensurate in terms
+                of loads (in the absence of these, you must set 0)
               </p>
               <p className={css.info}>
                 <svg className={css.iconInfo}>
@@ -375,7 +373,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <label htmlFor="weight" className={css.label}>
                 {t('settingsForm.yourWeight')}:
                 {/* {t('settingsForm.yourWeight')} */}
-              Your weight in kilograms:
+                {/* Your weight in kilograms: */}
               </label>
               <input
                 type="number"
@@ -401,7 +399,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <label htmlFor="height" className={css.label}>
                 {t('settingsForm.yourHeight')}:
                 {/* {t('settingsForm.yourHeight')} */}
-                Your height in cm:
+                {/* Your height in cm: */}
               </label>
               <input
                 type="number"
@@ -427,7 +425,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <label htmlFor="activeTime" className={css.label}>
                 {t('settingsForm.activeParticipation')}:
                 {/* {t('settingsForm.activeParticipation')} */}
-                The time of active participation in sports:
+                {/* The time of active participation in sports: */}
               </label>
               <input
                 type="number"
@@ -453,7 +451,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <p className={css.dailyNorma}>
                 {t('settingsForm.requiredAmount')}:
                 {/* {t('settingsForm.requiredAmount')} */}
-                The required amount of water in liters per day:
+                {/* The required amount of water in liters per day: */}
                 <span className={css.dailyNormaValue}>
                   {dailyNorma ? `${dailyNorma} L` : ''}
                 </span>
@@ -463,7 +461,7 @@ const UserSettingsForm = ({ closeModal }) => {
               <label htmlFor="goal" className={css.accentLabel}>
                 {t('settingsForm.writeWateDrink')}:
                 {/* {t('settingsForm.writeWateDrink')} */}
-                Write down how much water you will drink:
+                {/* Write down how much water you will drink: */}
               </label>
               <input
                 type="number"
