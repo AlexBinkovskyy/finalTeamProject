@@ -10,8 +10,10 @@ import {
 } from 'recharts';
 import css from './Statistics.module.css';
 import { format, subDays, isAfter } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const Statistics = ({ data }) => {
+  const { t } = useTranslation();
   const [daysRange, setDaysRange] = useState(7);
   const today = new Date();
 
@@ -76,7 +78,9 @@ const Statistics = ({ data }) => {
     if (active && payload && payload.length) {
       return (
         <div className={css.customTooltip}>
-          <p className={css.water}>{`Water: ${payload[0].value}ml`}</p>
+          <p className={css.water}>{`${t('statistics.water')}: ${
+            payload[0].value
+          }${t('modals.ml')}`}</p>
         </div>
       );
     }
@@ -91,7 +95,9 @@ const Statistics = ({ data }) => {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('7 days');
+  const [selectedOption, setSelectedOption] = useState(
+    `7 ${t('statistics.days')}`
+  );
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -107,7 +113,7 @@ const Statistics = ({ data }) => {
     <div className={css.statistics}>
       <div className={css.controls}>
         <label className={css.label} htmlFor="daysRange">
-          Select days range:
+          {t('statistics.selectDaysRange')}:
         </label>
         <div className={css.customSelectWrapper}>
           <div className={css.customSelect} onClick={toggleDropdown}>
@@ -119,19 +125,19 @@ const Statistics = ({ data }) => {
           {isOpen && (
             <div className={css.customOptions}>
               <div className={css.customOption} onClick={() => selectOption(7)}>
-                7 days
+                7 {t('statistics.days')}
               </div>
               <div
                 className={css.customOption}
                 onClick={() => selectOption(14)}
               >
-                14 days
+                14 {t('statistics.days')}
               </div>
               <div
                 className={css.customOption}
                 onClick={() => selectOption(30)}
               >
-                30 days
+                30 {t('statistics.days')}
               </div>
             </div>
           )}

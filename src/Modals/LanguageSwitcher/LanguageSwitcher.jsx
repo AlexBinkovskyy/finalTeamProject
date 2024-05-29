@@ -57,7 +57,7 @@ export const LanguageSwitcher = ({ isOpen, isClose }) => {
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
       <div className={css.modalOverlay}>
         <div className={css.buttonsContainer}>
-          <h3 className={css.title}>{t('switcher.choose')}</h3>
+          <h3 className={css.title}>{t('switcher.choose')}:</h3>
 
           <div className={css.flagContainer}>
             <img

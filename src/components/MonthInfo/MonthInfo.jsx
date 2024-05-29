@@ -16,9 +16,9 @@ export default function MonthInfo({ selectedDate, setSelectedDate }) {
   return (
     <div className={css.monthInfo}>
       <div className={css.monthInfo__wrapper}>
-        <h1 className={css.title}>
+        <h3 className={css.title}>
           {showCalendar ? t('calendar.month') : t('calendar.statistics')}
-        </h1>
+        </h3>
         <div className={css.paginationIcon__wrapper}>
           <CalendarPagination
             selectedDate={selectedDate}

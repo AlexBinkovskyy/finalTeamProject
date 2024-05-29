@@ -2,6 +2,7 @@
   "signin_page": {
     "signin": "Sign in",
     "signup": "Sign up",
+    "forgotPassword": "Forgot password?",
     "forgot": "Forgot",
     "account": "Don't have any account?",
     "alreadyHave": "Already have account?"
@@ -23,27 +24,26 @@
     "recoverPassword": "Recover password:"
   },
   "modals": {
-    "waterAmount": "Amount of water:",
-    "recordingTime": "Recording time:",
-    "enterWater": "Enter the value of water used:",
+    "waterAmount": "Amount of water",
+    "recordingTime": "Recording time",
+    "enterWater": "Enter the value of water used",
     "saveBtn": "Save",
-    "addWater": "Add Water",
-    "addWaterBtn": "Add water",
+    "addWater": "Add water",
     "chooseValue": "Choose a value",
     "editWater": "Edit the entered amount of water",
-    "correctData": "Correct entered data:",
-    "sureDelete": "Are you sure you want to delete the entry?",
+    "correctData": "Correct entered data",
+    "sureDelete": "Are you sure you want to delete the entry",
     "delete": "Delete",
     "cancel": "Cancel",
     "deleteEntry": "Delete entry",
     "logOut": "Log out",
-    "wantLeave": "Do you really want to leave?",
+    "wantLeave": "Do you really want to leave",
     "BMI": "Body mass index (BMI)",
     "settings": "Settings",
     "BMICalc": "BMI calc",
     "languages": "Languages",
-    "weight": "Weight (kg):",
-    "height": "Height (cm):",
+    "weight": "Weight (kg)",
+    "height": "Height (cm)",
     "ml": "ml"
   },
   "advantagesSection": {
@@ -74,19 +74,19 @@
     "woman": "Woman",
     "man": "Man",
     "yourName": "Your name",
-    "forWoman": "For woman:",
-    "forMan": "For man:",
+    "forWoman": "For woman",
+    "forMan": "For man",
     "activeTime": "Active time in hours",
-    "yourWeight": "Your weight in kilograms:",
+    "yourWeight": "Your weight in kilograms",
     "weightRequired": "Weight is required",
-    "yourHeight": "Your height in cm:",
+    "yourHeight": "Your height in cm",
     "heightRequired": "Height is required",
-    "activeParticipation": "The time of active participation in sports:",
+    "activeParticipation": "The time of active participation in sports",
     "activeTimeRequired": "Active time is required",
-    "requiredAmount": "The required amount of water in liters per day:",
-    "writeWateDrink": "Write down how much water you will drink:",
+    "requiredAmount": "The required amount of water in liters per day",
+    "writeWateDrink": "Write down how much water you will drink",
     "goalRequired": "Goal is required",
-    "yourBodyMassIndex": "Your body mass index:",
+    "yourBodyMassIndex": "Your body mass index",
     "calc": [
       "V is the volume of the ",
       "water norm in liters per day, M is your body weight, T is the ",
@@ -132,13 +132,20 @@
     "welcome": "Hello"
   },
   "chooseDate": {
-    "today": "Today"
+    "today": "Today",
+    "chosen": "{{ date, dayMonth}}"
   },
   "calendar": {
     "month": "Month",
-    "statistics": "Statistics"
+    "statistics": "Statistics",
+    "pagination": "{{ date, monthYear }}"
+  },
+  "statistics": {
+    "selectDaysRange": "Select days range",
+    "days": "days",
+    "water": "Water"
   },
   "switcher": {
-    "choose": "Choose your preferred language:"
+    "choose": "Choose your preferred language"
   }
 }

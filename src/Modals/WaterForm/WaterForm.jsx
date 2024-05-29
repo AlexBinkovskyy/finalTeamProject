@@ -124,7 +124,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
         <label htmlFor="waterAmount" className={css.inputParagraph}>
-          {t('modals.waterAmount')}
+          {t('modals.waterAmount')}:
         </label>
         <div className={css.buttonsContainer}>
           <button
@@ -134,7 +134,9 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
           >
             -
           </button>
-          <span className={css.waterAmount}>{waterAmount} ml </span>
+          <span className={css.waterAmount}>
+            {waterAmount} {t('modals.ml')}{' '}
+          </span>
           <button
             type="button"
             onClick={handleIncrement}
@@ -149,7 +151,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
       </div>
       <div className={css.inputGroup}>
         <label htmlFor="time" className={css.labelWater}>
-          {t('modals.recordingTime')}
+          {t('modals.recordingTime')}:
         </label>
         <input
           type="time"
@@ -164,7 +166,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
       </div>
       <div className={css.inputGroupWater}>
         <label htmlFor="waterAmount" className={css.labelWater}>
-          {t('modals.enterWater')}
+          {t('modals.enterWater')}:
         </label>
         <input
           type="text"

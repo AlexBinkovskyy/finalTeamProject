@@ -42,6 +42,7 @@
 
 .buttonIcon {
   border: none;
+  background-color: transparent;
 }
 
 .icon {

@@ -325,12 +325,14 @@ const UserSettingsForm = ({ closeModal }) => {
               <ul className={css.list}>
                 <li className={css.listItem}>
                   <p className={css.listItemText}>
-                    {t('settingsForm.forWoman')}
+                    {t('settingsForm.forWoman')}:
                   </p>
                   <p className={css.listItemNorma}>V=(M*0,03) + (T*0,4)</p>
                 </li>
                 <li className={css.listItem}>
-                  <p className={css.listItemText}>{t('settingsForm.forMan')}</p>
+                  <p className={css.listItemText}>
+                    {t('settingsForm.forMan')}:
+                  </p>
                   <p className={css.listItemNorma}>V=(M*0,04) + (T*0,6)</p>
                 </li>
               </ul>
@@ -349,7 +351,7 @@ const UserSettingsForm = ({ closeModal }) => {
           <div className={css.formWrap_2}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-                {t('settingsForm.yourWeight')}
+                {t('settingsForm.yourWeight')}:
               </label>
               <input
                 type="number"
@@ -372,7 +374,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-                {t('settingsForm.yourHeight')}
+                {t('settingsForm.yourHeight')}:
               </label>
               <input
                 type="number"
@@ -395,7 +397,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.activeTimeInput}`}>
               <label htmlFor="activeTime" className={css.label}>
-                {t('settingsForm.activeParticipation')}
+                {t('settingsForm.activeParticipation')}:
               </label>
               <input
                 type="number"
@@ -418,7 +420,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={css.formGroup}>
               <p className={css.dailyNorma}>
-                {t('settingsForm.requiredAmount')}
+                {t('settingsForm.requiredAmount')}:
                 <span className={css.dailyNormaValue}>
                   {dailyNorma ? `${dailyNorma} L` : ''}
                 </span>
@@ -426,7 +428,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={`${css.formGroup} ${css.goalInput}`}>
               <label htmlFor="goal" className={css.accentLabel}>
-                {t('settingsForm.writeWateDrink')}
+                {t('settingsForm.writeWateDrink')}:
               </label>
               <input
                 type="number"
@@ -446,7 +448,7 @@ const UserSettingsForm = ({ closeModal }) => {
             </div>
             <div className={css.formGroup}>
               <p className={css.bmiIndex}>
-                {t('settingsForm.yourBodyMassIndex')}
+                {t('settingsForm.yourBodyMassIndex')}:
                 <span className={`${css.bmiIndexValue} ${css[bmiColorClass]}`}>
                   {watch('bmi')
                     ? `${watch('bmi')} (${getBmiResult(watch('bmi'))})`
