@@ -7,11 +7,11 @@ import css from './WaterModal.module.css';
 export const WaterModal = ({
   operationType,
   defaultValues,
-  isOpen, 
+  isOpen,
   isClose,
 }) => {
   const { t } = useTranslation();
-  
+
   return (
     <ComponentWithModal isOpen={isOpen} isClose={isClose}>
       <div className={css.modalOverlay}>
@@ -29,7 +29,7 @@ export const WaterModal = ({
           ) : (
             <div>
               <h2 className={css.title}> {t('modals.editWater')}</h2>
-              <h3 className={css.paragraph}> {t('modals.correctData')}</h3>
+              <h3 className={css.paragraph}> {t('modals.correctData')}:</h3>
             </div>
           )}
           <WaterForm

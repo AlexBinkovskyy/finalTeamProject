@@ -1,12 +1,16 @@
 import React from 'react';
-import { format, addMonths, subMonths, isValid } from 'date-fns';
+import { addMonths, subMonths, isValid } from 'date-fns';
 import css from './CalendarPagination.module.css';
+import { useTranslation } from 'react-i18next';
 
 export default function CalendarPagination({
   selectedDate,
   setSelectedDate,
   isStatisticsOpen,
 }) {
+  const { t } = useTranslation();
+  const date = new Date(selectedDate);
+
   const handlePrevMonth = () => {
     if (!isStatisticsOpen) {
       setSelectedDate(prevDate => subMonths(prevDate, 1));
@@ -36,7 +40,7 @@ export default function CalendarPagination({
       <span className={css.date}>
         {selectedDate &&
           isValid(selectedDate) &&
-          format(selectedDate, 'MMMM, yyyy')}
+          t('calendar.pagination', { date })}
       </span>
       <button
         className={buttonClass}

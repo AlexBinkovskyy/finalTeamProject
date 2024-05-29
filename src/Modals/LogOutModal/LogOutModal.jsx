@@ -22,7 +22,7 @@ export const LogOutModal = ({ isOpen, isClose }) => {
               </svg>
             </button>
             <h2 className={css.modalTitle}>{t('modals.logOut')} </h2>
-            <p className={css.modalQuestion}>{t('modals.wantLeave')}</p>
+            <p className={css.modalQuestion}>{t('modals.wantLeave')}?</p>
             <div className={css.buttonContainer}>
               <button className={css.deleteButton} onClick={logOut}>
                 {t('modals.logOut')}

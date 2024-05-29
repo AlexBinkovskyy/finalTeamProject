@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 export const DeleteWaterModal = ({ isOpen, isClose, consumptionID }) => {
   const dispatch = useDispatch();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const handleDelete = () => {
     dispatch(deleteConsumption(consumptionID));
@@ -24,15 +24,13 @@ export const DeleteWaterModal = ({ isOpen, isClose, consumptionID }) => {
             </svg>
           </button>
           <h2 className={css.modalTitle}> {t('modals.deleteEntry')} </h2>
-          <p className={css.modalQuestion}>
-            {t('modals.sureDelete')} 
-          </p>
+          <p className={css.modalQuestion}>{t('modals.sureDelete')}?</p>
           <div className={css.buttonContainer}>
             <button className={css.deleteButton} onClick={handleDelete}>
-            {t('modals.delete')} 
+              {t('modals.delete')}
             </button>
             <button className={css.cancelButton} onClick={isClose}>
-            {t('modals.cancel')} 
+              {t('modals.cancel')}
             </button>
           </div>
         </div>

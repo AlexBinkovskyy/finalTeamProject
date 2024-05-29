@@ -6,6 +6,7 @@ export default function ChooseDate({ selectedDate }) {
   const todayDate = format(new Date(), 'd MMMM');
   const incommingDate = format(selectedDate, 'd MMMM');
   const { t } = useTranslation();
+  const date = new Date(selectedDate);
 
   return (
     <>
@@ -13,7 +14,7 @@ export default function ChooseDate({ selectedDate }) {
         {incommingDate === todayDate ? (
           <h3 className={css.date}>{t('chooseDate.today')}</h3>
         ) : (
-          <h3 className={css.date}>{incommingDate}</h3>
+          <h3 className={css.date}>{t('chooseDate.chosen', { date })}</h3>
         )}
       </div>
     </>

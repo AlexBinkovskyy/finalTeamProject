@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function AddWaterBtn({ color }) {
   const [waterModalIsOpen, setwaterModalIsOpen] = useState(false);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const chosenDate = useSelector(selectChosenDate);
 
   function getCurrentDateFormatted() {
@@ -50,7 +50,7 @@ export default function AddWaterBtn({ color }) {
         <div className={`${css.GoPlus} ${svgClass}`}>
           <GoPlus className={`${css.icon} ${svgClass}`} strokeWidth={1} />
         </div>
-        <div>{t('modals.addWaterBtn')} </div>
+        <div>{t('modals.addWater')} </div>
       </button>
       {waterModalIsOpen && (
         <WaterModal

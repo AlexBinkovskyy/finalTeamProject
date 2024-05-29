@@ -25,20 +25,19 @@
   },
   "modals": {
     "waterAmount": "Кількість води",
-    "recordingTime": "Записуємо час:",
-    "enterWater": "Введіть кількість випитої води:",
+    "recordingTime": "Час запису",
+    "enterWater": "Введіть кількість випитої води",
     "saveBtn": "Зберегти",
     "addWater": "Додати води",
-    "addWaterBtn": "Додати води",
     "chooseValue": "Виберіть значення",
     "editWater": "Відредагуйте введену кількість води",
-    "correctData": "Правильно введені дані:",
-    "sureDelete": "Ви впевнені, що хочете видалити запис?",
+    "correctData": "Правильно введені дані",
+    "sureDelete": "Ви впевнені, що хочете видалити запис",
     "delete": "Видалити",
     "cancel": "Cкасувати",
     "deleteEntry": "Видалити запис",
     "logOut": "Вийти",
-    "wantLeave": "Ви точно хочете вийти?",
+    "wantLeave": "Ви точно хочете вийти",
     "BMI": "Індекс маси тіла (ІМТ)",
     "settings": "Налаштування",
     "BMICalc": "ІМТ",
@@ -77,19 +76,19 @@
     "woman": "Жінка",
     "man": "Чоловік",
     "yourName": "Ваше ім'я",
-    "forWoman": "Для жінки:",
-    "forMan": "Для чоловіка:",
+    "forWoman": "Для жінки",
+    "forMan": "Для чоловіка",
     "activeTime": "Час активності в годинах",
-    "yourWeight": "Ваша вага в кілограмах:",
+    "yourWeight": "Ваша вага в кілограмах",
     "weightRequired": "Введення ваги обов'язкове",
-    "yourHeight": "Ваш зріст у сантиметрах:",
+    "yourHeight": "Ваш зріст у сантиметрах",
     "heightRequired": "Введення зросту обов'язкове",
     "activeParticipation": "Час активних занять спортом:",
     "activeTimeRequired": "Введення часу активних занять обов'язкове",
-    "requiredAmount": "Необхідна кількість води в літрах на добу:",
-    "writeWateDrink": "Запишіть, скільки води ви будете пити:",
+    "requiredAmount": "Необхідна кількість води в літрах на добу",
+    "writeWateDrink": "Запишіть, скільки води ви будете пити",
     "goalRequired": "Мета потрібна",
-    "yourBodyMassIndex": "Ваш індекс маси тіла:",
+    "yourBodyMassIndex": "Ваш індекс маси тіла",
     "calc": [
       "V - об'єм ",
       "норма води в літрах на добу, М - маса тіла, Т - ",
@@ -135,11 +134,18 @@
     "welcome": "Вітаємо"
   },
   "chooseDate": {
-    "today": "Сьогодні"
+    "today": "Сьогодні",
+    "chosen": "{{ date, dayMonth}}"
   },
   "calendar": {
     "month": "Місяць",
-    "statistics": "Статистика"
+    "statistics": "Статистика",
+    "pagination": "{{ date, monthYear }}"
+  },
+  "statistics": {
+    "selectDaysRange": "Оберіть діапазон днів",
+    "days": "днів",
+    "water": "Води"
   },
   "switcher": {
     "choose": "Оберіть мову інтерфейсу:"
