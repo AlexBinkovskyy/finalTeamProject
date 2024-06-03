@@ -8,12 +8,13 @@ import { FaCalculator } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUserSettings } from '../../redux/auth/operations';
-import BMIImage from '../../image/BMI.png';
+// import BMIImage from '../../image/BMI.png';
 import Loader from '../../components/Loader/Loader';
-import getBmiResult from 'components/utils/getBmiResult ';
-import getColorClass from 'components/utils/getColorClassForBmi';
+// import getBmiResult from 'components/utils/getBmiResult ';
+// import getColorClass from 'components/utils/getColorClassForBmi';
+import ChartComponent from '../ChartComponent/ChartComponent'
 import css from './BodyMassIndex.module.css';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   weight: yup
@@ -35,7 +36,7 @@ export default function BodyMassIndex() {
   const [height, setHeight] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataError, setDataError] = useState('');
-  //   const { t } = useTranslation();
+    const { t } = useTranslation();
 
   const {
     register,
@@ -92,12 +93,7 @@ export default function BodyMassIndex() {
     formData.append('weight', weight);
     formData.append('height', height);
 
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
-
     try {
-      // console.log(bmiValue);
       dispatch(updateUserSettings(formData));
     } catch (error) {
       console.error('Failed to update user settings', error);
@@ -118,27 +114,17 @@ export default function BodyMassIndex() {
     }
   };
 
-  const bmiColorClass = getColorClass(parseFloat(bmiValue));
+  // const bmiColorClass = getColorClass(parseFloat(bmiValue));
 
   return (
     <div className={css.wrapper}>
       <form onSubmit={handleSubmit(calculateBMI)} className={css.form}>
-        {/* //         <p className={css.text}>{t('BMI.BMIpar')}</p> */}
-        <p className={css.text}>
-          Body mass index (BMI) is a calculated value that allows you to assess
-          the degree of correspondence between a person's body weight and
-          height. Such a ratio gives us information about whether the weight is
-          normal, insufficient or excessive. The BMI indicator reflects the fat
-          reserves in the human body, which can timely signal its excess, the
-          risk of developing obesity and related diseases. Enter your data below
-          to calculate your BMI.
-        </p>
+        <p className={css.text}>{t('BMI.BMIpar')}</p>
         <div className={css.formElements}>
           <div className={css.labels}>
             <div className={`${css.formGroup} ${css.weightInput}`}>
               <label htmlFor="weight" className={css.label}>
-                Weight (kg):
-                {/* {t('modals.weight')} */}
+                {t('modals.weight')}
               </label>
               <input
                 type="number"
@@ -161,8 +147,7 @@ export default function BodyMassIndex() {
             </div>
             <div className={`${css.formGroup} ${css.heightInput}`}>
               <label htmlFor="height" className={css.label}>
-                Height (cm):
-                {/* {t('modals.height')} */}
+                {t('modals.height')}
               </label>
               <input
                 type="number"
@@ -220,7 +205,7 @@ export default function BodyMassIndex() {
             <span className={`${css.error} ${css.errorData}`}>{dataError}</span>
           )}
         </div>
-        {bmiValue && (
+        {/* {bmiValue && (
           <div className={css.result}>
             <div className={css.thumb}>
               <img src={BMIImage} alt="Body mass index" className={css.image} />
@@ -232,7 +217,16 @@ export default function BodyMassIndex() {
               </p>
             )}
           </div>
-        )}
+        )} */}
+      {bmiValue && (
+        <div className={css.result}>
+          <ChartComponent bmiValue={parseFloat(bmiValue)} />
+          {/* <p className={`${css.value} ${css[bmiColorClass]}`}>{bmiValue}</p> */}
+          {/* <p className={`${css.indexMessage} ${css[bmiColorClass]}`}>
+            {bmiValue} - {getBmiResult(bmiValue)}
+          </p> */}
+        </div>
+      )}
         {loading && <Loader />}
       </form>
     </div>
