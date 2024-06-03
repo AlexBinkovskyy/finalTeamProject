@@ -1,6 +1,9 @@
 .wrapper {
   padding: 20px;
+  max-height: 80vh;
   overflow: auto;
+  scrollbar-color: var(--accent-color) transparent;
+  scrollbar-width: thin;
 }
 
 .title {
