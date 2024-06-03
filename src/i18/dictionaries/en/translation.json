@@ -56,7 +56,8 @@
   },
   "waterDailyNorma": {
     "dailyNorma": "My daily norma",
-    "today": "Today"
+    "today": "Today",
+    "l": "L"
   },
   "welcomeSection": {
     "recordDaily": "Record daily water intake and track",

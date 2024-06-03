@@ -57,7 +57,8 @@
 
   "waterDailyNorma": {
     "dailyNorma": "Денна норма",
-    "today": "Сьогодні"
+    "today": "Сьогодні",
+    "l": "Л"
   },
 
   "welcomeSection": {

@@ -20,7 +20,6 @@ export default function WaterList({ selectedDate }) {
   const placeholderWater = {
     amount: '250',
     time: '12:00',
-    // _id: 'placeholderWater',
   };
 
   return (
