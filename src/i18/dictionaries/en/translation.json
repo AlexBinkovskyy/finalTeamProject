@@ -93,7 +93,8 @@
       "water norm in liters per day, M is your body weight, T is the ",
       "time of active sports, or another type of activity commensurate ",
       "in terms of loads (in the absence of these, you must set 0)"
-    ]
+    ],
+    "currentTheme": "The current theme is"
   },
   "BMI": {
     "BMIpar": [
@@ -104,7 +105,15 @@
       "reserves in the human body, which can timely signal its excess, the",
       "risk of developing obesity and related diseases. Enter your data below",
       "to calculate your BMI."
-    ]
+    ],
+    "SevereThinness": "Severe Thinness",
+    "ModerateThinness": "Moderate Thinness",
+    "MildThinness": "Mild Thinness",
+    "Normal": "Normal",
+    "Overweight": "Overweight",
+    "ObeseClassI": "Obese Class I ",
+    "ObeseClassII": "Obese Class II",
+    "ObeseClassIII": "Obese Class III"
   },
   "toast": {
     "loginSuccess": "Welcome to the AquaTrack",
