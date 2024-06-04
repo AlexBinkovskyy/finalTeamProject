@@ -11,12 +11,13 @@ import { useTranslation } from 'react-i18next';
 import Animation from './Animation';
 
 export default function WaterProgressBar() {
+  const { t } = useTranslation();
+
   const chosenDateStr = useSelector(selectChosenDate);
   const todayTotal = useSelector(selectTodayTotal);
   const goal = useSelector(selectGoal);
 
-  const todayTotalLitr = Math.round((todayTotal / 1000) * 10) / 10;
-  const { t } = useTranslation();
+  const todayTotalLitr = Math.round(todayTotal / 100) / 10;
 
   if (!chosenDateStr || goal === undefined || goal === 0) {
     return null;
@@ -39,12 +40,16 @@ export default function WaterProgressBar() {
         {chosenDateStr === today ? (
           <p className={css.text}>
             {t('waterDailyNorma.today')}
-            <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
+            <span className={css.todayTotalLitr}>
+              {todayTotalLitr} {t('waterDailyNorma.l')}
+            </span>
           </p>
         ) : (
           <p className={css.text}>
             {t('chooseDate.chosen', { date })}
-            <span className={css.todayTotalLitr}> {todayTotalLitr}L</span>
+            <span className={css.todayTotalLitr}>
+              {todayTotalLitr} {t('waterDailyNorma.l')}
+            </span>
           </p>
         )}
         <div className={css.Progress}>

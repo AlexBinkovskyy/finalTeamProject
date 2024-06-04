@@ -11,7 +11,9 @@ export default function WaterDailyNorma() {
   return (
     <>
       <div className={css.WaterDailyNorma}>
-        <p className={css.norma}>{dailyNorma} L</p>
+        <p className={css.norma}>
+          {dailyNorma} {t('waterDailyNorma.l')}
+        </p>
         <p className={css.text}>{t('waterDailyNorma.dailyNorma')}</p>
       </div>
     </>

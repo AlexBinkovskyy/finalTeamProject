@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectChosenDate } from '../../redux/water/selectors';
 import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns';
 
 const schema = Yup.object().shape({
   waterAmount: Yup.number()
@@ -25,6 +26,13 @@ const schema = Yup.object().shape({
       'Record time cannot be in the future',
       function (value) {
         const currentTime = new Date();
+
+        //
+        // console.log('value', value);
+        // const formatedCurrentTime = format(currentTime, 'dd.MM.yyyy');
+        // console.log('Current Day', formatedCurrentTime);
+        //
+
         const [hours, minutes] = value.split(':');
         const selectedTime = new Date();
         selectedTime.setHours(hours, minutes, 0, 0);
@@ -83,38 +91,50 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
 
   const handleInputChange = event => {
     const { value } = event.target;
-
     if (value === '' || /^\d{1,5}$/.test(value)) {
       setWaterAmount(value);
     }
   };
 
-  const handleTimeChange = event => {
-    const selectedTime = event.target.value;
-    const currentTime = new Date();
-    const [hours, minutes] = selectedTime.split(':');
-    const selectedDateTime = new Date();
-    selectedDateTime.setHours(hours, minutes, 0, 0);
-    if (selectedDateTime <= currentTime) {
-      setTime(selectedTime);
-    } else {
-      alert('Time cannot be in the future');
-    }
-  };
+  // const handleTimeChange = event => {
+  //   const selectedTime = event.target.value;
+  //   const currentTime = new Date();
+  //   const [hours, minutes] = selectedTime.split(':');
+  //   const selectedDateTime = new Date();
+  //   selectedDateTime.setHours(hours, minutes, 0, 0);
+  //   if (selectedDateTime <= currentTime) {
+  //     setTime(selectedTime);
+  //   } else {
+  //     alert('Time cannot be in the future');
+  //   }
+  // };
 
   const onSubmit = async data => {
+    //
+    // const todayDate = new Date();
+    // const currentDate = format(todayDate, 'dd.MM.yyyy');
+    // console.log('Current Day', currentDate);
+    // console.log('Chosen Day', date);
+    // console.log(date === currentDate);
+    //
+
     const postData = {
       date: date,
       time: data.time,
       amount: data.waterAmount,
     };
+    const todayDate = new Date();
+    console.log(todayDate);
+    console.log(postData.date);
 
     if (operationType === 'edit') {
       await dispatch(
         updateConsumption({ _id: defaultValues._id, ...postData })
       );
-    } else {
+    } else if (operationType === 'add') {
       await dispatch(addConsumption(postData));
+    } else {
+      return;
     }
 
     isClose();
@@ -135,7 +155,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
             -
           </button>
           <span className={css.waterAmount}>
-            {waterAmount} {t('modals.ml')}{' '}
+            {waterAmount} {t('modals.ml')}
           </span>
           <button
             type="button"
@@ -157,7 +177,7 @@ const WaterForm = ({ isClose, defaultValues, operationType }) => {
           type="time"
           name="time"
           className={css.waterInput}
-          onChange={handleTimeChange}
+          // onChange={handleTimeChange}
           {...register('time')}
         />
         <div className={css.divError}>
